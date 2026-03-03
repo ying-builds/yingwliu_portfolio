@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ying Liu — Ticketmaster</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500&family=PT+Mono&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FAF8F5;
+    --ink: #1A1916;
+    --mid: #888480;
+    --soft: #B8B4AF;
+    --rule: #E4E1DC;
+    --accent: #A63D2B;
+    --card-bg: #F0EDE8;
+  }
+  html { background: var(--cream); color: var(--ink); font-size: 16px; }
+  body { font-family: 'Inter', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+  * { cursor: none; }
+  #cursor {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--ink); position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%,-50%);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  #cursor-ring {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 1px solid rgba(26,25,22,0.3); position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%,-50%);
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 48px; z-index: 100;
+    background: rgba(250,248,245,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: 'PT Mono', monospace; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 400; text-decoration: none; color: var(--ink); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.02em; text-decoration: none; color: var(--mid); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+
+  .breadcrumb { padding: 108px 48px 0; font-family: 'PT Mono', monospace; font-size: 10px; color: var(--soft); letter-spacing: 0.04em; }
+  .breadcrumb a { color: var(--soft); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--ink); }
+  .breadcrumb span { margin: 0 8px; }
+
+  .hero { padding: 36px 48px 0; max-width: 900px; }
+  .hero-eyebrow { font-family: 'PT Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mid); margin-bottom: 18px; }
+  .hero h1 {
+    font-family: 'Fraunces', serif; font-size: clamp(40px, 5.5vw, 68px);
+    font-weight: 400; line-height: 1.06; letter-spacing: -0.015em; margin-bottom: 28px;
+  }
+  .hero h1 em { font-style: italic; color: var(--mid); }
+  .mission {
+    font-size: 15px; line-height: 1.7; color: var(--mid);
+    max-width: 480px; border-left: 2px solid var(--accent);
+    padding-left: 18px; margin-bottom: 52px;
+  }
+
+  .meta-row {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    padding: 22px 48px;
+  }
+  .meta-item { padding-right: 24px; }
+  .meta-item + .meta-item { border-left: 1px solid var(--rule); padding-left: 28px; }
+  .meta-label { font-family: 'PT Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--soft); margin-bottom: 6px; }
+  .meta-value { font-size: 13px; color: var(--ink); line-height: 1.5; }
+  .tool-chips { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 2px; }
+  .chip { font-family: 'PT Mono', monospace; font-size: 9px; padding: 2px 9px; border: 1px solid var(--rule); border-radius: 20px; color: var(--mid); }
+
+  .hero-image {
+    margin: 0 48px; height: 420px; border-radius: 6px;
+    background: linear-gradient(160deg, #E5E0D8 0%, #D8D2C8 100%);
+    position: relative; overflow: hidden;
+  }
+
+  .content { max-width: 860px; margin: 0 auto; padding: 72px 48px 100px; }
+  .section { margin-bottom: 72px; }
+  .section-label {
+    font-family: 'PT Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--soft);
+    margin-bottom: 24px; display: flex; align-items: center; gap: 14px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+  .section p { font-size: 15px; line-height: 1.78; color: #3D3A36; margin-bottom: 14px; }
+  .callout {
+    border-left: 2px solid var(--accent); padding: 14px 18px;
+    background: rgba(166,61,43,0.05); border-radius: 0 4px 4px 0; margin: 28px 0;
+  }
+  .callout p { font-size: 14px; font-style: italic; color: var(--ink); margin: 0; }
+
+  /* SCRAPBOOK COLLAGE */
+  .scrapbook {
+    position: relative; min-height: 520px; margin-top: 28px;
+  }
+  .scrap-item {
+    position: absolute; border-radius: 4px; overflow: hidden;
+    box-shadow: 0 4px 24px rgba(26,25,22,0.10), 0 1px 4px rgba(26,25,22,0.06);
+    border: 3px solid rgba(255,255,255,0.9);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .scrap-item:hover {
+    z-index: 10;
+    transform: rotate(0deg) scale(1.03) !important;
+    box-shadow: 0 12px 40px rgba(26,25,22,0.16), 0 2px 8px rgba(26,25,22,0.08);
+  }
+  .scrap-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .scrap-item.s1 {
+    width: 58%; height: 300px; top: 10px; left: 0;
+    transform: rotate(-1.5deg);
+  }
+  .scrap-item.s2 {
+    width: 36%; height: 260px; top: 0; right: 0;
+    transform: rotate(2.2deg);
+  }
+  .scrap-item.s3 {
+    width: 40%; height: 180px; bottom: 0; left: 4%;
+    transform: rotate(1.8deg);
+  }
+  .scrap-item.s4 {
+    width: 34%; height: 200px; bottom: 10px; right: 6%;
+    transform: rotate(-2.5deg);
+  }
+
+  /* FIGMA EMBED */
+  .figma-section { margin-top: 28px; }
+  .figma-embed-wrap {
+    border: 1px solid var(--rule); border-radius: 6px;
+    overflow: hidden; background: var(--card-bg);
+  }
+  .figma-gated {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; text-align: center;
+    padding: 64px 32px; min-height: 300px;
+  }
+  .gated-icon { color: var(--soft); margin-bottom: 20px; }
+  .gated-title {
+    font-family: 'Fraunces', serif; font-size: 22px;
+    font-weight: 400; color: var(--ink); margin-bottom: 10px;
+  }
+  .gated-note {
+    font-size: 14px; line-height: 1.7; color: var(--mid); margin-bottom: 28px;
+  }
+  .gated-btn {
+    font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.04em; text-decoration: none;
+    color: var(--cream); background: var(--ink); padding: 10px 24px;
+    border-radius: 20px; transition: opacity 0.2s;
+  }
+  .gated-btn:hover { opacity: 0.75; }
+
+  /* PROJECT GRID */
+  .project-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; background: var(--rule);
+    border: 1px solid var(--rule); border-radius: 6px;
+    overflow: hidden; margin-top: 28px;
+  }
+  .project-card {
+    background: var(--cream); display: flex; flex-direction: column;
+    transition: background 0.2s; position: relative; overflow: hidden;
+  }
+  .project-card:hover { background: #F5F2ED; }
+  .card-visual {
+    width: 100%; height: 180px; position: relative; overflow: hidden;
+    background: #E8E5E0;
+  }
+  .card-screenshot {
+    width: 100%; height: 100%; object-fit: cover; object-position: top center;
+    filter: blur(6px) saturate(0.6);
+    transform: scale(1.08);
+    transition: filter 0.3s ease;
+  }
+
+  .censored-overlay {
+    position: absolute; inset: 0;
+    display: flex; align-items: flex-end; justify-content: flex-end; padding: 8px;
+  }
+  .censored-tag {
+    font-family: 'PT Mono', monospace;
+    font-size: 9px; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--soft); background: rgba(250,248,245,0.8);
+    padding: 3px 8px; border-radius: 10px; backdrop-filter: blur(4px);
+  }
+  .card-info { padding: 14px 16px 18px; }
+  .card-num { font-family: 'PT Mono', monospace; font-size: 10px; color: var(--soft); letter-spacing: 0.04em; margin-bottom: 4px; }
+  .card-title { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
+  .card-desc { font-size: 12px; color: var(--mid); line-height: 1.55; }
+
+  .metrics {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; background: var(--rule);
+    border: 1px solid var(--rule); border-radius: 6px;
+    overflow: hidden; margin-top: 28px;
+  }
+  .metric { background: var(--cream); padding: 30px 24px; text-align: center; }
+  .metric-num {
+    font-family: 'Fraunces', serif; font-size: 44px;
+    font-weight: 400; color: var(--ink); line-height: 1; margin-bottom: 8px;
+  }
+  .metric-desc { font-size: 12px; color: var(--mid); line-height: 1.5; }
+
+  .takeaway {
+    background: var(--ink); border-radius: 6px; padding: 36px 40px; margin-top: 28px;
+  }
+  .takeaway-label { font-family: 'PT Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(250,248,245,0.35); margin-bottom: 14px; }
+  .takeaway p { font-size: 15px; line-height: 1.78; color: rgba(250,248,245,0.82); margin: 0; }
+
+  .case-footer {
+    border-top: 1px solid var(--rule); padding: 40px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .case-footer a { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--ink); text-decoration: none; transition: opacity 0.2s; }
+  .case-footer a:hover { opacity: 0.5; }
+
+  .fade-up { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav, .breadcrumb, .hero, .case-footer { padding-left: 24px; padding-right: 24px; }
+    .meta-row { grid-template-columns: 1fr 1fr; padding: 20px 24px; gap: 20px; }
+    .meta-item + .meta-item { border-left: none; padding-left: 0; }
+    .hero-image { margin: 0 24px; height: 260px; }
+    .content { padding: 48px 24px 80px; }
+    .project-grid { grid-template-columns: 1fr 1fr; }
+    .metrics { grid-template-columns: 1fr; }
+    .photo-feature { height: 220px; }
+    .photo-half { height: 180px; }
+    .photo-accent { height: 140px; }
+    .impact-strip { flex-direction: column; gap: 16px; }
+    .scrapbook { min-height: 400px; }
+    .scrap-item.s1 { width: 60%; height: 220px; }
+    .scrap-item.s2 { width: 38%; height: 200px; }
+    .scrap-item.s3 { width: 44%; height: 140px; }
+    .scrap-item.s4 { width: 38%; height: 150px; }
+    .figma-gated { padding: 48px 24px; min-height: 240px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav>
+  <a href="#" class="nav-logo">Ying Liu</a>
+  <div class="nav-links">
+    <a href="#">Work</a>
+    <a href="#">About</a>
+  </div>
+</nav>
+
+<div class="breadcrumb fade-up">
+  <a href="#">Work</a><span>/</span>Ticketmaster
+</div>
+
+<div class="hero fade-up">
+  <p class="hero-eyebrow">Product Designer & UX Researcher · 2023–2025</p>
+  <h1>Ticketmaster<br><em>Support Community</em></h1>
+  <p class="mission">Designing features to drive client engagement and self-service — helping thousands of clients find answers without ever needing to ask.</p>
+</div>
+
+<div class="meta-row fade-up">
+  <div class="meta-item">
+    <p class="meta-label">Role</p>
+    <p class="meta-value">Sole Product Designer</p>
+  </div>
+  <div class="meta-item">
+    <p class="meta-label">Timeline</p>
+    <p class="meta-value">Aug 2023 – Oct 2025</p>
+  </div>
+  <div class="meta-item">
+    <p class="meta-label">Team</p>
+    <p class="meta-value">Kari Scott · Em Villaverde</p>
+  </div>
+  <div class="meta-item">
+    <p class="meta-label">Tools</p>
+    <div class="tool-chips">
+      <span class="chip">Figma</span>
+      <span class="chip">Maze</span>
+      <span class="chip">Salesforce</span>
+      <span class="chip">Coveo</span>
+      <span class="chip">Domo</span>
+    </div>
+  </div>
+</div>
+
+<div class="hero-image fade-up">
+  <img src="ipad-mockup.png" alt="Ticketmaster Support Community platform on iPad" style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+</div>
+
+<div class="content">
+
+  <div class="section fade-up">
+    <p class="section-label">The Problem</p>
+    <p>Ticketmaster's Global Education team needed a scalable way to train and support clients across 14 markets — from first-time venue managers to enterprise promoters running hundreds of events. The B2B support platform was the vehicle: a single destination where clients could learn the product, troubleshoot issues, and stay current on platform changes without needing to contact support.</p>
+    <div class="callout">
+      <p>How might we design a platform that helps clients learn and solve problems on their own — scaling education across markets without scaling headcount?</p>
+    </div>
+  </div>
+
+  <div class="section fade-up">
+    <p class="section-label">Projects</p>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="card-visual">
+          <img src="mockup-onboarding.jpg" alt="Onboarding Journey" class="card-screenshot" />
+          <div class="censored-overlay"><span class="censored-tag">Under NDA</span></div>
+        </div>
+        <div class="card-info">
+          <p class="card-num">01</p>
+          <p class="card-title">Onboarding Journey</p>
+          <p class="card-desc">Redesigned first-time client setup from 0→1 to reduce time-to-confidence.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-visual">
+          <img src="mockup-productupdates.png" alt="Product Updates" class="card-screenshot" />
+          <div class="censored-overlay"><span class="censored-tag">Under NDA</span></div>
+        </div>
+        <div class="card-info">
+          <p class="card-num">02</p>
+          <p class="card-title">Product Updates</p>
+          <p class="card-desc">Surfaced platform changes so clients stay informed without contacting support.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-visual">
+          <img src="mockup-productguide.png" alt="Product Guide" class="card-screenshot" />
+          <div class="censored-overlay"><span class="censored-tag">Under NDA</span></div>
+        </div>
+        <div class="card-info">
+          <p class="card-num">03</p>
+          <p class="card-title">Product Guide</p>
+          <p class="card-desc">Task-based content system enabling clients to self-serve with confidence.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-visual">
+          <img src="mockup-supportform.png" alt="Support Form" class="card-screenshot" />
+          <div class="censored-overlay"><span class="censored-tag">Under NDA</span></div>
+        </div>
+        <div class="card-info">
+          <p class="card-num">04</p>
+          <p class="card-title">Support Form</p>
+          <p class="card-desc">Simplified ticket submission to reduce friction and speed up issue resolution.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-visual">
+          <img src="mockup-personalization.png" alt="AI Personalization" class="card-screenshot" />
+          <div class="censored-overlay"><span class="censored-tag">Under NDA</span></div>
+        </div>
+        <div class="card-info">
+          <p class="card-num">05</p>
+          <p class="card-title">AI Personalization</p>
+          <p class="card-desc">AI-driven content recommendations tailored to each client's product usage.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-visual">
+          <img src="mockup-eventform.jpg" alt="Event Creation Form" class="card-screenshot" />
+          <div class="censored-overlay"><span class="censored-tag">Under NDA</span></div>
+        </div>
+        <div class="card-info">
+          <p class="card-num">06</p>
+          <p class="card-title">Event Creation Form</p>
+          <p class="card-desc">Streamlined complex multi-step form for operators building events at scale.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section fade-up">
+    <p class="section-label">On the Ground</p>
+
+    <div class="scrapbook">
+      <div class="scrap-item s1">
+        <img src="photo-roundtable.jpeg" alt="Facilitating a client roundtable session" />
+      </div>
+      <div class="scrap-item s2">
+        <img src="photo-selfie.jpeg" alt="At a Ticketmaster Support Community event" />
+      </div>
+      <div class="scrap-item s3">
+        <img src="photo-office.jpeg" alt="Ticketmaster office — Live only happens once" />
+      </div>
+      <div class="scrap-item s4">
+        <img src="photo-marquee.jpeg" alt="Welcome Global Education and Training" />
+      </div>
+    </div>
+  </div>
+
+  <div class="section fade-up">
+    <p class="section-label">Case Study</p>
+    <div class="figma-section">
+      <div class="figma-embed-wrap">
+        <div class="figma-gated">
+          <div class="gated-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <p class="gated-title">This case study is under NDA</p>
+          <p class="gated-note">Please request access with your name and company.<br/>Thank you!</p>
+          <a class="gated-btn" href="https://www.figma.com/slides/CyaJETWHXCwyUJq9aNLpLi/Support-Community-PPT?node-id=1-92" target="_blank" rel="noopener">Request Access</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section fade-up">
+    <p class="section-label">Takeaway</p>
+    <div class="takeaway">
+      <p class="takeaway-label">What I learned</p>
+      <p>The best outcome wasn't a single feature — it was infrastructure. Designing navigation, content, and search as a system meant every new article, every new market, made the platform better rather than more complex. Scalable design means designing for the work that comes after you.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="case-footer fade-up">
+  <a href="#">← Back to Work</a>
+  <a href="#">Next: UC Davis GSM →</a>
+</div>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animRing() {
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+  document.querySelectorAll('a, .project-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(3)';
+      cursor.style.background = 'var(--accent)';
+      ring.style.opacity = '0.1';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      cursor.style.background = 'var(--ink)';
+      ring.style.opacity = '1';
+    });
+  });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.06) + 's';
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
