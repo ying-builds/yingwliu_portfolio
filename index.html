@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ying Liu — Product Designer</title>
+<meta name="description" content="Ying Liu is a Product Designer who designs thoughtful, scalable experiences grounded in real user needs. View selected work including Ticketmaster, UC Davis GSM, and BeReal.">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500&family=PT+Mono&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FAF8F5;
+    --ink: #1A1916;
+    --mid: #888480;
+    --soft: #B8B4AF;
+    --rule: #E4E1DC;
+    --accent: #A63D2B;
+    --card-bg: #F0EDE8;
+  }
+  html { background: var(--ink); }
+  body { font-family: 'Inter', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+
+  /* ========================================
+     DARK HERO WITH ANIMATED SMOKE
+     ======================================== */
+  .hero-dark {
+    position: relative;
+    min-height: 100vh;
+    background: #0A0A09;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 48px;
+  }
+
+  /* Smoke layers */
+  .smoke-layer {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+  }
+  .smoke-layer.s1 {
+    background-image: url('smoke-full.png');
+    animation: smokeFloat1 18s ease-in-out infinite, smokeFadeIn 3s ease forwards;
+  }
+  .smoke-layer.s2 {
+    background-image: url('smoke-banner.png');
+    background-size: 120% auto;
+    background-position: center bottom;
+    animation: smokeFloat2 22s ease-in-out infinite, smokeFadeIn 3s 0.8s ease forwards;
+  }
+  .smoke-layer.s3 {
+    background-image: url('smoke-full.png');
+    transform: scaleX(-1) scaleY(-1);
+    opacity: 0;
+    animation: smokeFloat3 26s ease-in-out infinite, smokeFadeIn 3s 1.5s ease forwards;
+  }
+
+  @keyframes smokeFadeIn {
+    to { opacity: 1; }
+  }
+  @keyframes smokeFloat1 {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+    25% { transform: translate(12px, -8px) scale(1.02); opacity: 0.5; }
+    50% { transform: translate(-8px, 6px) scale(1.01); opacity: 0.7; }
+    75% { transform: translate(6px, -12px) scale(1.03); opacity: 0.55; }
+  }
+  @keyframes smokeFloat2 {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+    33% { transform: translate(-15px, 8px) scale(1.04); opacity: 0.35; }
+    66% { transform: translate(10px, -6px) scale(1.02); opacity: 0.45; }
+  }
+  @keyframes smokeFloat3 {
+    0%, 100% { transform: scaleX(-1) scaleY(-1) translate(0, 0) scale(1); opacity: 0.25; }
+    50% { transform: scaleX(-1) scaleY(-1) translate(20px, -10px) scale(1.05); opacity: 0.3; }
+  }
+
+  /* Gradient overlay for depth */
+  .hero-dark::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, #0A0A09 75%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Hero content */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-logo {
+    width: 72px; height: 72px;
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: heroReveal 1s 0.5s ease forwards;
+  }
+
+  .hero-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 400;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: heroReveal 1s 0.7s ease forwards;
+  }
+
+  .hero-role {
+    font-family: 'PT Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: heroReveal 1s 0.9s ease forwards;
+  }
+
+  .hero-bio {
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(250,248,245,0.55);
+    max-width: 480px;
+    opacity: 0;
+    animation: heroReveal 1s 1.1s ease forwards;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: heroReveal 1s 1.6s ease forwards;
+  }
+  .scroll-hint span {
+    font-family: 'PT Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(250,248,245,0.25);
+  }
+  .scroll-line {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, rgba(250,248,245,0.25), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.3); transform-origin: top; }
+  }
+
+  @keyframes heroReveal {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ========================================
+     LIGHT SECTION — WORK
+     ======================================== */
+  .work-section {
+    background: var(--cream);
+    color: var(--ink);
+  }
+
+  /* NAV (appears on scroll into light section) */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 48px; z-index: 100;
+    background: rgba(250,248,245,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    transform: translateY(-100%);
+    transition: transform 0.4s ease;
+  }
+  nav.visible { transform: translateY(0); }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-icon { width: 20px; height: 20px; }
+  .nav-logo-text {
+    font-family: 'PT Mono', monospace;
+    font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+    font-weight: 400; color: var(--ink);
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; letter-spacing: 0.02em; text-decoration: none;
+    color: var(--mid); transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:focus-visible, .nav-logo:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  .footer-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  /* WORK HEADER */
+  .work-header {
+    padding: 80px 48px 40px;
+    font-family: 'PT Mono', monospace;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--soft);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .work-header::after {
+    content: ''; flex: 1; height: 1px; background: var(--rule);
+  }
+
+  /* PROJECT GRID */
+  .projects { padding: 0 48px 100px; }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .project-card {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--cream);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-card:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px;
+  }
+  .project-card:hover {
+    border-color: var(--soft);
+    box-shadow: 0 8px 40px rgba(26,25,22,0.06);
+  }
+
+  .project-image {
+    height: 280px;
+    overflow: hidden;
+    background: var(--card-bg);
+    position: relative;
+  }
+  .project-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .project-card:hover .project-image img {
+    transform: scale(1.03);
+  }
+
+  .project-info {
+    padding: 24px 28px 28px;
+    display: flex; flex-direction: column;
+    flex: 1;
+  }
+  .project-num {
+    font-family: 'PT Mono', monospace;
+    font-size: 10px; color: var(--soft);
+    letter-spacing: 0.06em; margin-bottom: 10px;
+  }
+  .project-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 400;
+    line-height: 1.2; letter-spacing: -0.01em;
+    margin-bottom: 10px; color: var(--ink);
+  }
+  .project-desc {
+    font-size: 13px; line-height: 1.65;
+    color: var(--mid); margin-bottom: 20px;
+  }
+  .project-meta {
+    display: flex; gap: 24px;
+    margin-top: auto;
+  }
+  .project-meta-label {
+    font-family: 'PT Mono', monospace;
+    font-size: 9px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--soft);
+    margin-bottom: 3px;
+  }
+  .project-meta-value {
+    font-size: 12px; color: var(--ink); font-weight: 400;
+  }
+
+  .project-arrow {
+    display: flex; align-items: center; gap: 8px;
+    margin-top: 16px;
+    font-family: 'PT Mono', monospace;
+    font-size: 10px; letter-spacing: 0.04em;
+    color: var(--accent);
+    opacity: 0; transform: translateX(-8px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .project-card:hover .project-arrow {
+    opacity: 1; transform: translateX(0);
+  }
+
+  /* PROJECT PREVIEW MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(26,25,22,0.55);
+    backdrop-filter: blur(6px);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s ease;
+    display: flex; align-items: center; justify-content: center;
+    padding: 32px;
+  }
+  .modal-overlay.active { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: var(--cream);
+    border-radius: 10px;
+    max-width: 900px; width: 100%;
+    height: 88vh;
+    box-shadow: 0 24px 80px rgba(26,25,22,0.25);
+    transform: translateY(24px) scale(0.97);
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    position: relative;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .modal-overlay.active .modal {
+    transform: translateY(0) scale(1);
+  }
+
+  .modal-toolbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--cream);
+    flex-shrink: 0;
+  }
+  .modal-toolbar-title {
+    font-family: 'PT Mono', monospace;
+    font-size: 11px; letter-spacing: 0.04em;
+    color: var(--mid);
+  }
+  .modal-toolbar-actions { display: flex; gap: 8px; }
+  .modal-btn {
+    font-family: 'PT Mono', monospace;
+    font-size: 10px; letter-spacing: 0.03em;
+    padding: 6px 16px; border-radius: 20px;
+    text-decoration: none; cursor: pointer;
+    transition: all 0.2s; border: none;
+  }
+  .modal-btn-expand {
+    background: var(--ink); color: var(--cream);
+  }
+  .modal-btn-expand:hover { opacity: 0.75; }
+  .modal-btn-close {
+    background: transparent; color: var(--mid);
+    border: 1px solid var(--rule);
+  }
+  .modal-btn-close:hover { border-color: var(--soft); color: var(--ink); }
+  .modal-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 20px; }
+
+  .modal-iframe-wrap {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 0 0 10px 10px;
+  }
+  .modal-iframe-wrap iframe {
+    width: 100%; height: 100%;
+    border: none;
+  }
+
+  @media (max-width: 768px) {
+    .modal-overlay { padding: 12px; }
+    .modal { height: 92vh; max-width: 100%; border-radius: 8px; }
+  }
+
+  /* FOOTER */
+  footer {
+    background: #0A0A09;
+    position: relative;
+    overflow: hidden;
+    padding: 64px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .footer-smoke {
+    position: absolute;
+    inset: 0;
+    background: url('smoke-banner.png') center/cover no-repeat;
+    opacity: 0.3;
+    animation: smokeFloat2 22s ease-in-out infinite;
+  }
+  .footer-left { position: relative; z-index: 1; }
+  .footer-logo { width: 36px; height: 36px; margin-bottom: 12px; opacity: 0.7; }
+  .footer-name {
+    font-family: 'Fraunces', serif;
+    font-size: 18px; color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .footer-copy {
+    font-size: 11px; color: rgba(250,248,245,0.3);
+  }
+  .footer-links {
+    position: relative; z-index: 1;
+    display: flex; gap: 20px;
+  }
+  .footer-links a {
+    font-family: 'PT Mono', monospace;
+    font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none; color: rgba(250,248,245,0.4);
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--cream); }
+
+  /* FADE-UP */
+  .fade-up {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* SKIP LINK */
+  .skip-link {
+    position: absolute; left: -9999px; top: auto;
+    width: 1px; height: 1px; overflow: hidden;
+    font-family: 'PT Mono', monospace; font-size: 12px;
+    background: var(--ink); color: var(--cream);
+    padding: 10px 20px; z-index: 999; text-decoration: none;
+    border-radius: 0 0 6px 0;
+  }
+  .skip-link:focus {
+    position: fixed; left: 0; top: 0;
+    width: auto; height: auto; overflow: visible;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    nav, .work-header, .projects, footer { padding-left: 24px; padding-right: 24px; }
+    .hero-dark { padding: 24px; }
+    .hero-logo { width: 56px; height: 56px; }
+    footer { flex-direction: column; align-items: flex-start; gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#work" class="skip-link">Skip to work</a>
+
+<!-- STICKY NAV (appears on scroll) -->
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="ying-logo-black.png" alt="Ying" class="nav-logo-icon" />
+    <span class="nav-logo-text">Ying Liu</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Work</a>
+    <a href="about.html">About</a>
+  </div>
+</nav>
+
+<!-- DARK HERO -->
+<section class="hero-dark">
+  <div class="smoke-layer s1"></div>
+  <div class="smoke-layer s2"></div>
+  <div class="smoke-layer s3"></div>
+
+  <div class="hero-content">
+    <img src="ying-logo-red.png" alt="瑩" class="hero-logo" />
+    <h1 class="hero-name">Ying Liu</h1>
+    <p class="hero-role">Product Designer</p>
+    <p class="hero-bio">Designing thoughtful, scalable experiences grounded in real user needs — listening closely, reading between the lines, and turning ambiguity into clarity.</p>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Work</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- LIGHT WORK SECTION -->
+<section class="work-section" id="work">
+
+  <p class="work-header fade-up">Selected Work</p>
+
+  <div class="projects">
+    <div class="projects-grid">
+
+      <div class="project-card fade-up" role="button" tabindex="0" onclick="openModal('ticketmaster')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('ticketmaster')}">
+        <div class="project-image">
+          <img src="ipad-mockup.png" alt="Ticketmaster Support Community on tablet mockup" />
+        </div>
+        <div class="project-info">
+          <p class="project-num">01</p>
+          <p class="project-title">Ticketmaster / Support Community</p>
+          <p class="project-desc">Shaping navigation, content systems, and search to enable scalable client self-service across 14 global markets.</p>
+          <div class="project-meta">
+            <div class="project-meta-item"><p class="project-meta-label">Role</p><p class="project-meta-value">Sole Product Designer</p></div>
+            <div class="project-meta-item"><p class="project-meta-label">Year</p><p class="project-meta-value">2023 – 2025</p></div>
+          </div>
+          <div class="project-arrow">Preview →</div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" role="button" tabindex="0" onclick="openModal('gsm')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('gsm')}">
+        <div class="project-image" style="background:#1B3A5C;">
+          <img src="gsm-hero.png" alt="UC Davis GSM alumni platform preview" loading="lazy" />
+        </div>
+        <div class="project-info">
+          <p class="project-num">02</p>
+          <p class="project-title">UC Davis GSM / Alumni Platform</p>
+          <p class="project-desc">End-to-end UX and UI for UC Davis GSM's first alumni platform, serving 80,000+ users.</p>
+          <div class="project-meta">
+            <div class="project-meta-item"><p class="project-meta-label">Role</p><p class="project-meta-value">Lead Product Designer</p></div>
+            <div class="project-meta-item"><p class="project-meta-label">Year</p><p class="project-meta-value">2023</p></div>
+          </div>
+          <div class="project-arrow">Preview →</div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" role="button" tabindex="0" onclick="openModal('bereal')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('bereal')}">
+        <div class="project-image" style="background:#0A0A09;">
+          <img src="bereal-card.png" alt="BeReal new features concept preview" loading="lazy" />
+        </div>
+        <div class="project-info">
+          <p class="project-num">03</p>
+          <p class="project-title">BeReal / New Features</p>
+          <p class="project-desc">Exploring where BeReal could grow — designing features that expand expression without breaking authenticity.</p>
+          <div class="project-meta">
+            <div class="project-meta-item"><p class="project-meta-label">Role</p><p class="project-meta-value">Product Designer</p></div>
+            <div class="project-meta-item"><p class="project-meta-label">Year</p><p class="project-meta-value">2023</p></div>
+          </div>
+          <div class="project-arrow">Preview →</div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" role="button" tabindex="0" onclick="openModal('netflix')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('netflix')}">
+        <div class="project-image" style="background:#E8E6E3;">
+          <img src="netflix-card.webp" alt="Netflix Party redesign concept preview" loading="lazy" />
+        </div>
+        <div class="project-info">
+          <p class="project-num">04</p>
+          <p class="project-title">Netflix Party / Redesign</p>
+          <p class="project-desc">Helping people stay connected while watching together during COVID-19.</p>
+          <div class="project-meta">
+            <div class="project-meta-item"><p class="project-meta-label">Role</p><p class="project-meta-value">UX Designer</p></div>
+            <div class="project-meta-item"><p class="project-meta-label">Year</p><p class="project-meta-value">2020</p></div>
+          </div>
+          <div class="project-arrow">Preview →</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-smoke"></div>
+  <div class="footer-left">
+    <img src="ying-logo-red.png" alt="瑩" class="footer-logo" />
+    <p class="footer-name">Ying Liu</p>
+    <p class="footer-copy">© 2026</p>
+  </div>
+  <div class="footer-links">
+    <a href="https://linkedin.com/in/yingwliu" target="_blank">LinkedIn</a>
+    <a href="mailto:yxngliu@gmail.com">Email</a>
+    <a href="https://medium.com/@yywliu" target="_blank">Medium</a>
+  </div>
+</footer>
+
+<script>
+  // Nav appears when scrolling past hero
+  const nav = document.getElementById('main-nav');
+  const hero = document.querySelector('.hero-dark');
+  const heroObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      nav.classList.toggle('visible', !e.isIntersecting);
+    });
+  }, { threshold: 0.1 });
+  heroObserver.observe(hero);
+
+  // Fade-up on scroll
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.08) + 's';
+    obs.observe(el);
+  });
+</script>
+
+<!-- PROJECT PREVIEW MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)" role="dialog" aria-label="Project preview">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-toolbar">
+      <span class="modal-toolbar-title" id="modal-toolbar-title"></span>
+      <div class="modal-toolbar-actions">
+        <a class="modal-btn modal-btn-expand" id="modal-expand" href="#">Open full page →</a>
+        <button class="modal-btn modal-btn-close" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+    <div class="modal-iframe-wrap">
+      <iframe id="modal-iframe" src="" title="Project preview"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  const projectData = {
+    ticketmaster: {
+      title: 'Ticketmaster / Support Community',
+      src: 'case-studies/ticketmaster.html',
+      href: 'case-studies/ticketmaster.html'
+    },
+    gsm: {
+      title: 'UC Davis GSM / Alumni Platform',
+      src: 'case-studies/gsm.html',
+      href: 'case-studies/gsm.html'
+    },
+    bereal: {
+      title: 'BeReal / New Features',
+      src: 'case-studies/bereal.html',
+      href: 'case-studies/bereal.html'
+    },
+    netflix: {
+      title: 'Netflix Party / Redesign',
+      src: 'https://davisdesigninteractive.medium.com/netflix-party-case-study-ec1193f097c5',
+      href: 'https://davisdesigninteractive.medium.com/netflix-party-case-study-ec1193f097c5',
+      external: true
+    }
+  };
+
+  function openModal(id) {
+    const p = projectData[id]; if (!p) return;
+    // Netflix / external links open directly since Medium won't iframe
+    if (p.external) { window.open(p.href, '_blank'); return; }
+    document.getElementById('modal-toolbar-title').textContent = p.title;
+    document.getElementById('modal-iframe').src = p.src;
+    const expand = document.getElementById('modal-expand');
+    expand.href = p.href;
+    expand.onclick = null;
+    document.getElementById('modal-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(e) {
+    if (e && e.target !== e.currentTarget) return;
+    document.getElementById('modal-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+    // Clear iframe to stop any loading
+    setTimeout(() => { document.getElementById('modal-iframe').src = ''; }, 350);
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+</body>
+</html>
+

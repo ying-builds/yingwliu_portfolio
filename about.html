@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ying Liu — About</title>
+<meta name="description" content="About Ying Liu — Product Designer. Curious, driven, and intentional. Designing with empathy and turning ambiguity into clarity.">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,400;1,9..144,500&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500&family=PT+Mono&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FAF8F5;
+    --ink: #1A1916;
+    --mid: #888480;
+    --soft: #B8B4AF;
+    --rule: #E4E1DC;
+    --accent: #A63D2B;
+    --card-bg: #F0EDE8;
+  }
+  html { background: #0A0A09; }
+  body { font-family: 'Inter', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; color: var(--cream); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 48px; z-index: 100;
+    background: rgba(10,10,9,0.88); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(250,248,245,0.06);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-icon { width: 20px; height: 20px; }
+  .nav-logo-text {
+    font-family: 'PT Mono', monospace;
+    font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--cream);
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-size: 12px; letter-spacing: 0.02em; text-decoration: none;
+    color: rgba(250,248,245,0.4); transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a.active { color: var(--cream); }
+  .nav-links a:focus-visible, .nav-logo:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  .footer-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  /* ======== FRAMED HERO ======== */
+  .framed-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 80px 48px;
+  }
+
+  /* Smoke background */
+  .smoke-bg {
+    position: absolute; inset: 0;
+    background: url('smoke-full.png') center/cover no-repeat;
+    opacity: 0.15;
+    animation: drift 22s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    from { transform: scale(1) rotate(-0.3deg); }
+    to { transform: scale(1.04) rotate(0.3deg); }
+  }
+
+  /* Warm ambient glow */
+  .framed-hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(166,61,43,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* ======== ORNAMENTAL FRAME ======== */
+  .ornament-frame {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  /* Double border lines */
+  .frame-border-outer {
+    position: absolute; inset: 36px;
+    border: 0.5px solid rgba(250,248,245,0.12);
+    border-radius: 4px;
+  }
+  .frame-border-inner {
+    position: absolute; inset: 48px;
+    border: 0.5px solid rgba(250,248,245,0.08);
+    border-radius: 3px;
+  }
+
+  /* Smoke corners */
+  .smoke-corner {
+    position: absolute;
+    width: 200px; height: 200px;
+    opacity: 0.18;
+    filter: brightness(2.5) contrast(0.8);
+    mix-blend-mode: screen;
+  }
+  .smoke-corner img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .smoke-tl { top: 0; left: 0; }
+  .smoke-tr { top: 0; right: 0; transform: scaleX(-1); }
+  .smoke-bl { bottom: 0; left: 0; transform: scaleY(-1); }
+  .smoke-br { bottom: 0; right: 0; transform: scale(-1, -1); }
+
+  /* ======== CONTENT INSIDE FRAME ======== */
+  .about-content {
+    position: relative; z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    gap: 56px;
+    max-width: 1000px;
+    width: 100%;
+    padding: 40px;
+  }
+
+  /* LEFT: FOLDER */
+  .folder-wrap {
+    position: relative;
+    width: 460px;
+    flex-shrink: 0;
+    opacity: 0; animation: folderIn 0.9s 0.3s ease forwards;
+  }
+  .folder-img {
+    width: 100%;
+    border-radius: 4px;
+  }
+  .about-heading {
+    position: absolute;
+    bottom: -20px; left: -20px;
+    font-family: 'Fraunces', serif;
+    font-size: 64px; font-weight: 400;
+    color: var(--cream);
+    letter-spacing: -0.03em; line-height: 1;
+    opacity: 0.9;
+    text-shadow: 0 4px 40px rgba(0,0,0,0.6);
+  }
+  @keyframes folderIn {
+    from { opacity: 0; transform: translateY(20px) rotate(-1deg); }
+    to { opacity: 1; transform: translateY(0) rotate(0deg); }
+  }
+
+  /* RIGHT: INFO CARD */
+  .info-card {
+    flex: 1;
+    max-width: 380px;
+    padding-top: 12px;
+  }
+  .info-row {
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(250,248,245,0.08);
+    opacity: 0; animation: fadeIn 0.6s ease forwards;
+  }
+  .info-row:nth-child(1) { animation-delay: 0.2s; }
+  .info-row:nth-child(2) { animation-delay: 0.3s; }
+  .info-row:nth-child(3) { animation-delay: 0.4s; }
+  .info-row:nth-child(4) { animation-delay: 0.5s; }
+  .info-row:nth-child(5) { animation-delay: 0.6s; }
+  .info-row:nth-child(6) { animation-delay: 0.7s; }
+  .info-row:nth-child(7) { animation-delay: 0.8s; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .info-label {
+    font-family: 'PT Mono', monospace;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 6px;
+  }
+  .info-value {
+    font-family: 'Fraunces', serif;
+    font-size: 20px; font-weight: 400;
+    color: var(--cream); line-height: 1.35;
+  }
+  .info-value.small {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; font-weight: 300;
+    color: rgba(250,248,245,0.6); line-height: 1.7;
+  }
+
+  .identity-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  .identity-chip {
+    font-family: 'PT Mono', monospace;
+    font-size: 10px; letter-spacing: 0.03em;
+    padding: 4px 12px;
+    border: 1px solid rgba(250,248,245,0.12);
+    border-radius: 20px;
+    color: rgba(250,248,245,0.6);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .identity-chip:hover { border-color: var(--accent); color: var(--cream); }
+
+  .stamp {
+    margin-top: 32px;
+    display: flex; align-items: center; gap: 14px;
+    opacity: 0; animation: fadeIn 0.6s 0.9s ease forwards;
+  }
+  .stamp img { width: 40px; height: 40px; opacity: 0.7; }
+  .stamp-text {
+    font-family: 'PT Mono', monospace;
+    font-size: 10px; letter-spacing: 0.06em;
+    color: rgba(250,248,245,0.2); text-transform: uppercase;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(250,248,245,0.06);
+    padding: 48px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .footer-name {
+    font-family: 'Fraunces', serif;
+    font-size: 16px; color: var(--cream); margin-bottom: 4px;
+  }
+  .footer-copy { font-size: 11px; color: rgba(250,248,245,0.25); }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a {
+    font-family: 'PT Mono', monospace;
+    font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none; color: rgba(250,248,245,0.35);
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--cream); }
+
+  @media (max-width: 900px) {
+    .about-content { flex-direction: column; padding: 20px; gap: 36px; }
+    .folder-wrap { width: 100%; max-width: 400px; }
+    .info-card { max-width: 100%; }
+    .about-heading { font-size: 44px; }
+    .ornament-frame { inset: 16px; }
+    nav, footer { padding-left: 24px; padding-right: 24px; }
+    footer { flex-direction: column; align-items: flex-start; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="ying-logo-red.png" alt="瑩" class="nav-logo-icon" />
+    <span class="nav-logo-text">Ying Liu</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Work</a>
+    <a href="about.html" class="active">About</a>
+  </div>
+</nav>
+
+<section class="framed-hero">
+  <div class="smoke-bg"></div>
+
+  <!-- ORNAMENTAL FRAME -->
+  <div class="ornament-frame">
+    <div class="frame-border-outer"></div>
+    <div class="frame-border-inner"></div>
+    <div class="smoke-corner smoke-tl"><img src="smoke-full.png" alt="" /></div>
+    <div class="smoke-corner smoke-tr"><img src="smoke-full.png" alt="" /></div>
+    <div class="smoke-corner smoke-bl"><img src="smoke-full.png" alt="" /></div>
+    <div class="smoke-corner smoke-br"><img src="smoke-full.png" alt="" /></div>
+  </div>
+
+  <!-- ABOUT CONTENT -->
+  <div class="about-content">
+
+    <div class="folder-wrap">
+      <img src="folder-bg.png" alt="Folder on a desk" class="folder-img" />
+      <span class="about-heading">About</span>
+    </div>
+
+    <div class="info-card">
+      <div class="info-row">
+        <p class="info-label">Name</p>
+        <p class="info-value">Ying Liu</p>
+      </div>
+      <div class="info-row">
+        <p class="info-label">Occupation</p>
+        <p class="info-value">Product Designer</p>
+      </div>
+      <div class="info-row">
+        <p class="info-label">Identity</p>
+        <div class="identity-chips">
+          <span class="identity-chip">Curious</span>
+          <span class="identity-chip">Driven</span>
+          <span class="identity-chip">Intentional</span>
+          <span class="identity-chip">Strategic</span>
+          <span class="identity-chip">Fun</span>
+          <span class="identity-chip">Thoughtful</span>
+        </div>
+      </div>
+      <div class="info-row">
+        <p class="info-label">Mantra</p>
+        <p class="info-value">Close the gap, design with intention, and experiment</p>
+      </div>
+      <div class="info-row">
+        <p class="info-label">Sign</p>
+        <p class="info-value">Capricorn ♑</p>
+      </div>
+      <div class="info-row">
+        <p class="info-label">Bio</p>
+        <p class="info-value small">Ying is a Product Designer who designs thoughtful, scalable experiences grounded in real user needs. She brings empathy and sharp observation into her work — listening closely, reading between the lines, and turning ambiguity into clarity.</p>
+      </div>
+
+      <div class="stamp">
+        <img src="ying-logo-red.png" alt="瑩" />
+        <span class="stamp-text">yingwliu.com</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">
+    <p class="footer-name">Ying Liu</p>
+    <p class="footer-copy">© 2026</p>
+  </div>
+  <div class="footer-links">
+    <a href="https://linkedin.com/in/yingwliu" target="_blank">LinkedIn</a>
+    <a href="mailto:yxngliu@gmail.com">Email</a>
+    <a href="https://medium.com/@yywliu" target="_blank">Medium</a>
+  </div>
+</footer>
+
+</body>
+</html>
+
