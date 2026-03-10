@@ -38,24 +38,25 @@
     padding: 100px 120px 60px;
   }
 
-  /* Smoke layers — fog effect over ashy beige */
+  /* Smoke — multiply drops the black bg, white wisps bleed into cream */
   .smoke-layer {
     position: absolute;
-    inset: 0;
-    background: url('LinkedIn_cover_-_9.png') center bottom / cover no-repeat;
+    inset: -10% -5%;
+    background: url('homepage_smoke.png') center center / cover no-repeat;
     opacity: 0;
     mix-blend-mode: multiply;
-    animation: smokeFadeIn 3s ease forwards;
+    filter: brightness(1.6) contrast(0.7);
+    animation: smokeFadeIn 5s ease forwards;
+    pointer-events: none;
+    z-index: 0;
   }
   .smoke-layer.s2 {
-    transform: scaleX(-1);
-    opacity: 0;
-    mix-blend-mode: multiply;
-    filter: brightness(0.9) contrast(1.1);
-    animation: smokeFadeIn2 3s 0.6s ease forwards;
+    transform: scaleX(-1) scaleY(-1);
+    filter: brightness(1.8) contrast(0.55);
+    animation: smokeFadeIn2 5s 0.8s ease forwards;
   }
-  @keyframes smokeFadeIn { to { opacity: 0.6; } }
-  @keyframes smokeFadeIn2 { to { opacity: 0.35; } }
+  @keyframes smokeFadeIn  { to { opacity: 0.55; } }
+  @keyframes smokeFadeIn2 { to { opacity: 0.25; } }
 
   /* Grain texture overlay */
   .grain-overlay {
@@ -413,6 +414,7 @@
 <!-- STICKY NAV -->
 <nav id="main-nav">
   <a href="#" class="nav-logo">
+    <img src="Ying_Chinese__64px_Red_.png" alt="瑩" class="nav-logo-icon" />
     <span class="nav-logo-text">Ying Liu</span>
   </a>
   <div class="nav-links">
@@ -495,7 +497,7 @@
 
       <div class="project-card fade-up" onclick="openModal('netflix')">
         <div class="project-image" style="background:#E8E6E3;">
-          <img src="netflix-card.png" alt="Netflix Party" />
+          <img src="netflix-card.webp" alt="Netflix Party" />
         </div>
         <div class="project-info">
           <p class="project-title">Netflix Party / Redesign</p>
@@ -522,7 +524,7 @@
   </div>
   <div class="footer-links">
     <a href="https://linkedin.com/in/yingwliu" target="_blank">LinkedIn</a>
-    <a href="mailto:yxngliu@gmail.com">Email</a>
+    <a href="/cdn-cgi/l/email-protection#bfc6c7d1d8d3d6caffd8d2ded6d391dcd0d2">Email</a>
     <a href="https://medium.com/@yywliu" target="_blank">Medium</a>
   </div>
 </footer>
@@ -543,7 +545,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ========================================
   // PIXEL TRAIL CURSOR — hero only
   // ========================================
@@ -656,10 +658,4 @@
     if (e && e.target !== e.currentTarget) return;
     document.getElementById('modal-overlay').classList.remove('active');
     document.body.style.overflow = '';
-    setTimeout(() => { document.getElementById('modal-iframe').src = ''; }, 400);
-  }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-</script>
-
-</body>
-</html>
+    setTimeout(() => { document.getElementById('modal
