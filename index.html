@@ -28,14 +28,15 @@
      ======================================== */
   .hero-dark {
     position: relative;
-    min-height: 60vh;
+    min-height: 100vh;
     background: var(--cream);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
     padding: 100px 120px 60px;
+    gap: 24px;
   }
 
   /* Smoke — full width, multiply removes white bg */
@@ -227,7 +228,7 @@
   .work-section { background: var(--cream); color: var(--ink); }
 
   .work-header {
-    padding: 80px 120px 40px;
+    padding: 40px 120px 40px;
     font-family: 'PT Mono', monospace;
     font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--soft);
@@ -421,6 +422,7 @@
 <!-- DARK HERO -->
 <section class="hero-dark" id="hero">
   <div class="grain-overlay"></div>
+  <canvas id="ink-bleed" style="position:absolute;inset:0;width:100%;height:100%;z-index:2.5;pointer-events:none;"></canvas>
 
   <div class="hero-content">
     <p class="hero-role">Product Designer</p>
@@ -657,6 +659,180 @@
     setTimeout(() => { document.getElementById('modal-iframe').src = ''; }, 400);
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+<script>
+(function() {
+  const canvas = document.getElementById('ink-bleed');
+  const ctx = canvas.getContext('2d');
+  const heroEl = document.getElementById('hero');
+  let W, H;
+
+  function resize() {
+    const rect = heroEl.getBoundingClientRect();
+    W = rect.width;
+    H = rect.height;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function init() {
+    resize();
+    window.addEventListener('resize', resize);
+    new ResizeObserver(resize).observe(heroEl);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  const PIXEL = 8;
+  const BLOB_MAX_R = 48;
+  const BLOB_EXPAND_MS = 500;
+  const DEPOSIT_EVERY = 10;
+  const BLOB_LIFE = 3500;
+  const BLOB_FADE_MS = 800;
+
+  // Darker ink for visibility on cream background
+  const SHADE_DARK = 20;
+  const SHADE_LIGHT = 140;
+
+  let blobs = [];
+  let prevX = null, prevY = null;
+  let lastDeposit = 0;
+  let rafId = null;
+
+  function noise(x, y, s) {
+    const n = Math.sin(x * 12.9898 + y * 78.233 + s * 43.12) * 43758.5453;
+    return n - Math.floor(n);
+  }
+
+  function deposit(x, y) {
+    blobs.push({
+      x, y,
+      born: performance.now(),
+      maxR: BLOB_MAX_R * (0.8 + Math.random() * 0.4),
+      seed: Math.random() * 999
+    });
+  }
+
+  heroEl.addEventListener('mousemove', function(e) {
+    const rect = heroEl.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    const now = performance.now();
+    if (now - lastDeposit < DEPOSIT_EVERY) return;
+    lastDeposit = now;
+
+    if (prevX !== null) {
+      const dx = mx - prevX;
+      const dy = my - prevY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const steps = Math.max(1, Math.min(6, Math.floor(dist / 10)));
+      for (let i = 1; i <= steps; i++) {
+        deposit(prevX + dx * (i / steps), prevY + dy * (i / steps));
+      }
+    } else {
+      deposit(mx, my);
+    }
+    prevX = mx;
+    prevY = my;
+    if (!rafId) rafId = requestAnimationFrame(render);
+  });
+
+  heroEl.addEventListener('mouseleave', function() { prevX = null; prevY = null; });
+
+  function render() {
+    const now = performance.now();
+    blobs = blobs.filter(b => now - b.born < BLOB_LIFE + BLOB_FADE_MS);
+
+    if (blobs.length === 0) {
+      ctx.clearRect(0, 0, W, H);
+      rafId = null;
+      return;
+    }
+
+    ctx.clearRect(0, 0, W, H);
+
+    const cols = Math.ceil(W / PIXEL);
+    const rows = Math.ceil(H / PIXEL);
+
+    const gridAlpha = new Float32Array(cols * rows);
+    const gridAge = new Float32Array(cols * rows);
+    gridAge.fill(1);
+
+    for (let b = 0; b < blobs.length; b++) {
+      const blob = blobs[b];
+      const age = now - blob.born;
+      const expandP = Math.min(age / BLOB_EXPAND_MS, 1);
+      const eased = 1 - Math.pow(1 - expandP, 3);
+      const r = blob.maxR * eased;
+      if (r < 1) continue;
+
+      const ageRatio = Math.min(age / BLOB_LIFE, 1);
+
+      let alpha = 1;
+      if (age > BLOB_LIFE) {
+        alpha = 1 - ((age - BLOB_LIFE) / BLOB_FADE_MS);
+        alpha = Math.max(0, alpha * alpha);
+      }
+      if (alpha <= 0) continue;
+
+      const minCol = Math.max(0, Math.floor((blob.x - r - PIXEL) / PIXEL));
+      const maxCol = Math.min(cols - 1, Math.ceil((blob.x + r + PIXEL) / PIXEL));
+      const minRow = Math.max(0, Math.floor((blob.y - r - PIXEL) / PIXEL));
+      const maxRow = Math.min(rows - 1, Math.ceil((blob.y + r + PIXEL) / PIXEL));
+
+      for (let col = minCol; col <= maxCol; col++) {
+        for (let row = minRow; row <= maxRow; row++) {
+          const cx = col * PIXEL + PIXEL * 0.5;
+          const cy = row * PIXEL + PIXEL * 0.5;
+          const dx = cx - blob.x;
+          const dy = cy - blob.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          const angle = Math.atan2(dy, dx);
+          const wobble = r * 0.18 * (noise(
+            Math.cos(angle) * 2.5,
+            Math.sin(angle) * 2.5,
+            blob.seed
+          ) - 0.5);
+
+          if (dist < r + wobble) {
+            const idx = row * cols + col;
+            if (alpha > gridAlpha[idx] || (alpha >= gridAlpha[idx] && ageRatio < gridAge[idx])) {
+              gridAlpha[idx] = alpha;
+              gridAge[idx] = ageRatio;
+            }
+          }
+        }
+      }
+    }
+
+    for (let col = 0; col < cols; col++) {
+      for (let row = 0; row < rows; row++) {
+        const idx = row * cols + col;
+        const a = gridAlpha[idx];
+        if (a < 0.01) continue;
+
+        const ageRatio = gridAge[idx];
+        const nv = noise(col, row, 42) * 16 - 8;
+        const shade = Math.floor(SHADE_DARK + ageRatio * (SHADE_LIGHT - SHADE_DARK) + nv);
+        const clamped = Math.max(15, Math.min(210, shade));
+
+        ctx.fillStyle = `rgba(${clamped},${clamped},${clamped},${Math.min(1, a * 0.95)})`;
+        ctx.fillRect(col * PIXEL, row * PIXEL, PIXEL, PIXEL);
+      }
+    }
+
+    rafId = requestAnimationFrame(render);
+  }
+})();
 </script>
 
 </body>
