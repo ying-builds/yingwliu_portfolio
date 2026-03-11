@@ -36,7 +36,19 @@
     border-bottom: 1px solid var(--rule);
   }
   .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .nav-logo-icon { width: 20px; height: 20px; }
+  .nav-logo-icon { width: 20px; height: 20px; display: none; }
+  .nav-logo-char {
+    width: 20px;
+    height: 20px;
+    background-color: #A63D2B;
+    -webkit-mask-image: url('Ying_Chinese__64px_Red_.png');
+    mask-image: url('Ying_Chinese__64px_Red_.png');
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-mode: luminance;
+    mask-mode: luminance;
+    flex-shrink: 0;
+  }
   .nav-logo-text {
     font-family: 'Bootzy TM', sans-serif;
     font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
@@ -264,6 +276,45 @@
   }
 
   /* ========================================
+     INTERESTS
+     ======================================== */
+  .interests-section {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+    opacity: 0;
+    animation: fadeUp 0.7s 1.15s ease forwards;
+  }
+  .interests-label {
+    font-family: 'PT Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .interests-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--rule);
+  }
+  .interests-list {
+    font-size: 14px;
+    line-height: 2;
+    color: var(--ink);
+  }
+  .interests-list span::after {
+    content: ' ·';
+    color: var(--rule);
+    margin: 0 8px 0 0;
+  }
+  .interests-list span:last-child::after {
+    content: '';
+    margin: 0;
+  }
+
+  /* ========================================
      CONNECT
      ======================================== */
   .connect-section {
@@ -372,6 +423,8 @@
 
 <nav>
   <a href="index.html" class="nav-logo">
+    <img src="Ying_Chinese__64px_Red_.png" alt="瑩" class="nav-logo-icon" />
+    <div class="nav-logo-char" aria-hidden="true"></div>
     <span class="nav-logo-text">Ying Liu</span>
   </a>
   <div class="nav-links">
@@ -385,7 +438,7 @@
 
   <div class="shadow-text top">Ying Liu</div>
 
-  <p class="about-eyebrow">Product Designer · San Francisco</p>
+  <p class="about-eyebrow">Product Designer · Sacramento, CA</p>
 
   <div class="polaroid">
     <img src="polaroid_portrait_photo.png" alt="Ying Liu" />
@@ -421,11 +474,27 @@
   </div>
 </div>
 
+<!-- INTERESTS -->
+<section class="interests-section">
+  <p class="interests-label">Products I'd love to work on</p>
+  <p class="interests-list">
+    <span>Fintech</span>
+    <span>Notion</span>
+    <span>Music &amp; Entertainment</span>
+    <span>Social &amp; Creator</span>
+    <span>Arc Browser</span>
+    <span>Fitness &amp; Wearables</span>
+    <span>Anime</span>
+    <span>Cannabis</span>
+    <span>Overwatch</span>
+  </p>
+</section>
+
 <!-- CONNECT -->
 <section class="connect-section">
   <div class="connect-links">
     <a href="https://linkedin.com/in/yingwliu" target="_blank">LinkedIn</a>
-    <a href="mailto:yxngliu@gmail.com">Email</a>
+    <a href="/cdn-cgi/l/email-protection#0c7574626b6065794c6b616d6560226f6361">Email</a>
     <a href="https://medium.com/@yywliu" target="_blank">Medium</a>
   </div>
 </section>
@@ -439,12 +508,12 @@
   </div>
   <div class="footer-links">
     <a href="https://linkedin.com/in/yingwliu" target="_blank">LinkedIn</a>
-    <a href="mailto:yxngliu@gmail.com">Email</a>
+    <a href="/cdn-cgi/l/email-protection#add4d5c3cac1c4d8edcac0ccc4c183cec2c0">Email</a>
     <a href="https://medium.com/@yywliu" target="_blank">Medium</a>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const cursor = document.getElementById('custom-cursor');
   document.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX + 'px';

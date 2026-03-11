@@ -24,13 +24,13 @@
   body { font-family: 'Inter', sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; }
 
   /* ========================================
-     DARK HERO — TEXTURED / SMOKE
+     HERO — SMOKE WITH MASKED TEXT AREA
      ======================================== */
   .hero-dark {
     position: relative;
     min-height: 60vh;
     background: var(--cream);
-    overflow: visible;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -38,42 +38,36 @@
     padding: 100px 120px 60px;
   }
 
-  /* Smoke layers — fog effect over ashy beige */
+  /* Smoke — full width, multiply removes white bg */
   .smoke-layer {
     position: absolute;
-    inset: 0;
-    background: url('LinkedIn_cover_-_9.png') center bottom / cover no-repeat;
-    opacity: 0;
-    mix-blend-mode: multiply;
-    animation: smokeFadeIn 3s ease forwards;
-  }
-  .smoke-layer.s2 {
-    transform: scaleX(-1);
-    opacity: 0;
-    mix-blend-mode: multiply;
-    filter: brightness(0.9) contrast(1.1);
-    animation: smokeFadeIn2 3s 0.6s ease forwards;
-  }
-  @keyframes smokeFadeIn { to { opacity: 0.6; } }
-  @keyframes smokeFadeIn2 { to { opacity: 0.35; } }
-
-  /* Grain texture overlay */
-  .grain-overlay {
-    position: absolute; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
-    background-size: 128px 128px;
-    opacity: 0.08;
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  /* Soft edge fade */
-  .hero-dark::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, transparent 60%, var(--cream) 100%);
+    bottom: 0;
+    left: 0;
+    right: 0;
     pointer-events: none;
     z-index: 1;
+    opacity: 0;
+    animation: smokeIn 2s 0.3s ease forwards;
+  }
+  .smoke-layer img {
+    width: 100%;
+    height: auto;
+    display: block;
+    mix-blend-mode: multiply;
+  }
+  @keyframes smokeIn {
+    to { opacity: 0.5; }
+  }
+
+  /* Grain — paper texture */
+  .grain-overlay {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    background-size: 150px 150px;
+    opacity: 0.1;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 2;
   }
 
   .hero-content {
@@ -118,7 +112,7 @@
     font-size: 15px;
     font-weight: 500;
     line-height: 1.55;
-    color: var(--mid);
+    color: var(--ink);
     max-width: 400px;
     opacity: 0;
     animation: heroReveal 1s 1s ease forwards;
@@ -126,12 +120,18 @@
 
   .scroll-hint {
     position: absolute;
-    bottom: 36px; left: 50%; transform: translateX(-50%);
+    bottom: 4px; left: 50%; transform: translateX(-50%);
     z-index: 3;
     display: flex; flex-direction: column; align-items: center; gap: 8px;
     opacity: 0;
-    animation: heroReveal 1s 1.6s ease forwards;
+    animation: heroReveal 1s 1.6s ease forwards, floatCalm 2.5s 2.6s ease-in-out infinite;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    padding: 8px 16px;
   }
+  .scroll-hint:hover span { color: rgba(26,25,22,0.35); }
+  .scroll-hint:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
   .scroll-hint span {
     font-family: 'PT Mono', monospace;
     font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
@@ -140,11 +140,10 @@
   .scroll-line {
     width: 1px; height: 32px;
     background: linear-gradient(to bottom, rgba(26,25,22,0.2), transparent);
-    animation: scrollPulse 2.5s ease-in-out infinite;
   }
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.3; transform: scaleY(1); }
-    50% { opacity: 0.8; transform: scaleY(1.4); transform-origin: top; }
+  @keyframes floatCalm {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
   }
   @keyframes heroReveal {
     from { opacity: 0; transform: translateY(16px); }
@@ -193,6 +192,9 @@
     * { cursor: auto !important; }
     .custom-cursor { display: none; }
   }
+  /* Hide custom cursor in modal — iframe blocks parent mousemove, causing freeze/stuck state */
+  body.modal-open .custom-cursor { display: none; }
+  body.modal-open, body.modal-open * { cursor: auto !important; }
 
   /* ========================================
      NAV
@@ -201,12 +203,7 @@
     position: fixed; top: 0; left: 0; right: 0;
     display: flex; justify-content: space-between; align-items: center;
     padding: 22px 120px; z-index: 100;
-    background: transparent; backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(26,25,22,0.08);
-    transition: background 0.4s ease, border-color 0.4s ease;
-  }
-  nav.scrolled {
-    background: rgba(250,248,245,0.92);
+    background: var(--cream);
     border-bottom: 1px solid var(--rule);
   }
   .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
@@ -355,7 +352,7 @@
   }
   .footer-smoke {
     position: absolute; inset: 0;
-    background: url('LinkedIn_cover_-_9.png') center/cover no-repeat;
+    background: url('homepage-smoke.png') center bottom/cover no-repeat;
     opacity: 0.2;
   }
   .footer-left { position: relative; z-index: 1; }
@@ -423,27 +420,25 @@
 
 <!-- DARK HERO -->
 <section class="hero-dark" id="hero">
-  <div class="smoke-layer s1"></div>
-  <div class="smoke-layer s2"></div>
   <div class="grain-overlay"></div>
 
   <div class="hero-content">
-    <h1 class="hero-name"><span class="calligraphy">Ying 瀅</span></h1>
     <p class="hero-role">Product Designer</p>
+    <h1 class="hero-name"><span class="calligraphy">Ying 瀅</span></h1>
   </div>
 
   <div class="hero-bottom" style="position:relative; z-index:3; opacity:0; animation: heroReveal 1s 1s ease forwards;">
-    <p class="hero-bio">Using my intuition to turn ambiguity into clarity through grounded experiences.</p>
+    <p class="hero-bio">Using a strategist's intuition to turn ambiguity into clarity through grounded experiences.</p>
   </div>
 
-  <div class="scroll-hint">
+  <a href="#work" class="scroll-hint" aria-label="Scroll to work">
     <span>Work</span>
     <div class="scroll-line"></div>
-  </div>
+  </a>
 </section>
 
 <!-- WORK SECTION -->
-<section class="work-section">
+<section class="work-section" id="work">
   <p class="work-header fade-up">Selected Work</p>
   <div class="projects">
     <div class="projects-grid">
@@ -649,12 +644,15 @@
     document.getElementById('modal-iframe').src = p.src;
     document.getElementById('modal-expand').href = p.href;
     document.getElementById('modal-overlay').classList.add('active');
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
+    cursor.classList.remove('hovering');
   }
 
   function closeModal(e) {
     if (e && e.target !== e.currentTarget) return;
     document.getElementById('modal-overlay').classList.remove('active');
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
     setTimeout(() => { document.getElementById('modal-iframe').src = ''; }, 400);
   }
