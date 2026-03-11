@@ -268,6 +268,10 @@
     width: 100%; height: 100%; object-fit: cover;
     transition: transform 0.5s ease;
   }
+  .project-image-bereal img {
+    object-fit: contain;
+    object-position: 38% 62%;
+  }
   .project-card:hover .project-image img { transform: scale(1.03); }
 
   .project-info {
@@ -477,7 +481,7 @@
       </div>
 
       <div class="project-card fade-up" onclick="openModal('bereal')">
-        <div class="project-image" style="background:#0A0A09;">
+        <div class="project-image project-image-bereal" style="background:#0A0A09;">
           <img src="bereal-card.png" alt="BeReal" />
         </div>
         <div class="project-info">
