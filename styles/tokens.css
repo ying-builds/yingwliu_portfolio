@@ -1,0 +1,245 @@
+/* ============================================
+   YING LIU PORTFOLIO — DESIGN TOKENS
+   Extracted from Figma (2026 Portfolio file)
+   ============================================ */
+
+:root {
+  /* ===== COLORS ===== */
+
+  /* Backgrounds */
+  --background-fill: #f8f6f5;   /* page bg, light sections */
+  --black-bg: #1e1e1e;          /* dark hero/section bg */
+  --footer-bg: #121212;         /* footer bg */
+  --mockup-bg: #eeece9;         /* image/mockup placeholder bg */
+  --mockup-border-fill: #f9f5f2;
+  --mockup-border-line: #d1d0ce;
+
+  /* Text */
+  --black: #1a1916;             /* primary text, light bg */
+  --almost-black: #333333;      /* body text, light bg */
+  --subtitle: #999999;          /* muted labels, light bg */
+  --white-text: #e5e1dd;        /* body text, dark bg */
+  --white-subtitle: #f5f5f5;    /* labels, dark bg */
+  --quote-text: #4f4f4f;        /* pull quotes */
+  --link-accent: #024cdf;       /* inline emphasis / links */
+
+  /* Borders */
+  --line: #d6d6d6;              /* dividers */
+  --nav-border: #e5e1dd;        /* nav bar bottom border */
+
+  /* ===== TYPOGRAPHY ===== */
+
+  --font-display: 'Bootzy TM', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'PT Mono', monospace;
+
+  /* Display (Bootzy TM) */
+  --text-project-title: 40px;   /* tracking 2.5px, line-height 100% */
+  --text-h1: 32px;              /* section heading, tracking 3px, line-height 100% */
+
+  /* Body (Inter) */
+  --text-h3: 20px;              /* semibold 600, tracking 0.3px, line-height 22px */
+  --text-h4: 16px;              /* semibold 600, line-height 22px */
+  --text-body: 16px;            /* regular 400, line-height 23px */
+  --text-nav: 12px;             /* medium 500 */
+
+  /* Mono (PT Mono) */
+  --text-label: 11px;           /* meta labels (ROLE, TIMELINE), tracking 0.7px */
+  --text-note: 12px;            /* section captions, tracking 0.4px, uppercase */
+  --text-quote: 14px;           /* pull quotes, line-height 20px */
+
+  /* ===== SPACING (confirmed from case study frame) ===== */
+
+  --space-xs: 8px;    /* meta label-to-value gap */
+  --space-sm: 10px;   /* mono-caption-to-body gap */
+  --space-md: 20px;   /* heading-to-body gap */
+  --space-lg: 40px;   /* stacked content-block gap */
+  --space-xl: 56px;   /* section vertical padding */
+  --space-2xl: 190px; /* section label-to-content gap */
+
+  /* Layout */
+  --section-label-width: 169px;
+  --nav-height: 56px;
+  --footer-height: 200px;
+}
+
+/* ===== BASE ELEMENTS ===== */
+
+body {
+  background: var(--background-fill);
+  color: var(--black);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 23px;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  letter-spacing: 3px;
+  color: var(--black);
+}
+
+h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-h3);
+  letter-spacing: 0.3px;
+  line-height: 22px;
+  color: var(--black);
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: var(--text-project-title);
+  letter-spacing: 2.5px;
+  color: var(--black);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--text-note);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--subtitle);
+}
+
+.quote {
+  font-family: var(--font-mono);
+  font-size: var(--text-quote);
+  line-height: 20px;
+  color: var(--quote-text);
+}
+
+/* ===== COMPONENTS ===== */
+
+.nav-bar {
+  height: var(--nav-height);
+  background: var(--background-fill);
+  border-bottom: 1px solid var(--nav-border);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 1.6px;
+  color: var(--black);
+}
+
+.nav-links {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--text-nav);
+  color: var(--black);
+  display: flex;
+  gap: 35px;
+}
+
+.footer {
+  background: var(--footer-bg);
+  border-bottom: 1px solid var(--line);
+  height: var(--footer-height);
+  color: white;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 96px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--text-nav);
+}
+
+/* Meta details — dark bg variant (on hero) */
+.meta-details-dark {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.meta-details-dark .meta-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.7px;
+  color: var(--white-subtitle);
+}
+.meta-details-dark .meta-value {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--white-text);
+}
+
+/* Meta details — light bg variant */
+.meta-details-light .meta-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.7px;
+  color: var(--black);
+}
+.meta-details-light .meta-value {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--almost-black);
+}
+
+/* Section block — label + content, repeated per case study section */
+.section-block {
+  display: flex;
+  gap: var(--space-2xl);
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--space-xl) 0;
+}
+.section-block .section-label {
+  width: var(--section-label-width);
+  flex-shrink: 0;
+}
+
+/* Heading + body stack (Overview, My Role, Clients, etc.) */
+.content-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Multiple content-blocks stacked (e.g. Overview + My Role) */
+.content-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* Mono caption + body pairing (e.g. "BUSINESS GOAL" + quote) */
+.caption-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Takeaways list — always an ordered list */
+.takeaways-list {
+  list-style: decimal;
+  padding-left: 24px;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+.takeaways-list li {
+  line-height: 23px;
+  margin-bottom: 0;
+}
+
+/* Divider line (used in meta details) */
+.divider {
+  height: 1px;
+  background: var(--line);
+  width: 100%;
+}
+
+/* Problem statement callout box */
+.problem-box {
+  background: var(--mockup-bg);
+  border: 1px solid var(--mockup-border-line);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
