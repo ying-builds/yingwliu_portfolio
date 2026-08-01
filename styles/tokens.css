@@ -99,6 +99,13 @@
   --page-max-width: 1440px;
   --page-gutter: 40px;        /* horizontal page padding */
 
+  /* Footer */
+  --footer-gutter: 80px;        /* footer's own wider horizontal padding */
+  --footer-mark-size: 116px;    /* red 瑩 wordmark character */
+  --footer-band-ratio: 1662 / 118;  /* decorative ink band below the bar */
+  --icon-social: 20px;          /* LinkedIn, email */
+  --icon-social-lg: 24px;       /* Medium sits slightly larger by design */
+
   /* Case study hero */
   --hero-min-height: 487px;
   --hero-meta-width: 243px;
@@ -181,6 +188,11 @@ h3 {
 }
 
 .footer {
+  border-top: 1px solid var(--line);
+}
+
+/* The dark bar itself; the decorative band sits below it */
+.footer-bar {
   background: var(--footer-bg);
   border-bottom: 1px solid var(--line);
   height: var(--footer-height);
