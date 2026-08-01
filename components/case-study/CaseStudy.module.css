@@ -41,6 +41,7 @@
 }
 
 .heroLogo {
+  align-self: flex-start;
   height: 19px;
   width: auto;
 }
@@ -50,12 +51,7 @@
   width: 169px;
   height: 169px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle at 30% 30%,
-    var(--white-text),
-    transparent 70%
-  );
-  opacity: 0.15;
+  background: var(--link-accent);
   pointer-events: none;
 }
 
@@ -230,6 +226,7 @@
   margin: 0;
   width: var(--section-label-width);
   flex-shrink: 0;
+  white-space: nowrap;
   font-family: var(--font-display);
   font-size: var(--text-h1);
   letter-spacing: 3px;

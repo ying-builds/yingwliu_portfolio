@@ -40,8 +40,8 @@ export default function ProjectHero({
             <Image
               src={logo}
               alt={logoAlt ?? ""}
-              width={138}
-              height={19}
+              width={352}
+              height={48}
               className={styles.heroLogo}
             />
           )}
