@@ -24,6 +24,10 @@
     --font-display: 'Bootzy TM', serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'PT Mono', monospace;
+    /* Layout — the work section's label and card grid both derive their
+       horizontal bounds from these, so they can't drift out of alignment. */
+    --page-gutter: 120px;
+    --content-max: 1200px;
   }
   html { background: var(--dark); scroll-behavior: smooth; }
   body { font-family: var(--font-body); font-weight: 500; -webkit-font-smoothing: antialiased; }
@@ -258,7 +262,9 @@
   .work-section { background: var(--cream); color: var(--ink); }
 
   .work-header {
-    padding: 40px 120px 40px;
+    max-width: calc(var(--content-max) + var(--page-gutter) * 2);
+    margin: 0 auto;
+    padding: 40px var(--page-gutter);
     font-family: var(--font-mono);
     font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--soft);
@@ -267,12 +273,12 @@
   .work-header::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
   /* PROJECT GRID — centered with generous padding */
-  .projects { padding: 0 120px 100px; }
+  .projects { padding: 0 var(--page-gutter) 100px; }
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    max-width: 1200px;
+    max-width: var(--content-max);
     margin: 0 auto;
   }
 
@@ -382,18 +388,18 @@
 
   /* RESPONSIVE */
   @media (max-width: 1100px) {
+    :root { --page-gutter: 72px; }
     nav { padding-left: 72px; padding-right: 72px; }
     .hero-dark { padding-left: 72px; padding-right: 72px; }
-    .work-header, .projects { padding-left: 72px; padding-right: 72px; }
     .footer-bar { padding-left: 40px; padding-right: 40px; }
     /* 3-up gets tight once the page itself has less room, before cards
        individually feel cramped — step down a column early. */
     .projects-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 768px) {
+    :root { --page-gutter: 24px; }
     nav { padding-left: 24px; padding-right: 24px; }
     .hero-dark { padding: 48px 24px; }
-    .work-header, .projects { padding-left: 24px; padding-right: 24px; }
     .projects-grid { grid-template-columns: 1fr; }
     .footer-bar {
       height: auto; padding: 32px 24px; gap: 24px;
