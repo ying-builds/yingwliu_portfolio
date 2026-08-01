@@ -4,6 +4,12 @@ import InkCursor from "../components/site/InkCursor";
 import PixelTrail from "../components/site/PixelTrail";
 import CustomCursor from "../components/site/CustomCursor";
 import ScrollReveal from "../components/site/ScrollReveal";
+import { getCaseStudyCards } from "../lib/case-studies";
+import {
+  unconvertedCards,
+  cardImageBackground,
+  cardImageContain,
+} from "./work-grid-data";
 
 // The site root carries the full identity rather than the "[Page] — Ying Liu"
 // pattern the inner pages follow.
@@ -20,6 +26,13 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  // Converted case studies come from their own MDX frontmatter; the rest are
+  // listed by hand until they are converted. Sorted together so the grid order
+  // does not jump when one moves from the second group to the first.
+  const cards = [...getCaseStudyCards(), ...unconvertedCards].sort(
+    (a, b) => a.order - b.order,
+  );
+
   return (
     <div className={styles.page}>
       <CustomCursor />
@@ -56,163 +69,46 @@ export default function HomePage() {
         <p className={`${styles.workHeader} fade-up`}>Selected Work</p>
         <div className={styles.projects}>
           <div className={styles.projectsGrid}>
-            <a
-              className={`${styles.projectCard} fade-up`}
-              href="/work/product-education-guide"
-              target="_blank"
-              rel="noopener"
-            >
-              <div className={styles.projectImage}>
-                <img
-                  src="/images/product-education-guide/hero-mockup.jpg"
-                  alt="Client Product Education Guide"
-                />
-              </div>
-              <div className={styles.projectInfo}>
-                <p className={styles.projectTitle}>
-                  Ticketmaster / Client Product Education Guide
-                </p>
-                <p className={styles.projectDesc}>
-                  Redefining the framework around client product education
-                  resources to help clients learn, troubleshoot, and discover
-                  resources more effectively.
-                </p>
-                <div className={styles.projectMeta}>
-                  <div className="project-meta-item">
-                    <p className={styles.projectMetaLabel}>Role</p>
-                    <p className={styles.projectMetaValue}>
-                      Product Designer &amp; UX Researcher
-                    </p>
-                  </div>
-                  <div className="project-meta-item">
-                    <p className={styles.projectMetaLabel}>Year</p>
-                    <p className={styles.projectMetaValue}>2024</p>
-                  </div>
-                </div>
-                <div className={styles.projectArrow}>View →</div>
-              </div>
-            </a>
+            {cards.map((card) => {
+              const background = cardImageBackground[card.slug];
+              const imageClass = cardImageContain.has(card.slug)
+                ? `${styles.projectImage} ${styles.projectImageBereal}`
+                : styles.projectImage;
 
-            <a
-              className={`${styles.projectCard} fade-up`}
-              href="/ticketmaster-casestudy.html"
-              target="_blank"
-              rel="noopener"
-            >
-              <div className={styles.projectImage}>
-                <img src="/images/site/ipad-mockup.png" alt="Ticketmaster Support Community" />
-              </div>
-              <div className={styles.projectInfo}>
-                <p className={styles.projectTitle}>
-                  Ticketmaster / Support Community
-                </p>
-                <p className={styles.projectDesc}>
-                  Shaping navigation, content systems, and search to enable
-                  scalable client self-service across 14 global markets.
-                </p>
-                <div className={styles.projectMeta}>
-                  <div className="project-meta-item">
-                    <p className={styles.projectMetaLabel}>Role</p>
-                    <p className={styles.projectMetaValue}>Sole Product Designer</p>
+              return (
+                <a
+                  key={card.slug}
+                  className={`${styles.projectCard} fade-up`}
+                  href={card.href}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <div
+                    className={imageClass}
+                    style={background ? { background } : undefined}
+                  >
+                    {card.image ? (
+                      <img src={card.image} alt={card.imageAlt} />
+                    ) : null}
                   </div>
-                  <div className="project-meta-item">
-                    <p className={styles.projectMetaLabel}>Year</p>
-                    <p className={styles.projectMetaValue}>2023 – 2025</p>
+                  <div className={styles.projectInfo}>
+                    <p className={styles.projectTitle}>{card.title}</p>
+                    <p className={styles.projectDesc}>{card.description}</p>
+                    <div className={styles.projectMeta}>
+                      <div className="project-meta-item">
+                        <p className={styles.projectMetaLabel}>Role</p>
+                        <p className={styles.projectMetaValue}>{card.role}</p>
+                      </div>
+                      <div className="project-meta-item">
+                        <p className={styles.projectMetaLabel}>Year</p>
+                        <p className={styles.projectMetaValue}>{card.year}</p>
+                      </div>
+                    </div>
+                    <div className={styles.projectArrow}>View →</div>
                   </div>
-                </div>
-                <div className={styles.projectArrow}>View →</div>
-              </div>
-            </a>
-
-            <a
-              className={`${styles.projectCard} fade-up`}
-              href="/gsm-casestudy.html"
-              target="_blank"
-              rel="noopener"
-            >
-              <div className={styles.projectImage} style={{ background: "#1B3A5C" }}>
-                <img src="/images/site/gsm-hero.png" alt="UC Davis GSM" />
-              </div>
-              <div className={styles.projectInfo}>
-                <p className={styles.projectTitle}>UC Davis GSM / Alumni Platform</p>
-                <p className={styles.projectDesc}>
-                  End-to-end UX and UI for UC Davis GSM&apos;s first alumni
-                  platform, serving 80,000+ users.
-                </p>
-                <div className={styles.projectMeta}>
-                  <div className="project-meta-item">
-                    <p className={styles.projectMetaLabel}>Role</p>
-                    <p className={styles.projectMetaValue}>Lead Product Designer</p>
-                  </div>
-                  <div className="project-meta-item">
-                    <p className={styles.projectMetaLabel}>Year</p>
-                    <p className={styles.projectMetaValue}>2023</p>
-                  </div>
-                </div>
-                <div className={styles.projectArrow}>View →</div>
-              </div>
-            </a>
-
-            <a
-              className={`${styles.projectCard} fade-up`}
-              href="/bereal-casestudy.html"
-              target="_blank"
-              rel="noopener"
-            >
-              <div
-                className={styles.projectImage + " " + styles.projectImageBereal}
-                style={{ background: "#0A0A09" }}
-              >
-                <img src="/images/site/bereal-card.png" alt="BeReal" />
-              </div>
-              <div className={styles.projectInfo}>
-                <p className={styles.projectTitle}>BeReal / New Features</p>
-                <p className={styles.projectDesc}>
-                  Exploring where BeReal could grow — designing features that
-                  expand expression without breaking authenticity.
-                </p>
-                <div className={styles.projectMeta}>
-                  <div className="project-meta-item">
-                    <p className={styles.projectMetaLabel}>Role</p>
-                    <p className={styles.projectMetaValue}>Product Designer</p>
-                  </div>
-                  <div className="project-meta-item">
-                    <p className={styles.projectMetaLabel}>Year</p>
-                    <p className={styles.projectMetaValue}>2023</p>
-                  </div>
-                </div>
-                <div className={styles.projectArrow}>View →</div>
-              </div>
-            </a>
-
-            <a
-              className={`${styles.projectCard} fade-up`}
-              href="https://davisdesigninteractive.medium.com/netflix-party-case-study-ec1193f097c5"
-              target="_blank"
-              rel="noopener"
-            >
-              <div className={styles.projectImage} style={{ background: "#E8E6E3" }}>
-                <img src="/images/site/netflix-card.png" alt="Netflix Party" />
-              </div>
-              <div className={styles.projectInfo}>
-                <p className={styles.projectTitle}>Netflix Party / Redesign</p>
-                <p className={styles.projectDesc}>
-                  Helping people stay connected while watching together during
-                  COVID-19.
-                </p>
-                <div className={styles.projectMeta}>
-                  <div className="project-meta-item">
-                    <p className={styles.projectMetaLabel}>Role</p>
-                    <p className={styles.projectMetaValue}>UX Designer</p>
-                  </div>
-                  <div className="project-meta-item">
-                    <p className={styles.projectMetaLabel}>Year</p>
-                    <p className={styles.projectMetaValue}>2020</p>
-                  </div>
-                </div>
-                <div className={styles.projectArrow}>View →</div>
-              </div>
-            </a>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
