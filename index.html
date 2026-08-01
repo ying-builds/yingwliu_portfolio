@@ -28,6 +28,10 @@
        horizontal bounds from these, so they can't drift out of alignment. */
     --page-gutter: 120px;
     --content-max: 1200px;
+    /* Vertical rhythm for the work section: equal air above and below the
+       case studies, with the label held tight to the grid it introduces. */
+    --section-gap: 80px;
+    --label-gap: 40px;
   }
   html { background: var(--dark); scroll-behavior: smooth; }
   body { font-family: var(--font-body); font-weight: 500; -webkit-font-smoothing: antialiased; }
@@ -259,12 +263,15 @@
   /* ========================================
      LIGHT SECTION — WORK
      ======================================== */
-  .work-section { background: var(--cream); color: var(--ink); }
+  .work-section {
+    background: var(--cream); color: var(--ink);
+    padding: var(--section-gap) 0;
+  }
 
   .work-header {
     max-width: calc(var(--content-max) + var(--page-gutter) * 2);
     margin: 0 auto;
-    padding: 40px var(--page-gutter);
+    padding: 0 var(--page-gutter) var(--label-gap);
     font-family: var(--font-mono);
     font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--soft);
@@ -273,7 +280,7 @@
   .work-header::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
   /* PROJECT GRID — centered with generous padding */
-  .projects { padding: 0 var(--page-gutter) 100px; }
+  .projects { padding: 0 var(--page-gutter); }
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
