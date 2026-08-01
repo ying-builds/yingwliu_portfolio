@@ -1,0 +1,384 @@
+/* About. Ported from the inline <style> in the legacy about.html.
+   Values carried over verbatim; only token names changed, from the page-local
+   --cream/--ink/etc. to the --site-* tokens in styles/tokens.css.
+
+   The JS-driven classes (.custom-cursor) live globally alongside their script,
+   not here. */
+
+/* tokens.css sets a global body background for the case study template.
+   The site pages use the warmer cream, so each owns its own surface. */
+.page {
+  background: var(--site-cream);
+  color: var(--site-ink);
+  /* Establishes a stacking context. The decorative .shadowText sits at
+     z-index: -1; without this it paints behind this element's own
+     background and disappears entirely. */
+  position: relative;
+  z-index: 0;
+  font-weight: 500;
+  /* tokens.css sets line-height: var(--leading-body) on body for the case
+     study template. These pages sized their text off the browser default,
+     so every text block grew ~12px without this reset. */
+  line-height: normal;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Fine paper grain over the whole page */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+/* ========================================
+   HERO
+   ======================================== */
+.aboutHero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 48px 80px;
+  position: relative;
+}
+
+.aboutEyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--site-soft);
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s ease forwards;
+}
+
+.polaroid {
+  position: relative;
+  margin-bottom: 56px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.4s ease forwards;
+}
+
+.polaroid img {
+  width: 220px;
+  display: block;
+  filter: grayscale(100%);
+}
+
+/* Large faded script behind the hero — decorative only */
+.shadowText {
+  font-family: "Ballet", cursive;
+  font-size: clamp(80px, 12vw, 160px);
+  color: transparent;
+  -webkit-text-stroke: 0.5px rgba(26, 25, 22, 0.06);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  position: absolute;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.shadowTextTop {
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: fadeUp 1s 0.3s ease forwards;
+}
+
+.shadowTextBottom {
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: fadeUp 1s 0.5s ease forwards;
+}
+
+.aboutTagline {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.8;
+  color: var(--site-ink);
+  max-width: 340px;
+  margin-bottom: 0;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s ease forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   BIO
+   ======================================== */
+.bioSection {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 48px 100px;
+}
+
+.bioLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--site-soft);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.8s ease forwards;
+}
+
+.bioLabel::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--site-rule);
+}
+
+.bioText {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #3d3a36;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.9s ease forwards;
+}
+
+.bioText:last-of-type {
+  animation-delay: 1s;
+}
+
+.bioLink {
+  color: var(--site-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--site-rule);
+  transition: border-color 0.2s;
+}
+
+.bioLink:hover {
+  border-color: var(--site-ink);
+}
+
+/* Hover-to-reveal GIF on "lifting at the gym" */
+.hoverVideoTrigger {
+  position: relative;
+  border-bottom: 1px solid var(--site-rule);
+  cursor: default;
+  transition: border-color 0.2s;
+}
+
+.hoverVideoTrigger:hover {
+  border-color: var(--site-ink);
+}
+
+.hoverVideo {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+  z-index: 10;
+  padding-bottom: 8px;
+}
+
+.hoverVideoTrigger:hover .hoverVideo {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.hoverVideo img {
+  width: 320px;
+  border-radius: 4px;
+  box-shadow: 0 8px 30px rgba(26, 25, 22, 0.15);
+}
+
+/* ========================================
+   DETAILS ROW
+   ======================================== */
+.detailsRow {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 48px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--site-rule);
+  padding-top: 32px;
+  opacity: 0;
+  animation: fadeUp 0.7s 1.1s ease forwards;
+}
+
+.detailItem {
+  padding-right: 20px;
+}
+
+.detailItem + .detailItem {
+  border-left: 1px solid var(--site-rule);
+  padding-left: 20px;
+}
+
+.detailLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--site-soft);
+  margin-bottom: 6px;
+}
+
+.detailValue {
+  font-size: 13px;
+  color: var(--site-ink);
+  line-height: 1.5;
+}
+
+/* ========================================
+   INTERESTS
+   ======================================== */
+.interestsSection {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 48px 80px;
+  opacity: 0;
+  animation: fadeUp 0.7s 1.15s ease forwards;
+}
+
+.interestsLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--site-soft);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.interestsLabel::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--site-rule);
+}
+
+.interestsList {
+  font-size: 14px;
+  line-height: 2;
+  color: var(--site-ink);
+}
+
+.interestsList span::after {
+  content: " ·";
+  color: var(--site-rule);
+  margin: 0 8px 0 0;
+}
+
+.interestsList span:last-child::after {
+  content: "";
+  margin: 0;
+}
+
+/* ========================================
+   CONNECT
+   ======================================== */
+.connectSection {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 48px 100px;
+  text-align: center;
+  opacity: 0;
+  animation: fadeUp 0.7s 1.2s ease forwards;
+}
+
+.connectLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+}
+
+.connectLinks a {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--site-soft);
+  transition: color 0.2s;
+}
+
+.connectLinks a:hover {
+  color: var(--site-ink);
+}
+
+/* Resume reads as a button so it stands apart from the plain text links */
+.connectLinks a.connectResume {
+  color: var(--site-cream);
+  background: var(--site-ink);
+  border: 1px solid var(--site-ink);
+  border-radius: 999px;
+  padding: 9px 20px;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.connectLinks a.connectResume:hover {
+  background: transparent;
+  color: var(--site-ink);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+  .aboutHero {
+    padding: 120px 24px 60px;
+  }
+
+  .bioSection,
+  .detailsRow,
+  .connectSection {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .detailsRow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .detailItem + .detailItem {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--site-rule);
+    padding-top: 16px;
+  }
+}

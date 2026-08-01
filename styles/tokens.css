@@ -111,6 +111,48 @@
   --hero-meta-width: 243px;
   --hero-logo-height: 19px;
   --ellipse-size: 169px;      /* decorative hero circles */
+
+  /* ===== SITE PALETTE (Work + About) =====
+     The Work and About pages use a warmer palette than the case study
+     template above, which came from the Figma file. The two are genuinely
+     different — --site-accent is a rust red where --link-accent is blue —
+     so they are kept separate rather than merged. Reconciling them is a
+     design decision, not a cleanup.
+     These names are deliberately prefixed: --page-gutter already exists
+     above at 40px for case studies, and the site pages need 120px. Sharing
+     the name would silently break every case study's layout. */
+  --site-cream: #faf8f5;      /* page bg */
+  --site-ink: #1a1916;        /* primary text (same value as --black) */
+  --site-mid: #5c5955;        /* body copy */
+  --site-soft: #888480;       /* muted labels */
+  --site-rule: #e4e1dc;       /* dividers, card borders */
+  --site-accent: #a63d2b;     /* links, hover states */
+  --site-card-bg: #f0ede8;    /* project card image bg */
+  --site-dark: #0a0a09;       /* dark hero bg */
+
+  /* Site layout — the work section's label and card grid derive their
+     horizontal bounds from these, so they can't drift out of alignment. */
+  --site-gutter: 120px;
+  --site-content-max: 1200px;
+
+  /* Vertical rhythm for the work section: equal air above and below the
+     case studies, with the label held tight to the grid it introduces. */
+  --site-section-gap: 80px;
+  --site-label-gap: 40px;
+}
+
+/* Site gutter narrows on smaller viewports. Declared here so the nav, hero,
+   work header and card grid all step in together and stay aligned. */
+@media (max-width: 1100px) {
+  :root {
+    --site-gutter: 72px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --site-gutter: 24px;
+  }
 }
 
 /* ===== BASE ELEMENTS ===== */

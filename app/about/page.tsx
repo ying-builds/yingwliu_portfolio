@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "About — Ying Liu",
@@ -14,17 +15,25 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <>
-      <section className="about-hero">
-        <div className="shadow-text top">Ying Liu</div>
+    <div className={styles.page}>
+      {/* Decorative script face, About only — hoisted into <head> by React */}
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Ballet&display=swap"
+        precedence="default"
+      />
+      <div className={styles.grain} />
 
-        <p className="about-eyebrow">Product Designer · Sacramento, CA</p>
+      <section className={styles.aboutHero}>
+        <div className={`${styles.shadowText} ${styles.shadowTextTop}`}>Ying Liu</div>
 
-        <div className="polaroid">
+        <p className={styles.aboutEyebrow}>Product Designer · Sacramento, CA</p>
+
+        <div className={styles.polaroid}>
           <img src="/images/site/polaroid_portrait_photo.png" alt="Ying Liu" />
         </div>
 
-        <p className="about-tagline">
+        <p className={styles.aboutTagline}>
           Using my intuition to turn
           <br />
           ambiguity into clarity through
@@ -32,12 +41,12 @@ export default function AboutPage() {
           grounded experiences.
         </p>
 
-        <div className="shadow-text bottom">瑩</div>
+        <div className={`${styles.shadowText} ${styles.shadowTextBottom}`}>瑩</div>
       </section>
 
-      <section className="bio-section">
-        <p className="bio-label">About</p>
-        <p className="bio-text">
+      <section className={styles.bioSection}>
+        <p className={styles.bioLabel}>About</p>
+        <p className={styles.bioText}>
           I grew up having fun through all creative mediums (making duct tape
           wallets and miniature furniture for my LPS, taking every art elective,
           and playing minecraft with my cousins) it was how I made sense of the
@@ -46,18 +55,18 @@ export default function AboutPage() {
           to read the room, pick up on what people aren&apos;t saying, and pay
           attention to whether something is actually working for them.
         </p>
-        <p className="bio-text">
+        <p className={styles.bioText}>
           That&apos;s what I bring into my work: empathy that&apos;s practiced,
           not performed. I design by listening first — then turning what I hear
           into something clear and useful.
         </p>
-        <p className="bio-text">
+        <p className={styles.bioText}>
           Outside of design, you&apos;ll find me creating content on{" "}
           <a
             href="https://www.tiktok.com/@yingwliu"
             target="_blank"
             rel="noopener"
-            className="bio-link"
+            className={styles.bioLink}
           >
             TikTok
           </a>
@@ -66,14 +75,14 @@ export default function AboutPage() {
             href="https://medium.com/@yywliu"
             target="_blank"
             rel="noopener"
-            className="bio-link"
+            className={styles.bioLink}
           >
             Medium
           </a>
           , or{" "}
-          <span className="hover-video-trigger">
+          <span className={styles.hoverVideoTrigger}>
             lifting at the gym
-            <span className="hover-video">
+            <span className={styles.hoverVideo}>
               <img src="/images/site/gym-hover.gif" alt="Ying lifting" />
             </span>
           </span>
@@ -81,24 +90,24 @@ export default function AboutPage() {
         </p>
       </section>
 
-      <div className="details-row">
-        <div className="detail-item">
-          <p className="detail-label">Currently</p>
-          <p className="detail-value">Open to opportunities</p>
+      <div className={styles.detailsRow}>
+        <div className={styles.detailItem}>
+          <p className={styles.detailLabel}>Currently</p>
+          <p className={styles.detailValue}>Open to opportunities</p>
         </div>
-        <div className="detail-item">
-          <p className="detail-label">Previously</p>
-          <p className="detail-value">Ticketmaster</p>
+        <div className={styles.detailItem}>
+          <p className={styles.detailLabel}>Previously</p>
+          <p className={styles.detailValue}>Ticketmaster</p>
         </div>
-        <div className="detail-item">
-          <p className="detail-label">Education</p>
-          <p className="detail-value">UC Davis</p>
+        <div className={styles.detailItem}>
+          <p className={styles.detailLabel}>Education</p>
+          <p className={styles.detailValue}>UC Davis</p>
         </div>
       </div>
 
-      <section className="interests-section">
-        <p className="interests-label">Products I&apos;d love to work on</p>
-        <p className="interests-list">
+      <section className={styles.interestsSection}>
+        <p className={styles.interestsLabel}>Products I&apos;d love to work on</p>
+        <p className={styles.interestsList}>
           <span>Fintech</span>
           <span>Productivity Tools</span>
           <span>Social Media</span>
@@ -109,8 +118,8 @@ export default function AboutPage() {
         </p>
       </section>
 
-      <section className="connect-section">
-        <div className="connect-links">
+      <section className={styles.connectSection}>
+        <div className={styles.connectLinks}>
           <a href="https://linkedin.com/in/yingwliu" target="_blank" rel="noopener">
             LinkedIn
           </a>
@@ -119,7 +128,7 @@ export default function AboutPage() {
             Medium
           </a>
           <a
-            className="connect-resume"
+            className={styles.connectResume}
             href="https://drive.google.com/file/d/1qB0c1SUs6PF13SnWzXNWGTpOsIXcYJKH/view?usp=sharing"
             target="_blank"
             rel="noopener"
@@ -128,6 +137,6 @@ export default function AboutPage() {
           </a>
         </div>
       </section>
-    </>
+    </div>
   );
 }
