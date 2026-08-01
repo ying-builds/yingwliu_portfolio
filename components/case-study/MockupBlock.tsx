@@ -11,7 +11,7 @@ export default function MockupBlock({
   poster?: string;
 }) {
   return (
-    <div className={styles.mockupBlock} style={{ height: 508 }}>
+    <div className={styles.mockupBlock}>
       <GifPlayer
         mp4={mp4}
         webm={webm}

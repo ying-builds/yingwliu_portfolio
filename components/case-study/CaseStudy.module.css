@@ -3,9 +3,9 @@
   height: var(--nav-height);
   display: flex;
   align-items: center;
-  padding: 0 var(--space-lg);
+  padding: 0 var(--page-gutter);
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: var(--text-body);
 }
 
 .breadcrumb .all {
@@ -17,11 +17,11 @@
   position: relative;
   background: var(--black-bg);
   overflow: hidden;
-  padding: var(--space-xl) var(--space-lg);
+  padding: var(--space-xl) var(--page-gutter);
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 487px;
+  min-height: var(--hero-min-height);
 }
 
 .heroInner {
@@ -29,7 +29,7 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 152px;
+  gap: var(--gap-hero-cols);
   flex-wrap: wrap;
 }
 
@@ -37,65 +37,65 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
-  width: 243px;
+  width: var(--hero-meta-width);
 }
 
 .heroLogo {
   align-self: flex-start;
-  height: 19px;
+  height: var(--hero-logo-height);
   width: auto;
 }
 
 .ellipse {
   position: absolute;
-  width: 169px;
-  height: 169px;
+  width: var(--ellipse-size);
+  height: var(--ellipse-size);
   border-radius: 50%;
   background: var(--link-accent);
   pointer-events: none;
 }
 
 .ellipseOne {
-  left: 40px;
-  bottom: -40px;
+  left: var(--page-gutter);
+  bottom: calc(var(--page-gutter) * -1);
 }
 
 .ellipseTwo {
-  left: 40px;
-  top: 170px;
+  left: var(--page-gutter);
+  top: calc(var(--ellipse-size) + 1px);
 }
 
 .ellipseThree {
-  left: 40px;
+  left: var(--page-gutter);
   top: 1px;
 }
 
 /* ===== Title block ===== */
 .titleBlock {
   display: flex;
-  gap: 92px;
+  gap: var(--gap-title-cols);
   justify-content: center;
-  padding: var(--space-xl) var(--space-lg) 0;
+  padding: var(--space-xl) var(--page-gutter) 0;
   flex-wrap: wrap;
 }
 
 .titleCol {
   display: flex;
   flex-direction: column;
-  width: 377px;
+  width: var(--title-col-width);
 }
 
 .titleCol :global(.label) {
-  margin: 0 0 8px;
+  margin: 0 0 var(--space-xs);
 }
 
 .titleCol :global(h1) {
   margin: 0;
-  line-height: 44px;
+  line-height: var(--leading-project-title);
 }
 
 .titleDates {
-  margin: 12px 0 0;
+  margin: var(--space-title-dates) 0 0;
   font-family: var(--font-body);
   color: var(--subtitle);
 }
@@ -103,31 +103,31 @@
 /* Mirrors .titleBlock's column layout so Intro aligns directly under the subheading */
 .introRow {
   display: flex;
-  gap: 92px;
+  gap: var(--gap-title-cols);
   justify-content: center;
-  padding: var(--space-lg) var(--space-lg) var(--space-xl);
+  padding: var(--space-lg) var(--page-gutter) var(--space-xl);
   flex-wrap: wrap;
 }
 
 .introSpacer {
-  width: 377px;
+  width: var(--title-col-width);
   flex-shrink: 0;
 }
 
 .introCol {
-  width: 550px;
+  width: var(--content-col-width);
 }
 
 .subheadCol {
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
-  width: 550px;
+  width: var(--content-col-width);
 }
 
 /* ===== Case study body (MDX content) ===== */
 .body {
-  max-width: 1440px;
+  max-width: var(--page-max-width);
   margin: 0 auto;
 }
 
@@ -184,7 +184,8 @@
 .mockupBlock {
   background: var(--mockup-bg);
   border: 1px solid var(--mockup-border-line);
-  max-width: 1060px;
+  max-width: var(--mockup-block-width);
+  height: var(--mockup-block-height);
   margin: 0 auto;
   overflow: hidden;
 }
@@ -197,7 +198,7 @@
 
 /* Full-bleed dark media section, e.g. "Final Gif" */
 .fullBleedMedia {
-  background: #101010;
+  background: var(--media-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -205,7 +206,7 @@
 }
 
 .fullBleedMedia video {
-  max-width: 808px;
+  max-width: var(--fullbleed-media-width);
   width: 100%;
 }
 
@@ -225,9 +226,9 @@
 
 /* ===== Full-width block, no label column (e.g. "Creating design components") ===== */
 .wide {
-  max-width: 802px;
+  max-width: var(--wide-content-width);
   margin: 0 auto;
-  padding: var(--space-xl) var(--space-lg);
+  padding: var(--space-xl) var(--page-gutter);
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
@@ -245,7 +246,7 @@
   gap: var(--space-2xl);
   align-items: flex-start;
   justify-content: center;
-  padding: var(--space-xl) var(--space-lg);
+  padding: var(--space-xl) var(--page-gutter);
   flex-wrap: wrap;
 }
 
@@ -256,7 +257,8 @@
   white-space: nowrap;
   font-family: var(--font-display);
   font-size: var(--text-h1);
-  letter-spacing: 3px;
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-h1);
   color: var(--black);
   font-weight: normal;
 }
@@ -265,7 +267,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
-  max-width: 442px;
+  max-width: var(--section-content-width);
 }
 
 .sectionContent :global(h3) {

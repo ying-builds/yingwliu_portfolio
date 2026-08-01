@@ -2,33 +2,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 96px;
+  gap: var(--gap-footer-nav);
   height: 100%;
-  padding: 0 var(--space-lg);
+  padding: 0 var(--page-gutter);
 }
 
 .wordmark {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--space-2xs);
 }
 
 .withLove {
   font-family: var(--font-body);
-  font-size: 8px;
+  font-size: var(--text-micro);
   color: var(--subtitle);
 }
 
 .name {
   font-family: var(--font-display);
-  font-size: 16px;
-  letter-spacing: 2.08px;
+  font-size: var(--text-h4);
+  letter-spacing: var(--tracking-wordmark);
   color: white;
 }
 
 .copyright {
   font-family: var(--font-body);
-  font-size: 8px;
+  font-size: var(--text-micro);
   color: var(--subtitle);
 }
 
@@ -50,7 +50,7 @@
 .social {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-xs);
 }
 
 .social a {

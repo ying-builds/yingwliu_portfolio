@@ -13,6 +13,7 @@
   --mockup-bg: #eeece9;         /* image/mockup placeholder bg */
   --mockup-border-fill: #f9f5f2;
   --mockup-border-line: #d1d0ce;
+  --media-bg: #101010;          /* full-bleed media section bg */
 
   /* Text */
   --black: #1a1916;             /* primary text, light bg */
@@ -34,14 +35,32 @@
   --font-mono: 'PT Mono', monospace;
 
   /* Display (Bootzy TM) */
-  --text-project-title: 40px;   /* tracking 2.5px, line-height 100% */
-  --text-h1: 32px;              /* section heading, tracking 3px, line-height 100% */
+  --text-project-title: 40px;   /* tracking 2.5px */
+  --text-h1: 32px;              /* section heading, tracking 3px */
+
+  /* Display line-heights — 100% crushes when headings wrap to 2 lines */
+  --leading-project-title: 44px;  /* 110% of 40px */
+  --leading-h1: 36px;             /* ~112% of 32px */
+  --tracking-project-title: 2.5px;
+  --tracking-h1: 3px;
 
   /* Body (Inter) */
   --text-h3: 20px;              /* semibold 600, tracking 0.3px, line-height 22px */
   --text-h4: 16px;              /* semibold 600, line-height 22px */
   --text-body: 16px;            /* regular 400, line-height 23px */
+  --text-meta: 14px;            /* meta values, footer/nav secondary text */
   --text-nav: 12px;             /* medium 500 */
+  --text-micro: 8px;            /* footer "with love," / copyright */
+
+  --leading-body: 23px;
+  --leading-h3: 22px;
+  --leading-quote: 20px;
+
+  --tracking-h3: 0.3px;
+  --tracking-label: 0.7px;      /* meta labels (ROLE, TIMELINE) */
+  --tracking-note: 0.4px;       /* section captions */
+  --tracking-logo: 1.6px;       /* nav wordmark */
+  --tracking-wordmark: 2.08px;  /* footer wordmark */
 
   /* Mono (PT Mono) */
   --text-label: 11px;           /* meta labels (ROLE, TIMELINE), tracking 0.7px */
@@ -50,6 +69,7 @@
 
   /* ===== SPACING (confirmed from case study frame) ===== */
 
+  --space-2xs: 2px;   /* footer wordmark line gap */
   --space-xs: 8px;    /* meta label-to-value gap */
   --space-sm: 10px;   /* mono-caption-to-body gap */
   --space-md: 20px;   /* heading-to-body gap */
@@ -57,10 +77,33 @@
   --space-xl: 56px;   /* section vertical padding */
   --space-2xl: 190px; /* section label-to-content gap */
 
+  /* Named gaps that don't sit on the 8px scale (from the Figma frame) */
+  --gap-nav-links: 35px;      /* nav link row */
+  --gap-footer-nav: 96px;     /* footer nav row */
+  --gap-title-cols: 92px;     /* title block: title col -> subheading col */
+  --gap-hero-cols: 152px;     /* hero: meta col -> mockup */
+  --space-box-padding: 24px;  /* problem-box padding, takeaways list indent */
+  --space-title-dates: 12px;  /* project title -> date range */
+
   /* Layout */
   --section-label-width: 169px;
   --nav-height: 56px;
   --footer-height: 200px;
+  --title-col-width: 377px;
+  --content-col-width: 550px;
+  --section-content-width: 442px;
+  --wide-content-width: 802px;
+  --mockup-block-width: 1060px;
+  --mockup-block-height: 508px;
+  --fullbleed-media-width: 808px;
+  --page-max-width: 1440px;
+  --page-gutter: 40px;        /* horizontal page padding */
+
+  /* Case study hero */
+  --hero-min-height: 487px;
+  --hero-meta-width: 243px;
+  --hero-logo-height: 19px;
+  --ellipse-size: 169px;      /* decorative hero circles */
 }
 
 /* ===== BASE ELEMENTS ===== */
@@ -70,13 +113,14 @@ body {
   color: var(--black);
   font-family: var(--font-body);
   font-size: var(--text-body);
-  line-height: 23px;
+  line-height: var(--leading-body);
 }
 
 h1 {
   font-family: var(--font-display);
   font-size: var(--text-h1);
-  letter-spacing: 3px;
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-h1);
   color: var(--black);
 }
 
@@ -84,22 +128,23 @@ h3 {
   font-family: var(--font-body);
   font-weight: 600;
   font-size: var(--text-h3);
-  letter-spacing: 0.3px;
-  line-height: 22px;
+  letter-spacing: var(--tracking-h3);
+  line-height: var(--leading-h3);
   color: var(--black);
 }
 
 .project-title {
   font-family: var(--font-display);
   font-size: var(--text-project-title);
-  letter-spacing: 2.5px;
+  line-height: var(--leading-project-title);
+  letter-spacing: var(--tracking-project-title);
   color: var(--black);
 }
 
 .label {
   font-family: var(--font-mono);
   font-size: var(--text-note);
-  letter-spacing: 0.4px;
+  letter-spacing: var(--tracking-note);
   text-transform: uppercase;
   color: var(--subtitle);
 }
@@ -107,7 +152,7 @@ h3 {
 .quote {
   font-family: var(--font-mono);
   font-size: var(--text-quote);
-  line-height: 20px;
+  line-height: var(--leading-quote);
   color: var(--quote-text);
 }
 
@@ -121,8 +166,8 @@ h3 {
 
 .nav-logo {
   font-family: var(--font-display);
-  font-size: 16px;
-  letter-spacing: 1.6px;
+  font-size: var(--text-h4);
+  letter-spacing: var(--tracking-logo);
   color: var(--black);
 }
 
@@ -132,7 +177,7 @@ h3 {
   font-size: var(--text-nav);
   color: var(--black);
   display: flex;
-  gap: 35px;
+  gap: var(--gap-nav-links);
 }
 
 .footer {
@@ -144,7 +189,7 @@ h3 {
 
 .footer-nav {
   display: flex;
-  gap: 96px;
+  gap: var(--gap-footer-nav);
   font-family: var(--font-body);
   font-weight: 500;
   font-size: var(--text-nav);
@@ -159,12 +204,12 @@ h3 {
 .meta-details-dark .meta-label {
   font-family: var(--font-mono);
   font-size: var(--text-label);
-  letter-spacing: 0.7px;
+  letter-spacing: var(--tracking-label);
   color: var(--white-subtitle);
 }
 .meta-details-dark .meta-value {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: var(--text-meta);
   color: var(--white-text);
 }
 
@@ -172,12 +217,12 @@ h3 {
 .meta-details-light .meta-label {
   font-family: var(--font-mono);
   font-size: var(--text-label);
-  letter-spacing: 0.7px;
+  letter-spacing: var(--tracking-label);
   color: var(--black);
 }
 .meta-details-light .meta-value {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: var(--text-meta);
   color: var(--almost-black);
 }
 
@@ -218,12 +263,12 @@ h3 {
 /* Takeaways list — always an ordered list */
 .takeaways-list {
   list-style: decimal;
-  padding-left: 24px;
+  padding-left: var(--space-box-padding);
   font-family: var(--font-body);
   font-size: var(--text-body);
 }
 .takeaways-list li {
-  line-height: 23px;
+  line-height: var(--leading-body);
   margin-bottom: 0;
 }
 
@@ -238,7 +283,7 @@ h3 {
 .problem-box {
   background: var(--mockup-bg);
   border: 1px solid var(--mockup-border-line);
-  padding: 24px;
+  padding: var(--space-box-padding);
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
