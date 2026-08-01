@@ -10,6 +10,12 @@
 
 .breadcrumb .all {
   color: var(--subtitle);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumb .all:hover {
+  color: var(--almost-black);
 }
 
 /* ===== Project Hero ===== */

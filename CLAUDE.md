@@ -41,6 +41,19 @@ study's actual content living in a simple MDX file.
   what you're doing as you go.
 - Conversational, plain language in explanations. No stiff jargon dumps.
 
+## Case study page standards
+These apply to every case study page, current and future. They are enforced
+in one place — `generateMetadata` in app/work/[slug]/page.tsx — which reads
+each case study's frontmatter, so a new MDX file picks them up automatically.
+- Page title: `[Case Study Name] — Ying Liu`
+- URL slugs: lowercase, hyphenated, no abbreviations. The slug comes from the
+  MDX filename, so name the file exactly as the URL should read
+  (e.g. product-education-guide.mdx, ticketmaster.mdx, uc-davis-gsm.mdx).
+- Meta description: the case study's `subheading` frontmatter field, one sentence.
+- Open Graph title/description: same values as the page title/description, so
+  shared links preview correctly.
+- Favicon: one site-wide icon (app/icon.png). No per-page variation.
+
 ## Current task
 Convert the Product Guide case study into the new Next.js + MDX template.
 Build the reusable template, then move the Product Guide content into an MDX

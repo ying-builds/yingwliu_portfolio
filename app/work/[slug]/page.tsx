@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -28,6 +29,32 @@ export function generateStaticParams() {
     .readdirSync(CONTENT_DIR)
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => ({ slug: file.replace(/\.mdx$/, "") }));
+}
+
+// Titles and descriptions come straight from each case study's frontmatter,
+// so a new MDX file gets correct tab/link-preview text with no extra wiring.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const source = getCaseStudySource(slug);
+  if (!source) return {};
+
+  const { data } = matter(source);
+  const { title, subheading } = data as CaseStudyFrontmatter;
+  const pageTitle = `${title} — Ying Liu`;
+
+  return {
+    title: pageTitle,
+    description: subheading,
+    openGraph: {
+      title: pageTitle,
+      description: subheading,
+      type: "article",
+    },
+  };
 }
 
 const mdxComponents = {
