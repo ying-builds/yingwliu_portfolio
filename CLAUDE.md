@@ -82,9 +82,11 @@ each case study's frontmatter, so a new MDX file picks them up automatically.
   study pages, or anywhere else.
 
 ## Current task
-Migrating the Work and About pages into the Next.js app so the legacy static
-versions can be retired. The Product Guide case study is already converted and
-serves as the proven pattern for the rest.
+Converting BeReal and UC Davis GSM to the Next.js + MDX template. Both must
+land BEFORE the Vercel cutover: their legacy pages sit at the repo root, which
+Next.js does not serve, so cutting over first would leave two dead cards on the
+homepage. Converting them avoids a second temporary hold to track and clean up.
+Work and About are already migrated; the Product Guide is the reference build.
 
 ## Case studies to convert (in order)
 1. Product Guide / Client Product Education Guide — DONE, the reference build
