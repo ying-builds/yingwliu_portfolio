@@ -54,6 +54,14 @@ study's actual content living in a simple MDX file.
   modal, and never an in-place overlay.
 - Hover text on a card reads "View" — not "Preview".
 
+## Case study images
+- Mockup images and screenshots sit on a light frame: `--mockup-bg` for the
+  surface and a 1px `--mockup-border-line` border, both from tokens.css.
+- This applies to every mockup or screenshot in a case study, new or existing.
+- Exception: media that is deliberately presented full-bleed on a dark
+  section, where the asset already carries its own device frame. A light
+  frame there fights the design rather than supporting it.
+
 ## Case study page standards
 These apply to every case study page, current and future. They are enforced
 in one place — `generateMetadata` in app/work/[slug]/page.tsx — which reads
@@ -74,10 +82,16 @@ each case study's frontmatter, so a new MDX file picks them up automatically.
   study pages, or anywhere else.
 
 ## Current task
-Convert the Product Guide case study into the new Next.js + MDX template.
-Build the reusable template, then move the Product Guide content into an MDX
-file that fills that template. Prove it works before touching the others.
+Migrating the Work and About pages into the Next.js app so the legacy static
+versions can be retired. The Product Guide case study is already converted and
+serves as the proven pattern for the rest.
 
 ## Case studies to convert (in order)
-1. Product Guide / Client Product Education Guide (FIRST — the lead story)
-2. (remaining case studies to follow the same proven pattern)
+1. Product Guide / Client Product Education Guide — DONE, the reference build
+2. BeReal
+3. UC Davis GSM
+
+Not converting:
+- Ticketmaster / Support Community — being broken out into separate new
+  projects later, so the existing case study is not worth porting.
+- Netflix Party — links out to a Medium article and stays as-is.
