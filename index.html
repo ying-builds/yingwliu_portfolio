@@ -328,37 +328,40 @@
   /* ========================================
      FOOTER
      ======================================== */
+  /* Footer — matches the Figma footer reference / the new Footer.tsx component */
   footer {
-    background: var(--dark); position: relative; overflow: hidden;
-    padding: 64px 120px; display: flex;
-    justify-content: space-between; align-items: flex-end;
+    border-top: 1px solid #D6D6D6;
   }
-  .footer-smoke {
-    position: absolute; inset: 0;
-    /* Was homepage-smoke.png, which was never committed and 404'd. Points at
-       the ink band from the new footer design — same texture family. */
-    background: url('public/images/site/footer-band.webp') center bottom/cover no-repeat;
-    opacity: 0.2;
+  .footer-bar {
+    background: #121212;
+    border-bottom: 1px solid #D6D6D6;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 80px;
+    color: #fff;
   }
-  .footer-left { position: relative; z-index: 1; }
-  .footer-logo { width: 36px; height: 36px; margin-bottom: 12px; opacity: 0.7; }
+  .footer-identity { display: flex; align-items: center; }
+  .footer-wordmark { display: flex; flex-direction: column; gap: 2px; line-height: normal; }
+  .footer-wordmark .with-love { font-family: 'Inter', sans-serif; font-size: 8px; color: #999; }
   .footer-name {
-    font-family: 'Bootzy TM', sans-serif; letter-spacing: 0.14em; font-size: 18px; font-weight: normal;
-    color: var(--cream); margin-bottom: 6px;
+    font-family: 'Bootzy TM', sans-serif; letter-spacing: 2.08px; font-size: 16px; font-weight: normal;
+    color: #fff; margin: 0;
   }
-  .footer-name .with-love {
-    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
-    letter-spacing: 0.04em; color: rgba(250,248,245,0.4);
-    display: block; margin-bottom: 4px;
+  .footer-copy { font-family: 'Inter', sans-serif; font-size: 8px; color: #999; }
+  .footer-mark { width: 116px; height: 116px; }
+  .footer-nav { display: flex; gap: 96px; }
+  .footer-nav a {
+    font-family: 'Inter', sans-serif; font-weight: 500; font-size: 12px;
+    text-decoration: none; color: #fff; transition: color 0.2s;
   }
-  .footer-copy { font-size: 11px; color: rgba(250,248,245,0.3); }
-  .footer-links { position: relative; z-index: 1; display: flex; gap: 20px; }
-  .footer-links a {
-    font-family: 'PT Mono', monospace;
-    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-    text-decoration: none; color: rgba(250,248,245,0.4); transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--cream); }
+  .footer-nav a:hover { color: #f5f5f5; }
+  .footer-social { display: flex; align-items: center; gap: 8px; }
+  .footer-social a { display: flex; transition: opacity 0.2s; }
+  .footer-social a:hover { opacity: 0.7; }
+  .footer-social img { display: block; }
+  .footer-band { display: block; width: 100%; height: auto; aspect-ratio: 1662 / 118; object-fit: cover; }
 
   /* FADE-UP */
   .fade-up {
@@ -372,7 +375,7 @@
     nav { padding-left: 72px; padding-right: 72px; }
     .hero-dark { padding-left: 72px; padding-right: 72px; }
     .work-header, .projects { padding-left: 72px; padding-right: 72px; }
-    footer { padding-left: 72px; padding-right: 72px; }
+    .footer-bar { padding-left: 40px; padding-right: 40px; }
   }
   @media (max-width: 900px) {
     .projects-grid { grid-template-columns: 1fr; }
@@ -381,7 +384,11 @@
     nav { padding-left: 24px; padding-right: 24px; }
     .hero-dark { padding: 48px 24px; }
     .work-header, .projects { padding-left: 24px; padding-right: 24px; }
-    footer { padding: 48px 24px; flex-direction: column; align-items: flex-start; gap: 24px; }
+    .footer-bar {
+      height: auto; padding: 32px 24px; gap: 24px;
+      flex-direction: column; align-items: flex-start;
+    }
+    .footer-nav { gap: 32px; }
     .hero-name { font-size: 48px; }
   }
 </style>
@@ -398,7 +405,6 @@
   <div class="nav-links">
     <a href="#work">Work</a>
     <a href="about.html">About</a>
-    <a href="https://drive.google.com/file/d/1Cp8lhnMe8prGdPc-lXxDxwGE0BRqbDZI/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
   </div>
 </nav>
 
@@ -494,18 +500,32 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-smoke"></div>
-  <div class="footer-left">
-    <img src="ying-logo-red.png" alt="瑩" class="footer-logo" />
-    <p class="footer-name"><span class="with-love">with love,</span>Ying Liu</p>
-    <p class="footer-copy">© 2026</p>
+  <div class="footer-bar">
+    <div class="footer-identity">
+      <div class="footer-wordmark">
+        <p class="with-love">with love,</p>
+        <p class="footer-name">Ying Liu</p>
+        <p class="footer-copy">©2026</p>
+      </div>
+      <img src="public/images/site/ying-mark-red.png" alt="" class="footer-mark" />
+    </div>
+    <div class="footer-nav">
+      <a href="#work">Work</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://linkedin.com/in/yingwliu" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <img src="public/images/site/linkedin-icon.png" alt="" width="20" height="20" />
+      </a>
+      <a href="mailto:yxngliu@gmail.com" aria-label="Email">
+        <img src="public/images/site/email-icon.png" alt="" width="20" height="20" />
+      </a>
+      <a href="https://medium.com/@yywliu" target="_blank" rel="noopener" aria-label="Medium">
+        <img src="public/images/site/medium-icon.png" alt="" width="24" height="24" />
+      </a>
+    </div>
   </div>
-  <div class="footer-links">
-    <a href="https://linkedin.com/in/yingwliu" target="_blank">LinkedIn</a>
-    <a href="mailto:yxngliu@gmail.com">Email</a>
-    <a href="https://medium.com/@yywliu" target="_blank">Medium</a>
-    <a href="https://drive.google.com/file/d/1Cp8lhnMe8prGdPc-lXxDxwGE0BRqbDZI/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
-  </div>
+  <img src="public/images/site/footer-band.webp" alt="" class="footer-band" />
 </footer>
 
 <script>
