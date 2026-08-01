@@ -29,6 +29,14 @@ study's actual content living in a simple MDX file.
 - Fonts: Bootzy TM (display), Inter (body), PT Mono (mono/labels)
 - Base spacing unit is 8px. All spacing pulls from the defined scale.
 
+## Working from Figma
+- Never estimate or eyeball spacing, sizing, or coordinates. Pull exact values
+  from Figma via the MCP (get_design_context).
+- If a value is unclear or you are working from memory, re-check Figma rather
+  than guessing.
+- This is about finding the correct value; the Design system rule above is
+  about where that value then lives in code (a token, never a hardcoded literal).
+
 ## Working conventions
 - Before changing anything, walk me through your plan first. Do not edit
   multiple files before I've agreed on the approach.
@@ -40,6 +48,11 @@ study's actual content living in a simple MDX file.
 - Prefer clear, readable code over clever code. I am newer to code, so explain
   what you're doing as you go.
 - Conversational, plain language in explanations. No stiff jargon dumps.
+
+## Case study cards (homepage Work grid)
+- Clicking a card opens the case study as a full page in a new tab. Never a
+  modal, and never an in-place overlay.
+- Hover text on a card reads "View" — not "Preview".
 
 ## Case study page standards
 These apply to every case study page, current and future. They are enforced
@@ -53,6 +66,12 @@ each case study's frontmatter, so a new MDX file picks them up automatically.
 - Open Graph title/description: same values as the page title/description, so
   shared links preview correctly.
 - Favicon: one site-wide icon (app/icon.png). No per-page variation.
+
+## Contact links
+- All email links across the site point to yxngliu@gmail.com.
+- The resume link appears only on the About page, alongside the LinkedIn,
+  Email, and Medium links. Do not add it to the homepage, the footer, case
+  study pages, or anywhere else.
 
 ## Current task
 Convert the Product Guide case study into the new Next.js + MDX template.
