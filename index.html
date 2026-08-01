@@ -270,9 +270,9 @@
   .projects { padding: 0 120px 100px; }
   .projects-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
@@ -291,7 +291,7 @@
   }
 
   .project-image {
-    height: 280px; overflow: hidden;
+    height: 200px; overflow: hidden;
     background: var(--card-bg); position: relative;
   }
   .project-image img {
@@ -305,19 +305,19 @@
   .project-card:hover .project-image img { transform: scale(1.03); }
 
   .project-info {
-    padding: 24px 28px 28px;
+    padding: 20px 20px 22px;
     display: flex; flex-direction: column; flex: 1;
   }
   .project-title {
     font-family: var(--font-body);
-    font-size: 20px; font-weight: 600;
+    font-size: 17px; font-weight: 600;
     line-height: 1.25; letter-spacing: -0.01em;
-    margin-bottom: 10px; color: var(--ink);
+    margin-bottom: 8px; color: var(--ink);
   }
   .project-desc {
-    font-size: 13px; line-height: 1.5;
+    font-size: 12px; line-height: 1.5;
     color: var(--mid);
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
   .project-meta { display: flex; gap: 24px; margin-top: auto; }
   .project-meta-label {
@@ -386,14 +386,15 @@
     .hero-dark { padding-left: 72px; padding-right: 72px; }
     .work-header, .projects { padding-left: 72px; padding-right: 72px; }
     .footer-bar { padding-left: 40px; padding-right: 40px; }
-  }
-  @media (max-width: 900px) {
-    .projects-grid { grid-template-columns: 1fr; }
+    /* 3-up gets tight once the page itself has less room, before cards
+       individually feel cramped — step down a column early. */
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 768px) {
     nav { padding-left: 24px; padding-right: 24px; }
     .hero-dark { padding: 48px 24px; }
     .work-header, .projects { padding-left: 24px; padding-right: 24px; }
+    .projects-grid { grid-template-columns: 1fr; }
     .footer-bar {
       height: auto; padding: 32px 24px; gap: 24px;
       flex-direction: column; align-items: flex-start;
@@ -636,40 +637,18 @@
   const heroEl = document.getElementById('hero');
   let W, H;
 
-  // Settled ink is baked onto this offscreen canvas so it persists without the
-  // render loop having to redraw every stroke ever made, every frame.
-  const bake = document.createElement('canvas');
-  const bctx = bake.getContext('2d');
-
   function resize() {
     const rect = heroEl.getBoundingClientRect();
     W = rect.width;
     H = rect.height;
     const dpr = window.devicePixelRatio || 1;
 
-    // Carry already-baked ink across the resize rather than losing it
-    let previous = null;
-    if (bake.width && bake.height) {
-      previous = document.createElement('canvas');
-      previous.width = bake.width;
-      previous.height = bake.height;
-      previous.getContext('2d').drawImage(bake, 0, 0);
-    }
-
     canvas.width = W * dpr;
     canvas.height = H * dpr;
     canvas.style.width = W + 'px';
     canvas.style.height = H + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    bake.width = W * dpr;
-    bake.height = H * dpr;
-    bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    if (previous) bctx.drawImage(previous, 0, 0, W, H);
-
-    // Repaint immediately so persisted ink survives a resize visually too
     ctx.clearRect(0, 0, W, H);
-    ctx.drawImage(bake, 0, 0, W, H);
   }
 
   function init() {
@@ -685,13 +664,15 @@
 
   const PIXEL = 8;
   const BLOB_MAX_R = 48;
-  const BLOB_EXPAND_MS = 500;
+  const BLOB_EXPAND_MS = 500;   // time to grow to full size
+  const BLOB_HOLD_MS = 400;     // time held at full ink before fading
+  const BLOB_FADE_MS = 1800;    // time to fade out to nothing
+  const BLOB_LIFE = BLOB_EXPAND_MS + BLOB_HOLD_MS + BLOB_FADE_MS;
   const DEPOSIT_EVERY = 10;
-  const BLOB_LIFE = 3500;   // time to settle; ink then persists
 
-  // Darker ink for visibility on cream background
+  // Ink color stays constant; it's the alpha that fades out over time
   const SHADE_DARK = 20;
-  const SHADE_LIGHT = 140;
+  const BASE_ALPHA = 0.95;
 
   let blobs = [];
   let prevX = null, prevY = null;
@@ -738,26 +719,35 @@
 
   heroEl.addEventListener('mouseleave', function() { prevX = null; prevY = null; });
 
-  // Paints a set of blobs into a context. Does not clear — callers decide
-  // whether they are drawing onto the live canvas or baking into the
-  // persistent layer.
+  // Grows to full size, holds, then fades alpha out to 0 — never persists.
+  function blobAlpha(age) {
+    if (age < BLOB_EXPAND_MS) {
+      const p = age / BLOB_EXPAND_MS;
+      return 1 - Math.pow(1 - p, 3);
+    }
+    const holdEnd = BLOB_EXPAND_MS + BLOB_HOLD_MS;
+    if (age < holdEnd) return 1;
+    const fadeAge = age - holdEnd;
+    if (fadeAge >= BLOB_FADE_MS) return 0;
+    return 1 - fadeAge / BLOB_FADE_MS;
+  }
+
   function paintBlobs(targetCtx, list, now) {
     const cols = Math.ceil(W / PIXEL);
     const rows = Math.ceil(H / PIXEL);
 
     const gridAlpha = new Float32Array(cols * rows);
-    const gridAge = new Float32Array(cols * rows);
-    gridAge.fill(1);
 
     for (let b = 0; b < list.length; b++) {
       const blob = list[b];
       const age = now - blob.born;
+      const alpha = blobAlpha(age);
+      if (alpha <= 0) continue;
+
       const expandP = Math.min(age / BLOB_EXPAND_MS, 1);
       const eased = 1 - Math.pow(1 - expandP, 3);
       const r = blob.maxR * eased;
       if (r < 1) continue;
-
-      const ageRatio = Math.min(age / BLOB_LIFE, 1);
 
       const minCol = Math.max(0, Math.floor((blob.x - r - PIXEL) / PIXEL));
       const maxCol = Math.min(cols - 1, Math.ceil((blob.x + r + PIXEL) / PIXEL));
@@ -781,10 +771,7 @@
 
           if (dist < r + wobble) {
             const idx = row * cols + col;
-            if (gridAlpha[idx] < 1 || ageRatio < gridAge[idx]) {
-              gridAlpha[idx] = 1;
-              gridAge[idx] = ageRatio;
-            }
+            if (alpha > gridAlpha[idx]) gridAlpha[idx] = alpha;
           }
         }
       }
@@ -793,14 +780,13 @@
     for (let col = 0; col < cols; col++) {
       for (let row = 0; row < rows; row++) {
         const idx = row * cols + col;
-        if (gridAlpha[idx] < 0.01) continue;
+        const a = gridAlpha[idx];
+        if (a < 0.01) continue;
 
-        const ageRatio = gridAge[idx];
-        const nv = noise(col, row, 42) * 16 - 8;
-        const shade = Math.floor(SHADE_DARK + ageRatio * (SHADE_LIGHT - SHADE_DARK) + nv);
-        const clamped = Math.max(15, Math.min(210, shade));
+        const nv = noise(col, row, 42) * 10 - 5;
+        const shade = Math.max(15, Math.min(60, SHADE_DARK + nv));
 
-        targetCtx.fillStyle = `rgba(${clamped},${clamped},${clamped},0.95)`;
+        targetCtx.fillStyle = `rgba(${shade},${shade},${shade},${(a * BASE_ALPHA).toFixed(3)})`;
         targetCtx.fillRect(col * PIXEL, row * PIXEL, PIXEL, PIXEL);
       }
     }
@@ -808,17 +794,9 @@
 
   function render() {
     const now = performance.now();
-
-    // Blobs that have finished ageing get baked in permanently, so the
-    // drawing stays put and the active list never grows without bound.
-    const settled = blobs.filter(b => now - b.born >= BLOB_LIFE);
-    if (settled.length) {
-      paintBlobs(bctx, settled, now);
-      blobs = blobs.filter(b => now - b.born < BLOB_LIFE);
-    }
+    blobs = blobs.filter(b => now - b.born < BLOB_LIFE);
 
     ctx.clearRect(0, 0, W, H);
-    ctx.drawImage(bake, 0, 0, W, H);
 
     if (blobs.length === 0) {
       rafId = null;
