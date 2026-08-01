@@ -95,3 +95,12 @@ Not converting:
 - Ticketmaster / Support Community — being broken out into separate new
   projects later, so the existing case study is not worth porting.
 - Netflix Party — links out to a Medium article and stays as-is.
+
+## TEMPORARY: the legacy Ticketmaster page
+`public/ticketmaster-casestudy.html` and `public/images/ticketmaster-legacy/`
+are a holding measure, NOT a permanent legacy page like Netflix Party. They
+live in public/ only so the homepage card does not 404 after the Vercel
+cutover.
+Remove all of it — the HTML file, the whole images/ticketmaster-legacy folder,
+and the homepage card pointing at it — once the replacement case studies are
+written. Nothing else references those files.
