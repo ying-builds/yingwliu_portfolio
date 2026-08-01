@@ -106,7 +106,11 @@
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #fff;
+    /* Pre-compensated for the difference blend on .hero-content: against the
+       cream background this resolves back to the original soft grey
+       (#888480), while still lightening where ink passes under it. Pure white
+       here would read near-black on cream. */
+    color: rgb(114, 116, 117);
     margin-bottom: 0;
     opacity: 0;
     animation: heroReveal 1s 0.8s ease forwards;
@@ -331,7 +335,9 @@
   }
   .footer-smoke {
     position: absolute; inset: 0;
-    background: url('homepage-smoke.png') center bottom/cover no-repeat;
+    /* Was homepage-smoke.png, which was never committed and 404'd. Points at
+       the ink band from the new footer design — same texture family. */
+    background: url('public/images/site/footer-band.webp') center bottom/cover no-repeat;
     opacity: 0.2;
   }
   .footer-left { position: relative; z-index: 1; }
@@ -653,11 +659,9 @@
   const DEPOSIT_EVERY = 10;
   const BLOB_LIFE = 3500;   // time to settle; ink then persists
 
-  // Ink stays dark once settled. It used to lighten to 140 on its way to
-  // fading out; now that strokes persist, that would leave a pale smudge and
-  // would not be dark enough for the hero text to invert to white over it.
+  // Darker ink for visibility on cream background
   const SHADE_DARK = 20;
-  const SHADE_LIGHT = 55;
+  const SHADE_LIGHT = 140;
 
   let blobs = [];
   let prevX = null, prevY = null;
