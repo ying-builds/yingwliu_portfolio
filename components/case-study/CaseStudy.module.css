@@ -286,3 +286,178 @@
 .sectionContent :global(h3) {
   margin: 0;
 }
+
+/* ===== Card patterns =====
+   Introduced for the BeReal conversion. The legacy page used its own warm
+   palette; these map onto the case study tokens so the converted page reads
+   as part of the template rather than keeping its old look. */
+
+.cardRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  margin: var(--space-lg) 0;
+}
+
+.cardRowThree {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Insight — a numbered research finding */
+.insightCard {
+  background: var(--mockup-bg);
+  border-radius: 6px;
+  padding: 20px 22px;
+}
+
+.insightNum {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  color: var(--link-accent);
+  margin-bottom: 8px;
+}
+
+.insightText {
+  font-size: var(--text-quote);
+  line-height: 1.6;
+  color: var(--black);
+}
+
+/* Stat — a headline figure */
+.statCard {
+  background: var(--mockup-bg);
+  border-radius: 6px;
+  padding: 20px 22px;
+  text-align: center;
+}
+
+.statNum {
+  font-family: var(--font-display);
+  letter-spacing: 2px;
+  font-size: 36px;
+  font-weight: normal;
+  color: var(--black);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.statDesc {
+  font-size: var(--text-note);
+  color: var(--quote-text);
+  line-height: 1.4;
+}
+
+/* Persona — portrait, name, description */
+.personaCard {
+  background: var(--mockup-bg);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.personaImg {
+  height: 320px;
+  overflow: hidden;
+}
+
+.personaImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Faces sit top-left in these portraits; cropping from the centre cuts
+     them off at this aspect ratio. */
+  object-position: top left;
+}
+
+.personaInfo {
+  padding: 16px 18px;
+}
+
+.personaName {
+  font-family: var(--font-display);
+  letter-spacing: 2px;
+  font-size: 16px;
+  font-weight: normal;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+
+.personaDesc {
+  font-size: var(--text-note);
+  color: var(--quote-text);
+  line-height: 1.5;
+}
+
+/* Feature — dark panel, write-up beside its visual */
+.featureCard {
+  background: var(--black-bg);
+  border-radius: 8px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.featureLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  color: var(--white-subtitle);
+  opacity: 0.45;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.featureTitle {
+  font-family: var(--font-display);
+  letter-spacing: 2px;
+  font-size: 24px;
+  font-weight: normal;
+  color: var(--white-subtitle);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.featureDesc {
+  font-size: var(--text-quote);
+  color: var(--white-text);
+  line-height: 1.65;
+}
+
+.featureVisual {
+  display: flex;
+  justify-content: center;
+}
+
+.featureVisual img,
+.featureVisual video {
+  max-height: 400px;
+  width: auto;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .cardRow,
+  .cardRowThree {
+    grid-template-columns: 1fr;
+  }
+
+  .featureCard {
+    grid-template-columns: 1fr;
+    padding: 28px;
+  }
+}
+
+/* These card slots are divs, not paragraphs: MDX wraps multi-line children
+   in a <p>, and a <p> inside a <p> is invalid and breaks hydration. */
+.insightText :global(p),
+.statDesc :global(p),
+.personaDesc :global(p),
+.featureDesc :global(p) {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}

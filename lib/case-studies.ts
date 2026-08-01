@@ -24,7 +24,7 @@ export interface CaseStudyCard {
 interface Frontmatter {
   title?: string;
   subheading?: string;
-  dates?: string;
+  dates?: unknown;
   meta?: { role?: string };
   heroMockup?: string;
   heroMockupAlt?: string;
@@ -32,16 +32,21 @@ interface Frontmatter {
   cardDescription?: string;
   cardImage?: string;
   cardImageAlt?: string;
-  cardYear?: string;
+  cardYear?: unknown;
   cardOrder?: number;
 }
 
-/* "February - May 2024" -> "2024". Falls back to the raw string if there is
-   no four-digit year, rather than rendering an empty cell. */
-function yearFrom(dates: string | undefined): string {
-  if (!dates) return "";
-  const years = dates.match(/\b(19|20)\d{2}\b/g);
-  if (!years) return dates;
+/* "February - May 2024" -> "2024". Falls back to the raw value if there is
+   no four-digit year, rather than rendering an empty cell.
+
+   Takes unknown because frontmatter is hand-written: `dates: 2024` is
+   perfectly natural to type and YAML hands it back as a number, which used
+   to throw here and fail the whole homepage build. */
+function yearFrom(dates: unknown): string {
+  if (dates === null || dates === undefined || dates === "") return "";
+  const text = String(dates);
+  const years = text.match(/\b(19|20)\d{2}\b/g);
+  if (!years) return text;
   const first = years[0];
   const last = years[years.length - 1];
   return first === last ? first : `${first} – ${last}`;
@@ -64,7 +69,7 @@ export function getCaseStudyCards(): CaseStudyCard[] {
         title: fm.cardTitle ?? fm.title ?? slug,
         description: fm.cardDescription ?? fm.subheading ?? "",
         role: fm.meta?.role ?? "",
-        year: fm.cardYear ?? yearFrom(fm.dates),
+        year: fm.cardYear != null ? String(fm.cardYear) : yearFrom(fm.dates),
         image: fm.cardImage ?? fm.heroMockup ?? "",
         imageAlt: fm.cardImageAlt ?? fm.heroMockupAlt ?? fm.title ?? "",
         // Unordered case studies sort after ordered ones rather than jumping

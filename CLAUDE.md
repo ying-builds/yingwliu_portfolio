@@ -54,6 +54,17 @@ study's actual content living in a simple MDX file.
   modal, and never an in-place overlay.
 - Hover text on a card reads "View" — not "Preview".
 
+## Writing MDX: use string props, never expressions
+In this setup MDX expressions are silently dropped — `width={1326}` arrives as
+undefined, and `{2 + 3}` in body text renders nothing at all. Nothing errors,
+so the value just quietly goes missing.
+- Always write props as strings: `width="1326"`, `columns="3"`.
+- Components that take numbers coerce with `Number()` and fall back sensibly,
+  so a missing or malformed value degrades instead of breaking the build.
+This already cost us once: the Product Guide passed `width={1326}` to
+next/image, which left it with no dimensions, so it served its largest
+candidate (3840px wide) and lost its aspect ratio.
+
 ## Case study images
 - Mockup images and screenshots sit on a light frame: `--mockup-bg` for the
   surface and a 1px `--mockup-border-line` border, both from tokens.css.

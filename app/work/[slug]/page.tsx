@@ -15,6 +15,11 @@ import MockupImage from "../../../components/case-study/MockupImage";
 import MockupBlock from "../../../components/case-study/MockupBlock";
 import FullBleedMedia from "../../../components/case-study/FullBleedMedia";
 import Wide from "../../../components/case-study/Wide";
+import CardRow from "../../../components/case-study/CardRow";
+import InsightCard from "../../../components/case-study/InsightCard";
+import StatCard from "../../../components/case-study/StatCard";
+import PersonaCard from "../../../components/case-study/PersonaCard";
+import FeatureCard from "../../../components/case-study/FeatureCard";
 
 const CONTENT_DIR = path.join(process.cwd(), "content", "case-studies");
 
@@ -66,6 +71,11 @@ const mdxComponents = {
   MockupBlock,
   FullBleedMedia,
   Wide,
+  CardRow,
+  InsightCard,
+  StatCard,
+  PersonaCard,
+  FeatureCard,
   ol: (props: React.ComponentPropsWithoutRef<"ol">) => (
     <ol className="takeaways-list" {...props} />
   ),
