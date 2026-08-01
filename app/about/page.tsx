@@ -21,7 +21,7 @@ export default function AboutPage() {
         <p className="about-eyebrow">Product Designer · Sacramento, CA</p>
 
         <div className="polaroid">
-          <img src="/polaroid_portrait_photo.png" alt="Ying Liu" />
+          <img src="/images/site/polaroid_portrait_photo.png" alt="Ying Liu" />
         </div>
 
         <p className="about-tagline">
@@ -74,7 +74,7 @@ export default function AboutPage() {
           <span className="hover-video-trigger">
             lifting at the gym
             <span className="hover-video">
-              <img src="/gym-hover.gif" alt="Ying lifting" />
+              <img src="/images/site/gym-hover.gif" alt="Ying lifting" />
             </span>
           </span>
           . Balance keeps everything sharp.

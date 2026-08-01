@@ -90,7 +90,7 @@ export default function HomePage() {
               rel="noopener"
             >
               <div className="project-image">
-                <img src="/ipad-mockup.png" alt="Ticketmaster Support Community" />
+                <img src="/images/site/ipad-mockup.png" alt="Ticketmaster Support Community" />
               </div>
               <div className="project-info">
                 <p className="project-title">
@@ -121,7 +121,7 @@ export default function HomePage() {
               rel="noopener"
             >
               <div className="project-image" style={{ background: "#1B3A5C" }}>
-                <img src="/gsm-hero.png" alt="UC Davis GSM" />
+                <img src="/images/site/gsm-hero.png" alt="UC Davis GSM" />
               </div>
               <div className="project-info">
                 <p className="project-title">UC Davis GSM / Alumni Platform</p>
@@ -153,7 +153,7 @@ export default function HomePage() {
                 className="project-image project-image-bereal"
                 style={{ background: "#0A0A09" }}
               >
-                <img src="/bereal-card.png" alt="BeReal" />
+                <img src="/images/site/bereal-card.png" alt="BeReal" />
               </div>
               <div className="project-info">
                 <p className="project-title">BeReal / New Features</p>
@@ -182,7 +182,7 @@ export default function HomePage() {
               rel="noopener"
             >
               <div className="project-image" style={{ background: "#E8E6E3" }}>
-                <img src="/netflix-card.png" alt="Netflix Party" />
+                <img src="/images/site/netflix-card.png" alt="Netflix Party" />
               </div>
               <div className="project-info">
                 <p className="project-title">Netflix Party / Redesign</p>
