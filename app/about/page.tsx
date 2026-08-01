@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import styles from "./page.module.css";
+import CustomCursor from "../../components/site/CustomCursor";
 
 export const metadata: Metadata = {
   title: "About — Ying Liu",
@@ -22,6 +23,7 @@ export default function AboutPage() {
         href="https://fonts.googleapis.com/css2?family=Ballet&display=swap"
         precedence="default"
       />
+      <CustomCursor />
       <div className={styles.grain} />
 
       <section className={styles.aboutHero}>

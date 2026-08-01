@@ -44,3 +44,86 @@ video {
 a {
   color: inherit;
 }
+
+/* ===== JS-DRIVEN CLASSES =====
+   These are queried or toggled by the client components in components/site,
+   so they stay global rather than being hashed by CSS Modules. */
+
+/* Scroll reveal. Only opts in once the observer is running — otherwise a
+   failed script would leave the page permanently blank. */
+.fade-up.reveal-ready {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
+}
+
+.fade-up.reveal-ready.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom cursor — a ring with a dot, replacing the system cursor.
+   Scoped to the pages that render it via .cursor-host. */
+.cursor-host,
+.cursor-host * {
+  cursor: none;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid rgba(250, 248, 245, 0.9);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.15s ease,
+    height 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.custom-cursor::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3px;
+  height: 3px;
+  background: rgba(250, 248, 245, 0.9);
+  border-radius: 50%;
+}
+
+.custom-cursor.hovering {
+  width: 36px;
+  height: 36px;
+  border-color: rgba(250, 248, 245, 1);
+}
+
+.pixel-trail {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  border-radius: 0;
+}
+
+/* Touch and small screens get the system cursor back */
+@media (max-width: 768px) {
+  .cursor-host,
+  .cursor-host * {
+    cursor: auto;
+  }
+
+  .custom-cursor,
+  .pixel-trail {
+    display: none;
+  }
+}

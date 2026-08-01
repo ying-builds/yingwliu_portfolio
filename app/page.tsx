@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import styles from "./page.module.css";
+import InkCursor from "../components/site/InkCursor";
+import PixelTrail from "../components/site/PixelTrail";
+import CustomCursor from "../components/site/CustomCursor";
+import ScrollReveal from "../components/site/ScrollReveal";
 
 // The site root carries the full identity rather than the "[Page] — Ying Liu"
 // pattern the inner pages follow.
@@ -18,8 +22,13 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div className={styles.page}>
+      <CustomCursor />
+      <PixelTrail hostId="hero" />
+      <ScrollReveal />
+
       <section className={styles.heroDark} id="hero">
         <div className={styles.grainOverlay} />
+        <InkCursor hostId="hero" />
 
         <div className={styles.heroContent}>
           <p className={styles.heroRole}>Product Designer</p>
