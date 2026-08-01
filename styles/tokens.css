@@ -94,7 +94,7 @@
   --section-content-width: 442px;
   --wide-content-width: 802px;
   --mockup-block-width: 1060px;
-  --mockup-block-height: 508px;
+  --mockup-block-ratio: 1060 / 508;
   --fullbleed-media-width: 808px;
   --page-max-width: 1440px;
   --page-gutter: 40px;        /* horizontal page padding */

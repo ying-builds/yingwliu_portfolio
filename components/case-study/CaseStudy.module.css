@@ -180,20 +180,27 @@
   display: block;
 }
 
-/* Large centered bordered box, e.g. "Final Solution Mockup" */
+/* Large centered bordered box, e.g. "Final Solution Mockup".
+   Acts as a fixed window onto the video — the video sits inside at full size
+   and is slid around by MockupBlock's zoom/offset props, with everything
+   outside the box clipped. aspect-ratio (not a fixed height) keeps those
+   percentage offsets accurate when the box narrows on smaller screens. */
 .mockupBlock {
+  position: relative;
   background: var(--mockup-bg);
   border: 1px solid var(--mockup-border-line);
   max-width: var(--mockup-block-width);
-  height: var(--mockup-block-height);
+  aspect-ratio: var(--mockup-block-ratio);
   margin: 0 auto;
   overflow: hidden;
 }
 
 .blockVideo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  position: absolute;
+  height: auto;
+  /* The global img/video max-width:100% would clamp the zoom back to the
+     window's width, defeating the crop. */
+  max-width: none;
 }
 
 /* Full-bleed dark media section, e.g. "Final Gif" */

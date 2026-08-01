@@ -7,11 +7,13 @@ export default function GifPlayer({
   webm,
   poster,
   className,
+  style,
 }: {
   mp4: string;
   webm?: string;
   poster?: string;
   className?: string;
+  style?: React.CSSProperties;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -38,6 +40,7 @@ export default function GifPlayer({
     <video
       ref={videoRef}
       className={className}
+      style={style}
       poster={poster}
       preload="none"
       muted
