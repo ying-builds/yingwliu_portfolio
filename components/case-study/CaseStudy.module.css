@@ -1,0 +1,249 @@
+/* ===== Breadcrumb ===== */
+.breadcrumb {
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-lg);
+  font-family: var(--font-body);
+  font-size: 16px;
+}
+
+.breadcrumb .all {
+  color: var(--subtitle);
+}
+
+/* ===== Project Hero ===== */
+.hero {
+  position: relative;
+  background: var(--black-bg);
+  overflow: hidden;
+  padding: var(--space-xl) var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 487px;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 152px;
+  flex-wrap: wrap;
+}
+
+.heroMeta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: 243px;
+}
+
+.heroLogo {
+  height: 19px;
+  width: auto;
+}
+
+.ellipse {
+  position: absolute;
+  width: 169px;
+  height: 169px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    var(--white-text),
+    transparent 70%
+  );
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.ellipseOne {
+  left: 40px;
+  bottom: -40px;
+}
+
+.ellipseTwo {
+  left: 40px;
+  top: 170px;
+}
+
+.ellipseThree {
+  left: 40px;
+  top: 1px;
+}
+
+/* ===== Title block ===== */
+.titleBlock {
+  display: flex;
+  gap: 92px;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.titleCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: 377px;
+}
+
+.titleDates {
+  font-family: var(--font-body);
+  color: var(--subtitle);
+}
+
+.subheadCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: 550px;
+}
+
+/* ===== Case study body (MDX content) ===== */
+.body {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.body :global(p + p) {
+  margin-top: var(--space-md);
+}
+
+.plainText,
+.plainText :global(p) {
+  margin: 0;
+  color: var(--almost-black);
+}
+
+.plainText :global(a) {
+  color: var(--link-accent);
+  text-decoration: underline;
+}
+
+.plainText :global(em) {
+  color: var(--link-accent);
+  font-style: italic;
+}
+
+/* ===== Mockup frame ===== */
+.mockupFrame {
+  border: 6px solid var(--mockup-border-fill);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.mockupFrame img,
+.mockupFrame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Small bordered image box used within a Section (e.g. Pain Points) */
+.mockupImage {
+  background: var(--mockup-bg);
+  border: 1px solid var(--mockup-border-line);
+  overflow: hidden;
+  width: 100%;
+}
+
+.mockupImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Large centered bordered box, e.g. "Final Solution Mockup" */
+.mockupBlock {
+  background: var(--mockup-bg);
+  border: 1px solid var(--mockup-border-line);
+  max-width: 1060px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.blockVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Full-bleed dark media section, e.g. "Final Gif" */
+.fullBleedMedia {
+  background: #101010;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) 0;
+}
+
+.fullBleedMedia video {
+  max-width: 808px;
+  width: 100%;
+}
+
+.problemText {
+  font-weight: 600;
+}
+
+.problemText :global(p) {
+  color: var(--black);
+  margin: 0;
+}
+
+.problemText :global(em) {
+  color: var(--link-accent);
+  font-style: italic;
+}
+
+/* ===== Full-width block, no label column (e.g. "Creating design components") ===== */
+.wide {
+  max-width: 802px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.wide :global(img) {
+  border: 1px solid var(--mockup-border-line);
+  width: 100%;
+  height: auto;
+}
+
+/* ===== Section (label + content) ===== */
+.section {
+  display: flex;
+  gap: var(--space-2xl);
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.sectionLabel {
+  margin: 0;
+  width: var(--section-label-width);
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  letter-spacing: 3px;
+  color: var(--black);
+  font-weight: normal;
+}
+
+.sectionContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  max-width: 442px;
+}
+
+.sectionContent :global(h3) {
+  margin: 0;
+}
