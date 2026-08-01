@@ -36,7 +36,7 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 22px 72px; z-index: 100;
+    padding: 22px 120px; z-index: 100;
     background: rgba(250,248,245,0.92); backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--rule);
   }
@@ -400,6 +400,9 @@
   .footer-band { display: block; width: 100%; height: auto; aspect-ratio: 1662 / 118; object-fit: cover; }
 
   /* RESPONSIVE */
+  @media (max-width: 1100px) {
+    nav { padding-left: 72px; padding-right: 72px; }
+  }
   @media (max-width: 768px) {
     nav { padding: 22px 24px; }
     .about-hero { padding: 120px 24px 60px; }
