@@ -28,14 +28,15 @@
      ======================================== */
   .hero-dark {
     position: relative;
-    min-height: 100vh;
+    min-height: 72vh;
     background: var(--cream);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    padding: 100px 120px 60px;
+    align-items: center;
+    text-align: center;
+    padding: 88px 120px 96px;
     gap: 24px;
   }
 
@@ -75,13 +76,16 @@
     position: relative;
     z-index: 3;
     max-width: 700px;
+    /* Inverts against whatever is painted beneath — cream bg reads near-black,
+       dark ink reads near-white. See .hero-name/.hero-role/.hero-bio colors. */
+    mix-blend-mode: difference;
   }
 
   .hero-name {
     font-family: 'Bootzy TM', sans-serif;
     font-size: clamp(64px, 9vw, 120px);
     font-weight: normal;
-    color: var(--ink);
+    color: #fff;
     letter-spacing: 0.14em;
     line-height: 1.2;
     margin-bottom: 0;
@@ -102,7 +106,7 @@
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--soft);
+    color: #fff;
     margin-bottom: 0;
     opacity: 0;
     animation: heroReveal 1s 0.8s ease forwards;
@@ -113,11 +117,15 @@
     font-size: 15px;
     font-weight: 500;
     line-height: 1.55;
-    color: var(--ink);
+    color: #fff;
     max-width: 400px;
+    margin: 0 auto;
     opacity: 0;
     animation: heroReveal 1s 1s ease forwards;
   }
+
+  /* Same inversion trick as .hero-content, for the tagline below */
+  .hero-bottom { mix-blend-mode: difference; }
 
   .scroll-hint {
     position: absolute;
@@ -131,16 +139,27 @@
     color: inherit;
     padding: 8px 16px;
   }
-  .scroll-hint:hover span { color: rgba(26,25,22,0.35); }
+  .scroll-hint:hover span {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+  }
   .scroll-hint:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+  /* Reads as a button, not a whisper — this is the main call to action */
   .scroll-hint span {
     font-family: 'PT Mono', monospace;
-    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: rgba(26,25,22,0.2);
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink);
+    border: 1px solid rgba(26,25,22,0.3);
+    border-radius: 999px;
+    padding: 9px 22px;
+    background: rgba(250,248,245,0.6);
+    backdrop-filter: blur(4px);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
   }
   .scroll-line {
     width: 1px; height: 32px;
-    background: linear-gradient(to bottom, rgba(26,25,22,0.2), transparent);
+    background: linear-gradient(to bottom, rgba(26,25,22,0.4), transparent);
   }
   @keyframes floatCalm {
     0%, 100% { transform: translateX(-50%) translateY(0); }
@@ -193,9 +212,6 @@
     * { cursor: auto !important; }
     .custom-cursor { display: none; }
   }
-  /* Hide custom cursor in modal — iframe blocks parent mousemove, causing freeze/stuck state */
-  body.modal-open .custom-cursor { display: none; }
-  body.modal-open, body.modal-open * { cursor: auto !important; }
 
   /* ========================================
      NAV
@@ -306,48 +322,6 @@
   .project-card:hover .project-arrow { opacity: 1; transform: translateX(0); }
 
   /* ========================================
-     MODAL
-     ======================================== */
-  .modal-overlay {
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(26,25,22,0.55); backdrop-filter: blur(6px);
-    opacity: 0; pointer-events: none; transition: opacity 0.35s ease;
-    display: flex; align-items: center; justify-content: center; padding: 32px;
-  }
-  .modal-overlay.active { opacity: 1; pointer-events: all; }
-  .modal {
-    background: var(--cream); border-radius: 10px;
-    max-width: 900px; width: 100%; height: 88vh;
-    box-shadow: 0 24px 80px rgba(26,25,22,0.25);
-    transform: translateY(24px) scale(0.97);
-    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
-    position: relative; display: flex; flex-direction: column; overflow: hidden;
-  }
-  .modal-overlay.active .modal { transform: translateY(0) scale(1); }
-  .modal-toolbar {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 14px 20px; border-bottom: 1px solid var(--rule);
-    background: var(--cream); flex-shrink: 0;
-  }
-  .modal-toolbar-title {
-    font-family: 'PT Mono', monospace;
-    font-size: 11px; letter-spacing: 0.04em; color: var(--soft);
-  }
-  .modal-toolbar-actions { display: flex; gap: 8px; }
-  .modal-btn {
-    font-family: 'PT Mono', monospace;
-    font-size: 10px; letter-spacing: 0.03em;
-    padding: 6px 16px; border-radius: 20px;
-    text-decoration: none; cursor: pointer; transition: all 0.2s; border: none;
-  }
-  .modal-btn-expand { background: var(--ink); color: var(--cream); }
-  .modal-btn-expand:hover { opacity: 0.75; }
-  .modal-btn-close { background: transparent; color: var(--soft); border: 1px solid var(--rule); }
-  .modal-btn-close:hover { border-color: var(--soft); color: var(--ink); }
-  .modal-iframe-wrap { flex: 1; overflow: hidden; border-radius: 0 0 10px 10px; }
-  .modal-iframe-wrap iframe { width: 100%; height: 100%; border: none; }
-
-  /* ========================================
      FOOTER
      ======================================== */
   footer {
@@ -403,8 +377,6 @@
     .work-header, .projects { padding-left: 24px; padding-right: 24px; }
     footer { padding: 48px 24px; flex-direction: column; align-items: flex-start; gap: 24px; }
     .hero-name { font-size: 48px; }
-    .modal-overlay { padding: 12px; }
-    .modal { height: 92vh; max-width: 100%; border-radius: 8px; }
   }
 </style>
 </head>
@@ -418,7 +390,7 @@
     <span class="nav-logo-text">Ying Liu</span>
   </a>
   <div class="nav-links">
-    <a href="#">Work</a>
+    <a href="#work">Work</a>
     <a href="about.html">About</a>
     <a href="https://drive.google.com/file/d/1Cp8lhnMe8prGdPc-lXxDxwGE0BRqbDZI/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
   </div>
@@ -450,7 +422,7 @@
   <div class="projects">
     <div class="projects-grid">
 
-      <div class="project-card fade-up" onclick="openModal('ticketmaster')">
+      <a class="project-card fade-up" href="ticketmaster-casestudy.html" target="_blank" rel="noopener">
         <div class="project-image">
           <img src="ipad-mockup.png" alt="Ticketmaster Support Community" />
         </div>
@@ -461,11 +433,11 @@
             <div class="project-meta-item"><p class="project-meta-label">Role</p><p class="project-meta-value">Sole Product Designer</p></div>
             <div class="project-meta-item"><p class="project-meta-label">Year</p><p class="project-meta-value">2023 – 2025</p></div>
           </div>
-          <div class="project-arrow">Preview →</div>
+          <div class="project-arrow">View →</div>
         </div>
-      </div>
+      </a>
 
-      <div class="project-card fade-up" onclick="openModal('gsm')">
+      <a class="project-card fade-up" href="gsm-casestudy.html" target="_blank" rel="noopener">
         <div class="project-image" style="background:#1B3A5C;">
           <img src="gsm-hero.png" alt="UC Davis GSM" />
         </div>
@@ -476,11 +448,11 @@
             <div class="project-meta-item"><p class="project-meta-label">Role</p><p class="project-meta-value">Lead Product Designer</p></div>
             <div class="project-meta-item"><p class="project-meta-label">Year</p><p class="project-meta-value">2023</p></div>
           </div>
-          <div class="project-arrow">Preview →</div>
+          <div class="project-arrow">View →</div>
         </div>
-      </div>
+      </a>
 
-      <div class="project-card fade-up" onclick="openModal('bereal')">
+      <a class="project-card fade-up" href="bereal-casestudy.html" target="_blank" rel="noopener">
         <div class="project-image project-image-bereal" style="background:#0A0A09;">
           <img src="bereal-card.png" alt="BeReal" />
         </div>
@@ -491,11 +463,11 @@
             <div class="project-meta-item"><p class="project-meta-label">Role</p><p class="project-meta-value">Product Designer</p></div>
             <div class="project-meta-item"><p class="project-meta-label">Year</p><p class="project-meta-value">2023</p></div>
           </div>
-          <div class="project-arrow">Preview →</div>
+          <div class="project-arrow">View →</div>
         </div>
-      </div>
+      </a>
 
-      <div class="project-card fade-up" onclick="openModal('netflix')">
+      <a class="project-card fade-up" href="https://davisdesigninteractive.medium.com/netflix-party-case-study-ec1193f097c5" target="_blank" rel="noopener">
         <div class="project-image" style="background:#E8E6E3;">
           <img src="netflix-card.png" alt="Netflix Party" />
         </div>
@@ -506,9 +478,9 @@
             <div class="project-meta-item"><p class="project-meta-label">Role</p><p class="project-meta-value">UX Designer</p></div>
             <div class="project-meta-item"><p class="project-meta-label">Year</p><p class="project-meta-value">2020</p></div>
           </div>
-          <div class="project-arrow">Preview →</div>
+          <div class="project-arrow">View →</div>
         </div>
-      </div>
+      </a>
 
     </div>
   </div>
@@ -529,22 +501,6 @@
     <a href="https://drive.google.com/file/d/1Cp8lhnMe8prGdPc-lXxDxwGE0BRqbDZI/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
   </div>
 </footer>
-
-<!-- MODAL -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
-  <div class="modal" onclick="event.stopPropagation()">
-    <div class="modal-toolbar">
-      <span class="modal-toolbar-title" id="modal-toolbar-title"></span>
-      <div class="modal-toolbar-actions">
-        <a class="modal-btn modal-btn-expand" id="modal-expand" href="#">Open full page →</a>
-        <button class="modal-btn modal-btn-close" onclick="closeModal()">Close</button>
-      </div>
-    </div>
-    <div class="modal-iframe-wrap">
-      <iframe id="modal-iframe" src="" title="Project preview"></iframe>
-    </div>
-  </div>
-</div>
 
 <script>
   // ========================================
@@ -635,36 +591,6 @@
     el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
   });
 
-  // ========================================
-  // MODAL
-  // ========================================
-  const projectData = {
-    ticketmaster: { title: 'Ticketmaster / Support Community', src: 'ticketmaster-casestudy.html', href: 'ticketmaster-casestudy.html' },
-    gsm: { title: 'UC Davis GSM / Alumni Platform', src: 'gsm-casestudy.html', href: 'gsm-casestudy.html' },
-    bereal: { title: 'BeReal / New Features', src: 'bereal-casestudy.html', href: 'bereal-casestudy.html' },
-    netflix: { title: 'Netflix Party / Redesign', src: 'https://davisdesigninteractive.medium.com/netflix-party-case-study-ec1193f097c5', href: 'https://davisdesigninteractive.medium.com/netflix-party-case-study-ec1193f097c5', external: true }
-  };
-
-  function openModal(id) {
-    const p = projectData[id]; if (!p) return;
-    if (p.external) { window.open(p.href, '_blank'); return; }
-    document.getElementById('modal-toolbar-title').textContent = p.title;
-    document.getElementById('modal-iframe').src = p.src;
-    document.getElementById('modal-expand').href = p.href;
-    document.getElementById('modal-overlay').classList.add('active');
-    document.body.classList.add('modal-open');
-    document.body.style.overflow = 'hidden';
-    cursor.classList.remove('hovering');
-  }
-
-  function closeModal(e) {
-    if (e && e.target !== e.currentTarget) return;
-    document.getElementById('modal-overlay').classList.remove('active');
-    document.body.classList.remove('modal-open');
-    document.body.style.overflow = '';
-    setTimeout(() => { document.getElementById('modal-iframe').src = ''; }, 400);
-  }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 </script>
 
 <script>
@@ -674,16 +600,40 @@
   const heroEl = document.getElementById('hero');
   let W, H;
 
+  // Settled ink is baked onto this offscreen canvas so it persists without the
+  // render loop having to redraw every stroke ever made, every frame.
+  const bake = document.createElement('canvas');
+  const bctx = bake.getContext('2d');
+
   function resize() {
     const rect = heroEl.getBoundingClientRect();
     W = rect.width;
     H = rect.height;
     const dpr = window.devicePixelRatio || 1;
+
+    // Carry already-baked ink across the resize rather than losing it
+    let previous = null;
+    if (bake.width && bake.height) {
+      previous = document.createElement('canvas');
+      previous.width = bake.width;
+      previous.height = bake.height;
+      previous.getContext('2d').drawImage(bake, 0, 0);
+    }
+
     canvas.width = W * dpr;
     canvas.height = H * dpr;
     canvas.style.width = W + 'px';
     canvas.style.height = H + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    bake.width = W * dpr;
+    bake.height = H * dpr;
+    bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (previous) bctx.drawImage(previous, 0, 0, W, H);
+
+    // Repaint immediately so persisted ink survives a resize visually too
+    ctx.clearRect(0, 0, W, H);
+    ctx.drawImage(bake, 0, 0, W, H);
   }
 
   function init() {
@@ -701,12 +651,13 @@
   const BLOB_MAX_R = 48;
   const BLOB_EXPAND_MS = 500;
   const DEPOSIT_EVERY = 10;
-  const BLOB_LIFE = 3500;
-  const BLOB_FADE_MS = 800;
+  const BLOB_LIFE = 3500;   // time to settle; ink then persists
 
-  // Darker ink for visibility on cream background
+  // Ink stays dark once settled. It used to lighten to 140 on its way to
+  // fading out; now that strokes persist, that would leave a pale smudge and
+  // would not be dark enough for the hero text to invert to white over it.
   const SHADE_DARK = 20;
-  const SHADE_LIGHT = 140;
+  const SHADE_LIGHT = 55;
 
   let blobs = [];
   let prevX = null, prevY = null;
@@ -753,18 +704,10 @@
 
   heroEl.addEventListener('mouseleave', function() { prevX = null; prevY = null; });
 
-  function render() {
-    const now = performance.now();
-    blobs = blobs.filter(b => now - b.born < BLOB_LIFE + BLOB_FADE_MS);
-
-    if (blobs.length === 0) {
-      ctx.clearRect(0, 0, W, H);
-      rafId = null;
-      return;
-    }
-
-    ctx.clearRect(0, 0, W, H);
-
+  // Paints a set of blobs into a context. Does not clear — callers decide
+  // whether they are drawing onto the live canvas or baking into the
+  // persistent layer.
+  function paintBlobs(targetCtx, list, now) {
     const cols = Math.ceil(W / PIXEL);
     const rows = Math.ceil(H / PIXEL);
 
@@ -772,8 +715,8 @@
     const gridAge = new Float32Array(cols * rows);
     gridAge.fill(1);
 
-    for (let b = 0; b < blobs.length; b++) {
-      const blob = blobs[b];
+    for (let b = 0; b < list.length; b++) {
+      const blob = list[b];
       const age = now - blob.born;
       const expandP = Math.min(age / BLOB_EXPAND_MS, 1);
       const eased = 1 - Math.pow(1 - expandP, 3);
@@ -781,13 +724,6 @@
       if (r < 1) continue;
 
       const ageRatio = Math.min(age / BLOB_LIFE, 1);
-
-      let alpha = 1;
-      if (age > BLOB_LIFE) {
-        alpha = 1 - ((age - BLOB_LIFE) / BLOB_FADE_MS);
-        alpha = Math.max(0, alpha * alpha);
-      }
-      if (alpha <= 0) continue;
 
       const minCol = Math.max(0, Math.floor((blob.x - r - PIXEL) / PIXEL));
       const maxCol = Math.min(cols - 1, Math.ceil((blob.x + r + PIXEL) / PIXEL));
@@ -811,8 +747,8 @@
 
           if (dist < r + wobble) {
             const idx = row * cols + col;
-            if (alpha > gridAlpha[idx] || (alpha >= gridAlpha[idx] && ageRatio < gridAge[idx])) {
-              gridAlpha[idx] = alpha;
+            if (gridAlpha[idx] < 1 || ageRatio < gridAge[idx]) {
+              gridAlpha[idx] = 1;
               gridAge[idx] = ageRatio;
             }
           }
@@ -823,19 +759,39 @@
     for (let col = 0; col < cols; col++) {
       for (let row = 0; row < rows; row++) {
         const idx = row * cols + col;
-        const a = gridAlpha[idx];
-        if (a < 0.01) continue;
+        if (gridAlpha[idx] < 0.01) continue;
 
         const ageRatio = gridAge[idx];
         const nv = noise(col, row, 42) * 16 - 8;
         const shade = Math.floor(SHADE_DARK + ageRatio * (SHADE_LIGHT - SHADE_DARK) + nv);
         const clamped = Math.max(15, Math.min(210, shade));
 
-        ctx.fillStyle = `rgba(${clamped},${clamped},${clamped},${Math.min(1, a * 0.95)})`;
-        ctx.fillRect(col * PIXEL, row * PIXEL, PIXEL, PIXEL);
+        targetCtx.fillStyle = `rgba(${clamped},${clamped},${clamped},0.95)`;
+        targetCtx.fillRect(col * PIXEL, row * PIXEL, PIXEL, PIXEL);
       }
     }
+  }
 
+  function render() {
+    const now = performance.now();
+
+    // Blobs that have finished ageing get baked in permanently, so the
+    // drawing stays put and the active list never grows without bound.
+    const settled = blobs.filter(b => now - b.born >= BLOB_LIFE);
+    if (settled.length) {
+      paintBlobs(bctx, settled, now);
+      blobs = blobs.filter(b => now - b.born < BLOB_LIFE);
+    }
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.drawImage(bake, 0, 0, W, H);
+
+    if (blobs.length === 0) {
+      rafId = null;
+      return;
+    }
+
+    paintBlobs(ctx, blobs, now);
     rafId = requestAnimationFrame(render);
   }
 })();
