@@ -684,11 +684,13 @@
   grid-template-columns: 280px 1fr;
   gap: var(--space-lg);
   align-items: start;
-  /* The section's label + content group is centred, so the row's left edge
-     sits at 50vw - 400.5px. Capping the width at 50vw + 340px keeps its right
-     edge ~20px inside the page gutter at every viewport, rather than only at
-     1440 where the fixed cap was measured. */
-  width: min(var(--persona-row-width), calc(50vw + 340px));
+  /* Spans the section exactly: label column, the gap, and the content column.
+     So it starts under the label but ends flush with the section's right edge,
+     level with every other block on the page. Derived from the same tokens
+     the section is built from, so the two can't drift apart. */
+  width: calc(
+    var(--section-label-width) + var(--space-2xl) + var(--section-content-width)
+  );
   margin-left: calc(-1 * (var(--section-label-width) + var(--space-2xl)));
 }
 
