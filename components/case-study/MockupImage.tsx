@@ -20,10 +20,10 @@ export default function MockupImage({
   const known = Number.isFinite(w) && Number.isFinite(h) && w > 0 && h > 0;
 
   return (
-    <div
-      className={styles.mockupImage}
-      style={known ? { aspectRatio: `${w} / ${h}` } : undefined}
-    >
+    // No aspect-ratio here: the frame has padding, and aspect-ratio applies to
+    // the border box, so it would squeeze the image area rather than describe
+    // it. The intrinsic width/height below reserve the space instead.
+    <div className={styles.mockupImage}>
       <Image
         src={src}
         alt={alt}

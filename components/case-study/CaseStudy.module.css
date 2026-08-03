@@ -175,14 +175,19 @@
 .mockupImage {
   background: var(--mockup-bg);
   border: 1px solid var(--mockup-border-line);
-  overflow: hidden;
+  /* The frame is a surface the image sits on, so it needs visible inset on
+     all four sides rather than hugging the image's edges. */
+  padding: var(--space-frame-padding);
   width: 100%;
 }
 
+/* Sized naturally rather than stretched to fill: the frame now has padding,
+   so forcing the image to 100% height would crop it against the reduced
+   content box. next/image still emits width/height, so space is reserved
+   and nothing shifts on load. */
 .mockupImage img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
 }
 

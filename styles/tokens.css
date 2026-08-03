@@ -83,6 +83,7 @@
   --gap-title-cols: 92px;     /* title block: title col -> subheading col */
   --gap-hero-cols: 152px;     /* hero: meta col -> mockup */
   --space-box-padding: 24px;  /* problem-box padding, takeaways list indent */
+  --space-frame-padding: 32px; /* mockup frame: image inset from the frame edge */
   --space-title-dates: 12px;  /* project title -> date range */
 
   /* Layout */
