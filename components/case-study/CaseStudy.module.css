@@ -110,9 +110,24 @@
 .introRow {
   display: flex;
   gap: var(--gap-title-cols);
+  /* The 92px column gap would otherwise apply between rows too, pushing the
+     rule far below the copy. */
+  row-gap: var(--space-lg);
   justify-content: center;
   padding: var(--space-lg) var(--page-gutter) var(--space-xl);
   flex-wrap: wrap;
+}
+
+/* flex-basis 100% forces its own line; the max-width holds it to the same
+   bounds as the title and content columns above, so it lines up with them
+   instead of running to the page edges. */
+.introRule {
+  flex-basis: 100%;
+  max-width: calc(
+    var(--title-col-width) + var(--gap-title-cols) + var(--content-col-width)
+  );
+  height: 1px;
+  background: var(--line);
 }
 
 .introSpacer {

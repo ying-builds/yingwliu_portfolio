@@ -9,6 +9,9 @@ export default function Intro({ children }: { children: ReactNode }) {
         <p className="label">INTRODUCTION</p>
         <div className={styles.plainText}>{children}</div>
       </div>
+      {/* Closes the preamble before the first section. Its own flex line, so
+          it spans the whole title + content block rather than just one column. */}
+      <div className={styles.introRule} />
     </div>
   );
 }
