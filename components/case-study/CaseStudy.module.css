@@ -111,8 +111,10 @@
   display: flex;
   gap: var(--gap-title-cols);
   /* The 92px column gap would otherwise apply between rows too, pushing the
-     rule far below the copy. */
-  row-gap: var(--space-lg);
+     rule far below the copy. 56px here is the space above the rule; the space
+     below is set on the next block — see `.introRow + *` at the end of this
+     file. */
+  row-gap: var(--space-xl);
   justify-content: center;
   padding: var(--space-lg) var(--page-gutter) var(--space-xl);
   flex-wrap: wrap;
@@ -648,4 +650,17 @@
   .personaRow {
     grid-template-columns: 1fr;
   }
+}
+
+/* introRow owns both sides of the rule closing the Introduction — 56px above
+   from its row-gap, 56px below from its padding-bottom. The block that follows
+   has its own top padding zeroed here so it can't add a second helping: it was
+   56 above and 112 below, because a Section opens with 56px of its own.
+
+   Zeroed rather than normalised to 56 because the blocks that can follow don't
+   agree — Section and Wide carry 56px, MockupBlock carries none — and giving
+   MockupBlock padding would squeeze its aspect-ratio box and shift the
+   zoom-cropped video inside it. Declared last so it wins over .section. */
+.introRow + * {
+  padding-top: 0;
 }
