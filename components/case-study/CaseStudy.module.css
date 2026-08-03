@@ -297,18 +297,6 @@
   margin: 0;
 }
 
-/* Wide variant: the column grows for side-by-side blocks, but running text
-   stays at the normal measure so it still reads like every other section. */
-.sectionContentWide {
-  max-width: var(--wide-content-width);
-}
-
-.sectionContentWide > :global(p),
-.sectionContentWide > :global(ul),
-.sectionContentWide > :global(ol) {
-  max-width: var(--section-content-width);
-}
-
 /* ===== Card patterns =====
    Introduced for the BeReal conversion. The legacy page used its own warm
    palette; these map onto the case study tokens so the converted page reads
@@ -547,15 +535,33 @@
   }
 }
 
-/* Persona row — that persona's sheet on the left, their name and summary on
-   the right. The image column takes the larger share: the sheets are dense and
-   carry the bio, goals and motivations in their own pixels. */
+/* Persona row — that persona's name and summary on the left, their sheet on
+   the right. The sheets are dense and carry the bio, goals and motivations in
+   their own pixels, so the image column takes the larger share.
+
+   The row starts under the section label rather than under the body copy: it
+   reaches back across the label column and its gap, which buys the sheet
+   another ~360px. Without that the sheets are too small to read. */
 .personaRow {
   display: grid;
-  grid-template-columns: 1fr 280px;
+  grid-template-columns: 280px 1fr;
   gap: var(--space-lg);
   align-items: start;
-  width: 100%;
+  /* The section's label + content group is centred, so the row's left edge
+     sits at 50vw - 400.5px. Capping the width at 50vw + 340px keeps its right
+     edge ~20px inside the page gutter at every viewport, rather than only at
+     1440 where the fixed cap was measured. */
+  width: min(var(--persona-row-width), calc(50vw + 340px));
+  margin-left: calc(-1 * (var(--section-label-width) + var(--space-2xl)));
+}
+
+/* Below the width the break-out needs, the row gives it up and sits in the
+   content column like everything else. */
+@media (max-width: 1200px) {
+  .personaRow {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 .personaRowImage {

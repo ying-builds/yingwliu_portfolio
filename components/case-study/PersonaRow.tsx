@@ -16,14 +16,14 @@ export default function PersonaRow({
 }) {
   return (
     <div className={styles.personaRow}>
-      <div className={styles.personaRowImage}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={image} alt={imageAlt} loading="lazy" decoding="async" />
-      </div>
-
       <div className={styles.personaRowBody}>
         <p className={styles.personaRowName}>{name}</p>
         <div className={styles.personaRowDesc}>{children}</div>
+      </div>
+
+      <div className={styles.personaRowImage}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={image} alt={imageAlt} loading="lazy" decoding="async" />
       </div>
     </div>
   );
