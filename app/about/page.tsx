@@ -17,12 +17,6 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className={styles.page}>
-      {/* Decorative script face, About only — hoisted into <head> by React */}
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Ballet&display=swap"
-        precedence="default"
-      />
       <CustomCursor />
       <div className={styles.grain} />
 

@@ -16,18 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=PT+Mono&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+      {/* No font <link> here: Inter, PT Mono and Bootzy TM are all self-hosted
+          and declared in styles/globals.css, so type rendering does not wait on
+          a third-party request. */}
       <body>
         <Nav />
         {children}
