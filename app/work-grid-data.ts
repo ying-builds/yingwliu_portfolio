@@ -3,9 +3,14 @@ import type { CaseStudyCard } from "../lib/case-studies";
 /* Case studies that don't have an MDX file yet.
 
    Everything here is hand-maintained, which is exactly what the MDX-driven
-   grid exists to avoid — so this list should only ever shrink. When BeReal or
-   UC Davis GSM is converted, delete its entry and the card keeps appearing,
-   sourced from frontmatter instead.
+   grid exists to avoid — so this list should only ever shrink. When UC Davis
+   GSM is converted, delete its entry and the card keeps appearing, sourced
+   from frontmatter instead.
+
+   Nothing dedupes this against the MDX-driven cards: the two lists are simply
+   concatenated. Leaving a converted case study here renders it twice, with the
+   stale copy pointing at a legacy page that no longer exists. BeReal did
+   exactly that until its entry was removed.
 
    Netflix Party stays here permanently: it links out to a Medium article
    rather than to a case study page.
@@ -36,18 +41,6 @@ export const unconvertedCards: CaseStudyCard[] = [
     image: "/images/site/gsm-hero.png",
     imageAlt: "UC Davis GSM",
     order: 3,
-  },
-  {
-    slug: "bereal",
-    href: "/bereal-casestudy.html",
-    title: "BeReal / New Features",
-    description:
-      "Exploring where BeReal could grow — designing features that expand expression without breaking authenticity.",
-    role: "Product Designer",
-    year: "2023",
-    image: "/images/site/bereal-card.png",
-    imageAlt: "BeReal",
-    order: 4,
   },
   {
     slug: "netflix-party",

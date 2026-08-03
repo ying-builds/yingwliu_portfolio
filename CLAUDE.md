@@ -123,8 +123,26 @@ Work and About are already migrated; the Product Guide is the reference build.
 
 ## Case studies to convert (in order)
 1. Product Guide / Client Product Education Guide — DONE, the reference build
-2. BeReal
+2. BeReal — DONE
 3. UC Davis GSM
+
+## Finishing a case study: two steps that are easy to miss
+Do both as soon as a case study's content is signed off, and say so — they are
+what stops a converted case study leaving debris behind.
+
+1. **Move its assets** into `public/images/case-studies/[project-name]/`, and
+   update every path in its MDX. The card image goes in the same folder as
+   `card.png`; it is that case study's asset, not a site-wide one.
+2. **Delete its entry from `unconvertedCards`** in app/work-grid-data.ts.
+   Nothing dedupes that list against the MDX-driven cards — they are simply
+   concatenated — so a leftover entry renders the case study twice on the
+   homepage, with the stale copy linking to a legacy page that no longer
+   exists. BeReal shipped in exactly that state until it was caught.
+
+Asset moves happen per case study rather than in one sweep, so each one is
+small enough to verify.
+
+Still to move: product-education-guide.
 
 Not converting:
 - Ticketmaster / Support Community — being broken out into separate new
