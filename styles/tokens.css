@@ -286,6 +286,16 @@ h3 {
   font-size: var(--text-meta);
   color: var(--almost-black);
 }
+.meta-details-light .meta-value a {
+  color: var(--link-accent);
+  text-decoration: underline;
+}
+/* On the dark hero the blue link accent goes muddy, so links there carry the
+   underline alone against the body colour. */
+.meta-details-dark .meta-value a {
+  color: var(--white-text);
+  text-decoration: underline;
+}
 
 /* Section block — label + content, repeated per case study section */
 .section-block {

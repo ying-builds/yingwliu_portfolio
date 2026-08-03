@@ -8,6 +8,29 @@ export interface ProjectMeta {
   team: string;
 }
 
+/* Meta values are plain YAML strings, so a link is written markdown-style:
+   "Myself & [Kayla Ho](https://…)". Values with no link render as before. */
+function renderMetaValue(value: string) {
+  const pattern = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const parts: (string | React.ReactElement)[] = [];
+  let cursor = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = pattern.exec(value)) !== null) {
+    if (match.index > cursor) parts.push(value.slice(cursor, match.index));
+    parts.push(
+      <a key={match.index} href={match[2]} target="_blank" rel="noopener noreferrer">
+        {match[1]}
+      </a>
+    );
+    cursor = match.index + match[0].length;
+  }
+
+  if (!parts.length) return value;
+  if (cursor < value.length) parts.push(value.slice(cursor));
+  return parts;
+}
+
 export default function ProjectHero({
   logo,
   logoAlt,
@@ -75,7 +98,7 @@ export default function ProjectHero({
               <div key={label}>
                 {i > 0 && <div className="divider" />}
                 <p className="meta-label">{label}</p>
-                <p className="meta-value">{value}</p>
+                <p className="meta-value">{renderMetaValue(value)}</p>
               </div>
             ))}
           </div>
