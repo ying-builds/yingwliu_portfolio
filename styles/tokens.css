@@ -85,6 +85,7 @@
   --space-box-padding: 24px;  /* problem-box padding, takeaways list indent */
   --space-frame-padding: 32px; /* mockup frame: image inset from the frame edge */
   --space-title-dates: 12px;  /* project title -> date range */
+  --space-title-intro: 22px;  /* tagline -> Introduction */
 
   /* Layout */
   --section-label-width: 169px;

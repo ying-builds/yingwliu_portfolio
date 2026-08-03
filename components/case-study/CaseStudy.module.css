@@ -76,19 +76,65 @@
   top: 1px;
 }
 
-/* ===== Title block ===== */
+/* ===== Title block =====
+   A grid rather than a flex row so the block's height comes from the tagline
+   alone. The title column is taller — label, 40px title, dates — and under
+   flex it set the row height, which pushed the Introduction down by that
+   difference and left a ~106px gap under a 2-line tagline. Here it spans into
+   a zero-height second row and overflows into the empty left column below,
+    so the Introduction can follow the tagline at a fixed 22px. */
 .titleBlock {
-  display: flex;
-  gap: var(--gap-title-cols);
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--title-col-width) var(--content-col-width);
+  column-gap: var(--gap-title-cols);
   justify-content: center;
   padding: var(--space-xl) var(--page-gutter) 0;
-  flex-wrap: wrap;
 }
 
+/* Absolutely positioned, but still given a grid position: it lands in column
+   one exactly as before, while contributing nothing to the row's height.
+   Spanning a zero-height second row doesn't work — a spanning item still
+   grows the auto row it starts in. */
 .titleCol {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
   width: var(--title-col-width);
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.subheadCol {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* Below the width the two columns fit side by side, the block stacks and the
+   title has to take its real height back. */
+@media (max-width: 1100px) {
+  .titleBlock {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-lg);
+  }
+
+  .titleCol {
+    position: static;
+    grid-row: auto;
+  }
+
+  .subheadCol {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  /* Once the intro row wraps, the empty left column takes a line of its own
+     and its row-gap lands between the tagline and the Introduction. */
+  .introSpacer {
+    display: none;
+  }
 }
 
 .titleCol :global(.label) {
@@ -116,7 +162,7 @@
      file. */
   row-gap: var(--space-xl);
   justify-content: center;
-  padding: var(--space-lg) var(--page-gutter) var(--space-xl);
+  padding: var(--space-title-intro) var(--page-gutter) var(--space-xl);
   flex-wrap: wrap;
 }
 
