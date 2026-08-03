@@ -65,6 +65,12 @@ This already cost us once: the Product Guide passed `width={1326}` to
 next/image, which left it with no dimensions, so it served its largest
 candidate (3840px wide) and lost its aspect ratio.
 
+## Replacing an image: change the filename
+Next.js caches optimised images keyed by URL, so overwriting a file in place
+can keep serving the old version even though the new one is on disk — with no
+error to hint at it. Either give the replacement a new filename, or clear
+`.next/cache/images` and rebuild. This already fooled a preview once.
+
 ## Case study images
 - Mockup images and screenshots sit on a light frame: `--mockup-bg` for the
   surface and a 1px `--mockup-border-line` border, both from tokens.css.
