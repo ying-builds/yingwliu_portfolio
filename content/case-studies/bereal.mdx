@@ -29,9 +29,11 @@ My goal was to strengthen my product ownership mindset and sharpen technical ski
 
 <Section label="Background Research">
 
+<div className="content-block">
 ### Understanding BeReal's Mission
 
 Before exploring feature ideas, I took time to understand what BeReal stands for, how it's grown, and what makes it stand out from other social platforms.
+</div>
 
 - BeReal isn't built for content creation or public performance. Its goal is to offer a more intentional, low-pressure way to connect with close friends.
 - One thing that stood out to me was how intentional the restrictions are. They encourage users to post in the moment, without overthinking or curating.
@@ -42,9 +44,11 @@ Before exploring feature ideas, I took time to understand what BeReal stands for
 [uxplanet.org — The case for BeReal](https://uxplanet.org/the-case-for-bereal-3ec81224a37)
 </Quote>
 
+<div className="content-block">
 ### How this Shaped My Design Thinking
 
 This set the tone for how I approached design. Any feature I added had to feel light, intentional, and aligned with the app's core purpose. If it started to feel performative or too polished, I knew it wasn't the right direction.
+</div>
 
 </Section>
 
@@ -52,11 +56,13 @@ This set the tone for how I approached design. Any feature I added had to feel l
 
 To explore where BeReal could grow next, we studied how users interact with the app and what they value most. My teammate Kayla led the research plan and developed the interview and survey structure. I conducted research alongside her and helped synthesize findings that shaped our feature direction.
 
+<div className="content-block">
 ### Research Goals
 
 - Understand the user journey on BeReal
 - Identify motivations behind using the app
 - Explore behaviors and habits related to BeReal and other social media platforms
+</div>
 
 </Section>
 
@@ -70,6 +76,7 @@ Six semi-structured interviews were conducted across three audience segments:
   <StatCard value="1">Full-Time Employee</StatCard>
 </CardRow>
 
+<div className="content-block">
 ### Key Themes
 
 <CardRow>
@@ -78,6 +85,7 @@ Six semi-structured interviews were conducted across three audience segments:
   <InsightCard num="SIMPLICITY">The limited posting and minimal UI are seen as a refreshing alternative to content-heavy platforms</InsightCard>
   <InsightCard num="DOCUMENTATION">Users value the ability to look back on past BeReals as a lightweight personal archive</InsightCard>
 </CardRow>
+</div>
 
 </Section>
 
@@ -89,11 +97,12 @@ Six semi-structured interviews were conducted across three audience segments:
 
 A survey with 210 respondents was used to gather behavioral insights and feature perceptions.
 
+<div className="content-block">
 ### Key Findings
 
 Most respondents were current BeReal users.
 
-<CardRow columns="3">
+<CardRow columns="3" spaced="true">
   <StatCard value="210">respondents surveyed</StatCard>
   <StatCard value="86%">actively use BeReal</StatCard>
   <StatCard value="13%">rank it in their top three</StatCard>
@@ -105,6 +114,7 @@ Most respondents were current BeReal users.
 - Most users reported spending over 3 hours per day on social media
 - BeReal is appreciated for its authenticity and nostalgic value (e.g., looking back at old BeReals)
 - Areas flagged for improvement included the timing of the daily notification, limited preview options, and disappearing comments or reactions
+</div>
 
 </Section>
 
@@ -118,43 +128,45 @@ Any potential feature extensions must preserve the app's core strengths, simplic
 
 </Section>
 
-<Section label="Personas">
+<Section label="Personas" width="wide">
 
 Based on interviews and survey data, two key BeReal user types emerged. These personas helped guide design decisions by highlighting different needs and engagement styles.
 
-<CardRow>
-  <PersonaCard name="Yingle — The Active but Overwhelmed User">
-    - Frequently posts but feels pressure to stay visible
-    - Seeks more genuine, low-maintenance ways to express herself
-    - Feels conflicted about time spent on social media
-  </PersonaCard>
-  <PersonaCard name="Mark — The Passive User">
-    - Uses BeReal to stay connected but rarely posts
-    - Wants low-effort, non-disruptive ways to engage
-    - Values simplicity over social performance
-  </PersonaCard>
-</CardRow>
+<PersonaRow
+  image="/images/bereal/persona-yingle.webp"
+  imageAlt="Yingle persona sheet with bio, goals, pain points, motivations and personality"
+  name="Yingle — The Active but Overwhelmed User"
+>
+  - Frequently posts but feels pressure to stay visible
+  - Seeks more genuine, low-maintenance ways to express herself
+  - Feels conflicted about time spent on social media
+</PersonaRow>
+
+<PersonaRow
+  image="/images/bereal/persona-mark.webp"
+  imageAlt="Mark persona sheet with bio, goals, pain points, motivations and personality"
+  name="Mark — The Passive User"
+>
+  - Uses BeReal to stay connected but rarely posts
+  - Wants low-effort, non-disruptive ways to engage
+  - Values simplicity over social performance
+</PersonaRow>
 
 </Section>
 
-<Wide>
-<ImagePair>
-  <img src="/images/bereal/persona-yingle.webp" alt="Yingle persona sheet with bio, goals, pain points, motivations and personality" />
-  <img src="/images/bereal/persona-mark.webp" alt="Mark persona sheet with bio, goals, pain points, motivations and personality" />
-</ImagePair>
-</Wide>
-
 <Section label="Early Concepts">
 
+<div className="content-block">
 ### Feature Ideas
 
 Our list of feature ideas informed by user insights, along with the outcomes they aim to support. Priority level is based on relevance, effort, and potential user impact.
+</div>
 
 <MockupImage src="/images/bereal/feature-matrix.webp" alt="Feature prioritisation table listing each feature against its insights, expected outcome and priority" width="999" height="1024" />
 
 </Section>
 
-<Section label="Lo-Fi → Hi-Fi">
+<Section label="Lo-Fi to Hi-Fi">
 
 Lo-Fi quickly explored the feature ideas. Mid-fi focused on layout, structure, and interaction logic. Hi-fi explored tone, visual clarity, and how these features would feel in context.
 

@@ -7,17 +7,25 @@ import styles from "./CaseStudy.module.css";
    grid. */
 export default function CardRow({
   columns = 2,
+  spaced,
   children,
 }: {
   // Loosely typed on purpose: this is written by hand in MDX, where the
   // value can arrive as a string rather than a number.
   columns?: number | string;
+  /* Set to "true" when the row sits mid-block with body copy either side of
+     it. The surrounding text keeps its 20px rhythm; the row gets 40px so the
+     cards still read as their own beat. */
+  spaced?: string;
   children: ReactNode;
 }) {
-  const three = Number(columns) === 3;
-  return (
-    <div className={`${styles.cardRow} ${three ? styles.cardRowThree : ""}`}>
-      {children}
-    </div>
-  );
+  const classNames = [
+    styles.cardRow,
+    Number(columns) === 3 ? styles.cardRowThree : "",
+    spaced === "true" ? styles.cardRowSpaced : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return <div className={classNames}>{children}</div>;
 }
