@@ -8,7 +8,7 @@
 
   /* Backgrounds */
   --background-fill: #f8f6f5;   /* page bg, light sections */
-  --black-bg: #1a1916;          /* dark hero/section bg — same black as text */
+  --black-bg: #1e1e1e;          /* dark hero/section bg, feature panels */
   --footer-bg: #1a1916;         /* footer bar, above the ink band */
   --mockup-bg: #eeece9;         /* image/mockup placeholder bg */
   --mockup-border-fill: #f9f5f2;
