@@ -270,9 +270,10 @@
 
 .sectionLabel {
   margin: 0;
+  /* Fixed column: long titles wrap onto a second line rather than pushing
+     the label out over the gutter, which is what nowrap used to do. */
   width: var(--section-label-width);
   flex-shrink: 0;
-  white-space: nowrap;
   font-family: var(--font-display);
   font-size: var(--text-h1);
   line-height: var(--leading-h1);
@@ -399,6 +400,14 @@
 .featureCard {
   background: var(--black-bg);
   padding: var(--space-xl) var(--page-gutter);
+}
+
+/* The panel background is full bleed, but its contents sit in the same
+   column every other section uses, so the text does not run wider than the
+   rest of the page. */
+.featureInner {
+  max-width: var(--wide-content-width);
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-lg);
@@ -455,8 +464,11 @@
   }
 
   .featureCard {
-    grid-template-columns: 1fr;
     padding: var(--space-lg) var(--page-gutter);
+  }
+
+  .featureInner {
+    grid-template-columns: 1fr;
   }
 }
 

@@ -29,6 +29,7 @@ export default function FeatureCard({
 }) {
   return (
     <div className={styles.featureCard}>
+      <div className={styles.featureInner}>
       <div>
         <p className={styles.featureLabel}>{label}</p>
         <p className={styles.featureTitle}>{title}</p>
@@ -41,6 +42,7 @@ export default function FeatureCard({
           // eslint-disable-next-line @next/next/no-img-element
           <img src={image} alt={imageAlt ?? ""} loading="lazy" decoding="async" />
         ) : null}
+      </div>
       </div>
     </div>
   );
