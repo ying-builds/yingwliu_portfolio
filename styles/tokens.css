@@ -379,6 +379,14 @@ h3 {
   width: 100%;
 }
 
+/* A "how might we" line following a statement. Italic to set it apart from the
+   body, but deliberately not `em` — that carries the inline accent colour,
+   which is for emphasising a word, not styling a whole sentence. */
+.hmw {
+  font-style: italic;
+  color: var(--almost-black);
+}
+
 /* Problem statement callout box */
 .problem-box {
   background: var(--mockup-bg);
