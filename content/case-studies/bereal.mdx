@@ -26,3 +26,197 @@ This personal project was a chance to explore BeReal through the lens of both pr
 
 My goal was to strengthen my product ownership mindset and sharpen technical skills across research synthesis, prototyping, and storytelling — all while designing within the unique boundaries of a real social platform.
 </Intro>
+
+<Section label="Background Research">
+
+### Understanding BeReal's Mission
+
+Before exploring feature ideas, I took time to understand what BeReal stands for, how it's grown, and what makes it stand out from other social platforms.
+
+- BeReal isn't built for content creation or public performance. Its goal is to offer a more intentional, low-pressure way to connect with close friends.
+- One thing that stood out to me was how intentional the restrictions are. They encourage users to post in the moment, without overthinking or curating.
+
+<Quote label="ON LIMITED POSTING">
+"By requiring simple and limited posting, the app tackles what most people see as the biggest problem with social media: fake and curated content."
+
+[uxplanet.org — The case for BeReal](https://uxplanet.org/the-case-for-bereal-3ec81224a37)
+</Quote>
+
+### How this Shaped My Design Thinking
+
+This set the tone for how I approached design. Any feature I added had to feel light, intentional, and aligned with the app's core purpose. If it started to feel performative or too polished, I knew it wasn't the right direction.
+
+</Section>
+
+<Section label="Research">
+
+To explore where BeReal could grow next, we studied how users interact with the app and what they value most. My teammate Kayla led the research plan and developed the interview and survey structure. I conducted research alongside her and helped synthesize findings that shaped our feature direction.
+
+<p className="label">RESEARCH GOALS</p>
+
+- Understand the user journey on BeReal
+- Identify motivations behind using the app
+- Explore behaviors and habits related to BeReal and other social media platforms
+
+</Section>
+
+<Section label="User Interviews">
+
+Six semi-structured interviews were conducted across three audience segments:
+
+<CardRow columns="3">
+  <StatCard value="1">High School Student</StatCard>
+  <StatCard value="4">University Students</StatCard>
+  <StatCard value="1">Full-Time Employee</StatCard>
+</CardRow>
+
+<p className="label">KEY THEMES</p>
+
+<CardRow>
+  <InsightCard num="CONNECTION">Users enjoy staying updated on the everyday moments of close friends</InsightCard>
+  <InsightCard num="COMFORT">The app's simplicity and structure are perceived as familiar and approachable</InsightCard>
+  <InsightCard num="SIMPLICITY">The limited posting and minimal UI are seen as a refreshing alternative to content-heavy platforms</InsightCard>
+  <InsightCard num="DOCUMENTATION">Users value the ability to look back on past BeReals as a lightweight personal archive</InsightCard>
+</CardRow>
+
+</Section>
+
+<Wide>
+<MockupImage src="/images/bereal/research-board.webp" alt="Affinity mapping board grouping interview notes by lifestyle, social media usage, likes, painpoints and wants" width="2198" height="1430" />
+</Wide>
+
+<Section label="Quantitative Survey">
+
+A survey with 210 respondents was used to gather behavioral insights and feature perceptions.
+
+<p className="label">KEY FINDINGS</p>
+
+Most respondents were current BeReal users.
+
+<CardRow columns="3">
+  <StatCard value="210">respondents surveyed</StatCard>
+  <StatCard value="86%">actively use BeReal</StatCard>
+  <StatCard value="13%">rank it in their top three</StatCard>
+</CardRow>
+
+86% of respondents actively use BeReal, but only 13% ranked it in their top three social apps.
+
+- Instagram, TikTok, and Snapchat were the most frequently used platforms
+- Most users reported spending over 3 hours per day on social media
+- BeReal is appreciated for its authenticity and nostalgic value (e.g., looking back at old BeReals)
+- Areas flagged for improvement included the timing of the daily notification, limited preview options, and disappearing comments or reactions
+
+</Section>
+
+<Section label="Insight Summary">
+
+<ProblemBox>
+BeReal effectively communicates its core value of authenticity, but struggles to maintain consistent user engagement in a competitive landscape. While the app resonates emotionally with users, it remains secondary to more established platforms.
+</ProblemBox>
+
+Any potential feature extensions must preserve the app's core strengths, simplicity, spontaneity, and honest connection, without increasing pressure or complexity.
+
+</Section>
+
+<Section label="Personas">
+
+Based on interviews and survey data, two key BeReal user types emerged. These personas helped guide design decisions by highlighting different needs and engagement styles.
+
+<CardRow>
+  <PersonaCard name="Yingle — The Active but Overwhelmed User">
+    - Frequently posts but feels pressure to stay visible
+    - Seeks more genuine, low-maintenance ways to express herself
+    - Feels conflicted about time spent on social media
+  </PersonaCard>
+  <PersonaCard name="Mark — The Passive User">
+    - Uses BeReal to stay connected but rarely posts
+    - Wants low-effort, non-disruptive ways to engage
+    - Values simplicity over social performance
+  </PersonaCard>
+</CardRow>
+
+</Section>
+
+<Wide>
+<MockupImage src="/images/bereal/persona-yingle.webp" alt="Yingle persona sheet with bio, goals, pain points, motivations and personality" width="1015" height="1024" />
+<MockupImage src="/images/bereal/persona-mark.webp" alt="Mark persona sheet with bio, goals, pain points, motivations and personality" width="1015" height="1024" />
+</Wide>
+
+<Section label="Early Concepts">
+
+### Feature Ideas
+
+Our list of feature ideas informed by user insights, along with the outcomes they aim to support. Priority level is based on relevance, effort, and potential user impact.
+
+</Section>
+
+<Wide>
+<MockupImage src="/images/bereal/feature-matrix.webp" alt="Feature prioritisation table listing each feature against its insights, expected outcome and priority" width="999" height="1024" />
+</Wide>
+
+<Section label="Lo-Fi to Prototype">
+
+Lo-Fi quickly explored the feature ideas.
+
+Mid-fi focused on layout, structure, and interaction logic.
+
+Hi-fi explored tone, visual clarity, and how these features would feel in context.
+
+</Section>
+
+<Wide>
+<MockupImage src="/images/bereal/lofi-hifi.webp" alt="Lo-fi wireframes for the 3 second video, RealGif reactions and Memories screens" width="2400" height="3757" />
+<MockupImage src="/images/bereal/midfi-hifi.webp" alt="Mid-fi and hi-fi screens across the feed, RealGif, profile and Memories flows" width="2198" height="514" />
+</Wide>
+
+<Section label="Prototype">
+
+A prototype was created to show how new features like RealGifs and public Memories could work within BeReal's existing flow.
+
+</Section>
+
+<Wide>
+<MockupImage src="/images/bereal/prototype-flow.webp" alt="Prototype flow connecting the profile, settings, Memories and RealReactions screens" width="1324" height="1594" />
+</Wide>
+
+<FeatureCard
+  label="GIF REACTIONS"
+  title="GIF Reactions"
+  mp4="/images/bereal/gif-reaction.mp4"
+  webm="/images/bereal/gif-reaction.webm"
+  poster="/images/bereal/gif-reaction-poster.jpg"
+>
+React to your friends' BeReals with a GIF that captures your real-time energy — from clapping to cringing.
+</FeatureCard>
+
+<FeatureCard
+  label="PUBLIC MEMORIES"
+  title="Public Memories"
+  mp4="/images/bereal/public-memories.mp4"
+  webm="/images/bereal/public-memories.webm"
+  poster="/images/bereal/public-memories-poster.jpg"
+>
+Choose which past BeReals to show on your profile. A look back that still feels casual and true to you.
+</FeatureCard>
+
+<FeatureCard
+  label="FRIENDS' MEMORIES"
+  title="View Friends' Memories"
+  mp4="/images/bereal/friends-memories.mp4"
+  webm="/images/bereal/friends-memories.webm"
+  poster="/images/bereal/friends-memories-poster.jpg"
+>
+See a friend's public BeReals all in one place. Catch up on their life without needing a daily ping.
+</FeatureCard>
+
+<Section label="Takeaways">
+
+We didn't get a chance to run usability tests, but it was definitely something we planned for. I would've focused on how intuitive the RealGif interaction felt, whether public Memories made sense in the profile, and if these features kept the experience feeling low-pressure.
+
+<p className="label">EDIT FROM 2025</p>
+
+Now in 2025, I still use BeReal. Not as often as when I was working on this, but it's been really cool to see how the app has evolved. BeReal has since introduced a few features we explored — including video reactions and the ability to pin Memories to your public profile.
+
+Seeing that gave me a small sense of validation. It confirmed we were moving in a direction that felt true to what users needed, while staying close to the heart of the app.
+
+</Section>

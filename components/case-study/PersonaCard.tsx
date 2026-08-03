@@ -9,17 +9,22 @@ export default function PersonaCard({
   name,
   children,
 }: {
-  image: string;
-  imageAlt: string;
+  // Optional: a detail-rich persona sheet is unreadable cropped into a 320px
+  // card, so those are shown full width below the cards instead. Without an
+  // image the card is just the summary.
+  image?: string;
+  imageAlt?: string;
   name: string;
   children: ReactNode;
 }) {
   return (
     <div className={styles.personaCard}>
-      <div className={styles.personaImg}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={image} alt={imageAlt} loading="lazy" decoding="async" />
-      </div>
+      {image && (
+        <div className={styles.personaImg}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={image} alt={imageAlt ?? ""} loading="lazy" decoding="async" />
+        </div>
+      )}
       <div className={styles.personaInfo}>
         <p className={styles.personaName}>{name}</p>
         <div className={styles.personaDesc}>{children}</div>
