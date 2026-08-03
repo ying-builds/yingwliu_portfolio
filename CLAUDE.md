@@ -115,26 +115,14 @@ each case study's frontmatter, so a new MDX file picks them up automatically.
   study pages, or anywhere else.
 
 ## Current task
-All three conversions have landed. What is left before the Vercel cutover:
-1. Move the Product Education Guide's assets (see below).
-2. Swap two placeholder GSM assets (see below).
-3. Walk through the Vercel preset flip live, then merge to main.
+All three conversions have landed, and every case study's assets now live in
+`public/images/case-studies/[project-name]/`. What is left before the Vercel
+cutover: walk through the Vercel preset flip live, then merge to main.
 
 ## Case studies to convert (in order)
 1. Product Guide / Client Product Education Guide — DONE, the reference build
 2. BeReal — DONE
 3. UC Davis GSM — DONE
-
-## GSM: two assets still standing in
-Both are placeholders that work but are not right. Swap them when the real
-files arrive; neither blocks anything else.
-- **Hero logo.** There is no UC Davis GSM logo file anywhere in the repo. One
-  can be cropped from gsm-onboarding-start.jpg at 545x155, but it is an
-  upscaled JPEG crop and reads soft. Ying is sending the real asset. The hero
-  currently runs with no logo at all rather than a blurry one.
-- **Lo-Fi to Midfi board.** The legacy gsm-lofi-midfi.png is a dark Figma
-  canvas, so it renders as a black rectangle inside a light mockup frame. The
-  Framer draft shows the same board on white. Waiting on that export.
 
 ## Finishing a case study: two steps that are easy to miss
 Do both as soon as a case study's content is signed off, and say so — they are
@@ -152,7 +140,7 @@ what stops a converted case study leaving debris behind.
 Asset moves happen per case study rather than in one sweep, so each one is
 small enough to verify.
 
-Still to move: product-education-guide.
+All three converted case studies have had their assets moved. Nothing outstanding.
 
 Not converting:
 - Ticketmaster / Support Community — being broken out into separate new
