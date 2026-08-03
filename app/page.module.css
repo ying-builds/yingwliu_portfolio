@@ -273,11 +273,6 @@
   transition: transform 0.5s ease;
 }
 
-.projectImageBereal img {
-  object-fit: contain;
-  object-position: 38% 62%;
-}
-
 .projectCard:hover .projectImage img {
   transform: scale(1.03);
 }

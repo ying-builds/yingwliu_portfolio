@@ -8,7 +8,6 @@ import { getCaseStudyCards } from "../lib/case-studies";
 import {
   unconvertedCards,
   cardImageBackground,
-  cardImageContain,
 } from "./work-grid-data";
 
 // The site root carries the full identity rather than the "[Page] — Ying Liu"
@@ -71,9 +70,6 @@ export default function HomePage() {
           <div className={styles.projectsGrid}>
             {cards.map((card) => {
               const background = cardImageBackground[card.slug];
-              const imageClass = cardImageContain.has(card.slug)
-                ? `${styles.projectImage} ${styles.projectImageBereal}`
-                : styles.projectImage;
 
               return (
                 <a
@@ -84,7 +80,7 @@ export default function HomePage() {
                   rel="noopener"
                 >
                   <div
-                    className={imageClass}
+                    className={styles.projectImage}
                     style={background ? { background } : undefined}
                   >
                     {card.image ? (

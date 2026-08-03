@@ -82,7 +82,7 @@
    flex it set the row height, which pushed the Introduction down by that
    difference and left a ~106px gap under a 2-line tagline. Here it spans into
    a zero-height second row and overflows into the empty left column below,
-    so the Introduction can follow the tagline at a fixed 22px. */
+    so the Introduction can follow the tagline at a fixed 24px. */
 .titleBlock {
   position: relative;
   display: grid;

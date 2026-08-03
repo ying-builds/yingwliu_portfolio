@@ -12,12 +12,27 @@ import type { CaseStudyCard } from "../lib/case-studies";
    stale copy pointing at a legacy page that no longer exists. BeReal did
    exactly that until its entry was removed.
 
-   Netflix Party stays here permanently: it links out to a Medium article
-   rather than to a case study page.
+   Two entries stay here permanently rather than becoming MDX, because they
+   link out instead of opening a case study page on this site: Netflix Party
+   (a Medium article) and Databricks (a Figma deck).
 
    The Ticketmaster entry is temporary and goes away with the legacy page it
    points at — see the TEMPORARY note in CLAUDE.md. */
 export const unconvertedCards: CaseStudyCard[] = [
+  {
+    slug: "databricks-db-one-business-canvas",
+    href: "https://www.figma.com/deck/sA3bjlfenMlpcI72JeIKRg",
+    title: "Databricks / DB One Business Canvas",
+    description:
+      "How might we close the gap between exploring data and delivering a business case?",
+    role: "UX Designer",
+    year: "2026",
+    image: "/images/case-studies/databricks/card.webp",
+    imageAlt: "Databricks DB One business canvas",
+    // 0 rather than 1: the newest work leads the grid, and every other card
+    // keeps the order it already had.
+    order: 0,
+  },
   {
     slug: "ticketmaster-support-community",
     href: "/ticketmaster-casestudy.html",
@@ -60,10 +75,5 @@ export const unconvertedCards: CaseStudyCard[] = [
    than of the case study's content, so they stay in code. */
 export const cardImageBackground: Record<string, string | undefined> = {
   "uc-davis-gsm": "#1B3A5C",
-  bereal: "#0A0A09",
   "netflix-party": "#E8E6E3",
 };
-
-/* BeReal's card art is a transparent PNG that needs containing rather than
-   cropping. Keyed by slug so it survives the move to MDX. */
-export const cardImageContain = new Set(["bereal"]);
