@@ -197,6 +197,11 @@
   width: 100%;
   height: auto;
   display: block;
+  /* The image carries its own edge, not just the frame's. Lives here rather
+     than on the wrapper so it applies wherever MockupImage is used — inside a
+     Wide block the border used to come from `.wide img`, so the same component
+     rendered with an edge there and without one inside a Section. */
+  border: 1px solid var(--mockup-border-line);
 }
 
 /* Large centered bordered box, e.g. "Final Solution Mockup".
