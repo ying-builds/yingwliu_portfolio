@@ -22,6 +22,7 @@ import StatCard from "../../../components/case-study/StatCard";
 import PersonaCard from "../../../components/case-study/PersonaCard";
 import PersonaRow from "../../../components/case-study/PersonaRow";
 import FeatureCard from "../../../components/case-study/FeatureCard";
+import Pillars from "../../../components/case-study/Pillars";
 
 const CONTENT_DIR = path.join(process.cwd(), "content", "case-studies");
 
@@ -80,6 +81,7 @@ const mdxComponents = {
   PersonaCard,
   PersonaRow,
   FeatureCard,
+  Pillars,
   ol: (props: React.ComponentPropsWithoutRef<"ol">) => (
     <ol className="takeaways-list" {...props} />
   ),

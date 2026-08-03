@@ -710,3 +710,64 @@
 .introRow + * {
   padding-top: 0;
 }
+
+/* ===== Pillars =====
+   Dark full-bleed band, centred. Sits between the design work and the
+   prototype link as a deliberate break in an otherwise light page. */
+.pillars {
+  background: var(--black-bg);
+  padding: var(--space-xl) var(--page-gutter);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  text-align: center;
+}
+
+.pillarsTitle {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-note);
+  letter-spacing: var(--tracking-note);
+  text-transform: uppercase;
+  color: var(--white-subtitle);
+}
+
+.pillarsList {
+  /* Stretched rather than shrink-wrapped, so a centred flex item can't size
+     itself narrower than the line it holds. */
+  align-self: stretch;
+  font-family: var(--font-body);
+  font-size: var(--text-h3);
+  line-height: var(--leading-h3);
+  letter-spacing: var(--tracking-h3);
+  color: var(--white-text);
+}
+
+.pillarsList :global(p) {
+  margin: 0;
+}
+
+/* Markers inside, not hanging: the global ol style indents by 24px and leaves
+   the numbers outside the box, which reads ragged once the band is centred.
+   Block flow rather than a flex column — as flex items the list items get
+   blockified and the marker is pushed onto a line of its own. */
+.pillarsList :global(ol) {
+  list-style-position: inside;
+  padding-left: 0;
+  margin: 0;
+}
+
+.pillarsList :global(li) + :global(li) {
+  margin-top: var(--space-sm);
+}
+
+/* Bullets inside the Introduction. Everywhere else lists sit inside a Section,
+   which already spaces them; the Intro has only ever held prose. */
+.introCol :global(ul) {
+  margin: 0;
+  padding-left: var(--space-box-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}

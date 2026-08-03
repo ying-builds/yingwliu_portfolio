@@ -3,9 +3,7 @@ import type { CaseStudyCard } from "../lib/case-studies";
 /* Case studies that don't have an MDX file yet.
 
    Everything here is hand-maintained, which is exactly what the MDX-driven
-   grid exists to avoid — so this list should only ever shrink. When UC Davis
-   GSM is converted, delete its entry and the card keeps appearing, sourced
-   from frontmatter instead.
+   grid exists to avoid — so this list should only ever shrink.
 
    Nothing dedupes this against the MDX-driven cards: the two lists are simply
    concatenated. Leaving a converted case study here renders it twice, with the
@@ -44,18 +42,6 @@ export const unconvertedCards: CaseStudyCard[] = [
     image: "/images/site/ipad-mockup.png",
     imageAlt: "Ticketmaster Support Community",
     order: 2,
-  },
-  {
-    slug: "uc-davis-gsm",
-    href: "/gsm-casestudy.html",
-    title: "UC Davis GSM / Alumni Platform",
-    description:
-      "End-to-end UX and UI for UC Davis GSM's first alumni platform, serving 80,000+ users.",
-    role: "Lead Product Designer",
-    year: "2023",
-    image: "/images/case-studies/uc-davis-gsm/card.webp",
-    imageAlt: "UC Davis GSM Lifelong Learning platform",
-    order: 3,
   },
   {
     slug: "netflix-party",
