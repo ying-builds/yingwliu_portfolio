@@ -286,14 +286,11 @@ h3 {
   font-size: var(--text-meta);
   color: var(--almost-black);
 }
-.meta-details-light .meta-value a {
-  color: var(--link-accent);
-  text-decoration: underline;
-}
-/* On the dark hero the blue link accent goes muddy, so links there carry the
-   underline alone against the body colour. */
+/* A link in a meta value keeps the row's own colour and is marked by the
+   underline alone, on either hero theme. */
+.meta-details-light .meta-value a,
 .meta-details-dark .meta-value a {
-  color: var(--white-text);
+  color: inherit;
   text-decoration: underline;
 }
 

@@ -420,7 +420,9 @@
    a rule rather than a gap. Content is inset from the page edge by the
    standard gutter so text and mockups never touch the sides. */
 .featureCard {
-  background: var(--black-bg);
+  /* media-bg, not black-bg: these panels are a media surface like
+     FullBleedMedia, and sit darker than the case study's dark hero. */
+  background: var(--media-bg);
   padding: var(--space-xl) var(--page-gutter);
 }
 
