@@ -12,6 +12,7 @@ export default function ProjectHero({
   logo,
   logoAlt,
   client,
+  theme,
   meta,
   mockup,
   mockupAlt,
@@ -19,6 +20,9 @@ export default function ProjectHero({
   logo?: string;
   logoAlt?: string;
   client?: string;
+  // "light" swaps the hero surface for --mockup-bg. Needed when the client's
+  // logo is dark and would disappear against the default dark hero.
+  theme?: string;
   meta?: ProjectMeta;
   mockup: string;
   mockupAlt: string;
@@ -38,10 +42,11 @@ export default function ProjectHero({
   // The blue circles are Ticketmaster's brand device, not a decoration the
   // template offers. Keyed off the client rather than a boolean flag, so no
   // other case study can switch them on for itself.
+  const isLight = theme === "light";
   const isTicketmaster = client?.trim().toLowerCase() === "ticketmaster";
 
   return (
-    <section className={styles.hero}>
+    <section className={`${styles.hero} ${isLight ? styles.heroLight : ""}`}>
       {isTicketmaster && (
         <>
           <span className={`${styles.ellipse} ${styles.ellipseOne}`} />
@@ -61,7 +66,7 @@ export default function ProjectHero({
               className={styles.heroLogo}
             />
           )}
-          <div className="meta-details-dark">
+          <div className={isLight ? "meta-details-light" : "meta-details-dark"}>
             {rows.map(([label, value], i) => (
               <div key={label}>
                 {i > 0 && <div className="divider" />}

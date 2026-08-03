@@ -478,3 +478,9 @@
   height: auto;
   display: block;
 }
+
+/* Light hero. Used when the client's logo is dark and would be unreadable
+   against the default dark surface. */
+.heroLight {
+  background: var(--mockup-bg);
+}
