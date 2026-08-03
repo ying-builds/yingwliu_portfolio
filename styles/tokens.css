@@ -386,6 +386,27 @@ h3 {
   color: var(--almost-black);
 }
 
+/* Lets one block reach back under its section label, so a wide artefact — a
+   flow diagram, a board — is legible without leaving the section it belongs
+   to. Spans the section exactly: label column, gap, content column, built
+   from the same three tokens the section is, so the two can't drift. Same
+   break-out .personaRow uses. */
+.section-breakout {
+  width: calc(
+    var(--section-label-width) + var(--space-2xl) + var(--section-content-width)
+  );
+  margin-left: calc(-1 * (var(--section-label-width) + var(--space-2xl)));
+}
+
+/* Below the width the break-out needs, it gives it up and sits in the content
+   column like everything else. */
+@media (max-width: 1200px) {
+  .section-breakout {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
 /* Problem statement callout box */
 .problem-box {
   background: var(--mockup-bg);
