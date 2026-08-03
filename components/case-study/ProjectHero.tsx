@@ -16,6 +16,7 @@ export default function ProjectHero({
   meta,
   mockup,
   mockupAlt,
+  mockupFrame,
 }: {
   logo?: string;
   logoAlt?: string;
@@ -26,6 +27,9 @@ export default function ProjectHero({
   meta?: ProjectMeta;
   mockup: string;
   mockupAlt: string;
+  // The device stroke only makes sense around a single screen. Composites of
+  // several screens set this false and render bare. Defaults to on.
+  mockupFrame?: boolean;
 }) {
   // Frontmatter is hand-written, so meta or any row within it may be absent.
   // Missing rows are dropped rather than rendering empty labels, and an
@@ -77,7 +81,11 @@ export default function ProjectHero({
           </div>
         </div>
 
-        <div className={styles.mockupFrame}>
+        <div
+          className={
+            mockupFrame === false ? styles.mockupBareHero : styles.mockupFrame
+          }
+        >
           <Image src={mockup} alt={mockupAlt} width={551} height={392} />
         </div>
       </div>

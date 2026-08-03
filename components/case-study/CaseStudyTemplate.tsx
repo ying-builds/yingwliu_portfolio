@@ -16,6 +16,9 @@ export interface CaseStudyFrontmatter {
   heroLogoAlt?: string;
   heroMockup: string;
   heroMockupAlt: string;
+  /* Set false when the hero art isn't a single device screen — a composite of
+     several screens shouldn't wear one device's stroke. Defaults to on. */
+  heroMockupFrame?: boolean;
 }
 
 export default function CaseStudyTemplate({
@@ -36,6 +39,7 @@ export default function CaseStudyTemplate({
         meta={frontmatter.meta}
         mockup={frontmatter.heroMockup}
         mockupAlt={frontmatter.heroMockupAlt}
+        mockupFrame={frontmatter.heroMockupFrame}
       />
       <TitleBlock
         projectLabel={frontmatter.projectLabel}
