@@ -291,19 +291,6 @@
   overflow: hidden;
 }
 
-/* ===== Full-bleed divider image =====
-   No page gutter, so the image meets both edges of the page. Vertical padding
-   matches .wide, keeping the rhythm against the sections either side. */
-.fullBleedImage {
-  padding: var(--space-xl) 0;
-}
-
-.fullBleedImage img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 /* ===== Device mockup =====
    Same surface as every other mockup on the page, so the laptop sits on a
    frame rather than floating on the page background. */
