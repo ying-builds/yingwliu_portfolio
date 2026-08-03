@@ -115,16 +115,26 @@ each case study's frontmatter, so a new MDX file picks them up automatically.
   study pages, or anywhere else.
 
 ## Current task
-Converting BeReal and UC Davis GSM to the Next.js + MDX template. Both must
-land BEFORE the Vercel cutover: their legacy pages sit at the repo root, which
-Next.js does not serve, so cutting over first would leave two dead cards on the
-homepage. Converting them avoids a second temporary hold to track and clean up.
-Work and About are already migrated; the Product Guide is the reference build.
+All three conversions have landed. What is left before the Vercel cutover:
+1. Move the Product Education Guide's assets (see below).
+2. Swap two placeholder GSM assets (see below).
+3. Walk through the Vercel preset flip live, then merge to main.
 
 ## Case studies to convert (in order)
 1. Product Guide / Client Product Education Guide — DONE, the reference build
 2. BeReal — DONE
-3. UC Davis GSM
+3. UC Davis GSM — DONE
+
+## GSM: two assets still standing in
+Both are placeholders that work but are not right. Swap them when the real
+files arrive; neither blocks anything else.
+- **Hero logo.** There is no UC Davis GSM logo file anywhere in the repo. One
+  can be cropped from gsm-onboarding-start.jpg at 545x155, but it is an
+  upscaled JPEG crop and reads soft. Ying is sending the real asset. The hero
+  currently runs with no logo at all rather than a blurry one.
+- **Lo-Fi to Midfi board.** The legacy gsm-lofi-midfi.png is a dark Figma
+  canvas, so it renders as a black rectangle inside a light mockup frame. The
+  Framer draft shows the same board on white. Waiting on that export.
 
 ## Finishing a case study: two steps that are easy to miss
 Do both as soon as a case study's content is signed off, and say so — they are
