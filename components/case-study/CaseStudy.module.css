@@ -223,7 +223,7 @@
 /* ===== Mockup frame ===== */
 .mockupFrame {
   border: 6px solid var(--mockup-border-fill);
-  border-radius: 10px;
+  border-radius: var(--radius-mockup);
   overflow: hidden;
 }
 
@@ -397,8 +397,8 @@
 /* Insight — a numbered research finding */
 .insightCard {
   background: var(--mockup-bg);
-  border-radius: 6px;
-  padding: 20px 22px;
+  border-radius: var(--radius-card);
+  padding: var(--space-md) var(--space-card-padding-x);
 }
 
 .insightNum {
@@ -410,22 +410,22 @@
 
 .insightText {
   font-size: var(--text-quote);
-  line-height: 1.6;
+  line-height: var(--leading-insight-body);
   color: var(--black);
 }
 
 /* Stat — a headline figure */
 .statCard {
   background: var(--mockup-bg);
-  border-radius: 6px;
-  padding: 20px 22px;
+  border-radius: var(--radius-card);
+  padding: var(--space-md) var(--space-card-padding-x);
   text-align: center;
 }
 
 .statNum {
   font-family: var(--font-display);
-  letter-spacing: 2px;
-  font-size: 36px;
+  letter-spacing: var(--tracking-card-title);
+  font-size: var(--text-stat);
   font-weight: normal;
   color: var(--black);
   line-height: 1;
@@ -435,18 +435,18 @@
 .statDesc {
   font-size: var(--text-note);
   color: var(--quote-text);
-  line-height: 1.4;
+  line-height: var(--leading-stat-caption);
 }
 
 /* Persona — portrait, name, description */
 .personaCard {
   background: var(--mockup-bg);
-  border-radius: 6px;
+  border-radius: var(--radius-card);
   overflow: hidden;
 }
 
 .personaImg {
-  height: 320px;
+  height: var(--persona-image-height);
   overflow: hidden;
 }
 
@@ -460,13 +460,13 @@
 }
 
 .personaInfo {
-  padding: 16px 18px;
+  padding: var(--space-persona-padding-y) var(--space-persona-padding-x);
 }
 
 .personaName {
   font-family: var(--font-display);
-  letter-spacing: 2px;
-  font-size: 16px;
+  letter-spacing: var(--tracking-card-title);
+  font-size: var(--text-h4);
   font-weight: normal;
   color: var(--black);
   margin-bottom: 4px;
@@ -475,7 +475,7 @@
 .personaDesc {
   font-size: var(--text-note);
   color: var(--quote-text);
-  line-height: 1.5;
+  line-height: var(--leading-card-body);
 }
 
 /* Feature — dark panel, write-up beside its visual */
@@ -510,25 +510,25 @@
   font-size: var(--text-label);
   color: var(--white-subtitle);
   opacity: 0.45;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--tracking-feature-label);
   text-transform: uppercase;
   margin-bottom: 10px;
 }
 
 .featureTitle {
   font-family: var(--font-display);
-  letter-spacing: 2px;
-  font-size: 24px;
+  letter-spacing: var(--tracking-card-title);
+  font-size: var(--text-feature-title);
   font-weight: normal;
   color: var(--white-subtitle);
   margin-bottom: 10px;
-  line-height: 1.2;
+  line-height: var(--leading-feature-title);
 }
 
 .featureDesc {
   font-size: var(--text-quote);
   color: var(--white-text);
-  line-height: 1.65;
+  line-height: var(--leading-feature-body);
 }
 
 .featureVisual {
@@ -538,9 +538,9 @@
 
 .featureVisual img,
 .featureVisual video {
-  max-height: 400px;
+  max-height: var(--feature-video-height);
   width: auto;
-  border-radius: 16px;
+  border-radius: var(--radius-media);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
@@ -667,14 +667,14 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: var(--text-h4);
-  letter-spacing: 2px;
+  letter-spacing: var(--tracking-card-title);
   color: var(--black);
 }
 
 .personaRowDesc {
   font-size: var(--text-note);
   color: var(--quote-text);
-  line-height: 1.5;
+  line-height: var(--leading-card-body);
 }
 
 .personaRowDesc :global(p) {

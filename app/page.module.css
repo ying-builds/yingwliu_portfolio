@@ -61,7 +61,7 @@
   font-family: var(--font-display);
   font-size: clamp(64px, 9vw, 120px);
   font-weight: normal;
-  color: #fff;
+  color: var(--white);
   letter-spacing: 0.14em;
   line-height: 1.2;
   margin-bottom: 0;
@@ -82,7 +82,7 @@
    the system sans. Pinned to that exact stack so it renders as it does on the
    live site — --font-display falls back to serif, which would change it. */
 .cjk {
-  font-family: "Bootzy TM", sans-serif;
+  font-family: var(--font-display);
 }
 
 .heroRole {
@@ -93,7 +93,7 @@
   /* Same treatment as the name and tagline: white through the difference
      blend, so all three hero texts read near-black on cream and flip to
      near-white wherever ink passes under them. */
-  color: #fff;
+  color: var(--white);
   margin-bottom: 0;
   opacity: 0;
   animation: heroReveal 1s 0.8s ease forwards;
@@ -104,7 +104,7 @@
   font-size: 15px;
   font-weight: 500;
   line-height: 1.55;
-  color: #fff;
+  color: var(--white);
   max-width: 400px;
   margin: 0 auto;
   opacity: 0;
@@ -159,10 +159,10 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--site-ink);
-  border: 1px solid rgba(26, 25, 22, 0.3);
+  border: 1px solid color-mix(in srgb, var(--site-ink) 30%, transparent);
   border-radius: 999px;
   padding: 9px 22px;
-  background: rgba(250, 248, 245, 0.6);
+  background: color-mix(in srgb, var(--site-cream) 60%, transparent);
   backdrop-filter: blur(4px);
   transition:
     background 0.2s,
@@ -173,7 +173,7 @@
 .scrollLine {
   width: 1px;
   height: 32px;
-  background: linear-gradient(to bottom, rgba(26, 25, 22, 0.4), transparent);
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--site-ink) 40%, transparent), transparent);
 }
 
 @keyframes floatCalm {
@@ -256,7 +256,7 @@
 
 .projectCard:hover {
   border-color: var(--site-soft);
-  box-shadow: 0 8px 40px rgba(26, 25, 22, 0.06);
+  box-shadow: 0 8px 40px color-mix(in srgb, var(--site-ink) 6%, transparent);
 }
 
 .projectImage {

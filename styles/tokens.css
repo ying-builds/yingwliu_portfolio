@@ -24,15 +24,23 @@
   --quote-text: #4f4f4f;        /* pull quotes */
   --link-accent: #024cdf;       /* inline emphasis / links */
 
+  --white: #ffffff;             /* footer wordmark + nav, homepage hero type */
+
   /* Borders */
   --line: #d6d6d6;              /* dividers */
   --nav-border: #e5e1dd;        /* nav bar bottom border */
+
+  /* Corner radii */
+  --radius-card: 6px;           /* insight, stat and persona cards */
+  --radius-mockup: 10px;        /* hero device frame */
+  --radius-media: 16px;         /* feature panel video */
 
   /* ===== TYPOGRAPHY ===== */
 
   --font-display: 'Bootzy TM', serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'PT Mono', monospace;
+  --font-script: 'Ballet', cursive;  /* About hero wordmark */
 
   /* Display (Bootzy TM) */
   --text-project-title: 40px;   /* tracking 2.5px */
@@ -87,6 +95,27 @@
   --space-title-dates: 12px;  /* project title -> date range */
   --space-title-intro: 24px;  /* tagline -> Introduction */
 
+  /* ===== CARD PATTERNS =====
+     Insight, stat, persona and feature cards. These values arrived with the
+     BeReal conversion and were sitting in the components as literals; the
+     numbers are unchanged, they just live here now. Line-heights are per
+     component rather than one shared value because they genuinely differ —
+     collapsing them would restyle the cards, which is a design call. */
+  --text-stat: 36px;               /* StatCard figure */
+  --text-feature-title: 24px;
+  --tracking-card-title: 2px;      /* stat figure, persona and feature titles */
+  --tracking-feature-label: 0.04em;
+  --leading-feature-title: 1.2;
+  --leading-stat-caption: 1.4;
+  --leading-card-body: 1.5;        /* persona summary */
+  --leading-insight-body: 1.6;
+  --leading-feature-body: 1.65;
+  --space-card-padding-x: 22px;    /* insight + stat cards, y is --space-md */
+  --space-persona-padding-y: 16px;
+  --space-persona-padding-x: 18px;
+  --persona-image-height: 320px;
+  --feature-video-height: 400px;
+
   /* Layout */
   --section-label-width: 169px;
   --nav-height: 56px;
@@ -131,7 +160,9 @@
   --site-rule: #e4e1dc;       /* dividers, card borders */
   --site-accent: #a63d2b;     /* links, hover states */
   --site-card-bg: #f0ede8;    /* project card image bg */
-  --site-dark: #0a0a09;       /* dark hero bg */
+  /* Sits close to --site-mid but is not the same grey. Kept as its own entry
+     because consolidating the two is a design decision, not a cleanup. */
+  --site-body: #3d3a36;       /* About page body copy */
 
   /* Site layout — the work section's label and card grid derive their
      horizontal bounds from these, so they can't drift out of alignment. */

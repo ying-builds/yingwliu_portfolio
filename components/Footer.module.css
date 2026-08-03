@@ -35,7 +35,7 @@
   font-family: var(--font-display);
   font-size: var(--text-h4);
   letter-spacing: var(--tracking-wordmark);
-  color: white;
+  color: var(--white);
 }
 
 .copyright {
@@ -57,7 +57,7 @@
 
 .navList a {
   text-decoration: none;
-  color: white;
+  color: var(--white);
 }
 
 .navList a:hover {

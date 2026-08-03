@@ -53,8 +53,8 @@ export const unconvertedCards: CaseStudyCard[] = [
       "End-to-end UX and UI for UC Davis GSM's first alumni platform, serving 80,000+ users.",
     role: "Lead Product Designer",
     year: "2023",
-    image: "/images/site/gsm-hero.png",
-    imageAlt: "UC Davis GSM",
+    image: "/images/case-studies/uc-davis-gsm/card.webp",
+    imageAlt: "UC Davis GSM Lifelong Learning platform",
     order: 3,
   },
   {
@@ -74,6 +74,5 @@ export const unconvertedCards: CaseStudyCard[] = [
 /* Per-card background colours, which are a property of the artwork rather
    than of the case study's content, so they stay in code. */
 export const cardImageBackground: Record<string, string | undefined> = {
-  "uc-davis-gsm": "#1B3A5C",
   "netflix-party": "#E8E6E3",
 };
