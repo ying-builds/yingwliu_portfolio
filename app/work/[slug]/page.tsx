@@ -13,6 +13,8 @@ import ProblemBox from "../../../components/case-study/ProblemBox";
 import Quote from "../../../components/case-study/Quote";
 import MockupImage from "../../../components/case-study/MockupImage";
 import MockupBlock from "../../../components/case-study/MockupBlock";
+import DeviceMockup from "../../../components/case-study/DeviceMockup";
+import FullBleedImage from "../../../components/case-study/FullBleedImage";
 import FullBleedMedia from "../../../components/case-study/FullBleedMedia";
 import Wide from "../../../components/case-study/Wide";
 import CardRow from "../../../components/case-study/CardRow";
@@ -72,6 +74,8 @@ const mdxComponents = {
   Quote,
   MockupImage,
   MockupBlock,
+  DeviceMockup,
+  FullBleedImage,
   FullBleedMedia,
   Wide,
   CardRow,

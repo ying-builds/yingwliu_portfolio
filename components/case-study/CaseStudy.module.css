@@ -52,6 +52,11 @@
   width: auto;
 }
 
+/* The Introduction is the one place a list is followed by more prose. */
+.introCol :global(ul) + :global(p) {
+  margin-top: var(--space-md);
+}
+
 .ellipse {
   position: absolute;
   width: var(--ellipse-size);
@@ -280,6 +285,56 @@
   aspect-ratio: var(--mockup-block-ratio);
   margin: 0 auto;
   overflow: hidden;
+}
+
+/* ===== Full-bleed divider image =====
+   No page gutter, so the image meets both edges of the page. Vertical padding
+   matches .wide, keeping the rhythm against the sections either side. */
+.fullBleedImage {
+  padding: var(--space-xl) 0;
+}
+
+.fullBleedImage img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ===== Device mockup =====
+   Same surface as every other mockup on the page, so the laptop sits on a
+   frame rather than floating on the page background. */
+.deviceFrame {
+  background: var(--mockup-bg);
+  border: 1px solid var(--mockup-border-line);
+  padding: var(--space-frame-padding);
+  max-width: var(--mockup-block-width);
+  margin: 0 auto;
+}
+
+.device {
+  position: relative;
+}
+
+.deviceBezel {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Measured off the bezel asset: its screen cutout is 5180x3346 at (665, 472)
+   in a 6510x4290 image. Percentages so the two stay locked at any width. */
+.deviceScreen {
+  position: absolute;
+  left: 10.2151%;
+  top: 11.0023%;
+  width: 79.5699%;
+  height: 77.9953%;
+  /* The recording is a little taller than the 16:10 screen. Fill the screen
+     rather than letterboxing it — a laptop with bars down the sides reads as
+     a mistake — and anchor to the top so the crop comes off the bottom of the
+     page rather than off its nav. */
+  object-fit: cover;
+  object-position: top;
 }
 
 .blockVideo {

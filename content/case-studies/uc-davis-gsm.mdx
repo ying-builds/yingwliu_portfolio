@@ -5,6 +5,8 @@ projectLabel: PRODUCT
 dates: "2023"
 subheading: A “lifelong learning platform” for alumni of the UC Davis Graduate School of Management.
 heroTheme: light
+heroLogo: /images/case-studies/uc-davis-gsm/logo.png
+heroLogoAlt: UC Davis Graduate School of Management
 meta:
   role: Lead UX Designer
   timeline: 10 weeks
@@ -28,9 +30,20 @@ The GSM could offer alumni:
 
 - Professional certificates
 - GSM Course content
+
+Before designing any of it, we needed to understand how alumni actually approach learning, support, and staying connected after graduating.
 </Intro>
 
+<DeviceMockup
+  mp4="/images/case-studies/uc-davis-gsm/final-solution.mp4"
+  webm="/images/case-studies/uc-davis-gsm/final-solution.webm"
+  poster="/images/case-studies/uc-davis-gsm/final-solution-poster.jpg"
+  alt="The GSM Lifelong Learning home page on a laptop, scrolling through the recommended, newly uploaded, trending and featured content rows"
+/>
+
 <Section label="Research">
+
+I observed each method and led the synthesis.
 
 <div className="content-block">
 ### Research Methods
@@ -54,66 +67,65 @@ Platforms used, willingness to pay, pricing preferences, and content access.
 </div>
 </div>
 
-<div className="content-block">
-### Key Insights
-
-1. Alumni want a **centralized platform** to access high-quality learning content and explore relevant GSM courses.
-2. **Professional networking** is highly valued — users seek easier ways to connect with fellow alumni beyond personal circles.
-3. There is a strong desire to **stay competitive** and up-to-date in their industries through **credible, time-efficient learning**.
-4. Alumni engagement is low when communication is poor or last-minute — users want to feel seen, informed, and acknowledged.
-</div>
-
 </Section>
 
-<Wide>
-<MockupImage src="/images/case-studies/uc-davis-gsm/affinity-board.webp" alt="Affinity map grouping alumni research notes by motivations, certifications, GSM events, networking and how they like to learn" width="1600" height="552" />
-</Wide>
+<FullBleedImage src="/images/case-studies/uc-davis-gsm/affinity-board-wide.webp" alt="Affinity map grouping alumni research notes by motivations, certifications, GSM events, networking and how they like to learn" width="2880" height="995" />
 
 <Section label="Core Themes">
 
-<div className="caption-block">
-<p className="label">GSM Community & Support</p>
+Synthesis pulled the research into three themes.
 
-Alumni want more transparent communication and opportunities to engage meaningfully with the GSM post-graduation
+<div className="caption-block">
+<p className="label">Community & Support</p>
+
+Alumni want transparent communication and to feel genuinely engaged after graduating, not just reached out to when it's convenient.
 </div>
 
 <div className="caption-block">
 <p className="label">Networking & Mentorship</p>
 
-Alumni seek ways to connect professionally — for mentorship, job opportunities, and staying connected within their industries
+Alumni want easier ways to connect professionally beyond their existing circles, for mentorship, jobs, and industry ties.
 </div>
 
 <div className="caption-block">
 <p className="label">Learning</p>
 
-High-quality content, flexible access, and relevance to current industry trends are top priorities for continued learning
+Alumni want credible, time-efficient content that keeps them competitive and current.
 </div>
+
+These three became the platform's pillars, and every feature had to earn its place against one of them.
 
 </Section>
 
 <Section label="Personas">
 
-3 core alumni profiles identified.
+Research surfaced three core alumni profiles, each with a different reason to come back.
 
-<CardRow columns="3">
-  <PersonaCard name="Established Professionals">
-    Confident in their careers, motivated to give back, often as mentors
-  </PersonaCard>
-  <PersonaCard name="Mid-Career Professionals">
-    Focused on staying ahead and upskilling with trusted resources
-  </PersonaCard>
-  <PersonaCard name="Early-Career Graduates">
-    Navigating life after graduation, seeking guidance and light-touch networking
-  </PersonaCard>
-</CardRow>
+<PersonaRow
+  image="/images/case-studies/uc-davis-gsm/persona-rachel.webp"
+  imageAlt="Rachel Moretti persona sheet — bio, goals, pain points, motivations and personality"
+  name="Established Professionals"
+>
+  Confident in their careers, motivated to give back, often as mentors
+</PersonaRow>
+
+<PersonaRow
+  image="/images/case-studies/uc-davis-gsm/persona-tony.webp"
+  imageAlt="Tony Bianchi persona sheet — bio, goals, pain points, motivations and personality"
+  name="Mid-Career Professionals"
+>
+  Focused on staying ahead and upskilling with trusted resources
+</PersonaRow>
+
+<PersonaRow
+  image="/images/case-studies/uc-davis-gsm/persona-zara.webp"
+  imageAlt="Zara Hamid persona sheet — bio, goals, pain points, motivations and personality"
+  name="Early-Career Graduates"
+>
+  Navigating life after graduation, seeking guidance and light-touch networking
+</PersonaRow>
 
 </Section>
-
-<Wide>
-<MockupImage src="/images/case-studies/uc-davis-gsm/persona-rachel.webp" alt="Rachel Moretti persona sheet — bio, goals, pain points, motivations and personality" width="1015" height="1024" />
-<MockupImage src="/images/case-studies/uc-davis-gsm/persona-tony.webp" alt="Tony Bianchi persona sheet — bio, goals, pain points, motivations and personality" width="1015" height="1024" />
-<MockupImage src="/images/case-studies/uc-davis-gsm/persona-zara.webp" alt="Zara Hamid persona sheet — bio, goals, pain points, motivations and personality" width="1015" height="1024" />
-</Wide>
 
 <Section label="The Opportunity">
 
@@ -143,9 +155,9 @@ How might we create a centralized platform where alumni and students can access 
 
 </Section>
 
-<Section label="Ideation">
+<Section label="Scope">
 
-With the MVP feature set finalized by PMs to meet alumni and client needs, I used this foundation to guide design decisions and prioritize user experience.
+The PMs finalized the MVP feature set with the client. I used the priority and effort scores to decide where design effort went — which flows had to be complete enough to test, and which could stay shallow.
 
 <div className="caption-block">
 <p className="label">Product Requirements</p>
@@ -157,11 +169,7 @@ With the MVP feature set finalized by PMs to meet alumni and client needs, I use
 
 <Section label="Design">
 
-The GSM Lifelong Learning Platform was structured around its unique audience. We aimed to go beyond a content hub by personalizing the experience for alumni, GSM content, and admin users.
-
 <div className="content-block">
-### My designs
-
 Of all the features, I designed the following frames:
 
 - Login Landing Page
@@ -172,15 +180,13 @@ Of all the features, I designed the following frames:
 - Alumni Location Geomap
 - Upload Content (Article, Video, & Podcast)
 - Alumni-posted Content
+</div>
 
 My design partner spearheaded the onboarding profile quiz, discussion forum, messaging, and alumni profile.
-</div>
 
 </Section>
 
-<Wide>
-<MockupImage src="/images/case-studies/uc-davis-gsm/user-flow.webp" alt="User flow from log in through discovery, saved library, alumni directory, posts, messaging and profile settings" width="1600" height="646" />
-</Wide>
+<FullBleedImage src="/images/case-studies/uc-davis-gsm/user-flow-wide.webp" alt="User flow from log in through discovery, saved library, alumni directory, posts, messaging and profile settings" width="2880" height="1163" />
 
 <Section label="Lo-Fi to Midfi">
 
@@ -191,8 +197,34 @@ At mid-fi, I added branding, copy, and interaction detail to prep the prototype 
 </Section>
 
 <Wide>
-<MockupImage src="/images/case-studies/uc-davis-gsm/lofi-midfi.webp" alt="Lo-fi and mid-fi board covering onboarding, learning content, alumni directory and upload flows" width="1024" height="385" />
+<MockupImage src="/images/case-studies/uc-davis-gsm/lofi-midfi-light.webp" alt="Lo-fi and mid-fi board covering onboarding, learning content, alumni directory and upload flows" width="1600" height="602" />
 </Wide>
+
+<Section label="Usability Testing">
+
+We tested the mid-fi prototype with alumni and rebuilt the areas that tripped them up. Three of the problems ran deeper than a single screen, and each one turned into a structural decision.
+
+<div className="content-block">
+### Search had no clear purpose
+
+Was it for people or content? I split it: a focused search on the learning page, and a top nav pointing directly to the directory and forum.
+</div>
+
+<div className="content-block">
+### Saved and published content had no home
+
+I added a bookmark icon linking to saved content, and moved uploading onto the learning homepage, grouping every learning action in one place.
+</div>
+
+<div className="content-block">
+### The geomap was buried in advanced search
+
+I moved it to a single map-expansion button, front and center.
+</div>
+
+The pairings below show each screen before testing and the version we shipped, with the reasoning called out.
+
+</Section>
 
 <Wide>
 <div className="content-block">
@@ -265,6 +297,14 @@ The full flow is prototyped in Figma — onboarding, the learning library, posti
 
 [View the GSM Lifelong Learning prototype](https://www.figma.com/proto/CoHSrLEObhhsMlKQHDH8yz/GSM-Lifelong-Learning-Platform?node-id=966-32230&p=f&viewport=356%2C249%2C0.02&t=Cdrt900PdXT8M10O-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=966%3A32230&show-proto-sidebar=1&page-id=876%3A22490)
 </div>
+
+</Section>
+
+<Section label="Outcome">
+
+The project was delivered to Dean Unnava with the full research, designs, and prototype.
+
+Development was not part of this engagement. Building the platform was left to the Dean's team after handoff.
 
 </Section>
 
