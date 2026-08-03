@@ -393,15 +393,20 @@
 }
 
 /* Feature — dark panel, write-up beside its visual */
+/* Stacked full-bleed panels: square, flush against each other, separated by
+   a rule rather than a gap. Content is inset from the page edge by the
+   standard gutter so text and mockups never touch the sides. */
 .featureCard {
   background: var(--black-bg);
-  border-radius: 8px;
-  padding: 40px;
+  padding: var(--space-xl) var(--page-gutter);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: var(--space-lg);
   align-items: center;
-  margin-bottom: var(--space-sm);
+}
+
+.featureCard + .featureCard {
+  border-top: 1px solid var(--line);
 }
 
 .featureLabel {
@@ -451,7 +456,7 @@
 
   .featureCard {
     grid-template-columns: 1fr;
-    padding: 28px;
+    padding: var(--space-lg) var(--page-gutter);
   }
 }
 
@@ -483,4 +488,28 @@
    against the default dark surface. */
 .heroLight {
   background: var(--mockup-bg);
+}
+
+/* Two images read as a single continuous frame: no gap, one shared border,
+   and the inner edge removed so it does not read as two stacked cards. */
+.imagePair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--mockup-bg);
+  border: 1px solid var(--mockup-border-line);
+  padding: var(--space-frame-padding);
+  width: 100%;
+}
+
+.imagePair img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .imagePair {
+    grid-template-columns: 1fr;
+  }
 }

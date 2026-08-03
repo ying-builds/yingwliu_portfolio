@@ -269,6 +269,11 @@ h3 {
 }
 
 /* Meta details — light bg variant */
+.meta-details-light {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
 .meta-details-light .meta-label {
   font-family: var(--font-mono);
   font-size: var(--text-label);

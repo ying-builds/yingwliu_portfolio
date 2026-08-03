@@ -16,6 +16,7 @@ import MockupBlock from "../../../components/case-study/MockupBlock";
 import FullBleedMedia from "../../../components/case-study/FullBleedMedia";
 import Wide from "../../../components/case-study/Wide";
 import CardRow from "../../../components/case-study/CardRow";
+import ImagePair from "../../../components/case-study/ImagePair";
 import InsightCard from "../../../components/case-study/InsightCard";
 import StatCard from "../../../components/case-study/StatCard";
 import PersonaCard from "../../../components/case-study/PersonaCard";
@@ -72,6 +73,7 @@ const mdxComponents = {
   FullBleedMedia,
   Wide,
   CardRow,
+  ImagePair,
   InsightCard,
   StatCard,
   PersonaCard,
