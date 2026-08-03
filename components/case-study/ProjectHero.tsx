@@ -11,12 +11,14 @@ export interface ProjectMeta {
 export default function ProjectHero({
   logo,
   logoAlt,
+  client,
   meta,
   mockup,
   mockupAlt,
 }: {
   logo?: string;
   logoAlt?: string;
+  client?: string;
   meta?: ProjectMeta;
   mockup: string;
   mockupAlt: string;
@@ -33,11 +35,20 @@ export default function ProjectHero({
     ] as [string, string | undefined][]
   ).filter((row): row is [string, string] => Boolean(row[1]));
 
+  // The blue circles are Ticketmaster's brand device, not a decoration the
+  // template offers. Keyed off the client rather than a boolean flag, so no
+  // other case study can switch them on for itself.
+  const isTicketmaster = client?.trim().toLowerCase() === "ticketmaster";
+
   return (
     <section className={styles.hero}>
-      <span className={`${styles.ellipse} ${styles.ellipseOne}`} />
-      <span className={`${styles.ellipse} ${styles.ellipseTwo}`} />
-      <span className={`${styles.ellipse} ${styles.ellipseThree}`} />
+      {isTicketmaster && (
+        <>
+          <span className={`${styles.ellipse} ${styles.ellipseOne}`} />
+          <span className={`${styles.ellipse} ${styles.ellipseTwo}`} />
+          <span className={`${styles.ellipse} ${styles.ellipseThree}`} />
+        </>
+      )}
 
       <div className={styles.heroInner}>
         <div className={styles.heroMeta}>

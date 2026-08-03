@@ -6,6 +6,7 @@ import styles from "./CaseStudy.module.css";
 
 export interface CaseStudyFrontmatter {
   title: string;
+  client?: string;
   projectLabel?: string;
   dates: string;
   subheading: string;
@@ -29,6 +30,7 @@ export default function CaseStudyTemplate({
       <ProjectHero
         logo={frontmatter.heroLogo}
         logoAlt={frontmatter.heroLogoAlt}
+        client={frontmatter.client}
         meta={frontmatter.meta}
         mockup={frontmatter.heroMockup}
         mockupAlt={frontmatter.heroMockupAlt}

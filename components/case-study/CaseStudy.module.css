@@ -466,3 +466,15 @@
   line-height: inherit;
   color: inherit;
 }
+
+/* For images that already carry the frame in their own pixels. No surface,
+   no border, no inset — adding any would double the frame. */
+.mockupBare {
+  width: 100%;
+}
+
+.mockupBare img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

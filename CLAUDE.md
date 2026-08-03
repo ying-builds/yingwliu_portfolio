@@ -71,6 +71,14 @@ can keep serving the old version even though the new one is on disk — with no
 error to hint at it. Either give the replacement a new filename, or clear
 `.next/cache/images` and rebuild. This already fooled a preview once.
 
+## Ask for meta data before writing frontmatter
+Before starting the frontmatter for any case study being converted to the new
+pattern, ASK for the current values — role, timeline, tools, context, and any
+other meta field. Do not infer them from the legacy page, an old draft, or a
+previous version, and do not leave placeholders in and move on. The old
+sources are often out of date, which is part of why the case study is being
+rebuilt.
+
 ## Case study images
 - Mockup images and screenshots sit on a light frame: `--mockup-bg` for the
   surface and a 1px `--mockup-border-line` border, both from tokens.css.
@@ -78,6 +86,14 @@ error to hint at it. Either give the replacement a new filename, or clear
 - Exception: media that is deliberately presented full-bleed on a dark
   section, where the asset already carries its own device frame. A light
   frame there fights the design rather than supporting it.
+- Some images arrive with the frame already drawn into the pixels — a
+  `--mockup-border-line` edge over a `--mockup-bg` inset. Check the edge
+  pixels before framing anything. Those images take `preframed="true"` on
+  MockupImage, which renders them bare; framing them again puts a frame
+  inside a frame. The Product Education Guide's images are all pre-framed.
+- The blue circles in a case study hero are Ticketmaster's brand device.
+  They render only when frontmatter says `client: Ticketmaster`, not from a
+  generic on/off flag, so no other case study can adopt them.
 
 ## Case study page standards
 These apply to every case study page, current and future. They are enforced
