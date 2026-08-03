@@ -292,6 +292,15 @@
   letter-spacing: -0.01em;
   margin-bottom: 8px;
   color: var(--site-ink);
+  /* Reserve two lines. Cards in a grid row stretch to the tallest, and the
+     meta row is pinned to the bottom — so a card with a shorter title or
+     description used to absorb all that slack into the gap above its meta
+     row: 16px on most cards, 55px on the two sharing a row with the
+     2-line-title Product Education Guide. Reserving the space here instead
+     keeps that gap identical on every card and keeps the ROLE/YEAR rows
+     aligned across a row. `lh` is the element's own line-height, so this
+     tracks the type scale rather than restating it. */
+  min-height: 2lh;
 }
 
 .projectDesc {
@@ -299,12 +308,18 @@
   line-height: 1.5;
   color: var(--site-mid);
   margin-bottom: 16px;
+  /* Three lines, the longest description in the grid. See .projectTitle. */
+  min-height: 3lh;
 }
 
 .projectMeta {
   display: flex;
   gap: 24px;
-  margin-top: auto;
+  /* Deliberately not `margin-top: auto`. Pinning this to the card's bottom
+     made the gap above it absorb whatever slack the grid's equal-height rows
+     produced — 16px on most cards, 55px on the two sharing a row with the
+     Product Education Guide. The gap is now always the 16px below .projectDesc,
+     and any leftover height falls below this row instead. */
 }
 
 .projectMetaLabel {
