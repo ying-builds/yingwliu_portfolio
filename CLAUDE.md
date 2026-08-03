@@ -90,7 +90,10 @@ rebuilt.
   `--mockup-border-line` edge over a `--mockup-bg` inset. Check the edge
   pixels before framing anything. Those images take `preframed="true"` on
   MockupImage, which renders them bare; framing them again puts a frame
-  inside a frame. The Product Education Guide's images are all pre-framed.
+  inside a frame. The Product Education Guide's images are all pre-framed, as
+  are BeReal's and GSM's boards.
+- The red X across one cluster of GSM's lo-fi/mid-fi board is deliberate — it
+  marks a discarded iteration. Leave it; it is not an export mistake.
 - The blue circles in a case study hero are Ticketmaster's brand device.
   They render only when frontmatter says `client: Ticketmaster`, not from a
   generic on/off flag, so no other case study can adopt them.
