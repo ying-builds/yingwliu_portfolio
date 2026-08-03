@@ -189,14 +189,18 @@
 }
 
 .introCol {
-  width: var(--content-col-width);
+  /* min(), not a flat width: below ~630px the fixed column is wider than the
+     viewport minus its gutters, and it pushed the whole page sideways. */
+  width: min(var(--content-col-width), 100%);
 }
 
 .subheadCol {
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
-  width: var(--content-col-width);
+  /* min(), not a flat width: below ~630px the fixed column is wider than the
+     viewport minus its gutters, and it pushed the whole page sideways. */
+  width: min(var(--content-col-width), 100%);
 }
 
 /* ===== Case study body (MDX content) ===== */
