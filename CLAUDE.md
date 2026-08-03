@@ -157,3 +157,41 @@ cutover.
 Remove all of it — the HTML file, the whole images/ticketmaster-legacy folder,
 and the homepage card pointing at it — once the replacement case studies are
 written. Nothing else references those files.
+
+## QUEUED: tokenise the Work and About type scale
+Do this AFTER UC Davis GSM lands and AFTER the Vercel cutover. It touches
+nearly every visual on the two most-visited pages, and running it earlier means
+the first live deploy carries visual drift nobody has reviewed against a
+working reference.
+
+Scope: **type only** — font-size, letter-spacing, line-height.
+- 45 type literals across 25 distinct values: 9 font sizes (9, 10, 11, 12, 13,
+  14, 15, 17, 48px), 8 letter-spacings, 8 line-heights.
+- Rationalise them into a real scale (roughly 5 sizes, 3 tracking values, 3
+  leading values), do not transcribe one token per literal. A token per value
+  is a lookup table, not a system, and would nearly double tokens.css.
+- Snapping moves pixels — 9 -> 10px, 13 -> 14px, 1.55 -> 1.5. Every step needs
+  review; a pixel diff cannot validate this the way it validates a pure
+  refactor.
+
+Explicitly out of scope:
+- The ~40 spacing literals. 17 are scale steps that can follow later; 12 are
+  one-off component dimensions (560px bio width, 220px polaroid, 340px, 700px)
+  that are a component's size, not a design token.
+- The two `clamp()` hero wordmarks — deliberately fluid.
+
+Do NOT map site literals onto case study tokens because the numbers match.
+38 of them collide by coincidence — `padding: 16px` matches `--radius-media`,
+`width: 320px` matches `--persona-image-height`, `height: 200px` matches
+`--footer-height`. Wiring those up couples two deliberately separate systems,
+so changing a persona image height would silently resize an About element.
+
+### Three greys for body copy — a real bug, resolve in the same pass
+Body text uses three different colours depending on where it renders:
+- `--site-body` #3d3a36 — About page body copy
+- `--site-mid` #5c5955 — homepage card descriptions
+- `--almost-black` #333333 — case study body copy
+
+One role, three values. This is drift, not three deliberate choices, and
+tokenising around it would only give the inconsistency names. Pick one (or
+one per system, deliberately) as part of the type pass.
