@@ -234,6 +234,18 @@
   border: 6px solid var(--mockup-border-fill);
   border-radius: var(--radius-mockup);
   overflow: hidden;
+  /* An explicit, capped width rather than letting a flex item with no other
+     constraint size itself off its content. The img/video below is forced to
+     width:100%/height:100%, so without this the frame has no size of its own
+     to give — it can only get one back from the media it contains, which pulls
+     that media's own dimensions in as the frame's, stretched across the flex
+     row's full remaining width. next/image happened to avoid this (its
+     srcset gives the browser another sizing signal a plain <img> lacks), which
+     is why the protected mockup — rendered through a plain <img>, since
+     next/image can't carry the visitor's cookie — is what surfaced it. Fixed
+     here rather than left dependent on that accident. */
+  width: min(var(--hero-mockup-width), 100%);
+  aspect-ratio: var(--hero-mockup-ratio);
 }
 
 /* Hero art that isn't a single device screen: no stroke, no rounding, and the
