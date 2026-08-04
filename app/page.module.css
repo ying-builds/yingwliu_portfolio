@@ -307,7 +307,10 @@
   font-size: var(--site-text-small);
   line-height: var(--site-leading-body);
   color: var(--almost-black);
-  margin-bottom: 16px;
+  /* The break between what the project is and how it was made. Wider than the
+     12px holding the title to this description, so the meta row reads as a
+     separate register rather than a third paragraph. */
+  margin-bottom: 24px;
   /* Reserve three lines — the longest description in the grid. Keeps the
      description block the same height on every card so the gap this margin
      opens above the meta row is measured from the same place. `lh` is the
