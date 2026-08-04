@@ -87,7 +87,7 @@
 
 .heroRole {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--site-text-micro);
   letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
   /* Same treatment as the name and tagline: white through the difference
@@ -101,7 +101,7 @@
 
 .heroBio {
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: var(--site-text-body);
   font-weight: 500;
   line-height: var(--site-leading-body);
   color: var(--white);
@@ -155,7 +155,7 @@
 /* Reads as a button, not a whisper — this is the main call to action */
 .scrollHint span {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--site-text-micro);
   letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
   color: var(--black);
@@ -211,7 +211,7 @@
   margin: 0 auto;
   padding: 0 var(--site-gutter) var(--site-label-gap);
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--site-text-micro);
   letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
   color: var(--subtitle);
@@ -286,7 +286,7 @@
 
 .projectTitle {
   font-family: var(--font-body);
-  font-size: 17px;
+  font-size: var(--site-text-title);
   font-weight: 600;
   line-height: var(--site-leading-tight);
   letter-spacing: var(--site-tracking-tight);
@@ -304,7 +304,7 @@
 }
 
 .projectDesc {
-  font-size: 12px;
+  font-size: var(--site-text-small);
   line-height: var(--site-leading-body);
   color: var(--almost-black);
   margin-bottom: 16px;
@@ -324,7 +324,7 @@
 
 .projectMetaLabel {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: var(--site-text-micro);
   letter-spacing: var(--site-tracking-caps);
   text-transform: uppercase;
   color: var(--subtitle);
@@ -332,7 +332,7 @@
 }
 
 .projectMetaValue {
-  font-size: 12px;
+  font-size: var(--site-text-small);
   color: var(--black);
   font-weight: 400;
 }
@@ -343,7 +343,7 @@
   gap: 8px;
   margin-top: 16px;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--site-text-micro);
   letter-spacing: var(--site-tracking-caps);
   color: var(--site-accent);
   opacity: 0;
@@ -381,6 +381,6 @@
   }
 
   .heroName {
-    font-size: 48px;
+    font-size: var(--site-text-display);
   }
 }

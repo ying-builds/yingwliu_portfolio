@@ -196,6 +196,17 @@
   --site-tracking-caps: 0.1em;   /* uppercase section and meta labels */
   --site-tracking-tight: -0.01em; /* card titles, the one negative value */
 
+  /* Site type scale.
+     Eleven sizes spanning nearly every integer from 9 to 15 collapse to five
+     steps. Separate from the case study scale — --text-body is 16px there,
+     15px here — so the two are genuinely different scales rather than one
+     that drifted. */
+  --site-text-micro: 10px;    /* uppercase labels, eyebrows, meta labels */
+  --site-text-small: 12px;    /* card descriptions, meta values */
+  --site-text-body: 15px;     /* bio and hero prose */
+  --site-text-title: 17px;    /* project card titles */
+  --site-text-display: 48px;  /* hero wordmark below 768px */
+
   /* Site layout — the work section's label and card grid derive their
      horizontal bounds from these, so they can't drift out of alignment. */
   --site-gutter: 120px;

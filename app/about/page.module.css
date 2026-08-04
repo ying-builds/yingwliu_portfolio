@@ -53,7 +53,7 @@
 
 .aboutEyebrow {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--site-text-micro);
   letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
   color: var(--subtitle);
@@ -107,7 +107,7 @@
 
 .aboutTagline {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--site-text-small);
   letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
   line-height: var(--site-leading-loose);
@@ -140,7 +140,7 @@
 
 .bioLabel {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--site-text-micro);
   letter-spacing: var(--site-tracking-caps);
   text-transform: uppercase;
   color: var(--subtitle);
@@ -160,7 +160,7 @@
 }
 
 .bioText {
-  font-size: 15px;
+  font-size: var(--site-text-body);
   line-height: var(--site-leading-loose);
   color: var(--almost-black);
   margin-bottom: 16px;
@@ -247,7 +247,7 @@
 
 .detailLabel {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: var(--site-text-micro);
   letter-spacing: var(--site-tracking-caps);
   text-transform: uppercase;
   color: var(--subtitle);
@@ -255,7 +255,7 @@
 }
 
 .detailValue {
-  font-size: 13px;
+  font-size: var(--site-text-small);
   color: var(--black);
   line-height: var(--site-leading-body);
 }
@@ -273,7 +273,7 @@
 
 .interestsLabel {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--site-text-micro);
   letter-spacing: var(--site-tracking-caps);
   text-transform: uppercase;
   color: var(--subtitle);
@@ -291,7 +291,7 @@
 }
 
 .interestsList {
-  font-size: 14px;
+  font-size: var(--site-text-body);
   line-height: var(--site-leading-airy);
   color: var(--black);
 }
@@ -328,7 +328,7 @@
 
 .connectLinks a {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--site-text-micro);
   letter-spacing: var(--site-tracking-caps);
   text-transform: uppercase;
   text-decoration: none;
