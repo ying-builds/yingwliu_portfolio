@@ -237,6 +237,18 @@
 @media (max-width: 768px) {
   :root {
     --site-gutter: 24px;
+
+    /* The footer's own gutter is deliberately wider than the page's at desktop
+       widths, but 80px a side leaves only 230px of bar on a 390px phone — not
+       enough for the three groups, which is what crushed the social icons to
+       under 2px. Matched to --site-gutter here. */
+    --footer-gutter: 24px;
+    /* Work and About stack rather than sitting in a row (see .footer-nav
+       below), so this is now the gap between two lines, not two columns. */
+    --gap-footer-nav: 8px;
+    /* 116px of seal is a third of a small phone's width. Smaller here so the
+       bar still fits at 320px. */
+    --footer-mark-size: 88px;
   }
 }
 
@@ -332,6 +344,14 @@ h3 {
   font-family: var(--font-body);
   font-weight: 500;
   font-size: var(--text-nav);
+}
+
+/* Stacked on phones. Side by side, the 96px between Work and About was more
+   than a third of the bar, which pushed the nav into the wordmark. */
+@media (max-width: 768px) {
+  .footer-nav {
+    flex-direction: column;
+  }
 }
 
 /* Meta details — dark bg variant (on hero) */

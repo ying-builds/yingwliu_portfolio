@@ -14,6 +14,9 @@
 .identity {
   display: flex;
   align-items: center;
+  /* See .social — the same shrink-to-nothing applied here, squeezing the
+     wordmark to 47px and sliding the nav on top of the seal. */
+  flex-shrink: 0;
 }
 
 /* These three lines use the font's natural leading, not the 23px body
@@ -68,6 +71,12 @@
   display: flex;
   align-items: center;
   gap: var(--space-xs);
+  /* Flex items shrink by default, and once the bar ran out of room these
+     icons went with it — they rendered 1.8px wide on a 390px phone, visible
+     only as three faint marks. Silent, because nothing overflowed. Pinned at
+     every width, not just mobile: an icon that cannot shrink overflows
+     instead, which is a bug you can see. */
+  flex-shrink: 0;
 }
 
 .social a {

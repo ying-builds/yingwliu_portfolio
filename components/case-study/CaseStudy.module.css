@@ -128,6 +128,14 @@
   .titleCol {
     position: static;
     grid-row: auto;
+    /* min(), not a flat width — the same pattern .subheadCol and .introCol
+       already use. A `1fr` track cannot shrink below its content's minimum,
+       so a child insisting on a flat --title-col-width held the track at
+       377px, wider than the gutters allow below ~457px. The block overflowed
+       both gutters and `justify-content: center` split the difference,
+       landing the title 33.5px left of the Introduction under it. This keeps
+       377px wherever it fits and only gives way when it doesn't. */
+    width: min(var(--title-col-width), 100%);
   }
 
   .subheadCol {
