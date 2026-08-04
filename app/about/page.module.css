@@ -9,7 +9,7 @@
    The site pages use the warmer cream, so each owns its own surface. */
 .page {
   background: var(--site-cream);
-  color: var(--site-ink);
+  color: var(--black);
   /* Establishes a stacking context. The decorative .shadowText sits at
      z-index: -1; without this it paints behind this element's own
      background and disappears entirely. */
@@ -56,7 +56,7 @@
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--site-soft);
+  color: var(--subtitle);
   margin-bottom: 48px;
   opacity: 0;
   animation: fadeUp 0.8s 0.2s ease forwards;
@@ -80,7 +80,7 @@
   font-family: var(--font-script);
   font-size: clamp(80px, 12vw, 160px);
   color: transparent;
-  -webkit-text-stroke: 0.5px color-mix(in srgb, var(--site-ink) 6%, transparent);
+  -webkit-text-stroke: 0.5px color-mix(in srgb, var(--black) 6%, transparent);
   letter-spacing: 0.02em;
   line-height: 1.3;
   position: absolute;
@@ -111,7 +111,7 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   line-height: 1.8;
-  color: var(--site-ink);
+  color: var(--black);
   max-width: 340px;
   margin-bottom: 0;
   opacity: 0;
@@ -143,7 +143,7 @@
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--site-soft);
+  color: var(--subtitle);
   margin-bottom: 24px;
   display: flex;
   align-items: center;
@@ -162,7 +162,7 @@
 .bioText {
   font-size: 15px;
   line-height: 1.75;
-  color: var(--site-body);
+  color: var(--almost-black);
   margin-bottom: 16px;
   opacity: 0;
   animation: fadeUp 0.7s 0.9s ease forwards;
@@ -173,14 +173,14 @@
 }
 
 .bioLink {
-  color: var(--site-ink);
+  color: var(--black);
   text-decoration: none;
   border-bottom: 1px solid var(--site-rule);
   transition: border-color 0.2s;
 }
 
 .bioLink:hover {
-  border-color: var(--site-ink);
+  border-color: var(--black);
 }
 
 /* Hover-to-reveal GIF on "lifting at the gym" */
@@ -192,7 +192,7 @@
 }
 
 .hoverVideoTrigger:hover {
-  border-color: var(--site-ink);
+  border-color: var(--black);
 }
 
 .hoverVideo {
@@ -217,7 +217,7 @@
 .hoverVideo img {
   width: 320px;
   border-radius: 4px;
-  box-shadow: 0 8px 30px color-mix(in srgb, var(--site-ink) 15%, transparent);
+  box-shadow: 0 8px 30px color-mix(in srgb, var(--black) 15%, transparent);
 }
 
 /* ========================================
@@ -250,13 +250,13 @@
   font-size: 9px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--site-soft);
+  color: var(--subtitle);
   margin-bottom: 6px;
 }
 
 .detailValue {
   font-size: 13px;
-  color: var(--site-ink);
+  color: var(--black);
   line-height: 1.5;
 }
 
@@ -276,7 +276,7 @@
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--site-soft);
+  color: var(--subtitle);
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -293,7 +293,7 @@
 .interestsList {
   font-size: 14px;
   line-height: 2;
-  color: var(--site-ink);
+  color: var(--black);
 }
 
 .interestsList span::after {
@@ -332,19 +332,19 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--site-soft);
+  color: var(--subtitle);
   transition: color 0.2s;
 }
 
 .connectLinks a:hover {
-  color: var(--site-ink);
+  color: var(--black);
 }
 
 /* Resume reads as a button so it stands apart from the plain text links */
 .connectLinks a.connectResume {
   color: var(--site-cream);
-  background: var(--site-ink);
-  border: 1px solid var(--site-ink);
+  background: var(--black);
+  border: 1px solid var(--black);
   border-radius: 999px;
   padding: 9px 20px;
   transition:
@@ -354,7 +354,7 @@
 
 .connectLinks a.connectResume:hover {
   background: transparent;
-  color: var(--site-ink);
+  color: var(--black);
 }
 
 /* ========================================
