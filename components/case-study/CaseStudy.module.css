@@ -772,6 +772,18 @@
   text-align: center;
 }
 
+/* The band's own section title. Same type as .sectionLabel, but centred and
+   on the dark surface — the band is full bleed, so there's no left column for
+   a label to sit in. */
+.pillarsLabel {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-h1);
+  color: var(--white-subtitle);
+}
+
 .pillarsTitle {
   margin: 0;
   font-family: var(--font-mono);
@@ -808,6 +820,39 @@
 
 .pillarsList :global(li) + :global(li) {
   margin-top: var(--space-sm);
+}
+
+/* Divides the pillars from whatever closes the band. Held to the content's
+   own width rather than running the full bleed, so it reads as a rule between
+   two beats of the same block. */
+.pillarsRule {
+  width: 100%;
+  max-width: var(--wide-content-width);
+  height: 1px;
+  background: var(--line);
+  opacity: 0.25;
+}
+
+.pillarsFooter {
+  max-width: var(--section-content-width);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--white-text);
+}
+
+.pillarsFooter :global(p) {
+  margin: 0;
+}
+
+.pillarsFooter :global(p) + :global(p) {
+  margin-top: var(--space-md);
+}
+
+/* The band is dark, so the body link colour would sit almost invisibly on it. */
+.pillarsFooter :global(a) {
+  color: var(--white-subtitle);
+  text-decoration: underline;
 }
 
 /* Bullets inside the Introduction. Everywhere else lists sit inside a Section,
