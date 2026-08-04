@@ -145,6 +145,10 @@ still resolves, it just meets the gate first.
   non-card assets into `private/case-studies/[slug]/`, and repoint the MDX at
   `/protected-media/case-studies/[slug]/…`. The homepage card image stays in
   `public/` — cards are never gated, only the page behind them.
+- The client's logo also stays in `public/`, alongside the card image. It is
+  the client's own public brand artwork, not the case study's work, so gating
+  it protects nothing. The Product Education Guide's `logo.png` is in `public/`
+  on purpose — it is not drift, and an audit should leave it there.
 
 ## Current task
 Nothing outstanding. The Vercel cutover is complete and the Ticketmaster
