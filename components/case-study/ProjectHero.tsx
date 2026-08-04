@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./CaseStudy.module.css";
+import { PROTECTED_MEDIA_PREFIX } from "../../lib/protected";
 
 export interface ProjectMeta {
   role: string;
@@ -109,7 +110,16 @@ export default function ProjectHero({
             mockupFrame === false ? styles.mockupBareHero : styles.mockupFrame
           }
         >
-          <Image src={mockup} alt={mockupAlt} width={551} height={392} />
+          {/* next/image optimises through a server-side fetch back to this
+              app, and that request carries none of the visitor's cookies —
+              a gated mockup would 404 through it even once unlocked. Plain
+              <img> is fetched by the browser directly, cookie included. */}
+          {mockup.startsWith(PROTECTED_MEDIA_PREFIX) ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={mockup} alt={mockupAlt} width={551} height={392} />
+          ) : (
+            <Image src={mockup} alt={mockupAlt} width={551} height={392} />
+          )}
         </div>
       </div>
     </section>

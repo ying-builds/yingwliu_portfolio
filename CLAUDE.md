@@ -117,10 +117,39 @@ each case study's frontmatter, so a new MDX file picks them up automatically.
   Email, and Medium links. Do not add it to the homepage, the footer, case
   study pages, or anywhere else.
 
+## Password-gated case studies
+Some case studies are shared privately rather than publicly. The gate is a
+middleware check, not a client-side hide: an unauthenticated request never
+receives the page's HTML, and the page keeps its ordinary URL — a shared link
+still resolves, it just meets the gate first.
+
+- `lib/protected.ts` lists which slugs are gated (`PROTECTED_SLUGS`) and holds
+  the shared logic — the cookie name, its digest, the redirect safety check.
+- `middleware.ts` rewrites a locked `/work/[slug]` request to `/unlock`,
+  keeping the original URL. It fails closed: if `CASE_STUDY_PASSWORD` isn't
+  set in the environment, every gated page stays locked rather than opening.
+- The password lives in Vercel's environment variables, never in the repo.
+  Free on every plan — this is custom middleware, not Vercel's paid
+  Deployment Protection, which gates a whole deployment rather than one page.
+- Assets for a gated case study live in `private/`, not `public/`, and are
+  served through `/protected-media/[...path]`, which checks the same cookie.
+  A case study's writing being gated is worthless if its mockups are still
+  one direct image link away.
+- `MockupImage` and `ProjectHero`'s mockup branch to a plain `<img>` when the
+  source is a protected path. next/image optimises through a server-side
+  fetch back to this app, and that fetch carries none of the visitor's
+  cookies — a gated image would 404 through it even once unlocked. `GifPlayer`
+  needs no such branch; it already renders plain `<video>`/`<source>` tags,
+  which the browser fetches directly, cookie included.
+- To gate a new case study: add its slug to `PROTECTED_SLUGS`, move its
+  non-card assets into `private/case-studies/[slug]/`, and repoint the MDX at
+  `/protected-media/case-studies/[slug]/…`. The homepage card image stays in
+  `public/` — cards are never gated, only the page behind them.
+
 ## Current task
-All three conversions have landed, and every case study's assets now live in
-`public/images/case-studies/[project-name]/`. What is left before the Vercel
-cutover: walk through the Vercel preset flip live, then merge to main.
+Nothing outstanding. The Vercel cutover is complete and the Ticketmaster
+legacy page has been archived. Next up, when the user asks for it: the
+Work/About type-scale tokenisation proposal (see below).
 
 ## Case studies to convert (in order)
 1. Product Guide / Client Product Education Guide — DONE, the reference build

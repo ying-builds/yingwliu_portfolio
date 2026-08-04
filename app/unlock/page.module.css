@@ -1,0 +1,92 @@
+/* The root layout still wraps this in the site's Nav and Footer — that's
+   harmless, it just lets a locked visitor navigate elsewhere — so this only
+   has to style the gate itself, not build a chromeless screen. */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--page-gutter);
+  background: var(--black-bg);
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-note);
+  letter-spacing: var(--tracking-note);
+  text-transform: uppercase;
+  color: var(--white-subtitle);
+  opacity: 0.6;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  line-height: var(--leading-h1);
+  color: var(--white-text);
+}
+
+.copy {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--white-subtitle);
+  opacity: 0.75;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.input {
+  width: 100%;
+  padding: 14px var(--space-md);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--white-text);
+  background: color-mix(in srgb, var(--white) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--white) 18%, transparent);
+  border-radius: var(--radius-media);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--white-text);
+}
+
+.submit {
+  padding: 14px var(--space-md);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-body);
+  color: var(--black-bg);
+  background: var(--white-text);
+  border: none;
+  border-radius: var(--radius-media);
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.submit:hover {
+  opacity: 0.85;
+}
+
+.error {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-note);
+  color: #f2a9a9;
+}
