@@ -126,6 +126,8 @@
   --wide-content-width: 802px;
   --mockup-block-width: 1060px;
   --mockup-block-ratio: 1060 / 508;
+  --hero-mockup-width: 551px;   /* framed hero mockup: matches width/height on <ProjectHero>'s <Image> */
+  --hero-mockup-ratio: 551 / 392;
   --fullbleed-media-width: 808px;
   --page-max-width: 1440px;
   --page-gutter: 40px;        /* horizontal page padding */
