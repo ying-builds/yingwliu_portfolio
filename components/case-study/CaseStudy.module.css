@@ -243,8 +243,19 @@
      srcset gives the browser another sizing signal a plain <img> lacks), which
      is why the protected mockup — rendered through a plain <img>, since
      next/image can't carry the visitor's cookie — is what surfaced it. Fixed
-     here rather than left dependent on that accident. */
-  width: min(var(--hero-mockup-width), 100%);
+     here rather than left dependent on that accident.
+
+     width: 100% + max-width, not width: min(x, 100%) — inside min(), the
+     100% has no definite containing block to resolve against when the flex
+     layout algorithm computes this item's own content-based size, so the
+     whole property was falling back to the frame's unconstrained content
+     size instead of capping at --hero-mockup-width. That widened the whole
+     hero row well past its two children's combined width, which is what
+     pushed everything flush left instead of centered under justify-content:
+     center. width: 100% resolves the normal way flex items do; max-width
+     doesn't have the same intrinsic-sizing ambiguity min() does. */
+  width: 100%;
+  max-width: var(--hero-mockup-width);
   aspect-ratio: var(--hero-mockup-ratio);
 }
 
