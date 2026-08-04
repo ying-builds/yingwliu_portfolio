@@ -54,7 +54,7 @@
 .aboutEyebrow {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
   color: var(--subtitle);
   margin-bottom: 48px;
@@ -108,7 +108,7 @@
 .aboutTagline {
   font-family: var(--font-mono);
   font-size: 12px;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
   line-height: var(--site-leading-loose);
   color: var(--black);
@@ -141,7 +141,7 @@
 .bioLabel {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--site-tracking-caps);
   text-transform: uppercase;
   color: var(--subtitle);
   margin-bottom: 24px;
@@ -248,7 +248,7 @@
 .detailLabel {
   font-family: var(--font-mono);
   font-size: 9px;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--site-tracking-caps);
   text-transform: uppercase;
   color: var(--subtitle);
   margin-bottom: 6px;
@@ -274,7 +274,7 @@
 .interestsLabel {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--site-tracking-caps);
   text-transform: uppercase;
   color: var(--subtitle);
   margin-bottom: 20px;
@@ -329,7 +329,7 @@
 .connectLinks a {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--site-tracking-caps);
   text-transform: uppercase;
   text-decoration: none;
   color: var(--subtitle);

@@ -62,7 +62,7 @@
   font-size: clamp(64px, 9vw, 120px);
   font-weight: normal;
   color: var(--white);
-  letter-spacing: 0.14em;
+  letter-spacing: var(--site-tracking-wide);
   line-height: var(--site-leading-tight);
   margin-bottom: 0;
   padding: 20px 0 20px;
@@ -74,7 +74,7 @@
 .calligraphy {
   display: block;
   font-weight: normal;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--site-tracking-wide);
   overflow: visible;
 }
 
@@ -88,7 +88,7 @@
 .heroRole {
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
   /* Same treatment as the name and tagline: white through the difference
      blend, so all three hero texts read near-black on cream and flip to
@@ -156,7 +156,7 @@
 .scrollHint span {
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.16em;
+  letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
   color: var(--black);
   border: 1px solid color-mix(in srgb, var(--black) 30%, transparent);
@@ -212,7 +212,7 @@
   padding: 0 var(--site-gutter) var(--site-label-gap);
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
   color: var(--subtitle);
   display: flex;
@@ -289,7 +289,7 @@
   font-size: 17px;
   font-weight: 600;
   line-height: var(--site-leading-tight);
-  letter-spacing: -0.01em;
+  letter-spacing: var(--site-tracking-tight);
   margin-bottom: 8px;
   color: var(--black);
   /* Reserve two lines. Cards in a grid row stretch to the tallest, and the
@@ -325,7 +325,7 @@
 .projectMetaLabel {
   font-family: var(--font-mono);
   font-size: 9px;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--site-tracking-caps);
   text-transform: uppercase;
   color: var(--subtitle);
   margin-bottom: 3px;
@@ -344,7 +344,7 @@
   margin-top: 16px;
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--site-tracking-caps);
   color: var(--site-accent);
   opacity: 0;
   transform: translateX(-8px);

@@ -187,6 +187,15 @@
      visible work on that one list. */
   --site-leading-airy: 2;
 
+  /* Site tracking.
+     em, where the case study scale is mostly px (--tracking-label: 0.7px).
+     Also deliberate: nearly every use here is letterspaced uppercase, and em
+     keeps the spacing proportional as the label size changes. Freezing these
+     to px would pin the tracking to one size and break it at the others. */
+  --site-tracking-wide: 0.14em;  /* uppercase display and eyebrow labels */
+  --site-tracking-caps: 0.1em;   /* uppercase section and meta labels */
+  --site-tracking-tight: -0.01em; /* card titles, the one negative value */
+
   /* Site layout — the work section's label and card grid derive their
      horizontal bounds from these, so they can't drift out of alignment. */
   --site-gutter: 120px;
