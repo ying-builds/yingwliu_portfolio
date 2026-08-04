@@ -1,0 +1,418 @@
+/* ============================================
+   YING LIU PORTFOLIO — DESIGN TOKENS
+   Extracted from Figma (2026 Portfolio file)
+   ============================================ */
+
+:root {
+  /* ===== COLORS ===== */
+
+  /* Backgrounds */
+  --background-fill: #f8f6f5;   /* page bg, light sections */
+  --black-bg: #1e1e1e;          /* dark hero/section bg, feature panels */
+  --footer-bg: #1a1916;         /* footer bar, above the ink band */
+  --mockup-bg: #eeece9;         /* image/mockup placeholder bg */
+  --mockup-border-fill: #f9f5f2;
+  --mockup-border-line: #d1d0ce;
+  --media-bg: #101010;          /* full-bleed media section bg */
+
+  /* Text */
+  --black: #1a1916;             /* primary text, light bg */
+  --almost-black: #333333;      /* body text, light bg */
+  --subtitle: #999999;          /* muted labels, light bg */
+  --white-text: #e5e1dd;        /* body text, dark bg */
+  --white-subtitle: #f5f5f5;    /* labels, dark bg */
+  --quote-text: #4f4f4f;        /* pull quotes */
+  --link-accent: #024cdf;       /* inline emphasis / links */
+
+  --white: #ffffff;             /* footer wordmark + nav, homepage hero type */
+
+  /* Borders */
+  --line: #d6d6d6;              /* dividers */
+  --nav-border: #e5e1dd;        /* nav bar bottom border */
+
+  /* Corner radii */
+  --radius-card: 6px;           /* insight, stat and persona cards */
+  --radius-mockup: 10px;        /* hero device frame */
+  --radius-media: 16px;         /* feature panel video */
+
+  /* ===== TYPOGRAPHY ===== */
+
+  --font-display: 'Bootzy TM', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'PT Mono', monospace;
+  --font-script: 'Ballet', cursive;  /* About hero wordmark */
+
+  /* Display (Bootzy TM) */
+  --text-project-title: 40px;   /* tracking 2.5px */
+  --text-h1: 32px;              /* section heading, tracking 3px */
+
+  /* Display line-heights — 100% crushes when headings wrap to 2 lines */
+  --leading-project-title: 44px;  /* 110% of 40px */
+  --leading-h1: 36px;             /* ~112% of 32px */
+  --tracking-project-title: 2.5px;
+  --tracking-h1: 3px;
+
+  /* Body (Inter) */
+  --text-h3: 20px;              /* semibold 600, tracking 0.3px, line-height 22px */
+  --text-h4: 16px;              /* semibold 600, line-height 22px */
+  --text-body: 16px;            /* regular 400, line-height 23px */
+  --text-meta: 14px;            /* meta values, footer/nav secondary text */
+  --text-nav: 12px;             /* medium 500 */
+  --text-micro: 8px;            /* footer "with love," / copyright */
+
+  --leading-body: 23px;
+  --leading-h3: 22px;
+  --leading-quote: 20px;
+
+  --tracking-h3: 0.3px;
+  --tracking-label: 0.7px;      /* meta labels (ROLE, TIMELINE) */
+  --tracking-note: 0.4px;       /* section captions */
+  --tracking-logo: 1.6px;       /* nav wordmark */
+  --tracking-wordmark: 2.08px;  /* footer wordmark */
+
+  /* Mono (PT Mono) */
+  --text-label: 11px;           /* meta labels (ROLE, TIMELINE), tracking 0.7px */
+  --text-note: 12px;            /* section captions, tracking 0.4px, uppercase */
+  --text-quote: 14px;           /* pull quotes, line-height 20px */
+
+  /* ===== SPACING (confirmed from case study frame) ===== */
+
+  --space-2xs: 2px;   /* footer wordmark line gap */
+  --space-xs: 8px;    /* meta label-to-value gap */
+  --space-sm: 10px;   /* mono-caption-to-body gap */
+  --space-md: 20px;   /* heading-to-body gap */
+  --space-lg: 40px;   /* stacked content-block gap */
+  --space-xl: 56px;   /* section vertical padding */
+  --space-2xl: 190px; /* section label-to-content gap */
+
+  /* Named gaps that don't sit on the 8px scale (from the Figma frame) */
+  --gap-nav-links: 35px;      /* nav link row */
+  --gap-footer-nav: 96px;     /* footer nav row */
+  --gap-title-cols: 92px;     /* title block: title col -> subheading col */
+  --gap-hero-cols: 152px;     /* hero: meta col -> mockup */
+  --space-box-padding: 24px;  /* problem-box padding, takeaways list indent */
+  --space-frame-padding: 32px; /* mockup frame: image inset from the frame edge */
+  --space-title-dates: 12px;  /* project title -> date range */
+  --space-title-intro: 24px;  /* tagline -> Introduction */
+
+  /* ===== CARD PATTERNS =====
+     Insight, stat, persona and feature cards. These values arrived with the
+     BeReal conversion and were sitting in the components as literals; the
+     numbers are unchanged, they just live here now. Line-heights are per
+     component rather than one shared value because they genuinely differ —
+     collapsing them would restyle the cards, which is a design call. */
+  --text-stat: 36px;               /* StatCard figure */
+  --text-feature-title: 24px;
+  --tracking-card-title: 2px;      /* stat figure, persona and feature titles */
+  --tracking-feature-label: 0.04em;
+  --leading-feature-title: 1.2;
+  --leading-stat-caption: 1.4;
+  --leading-card-body: 1.5;        /* persona summary */
+  --leading-insight-body: 1.6;
+  --leading-feature-body: 1.65;
+  --space-card-padding-x: 22px;    /* insight + stat cards, y is --space-md */
+  --space-persona-padding-y: 16px;
+  --space-persona-padding-x: 18px;
+  --persona-image-height: 320px;
+  --feature-video-height: 400px;
+
+  /* Layout */
+  --section-label-width: 169px;
+  --nav-height: 56px;
+  --footer-height: 200px;
+  --title-col-width: 377px;
+  --content-col-width: 550px;
+  --section-content-width: 442px;
+  --wide-content-width: 802px;
+  --mockup-block-width: 1060px;
+  --mockup-block-ratio: 1060 / 508;
+  --fullbleed-media-width: 808px;
+  --page-max-width: 1440px;
+  --page-gutter: 40px;        /* horizontal page padding */
+
+  /* Footer */
+  --footer-gutter: 80px;        /* footer's own wider horizontal padding */
+  --footer-mark-size: 116px;    /* red 瑩 wordmark character */
+  --footer-band-ratio: 1662 / 118;  /* decorative ink band below the bar */
+  --icon-social: 20px;          /* LinkedIn, email */
+  --icon-social-lg: 24px;       /* Medium sits slightly larger by design */
+
+  /* Case study hero */
+  --hero-min-height: 487px;
+  --hero-meta-width: 243px;
+  --hero-logo-height: 19px;
+  --ellipse-size: 169px;      /* decorative hero circles */
+
+  /* ===== SITE PALETTE (Work + About) =====
+     The Work and About pages use a warmer palette than the case study
+     template above, which came from the Figma file. The two are genuinely
+     different — --site-accent is a rust red where --link-accent is blue —
+     so they are kept separate rather than merged. Reconciling them is a
+     design decision, not a cleanup.
+     These names are deliberately prefixed: --page-gutter already exists
+     above at 40px for case studies, and the site pages need 120px. Sharing
+     the name would silently break every case study's layout. */
+  --site-cream: #faf8f5;      /* page bg */
+  --site-ink: #1a1916;        /* primary text (same value as --black) */
+  --site-mid: #5c5955;        /* body copy */
+  --site-soft: #888480;       /* muted labels */
+  --site-rule: #e4e1dc;       /* dividers, card borders */
+  --site-accent: #a63d2b;     /* links, hover states */
+  --site-card-bg: #f0ede8;    /* project card image bg */
+  /* Sits close to --site-mid but is not the same grey. Kept as its own entry
+     because consolidating the two is a design decision, not a cleanup. */
+  --site-body: #3d3a36;       /* About page body copy */
+
+  /* Site layout — the work section's label and card grid derive their
+     horizontal bounds from these, so they can't drift out of alignment. */
+  --site-gutter: 120px;
+  --site-content-max: 1200px;
+
+  /* Vertical rhythm for the work section: equal air above and below the
+     case studies, with the label held tight to the grid it introduces. */
+  --site-section-gap: 80px;
+  --site-label-gap: 40px;
+}
+
+/* Site gutter narrows on smaller viewports. Declared here so the nav, hero,
+   work header and card grid all step in together and stay aligned. */
+@media (max-width: 1100px) {
+  :root {
+    --site-gutter: 72px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --site-gutter: 24px;
+  }
+}
+
+/* ===== BASE ELEMENTS ===== */
+
+body {
+  background: var(--background-fill);
+  color: var(--black);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-h1);
+  color: var(--black);
+}
+
+h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-h3);
+  letter-spacing: var(--tracking-h3);
+  line-height: var(--leading-h3);
+  color: var(--black);
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: var(--text-project-title);
+  line-height: var(--leading-project-title);
+  letter-spacing: var(--tracking-project-title);
+  color: var(--black);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--text-note);
+  letter-spacing: var(--tracking-note);
+  text-transform: uppercase;
+  color: var(--subtitle);
+}
+
+.quote {
+  font-family: var(--font-mono);
+  font-size: var(--text-quote);
+  line-height: var(--leading-quote);
+  color: var(--quote-text);
+}
+
+/* ===== COMPONENTS ===== */
+
+.nav-bar {
+  height: var(--nav-height);
+  background: var(--background-fill);
+  border-bottom: 1px solid var(--nav-border);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: var(--text-h4);
+  letter-spacing: var(--tracking-logo);
+  color: var(--black);
+}
+
+.nav-links {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--text-nav);
+  color: var(--black);
+  display: flex;
+  gap: var(--gap-nav-links);
+}
+
+.footer {
+  border-top: 1px solid var(--line);
+}
+
+/* The dark bar itself; the decorative band sits below it */
+.footer-bar {
+  background: var(--footer-bg);
+  border-bottom: 1px solid var(--line);
+  height: var(--footer-height);
+  color: white;
+}
+
+.footer-nav {
+  display: flex;
+  gap: var(--gap-footer-nav);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--text-nav);
+}
+
+/* Meta details — dark bg variant (on hero) */
+.meta-details-dark {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.meta-details-dark .meta-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  color: var(--white-subtitle);
+}
+.meta-details-dark .meta-value {
+  font-family: var(--font-body);
+  font-size: var(--text-meta);
+  color: var(--white-text);
+}
+
+/* Meta details — light bg variant */
+.meta-details-light {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.meta-details-light .meta-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  color: var(--black);
+}
+.meta-details-light .meta-value {
+  font-family: var(--font-body);
+  font-size: var(--text-meta);
+  color: var(--almost-black);
+}
+/* A link in a meta value keeps the row's own colour and is marked by the
+   underline alone, on either hero theme. */
+.meta-details-light .meta-value a,
+.meta-details-dark .meta-value a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* Section block — label + content, repeated per case study section */
+.section-block {
+  display: flex;
+  gap: var(--space-2xl);
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--space-xl) 0;
+}
+.section-block .section-label {
+  width: var(--section-label-width);
+  flex-shrink: 0;
+}
+
+/* Heading + body stack (Overview, My Role, Clients, etc.) */
+.content-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Multiple content-blocks stacked (e.g. Overview + My Role) */
+.content-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* Mono caption + body pairing (e.g. "BUSINESS GOAL" + quote) */
+.caption-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Takeaways list — always an ordered list */
+.takeaways-list {
+  list-style: decimal;
+  padding-left: var(--space-box-padding);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+.takeaways-list li {
+  line-height: var(--leading-body);
+  margin-bottom: 0;
+}
+
+/* Divider line (used in meta details) */
+.divider {
+  height: 1px;
+  background: var(--line);
+  width: 100%;
+}
+
+/* A "how might we" line following a statement. Italic to set it apart from the
+   body, but deliberately not `em` — that carries the inline accent colour,
+   which is for emphasising a word, not styling a whole sentence. */
+.hmw {
+  font-style: italic;
+  color: var(--almost-black);
+}
+
+/* Lets one block reach back under its section label, so a wide artefact — a
+   flow diagram, a board — is legible without leaving the section it belongs
+   to. Spans the section exactly: label column, gap, content column, built
+   from the same three tokens the section is, so the two can't drift. Same
+   break-out .personaRow uses. */
+.section-breakout {
+  width: calc(
+    var(--section-label-width) + var(--space-2xl) + var(--section-content-width)
+  );
+  margin-left: calc(-1 * (var(--section-label-width) + var(--space-2xl)));
+}
+
+/* Below the width the break-out needs, it gives it up and sits in the content
+   column like everything else. */
+@media (max-width: 1200px) {
+  .section-breakout {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* Problem statement callout box */
+.problem-box {
+  background: var(--mockup-bg);
+  border: 1px solid var(--mockup-border-line);
+  padding: var(--space-box-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}

@@ -1,0 +1,866 @@
+/* ===== Breadcrumb ===== */
+.breadcrumb {
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--page-gutter);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+
+.breadcrumb .all {
+  color: var(--subtitle);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumb .all:hover {
+  color: var(--almost-black);
+}
+
+/* ===== Project Hero ===== */
+.hero {
+  position: relative;
+  background: var(--black-bg);
+  overflow: hidden;
+  padding: var(--space-xl) var(--page-gutter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--hero-min-height);
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-hero-cols);
+  flex-wrap: wrap;
+}
+
+.heroMeta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: var(--hero-meta-width);
+}
+
+.heroLogo {
+  align-self: flex-start;
+  height: var(--hero-logo-height);
+  width: auto;
+}
+
+/* The Introduction is the one place a list is followed by more prose. */
+.introCol :global(ul) + :global(p) {
+  margin-top: var(--space-md);
+}
+
+.ellipse {
+  position: absolute;
+  width: var(--ellipse-size);
+  height: var(--ellipse-size);
+  border-radius: 50%;
+  background: var(--link-accent);
+  pointer-events: none;
+}
+
+.ellipseOne {
+  left: var(--page-gutter);
+  bottom: calc(var(--page-gutter) * -1);
+}
+
+.ellipseTwo {
+  left: var(--page-gutter);
+  top: calc(var(--ellipse-size) + 1px);
+}
+
+.ellipseThree {
+  left: var(--page-gutter);
+  top: 1px;
+}
+
+/* ===== Title block =====
+   A grid rather than a flex row so the block's height comes from the tagline
+   alone. The title column is taller — label, 40px title, dates — and under
+   flex it set the row height, which pushed the Introduction down by that
+   difference and left a ~106px gap under a 2-line tagline. Here it spans into
+   a zero-height second row and overflows into the empty left column below,
+    so the Introduction can follow the tagline at a fixed 24px. */
+.titleBlock {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--title-col-width) var(--content-col-width);
+  column-gap: var(--gap-title-cols);
+  justify-content: center;
+  padding: var(--space-xl) var(--page-gutter) 0;
+}
+
+/* Absolutely positioned, but still given a grid position: it lands in column
+   one exactly as before, while contributing nothing to the row's height.
+   Spanning a zero-height second row doesn't work — a spanning item still
+   grows the auto row it starts in. */
+.titleCol {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: var(--title-col-width);
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.subheadCol {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* Below the width the two columns fit side by side, the block stacks and the
+   title has to take its real height back. */
+@media (max-width: 1100px) {
+  .titleBlock {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-lg);
+  }
+
+  .titleCol {
+    position: static;
+    grid-row: auto;
+  }
+
+  .subheadCol {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  /* Once the intro row wraps, the empty left column takes a line of its own
+     and its row-gap lands between the tagline and the Introduction. */
+  .introSpacer {
+    display: none;
+  }
+}
+
+.titleCol :global(.label) {
+  margin: 0 0 var(--space-xs);
+}
+
+.titleCol :global(h1) {
+  margin: 0;
+  line-height: var(--leading-project-title);
+}
+
+.titleDates {
+  margin: var(--space-title-dates) 0 0;
+  font-family: var(--font-body);
+  color: var(--subtitle);
+}
+
+/* Mirrors .titleBlock's column layout so Intro aligns directly under the subheading */
+.introRow {
+  display: flex;
+  gap: var(--gap-title-cols);
+  /* The 92px column gap would otherwise apply between rows too, pushing the
+     rule far below the copy. 56px here is the space above the rule; the space
+     below is set on the next block — see `.introRow + *` at the end of this
+     file. */
+  row-gap: var(--space-xl);
+  justify-content: center;
+  padding: var(--space-title-intro) var(--page-gutter) var(--space-xl);
+  flex-wrap: wrap;
+}
+
+/* flex-basis 100% forces its own line; the max-width holds it to the same
+   bounds as the title and content columns above, so it lines up with them
+   instead of running to the page edges. */
+.introRule {
+  flex-basis: 100%;
+  max-width: calc(
+    var(--title-col-width) + var(--gap-title-cols) + var(--content-col-width)
+  );
+  height: 1px;
+  background: var(--line);
+}
+
+.introSpacer {
+  width: var(--title-col-width);
+  flex-shrink: 0;
+}
+
+.introCol {
+  /* min(), not a flat width: below ~630px the fixed column is wider than the
+     viewport minus its gutters, and it pushed the whole page sideways. */
+  width: min(var(--content-col-width), 100%);
+}
+
+.subheadCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  /* min(), not a flat width: below ~630px the fixed column is wider than the
+     viewport minus its gutters, and it pushed the whole page sideways. */
+  width: min(var(--content-col-width), 100%);
+}
+
+/* ===== Case study body (MDX content) ===== */
+.body {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+}
+
+.body :global(p:not(.label) + p) {
+  margin-top: var(--space-md);
+}
+
+.plainText,
+.plainText :global(p) {
+  margin: 0;
+  color: var(--almost-black);
+}
+
+.plainText :global(a) {
+  color: var(--link-accent);
+  text-decoration: underline;
+}
+
+.plainText :global(em) {
+  color: var(--link-accent);
+  font-style: italic;
+}
+
+/* ===== Mockup frame ===== */
+.mockupFrame {
+  border: 6px solid var(--mockup-border-fill);
+  border-radius: var(--radius-mockup);
+  overflow: hidden;
+}
+
+/* Hero art that isn't a single device screen: no stroke, no rounding, and the
+   whole image visible rather than cropped to the frame's box. */
+.mockupBareHero img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.mockupFrame img,
+.mockupFrame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Small bordered image box used within a Section (e.g. Pain Points) */
+.mockupImage {
+  background: var(--mockup-bg);
+  border: 1px solid var(--mockup-border-line);
+  /* The frame is a surface the image sits on, so it needs visible inset on
+     all four sides rather than hugging the image's edges. */
+  padding: var(--space-frame-padding);
+  width: 100%;
+}
+
+/* Sized naturally rather than stretched to fill: the frame now has padding,
+   so forcing the image to 100% height would crop it against the reduced
+   content box. next/image still emits width/height, so space is reserved
+   and nothing shifts on load. */
+.mockupImage img {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* The image carries its own edge, not just the frame's. Lives here rather
+     than on the wrapper so it applies wherever MockupImage is used — inside a
+     Wide block the border used to come from `.wide img`, so the same component
+     rendered with an edge there and without one inside a Section. */
+  border: 1px solid var(--mockup-border-line);
+}
+
+/* Large centered bordered box, e.g. "Final Solution Mockup".
+   Acts as a fixed window onto the video — the video sits inside at full size
+   and is slid around by MockupBlock's zoom/offset props, with everything
+   outside the box clipped. aspect-ratio (not a fixed height) keeps those
+   percentage offsets accurate when the box narrows on smaller screens. */
+.mockupBlock {
+  position: relative;
+  background: var(--mockup-bg);
+  border: 1px solid var(--mockup-border-line);
+  max-width: var(--mockup-block-width);
+  aspect-ratio: var(--mockup-block-ratio);
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* ===== Device mockup =====
+   Same surface as every other mockup on the page, so the laptop sits on a
+   frame rather than floating on the page background. */
+.deviceFrame {
+  background: var(--mockup-bg);
+  border: 1px solid var(--mockup-border-line);
+  padding: var(--space-frame-padding);
+  max-width: var(--mockup-block-width);
+  margin: 0 auto;
+}
+
+.device {
+  position: relative;
+}
+
+.deviceBezel {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Measured off the bezel asset: its screen cutout is 5180x3346 at (665, 472)
+   in a 6510x4290 image. Percentages so the two stay locked at any width. */
+.deviceScreen {
+  position: absolute;
+  left: 10.2151%;
+  top: 11.0023%;
+  width: 79.5699%;
+  height: 77.9953%;
+  /* The recording is a little taller than the 16:10 screen. Fill the screen
+     rather than letterboxing it — a laptop with bars down the sides reads as
+     a mistake — and anchor to the top so the crop comes off the bottom of the
+     page rather than off its nav. */
+  object-fit: cover;
+  object-position: top;
+}
+
+.blockVideo {
+  position: absolute;
+  height: auto;
+  /* The global img/video max-width:100% would clamp the zoom back to the
+     window's width, defeating the crop. */
+  max-width: none;
+}
+
+/* Full-bleed dark media section, e.g. "Final Gif" */
+.fullBleedMedia {
+  background: var(--media-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) 0;
+}
+
+.fullBleedMedia video {
+  max-width: var(--fullbleed-media-width);
+  width: 100%;
+}
+
+.problemText {
+  font-weight: 600;
+}
+
+.problemText :global(p) {
+  color: var(--black);
+  margin: 0;
+}
+
+.problemText :global(em) {
+  color: var(--link-accent);
+  font-style: italic;
+}
+
+/* ===== Full-width block, no label column (e.g. "Creating design components") ===== */
+.wide {
+  max-width: var(--wide-content-width);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--page-gutter);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.wide :global(img) {
+  border: 1px solid var(--mockup-border-line);
+  width: 100%;
+  height: auto;
+}
+
+/* ===== Section (label + content) ===== */
+.section {
+  display: flex;
+  gap: var(--space-2xl);
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--space-xl) var(--page-gutter);
+  flex-wrap: wrap;
+}
+
+.sectionLabel {
+  margin: 0;
+  /* Fixed column: long titles wrap onto a second line rather than pushing
+     the label out over the gutter, which is what nowrap used to do. */
+  width: var(--section-label-width);
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-h1);
+  color: var(--black);
+  font-weight: normal;
+}
+
+.sectionLabelWord {
+  white-space: nowrap;
+}
+
+.sectionContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  max-width: var(--section-content-width);
+}
+
+.sectionContent :global(h3) {
+  margin: 0;
+}
+
+/* ===== Card patterns =====
+   Introduced for the BeReal conversion. The legacy page used its own warm
+   palette; these map onto the case study tokens so the converted page reads
+   as part of the template rather than keeping its old look. */
+
+.cardRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+}
+
+.cardRowThree {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Tops the parent block's 20px gap up to 40px on both sides — used when the
+   row is sandwiched between paragraphs inside one content block. */
+.cardRowSpaced {
+  margin: var(--space-md) 0;
+}
+
+/* Insight — a numbered research finding */
+.insightCard {
+  background: var(--mockup-bg);
+  border-radius: var(--radius-card);
+  padding: var(--space-md) var(--space-card-padding-x);
+}
+
+.insightNum {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  color: var(--link-accent);
+  margin-bottom: 8px;
+}
+
+.insightText {
+  font-size: var(--text-quote);
+  line-height: var(--leading-insight-body);
+  color: var(--black);
+}
+
+/* Stat — a headline figure */
+.statCard {
+  background: var(--mockup-bg);
+  border-radius: var(--radius-card);
+  padding: var(--space-md) var(--space-card-padding-x);
+  text-align: center;
+}
+
+.statNum {
+  font-family: var(--font-display);
+  letter-spacing: var(--tracking-card-title);
+  font-size: var(--text-stat);
+  font-weight: normal;
+  color: var(--black);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.statDesc {
+  font-size: var(--text-note);
+  color: var(--quote-text);
+  line-height: var(--leading-stat-caption);
+}
+
+/* Persona — portrait, name, description */
+.personaCard {
+  background: var(--mockup-bg);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.personaImg {
+  height: var(--persona-image-height);
+  overflow: hidden;
+}
+
+.personaImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Faces sit top-left in these portraits; cropping from the centre cuts
+     them off at this aspect ratio. */
+  object-position: top left;
+}
+
+.personaInfo {
+  padding: var(--space-persona-padding-y) var(--space-persona-padding-x);
+}
+
+.personaName {
+  font-family: var(--font-display);
+  letter-spacing: var(--tracking-card-title);
+  font-size: var(--text-h4);
+  font-weight: normal;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+
+.personaDesc {
+  font-size: var(--text-note);
+  color: var(--quote-text);
+  line-height: var(--leading-card-body);
+}
+
+/* Feature — dark panel, write-up beside its visual */
+/* Stacked full-bleed panels: square, flush against each other, separated by
+   a rule rather than a gap. Content is inset from the page edge by the
+   standard gutter so text and mockups never touch the sides. */
+.featureCard {
+  /* media-bg, not black-bg: these panels are a media surface like
+     FullBleedMedia, and sit darker than the case study's dark hero. */
+  background: var(--media-bg);
+  padding: var(--space-xl) var(--page-gutter);
+}
+
+/* The panel background is full bleed, but its contents sit in the same
+   column every other section uses, so the text does not run wider than the
+   rest of the page. */
+.featureInner {
+  max-width: var(--wide-content-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.featureCard + .featureCard {
+  border-top: 1px solid var(--line);
+}
+
+.featureLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  color: var(--white-subtitle);
+  opacity: 0.45;
+  letter-spacing: var(--tracking-feature-label);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.featureTitle {
+  font-family: var(--font-display);
+  letter-spacing: var(--tracking-card-title);
+  font-size: var(--text-feature-title);
+  font-weight: normal;
+  color: var(--white-subtitle);
+  margin-bottom: 10px;
+  line-height: var(--leading-feature-title);
+}
+
+.featureDesc {
+  font-size: var(--text-quote);
+  color: var(--white-text);
+  line-height: var(--leading-feature-body);
+}
+
+.featureVisual {
+  display: flex;
+  justify-content: center;
+}
+
+.featureVisual img,
+.featureVisual video {
+  max-height: var(--feature-video-height);
+  width: auto;
+  border-radius: var(--radius-media);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .cardRow,
+  .cardRowThree {
+    grid-template-columns: 1fr;
+  }
+
+  .featureCard {
+    padding: var(--space-lg) var(--page-gutter);
+  }
+
+  .featureInner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* These card slots are divs, not paragraphs: MDX wraps multi-line children
+   in a <p>, and a <p> inside a <p> is invalid and breaks hydration. */
+.insightText :global(p),
+.statDesc :global(p),
+.personaDesc :global(p),
+.featureDesc :global(p) {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/* For images that already carry the frame in their own pixels. No surface,
+   no border, no inset — adding any would double the frame. */
+.mockupBare {
+  width: 100%;
+}
+
+.mockupBare img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Light hero. Used when the client's logo is dark and would be unreadable
+   against the default dark surface. */
+.heroLight {
+  background: var(--mockup-bg);
+}
+
+/* Two images read as a single continuous frame: no gap, one shared border,
+   and the inner edge removed so it does not read as two stacked cards. */
+.imagePair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--mockup-bg);
+  border: 1px solid var(--mockup-border-line);
+  padding: var(--space-frame-padding);
+  width: 100%;
+}
+
+.imagePair img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .imagePair {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Persona row — that persona's name and summary on the left, their sheet on
+   the right. The sheets are dense and carry the bio, goals and motivations in
+   their own pixels, so the image column takes the larger share.
+
+   The row starts under the section label rather than under the body copy: it
+   reaches back across the label column and its gap, which buys the sheet
+   another ~360px. Without that the sheets are too small to read. */
+.personaRow {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--space-lg);
+  align-items: start;
+  /* Spans the section exactly: label column, the gap, and the content column.
+     So it starts under the label but ends flush with the section's right edge,
+     level with every other block on the page. Derived from the same tokens
+     the section is built from, so the two can't drift apart. */
+  width: calc(
+    var(--section-label-width) + var(--space-2xl) + var(--section-content-width)
+  );
+  margin-left: calc(-1 * (var(--section-label-width) + var(--space-2xl)));
+}
+
+/* Below the width the break-out needs, the row gives it up and sits in the
+   content column like everything else. */
+@media (max-width: 1200px) {
+  .personaRow {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.personaRowImage {
+  background: var(--mockup-bg);
+  border: 1px solid var(--mockup-border-line);
+  padding: var(--space-frame-padding);
+}
+
+/* The sheet carries its own edge, not just the frame's, so the white sheet
+   reads as a defined object on the frame rather than bleeding into it. */
+.personaRowImage img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--mockup-border-line);
+}
+
+.personaRowBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.personaRowName {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-h4);
+  letter-spacing: var(--tracking-card-title);
+  color: var(--black);
+}
+
+.personaRowDesc {
+  font-size: var(--text-note);
+  color: var(--quote-text);
+  line-height: var(--leading-card-body);
+}
+
+.personaRowDesc :global(p) {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+.personaRowDesc :global(ul) {
+  margin: 0;
+  padding-left: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+@media (max-width: 768px) {
+  .personaRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* introRow owns both sides of the rule closing the Introduction — 56px above
+   from its row-gap, 56px below from its padding-bottom. The block that follows
+   has its own top padding zeroed here so it can't add a second helping: it was
+   56 above and 112 below, because a Section opens with 56px of its own.
+
+   Zeroed rather than normalised to 56 because the blocks that can follow don't
+   agree — Section and Wide carry 56px, MockupBlock carries none — and giving
+   MockupBlock padding would squeeze its aspect-ratio box and shift the
+   zoom-cropped video inside it. Declared last so it wins over .section. */
+.introRow + * {
+  padding-top: 0;
+}
+
+/* ===== Pillars =====
+   Dark full-bleed band, centred. Sits between the design work and the
+   prototype link as a deliberate break in an otherwise light page. */
+.pillars {
+  background: var(--black-bg);
+  padding: var(--space-xl) var(--page-gutter);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  text-align: center;
+}
+
+/* The band's own section title. Same type as .sectionLabel, but centred and
+   on the dark surface — the band is full bleed, so there's no left column for
+   a label to sit in. */
+.pillarsLabel {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-h1);
+  color: var(--white-subtitle);
+}
+
+.pillarsTitle {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-note);
+  letter-spacing: var(--tracking-note);
+  text-transform: uppercase;
+  color: var(--white-subtitle);
+}
+
+.pillarsList {
+  /* Stretched rather than shrink-wrapped, so a centred flex item can't size
+     itself narrower than the line it holds. */
+  align-self: stretch;
+  font-family: var(--font-body);
+  font-size: var(--text-h3);
+  line-height: var(--leading-h3);
+  letter-spacing: var(--tracking-h3);
+  color: var(--white-text);
+}
+
+.pillarsList :global(p) {
+  margin: 0;
+}
+
+/* Markers inside, not hanging: the global ol style indents by 24px and leaves
+   the numbers outside the box, which reads ragged once the band is centred.
+   Block flow rather than a flex column — as flex items the list items get
+   blockified and the marker is pushed onto a line of its own. */
+.pillarsList :global(ol) {
+  list-style-position: inside;
+  padding-left: 0;
+  margin: 0;
+}
+
+.pillarsList :global(li) + :global(li) {
+  margin-top: var(--space-sm);
+}
+
+/* Divides the pillars from whatever closes the band. Held to the content's
+   own width rather than running the full bleed, so it reads as a rule between
+   two beats of the same block. */
+.pillarsRule {
+  width: 100%;
+  max-width: var(--wide-content-width);
+  height: 1px;
+  background: var(--line);
+  opacity: 0.25;
+}
+
+.pillarsFooter {
+  max-width: var(--section-content-width);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--white-text);
+}
+
+.pillarsFooter :global(p) {
+  margin: 0;
+}
+
+.pillarsFooter :global(p) + :global(p) {
+  margin-top: var(--space-md);
+}
+
+/* The band is dark, so the body link colour would sit almost invisibly on it. */
+.pillarsFooter :global(a) {
+  color: var(--white-subtitle);
+  text-decoration: underline;
+}
+
+/* Bullets inside the Introduction. Everywhere else lists sit inside a Section,
+   which already spaces them; the Intro has only ever held prose. */
+.introCol :global(ul) {
+  margin: 0;
+  padding-left: var(--space-box-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}

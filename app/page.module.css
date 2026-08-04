@@ -1,0 +1,386 @@
+/* Work (homepage). Ported from the inline <style> in the legacy index.html.
+   Values are carried over verbatim; only the token names changed, from the
+   page-local --cream/--ink/etc. to the --site-* tokens in styles/tokens.css.
+
+   The classes driven by JavaScript (.fade-up, .custom-cursor, .pixel-trail,
+   nav's .scrolled) are deliberately NOT here — they live as global classes
+   alongside the scripts that query them. */
+
+/* tokens.css sets a global body background for the case study template.
+   The site pages use the warmer cream, so each owns its own surface. */
+.page {
+  background: var(--site-cream);
+  color: var(--site-ink);
+  font-weight: 500;
+  /* tokens.css sets line-height: var(--leading-body) on body for the case
+     study template. These pages sized their text off the browser default,
+     so every text block grew ~12px without this reset. */
+  line-height: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========================================
+   HERO
+   ======================================== */
+.heroDark {
+  position: relative;
+  min-height: 72vh;
+  background: var(--site-cream);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 88px var(--site-gutter) 96px;
+  gap: 24px;
+}
+
+/* Paper texture over the hero */
+.grainOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  opacity: 0.1;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 3;
+  max-width: 700px;
+  /* Inverts against whatever is painted beneath — cream bg reads near-black,
+     dark ink reads near-white. See .heroName/.heroRole/.heroBio colors. */
+  mix-blend-mode: difference;
+}
+
+.heroName {
+  font-family: var(--font-display);
+  font-size: clamp(64px, 9vw, 120px);
+  font-weight: normal;
+  color: var(--white);
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  margin-bottom: 0;
+  padding: 20px 0 20px;
+  overflow: visible;
+  opacity: 0;
+  animation: heroReveal 1.2s 0.5s ease forwards;
+}
+
+.calligraphy {
+  display: block;
+  font-weight: normal;
+  letter-spacing: 0.14em;
+  overflow: visible;
+}
+
+/* Bootzy TM has no CJK glyphs, so this character has always fallen through to
+   the system sans. Pinned to that exact stack so it renders as it does on the
+   live site — --font-display falls back to serif, which would change it. */
+.cjk {
+  font-family: var(--font-display);
+}
+
+.heroRole {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  /* Same treatment as the name and tagline: white through the difference
+     blend, so all three hero texts read near-black on cream and flip to
+     near-white wherever ink passes under them. */
+  color: var(--white);
+  margin-bottom: 0;
+  opacity: 0;
+  animation: heroReveal 1s 0.8s ease forwards;
+}
+
+.heroBio {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--white);
+  max-width: 400px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: heroReveal 1s 1s ease forwards;
+}
+
+/* Same inversion trick as .heroContent, for the tagline below */
+.heroBottom {
+  position: relative;
+  z-index: 3;
+  mix-blend-mode: difference;
+  opacity: 0;
+  animation: heroReveal 1s 1s ease forwards;
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation:
+    heroReveal 1s 1.6s ease forwards,
+    floatCalm 2.5s 2.6s ease-in-out infinite;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  padding: 8px 16px;
+}
+
+.scrollHint:hover span {
+  background: var(--site-ink);
+  border-color: var(--site-ink);
+  color: var(--site-cream);
+}
+
+.scrollHint:focus-visible {
+  outline: 2px solid var(--site-accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Reads as a button, not a whisper — this is the main call to action */
+.scrollHint span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--site-ink);
+  border: 1px solid color-mix(in srgb, var(--site-ink) 30%, transparent);
+  border-radius: 999px;
+  padding: 9px 22px;
+  background: color-mix(in srgb, var(--site-cream) 60%, transparent);
+  backdrop-filter: blur(4px);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--site-ink) 40%, transparent), transparent);
+}
+
+@keyframes floatCalm {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-8px);
+  }
+}
+
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   WORK SECTION
+   ======================================== */
+.workSection {
+  background: var(--site-cream);
+  color: var(--site-ink);
+  padding: var(--site-section-gap) 0;
+}
+
+.workHeader {
+  max-width: calc(var(--site-content-max) + var(--site-gutter) * 2);
+  margin: 0 auto;
+  padding: 0 var(--site-gutter) var(--site-label-gap);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--site-soft);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.workHeader::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--site-rule);
+}
+
+.projects {
+  padding: 0 var(--site-gutter);
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: var(--site-content-max);
+  margin: 0 auto;
+}
+
+.projectCard {
+  border: 1px solid var(--site-rule);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--site-cream);
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.projectCard:hover {
+  border-color: var(--site-soft);
+  box-shadow: 0 8px 40px color-mix(in srgb, var(--site-ink) 6%, transparent);
+}
+
+.projectImage {
+  height: 200px;
+  overflow: hidden;
+  background: var(--site-card-bg);
+  position: relative;
+}
+
+.projectImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.projectCard:hover .projectImage img {
+  transform: scale(1.03);
+}
+
+.projectInfo {
+  padding: 20px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.projectTitle {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  color: var(--site-ink);
+  /* Reserve two lines. Cards in a grid row stretch to the tallest, and the
+     meta row is pinned to the bottom — so a card with a shorter title or
+     description used to absorb all that slack into the gap above its meta
+     row: 16px on most cards, 55px on the two sharing a row with the
+     2-line-title Product Education Guide. Reserving the space here instead
+     keeps that gap identical on every card and keeps the ROLE/YEAR rows
+     aligned across a row. `lh` is the element's own line-height, so this
+     tracks the type scale rather than restating it. */
+  min-height: 2lh;
+}
+
+.projectDesc {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--site-mid);
+  margin-bottom: 16px;
+  /* Three lines, the longest description in the grid. See .projectTitle. */
+  min-height: 3lh;
+}
+
+.projectMeta {
+  display: flex;
+  gap: 24px;
+  /* Deliberately not `margin-top: auto`. Pinning this to the card's bottom
+     made the gap above it absorb whatever slack the grid's equal-height rows
+     produced — 16px on most cards, 55px on the two sharing a row with the
+     Product Education Guide. The gap is now always the 16px below .projectDesc,
+     and any leftover height falls below this row instead. */
+}
+
+.projectMetaLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--site-soft);
+  margin-bottom: 3px;
+}
+
+.projectMetaValue {
+  font-size: 12px;
+  color: var(--site-ink);
+  font-weight: 400;
+}
+
+.projectArrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--site-accent);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+
+.projectCard:hover .projectArrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ========================================
+   RESPONSIVE
+   The gutter itself steps down via --site-gutter in tokens.css; these are
+   the rules that need more than a gutter change.
+   ======================================== */
+@media (max-width: 1100px) {
+  /* 3-up gets tight once the page itself has less room, before cards
+     individually feel cramped — step down a column early. */
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .heroDark {
+    padding: 48px var(--site-gutter);
+  }
+
+  .projectsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroName {
+    font-size: 48px;
+  }
+}

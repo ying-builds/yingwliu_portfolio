@@ -17,10 +17,15 @@
     --soft: #888480;
     --rule: #E4E1DC;
     --accent: #A63D2B;
+    /* Font tokens — mirror styles/tokens.css so the legacy pages and the
+       Next.js components resolve to the same families. */
+    --font-display: 'Bootzy TM', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'PT Mono', monospace;
   }
   html { background: var(--cream); }
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-weight: 500;
     -webkit-font-smoothing: antialiased;
     color: var(--ink);
@@ -31,7 +36,7 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 22px 72px; z-index: 100;
+    padding: 22px 120px; z-index: 100;
     background: rgba(250,248,245,0.92); backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--rule);
   }
@@ -50,13 +55,13 @@
     flex-shrink: 0;
   }
   .nav-logo-text {
-    font-family: 'Bootzy TM', sans-serif;
+    font-family: var(--font-display);
     font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
     font-weight: normal; color: var(--ink);
   }
   .nav-links { display: flex; gap: 28px; }
   .nav-links a {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 12px; letter-spacing: 0.02em; text-decoration: none;
     color: var(--soft); transition: color 0.2s;
   }
@@ -87,7 +92,7 @@
 
   /* Top eyebrow */
   .about-eyebrow {
-    font-family: 'PT Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -138,7 +143,7 @@
 
   /* Main tagline */
   .about-tagline {
-    font-family: 'PT Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 12px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -165,7 +170,7 @@
   }
 
   .bio-label {
-    font-family: 'PT Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -253,7 +258,7 @@
     padding-left: 20px;
   }
   .detail-label {
-    font-family: 'PT Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 9px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -286,7 +291,7 @@
     animation: fadeUp 0.7s 1.15s ease forwards;
   }
   .interests-label {
-    font-family: 'PT Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -328,10 +333,11 @@
   .connect-links {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 28px;
   }
   .connect-links a {
-    font-family: 'PT Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -341,45 +347,73 @@
   }
   .connect-links a:hover { color: var(--ink); }
 
+  /* Resume reads as a button so it stands apart from the plain text links */
+  .connect-links a.connect-resume {
+    color: var(--cream);
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    padding: 9px 20px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .connect-links a.connect-resume:hover {
+    background: transparent;
+    color: var(--ink);
+  }
+
   /* ========================================
      FOOTER
      ======================================== */
+  /* Footer — matches the Figma footer reference / the new Footer.tsx component */
   footer {
-    background: #0A0A09; position: relative; overflow: hidden;
-    padding: 64px 72px; display: flex;
-    justify-content: space-between; align-items: flex-end;
+    border-top: 1px solid #D6D6D6;
   }
-  .footer-left { position: relative; z-index: 1; }
-  .footer-logo { width: 36px; height: 36px; margin-bottom: 12px; opacity: 0.7; }
+  .footer-bar {
+    background: #121212;
+    border-bottom: 1px solid #D6D6D6;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 80px;
+    color: #fff;
+  }
+  .footer-identity { display: flex; align-items: center; }
+  .footer-wordmark { display: flex; flex-direction: column; gap: 2px; line-height: normal; }
+  .footer-wordmark .with-love { font-family: var(--font-body); font-size: 8px; color: #999; }
   .footer-name {
-    font-family: 'Bootzy TM', sans-serif; letter-spacing: 2px; font-size: 18px; font-weight: normal;
-    color: #FAF8F5; margin-bottom: 6px;
+    font-family: var(--font-display); letter-spacing: 2.08px; font-size: 16px; font-weight: normal;
+    color: #fff; margin: 0;
   }
-  .footer-name .with-love {
-    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
-    letter-spacing: 0.04em; color: rgba(250,248,245,0.4);
-    display: block; margin-bottom: 4px;
+  .footer-copy { font-family: var(--font-body); font-size: 8px; color: #999; }
+  .footer-mark { width: 116px; height: 116px; }
+  .footer-nav { display: flex; gap: 96px; }
+  .footer-nav a {
+    font-family: var(--font-body); font-weight: 500; font-size: 12px;
+    text-decoration: none; color: #fff; transition: color 0.2s;
   }
-  .footer-copy { font-size: 11px; color: rgba(250,248,245,0.3); }
-  .footer-links {
-    position: relative; z-index: 1; display: flex; gap: 20px;
-  }
-  .footer-links a {
-    font-family: 'PT Mono', monospace;
-    font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
-    text-decoration: none; color: rgba(250,248,245,0.4);
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: #FAF8F5; }
+  .footer-nav a:hover { color: #f5f5f5; }
+  .footer-social { display: flex; align-items: center; gap: 8px; }
+  .footer-social a { display: flex; transition: opacity 0.2s; }
+  .footer-social a:hover { opacity: 0.7; }
+  .footer-social img { display: block; }
+  .footer-band { display: block; width: 100%; height: auto; aspect-ratio: 1662 / 118; object-fit: cover; }
 
   /* RESPONSIVE */
+  @media (max-width: 1100px) {
+    nav { padding-left: 72px; padding-right: 72px; }
+  }
   @media (max-width: 768px) {
     nav { padding: 22px 24px; }
     .about-hero { padding: 120px 24px 60px; }
     .bio-section, .details-row, .connect-section { padding-left: 24px; padding-right: 24px; }
     .details-row { grid-template-columns: 1fr; gap: 20px; }
     .detail-item + .detail-item { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 16px; }
-    footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+    .footer-bar {
+      height: auto; padding: 32px 24px; gap: 16px;
+      flex-direction: column; align-items: flex-start;
+    }
+    .footer-nav { gap: 32px; }
     .polaroid img { width: 180px; }
   }
 
@@ -430,7 +464,6 @@
   <div class="nav-links">
     <a href="index.html">Work</a>
     <a href="about.html" class="active">About</a>
-    <a href="https://drive.google.com/file/d/1Cp8lhnMe8prGdPc-lXxDxwGE0BRqbDZI/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
   </div>
 </nav>
 
@@ -454,7 +487,7 @@
 <!-- BIO -->
 <section class="bio-section">
   <p class="bio-label">About</p>
-  <p class="bio-text">I grew up loving art in all forms — it was how I made sense of the world. But what actually shaped my instincts as a designer was growing up as an only child of immigrant Chinese parents. It taught me to read the room, pick up on what people aren't saying, and pay attention to whether something is actually working for them.</p>
+  <p class="bio-text">I grew up having fun through all creative mediums (making duct tape wallets and miniature furniture for my LPS, taking every art elective, and playing minecraft with my cousins) it was how I made sense of the world as an only child. But what actually shaped my instincts as a designer was growing up with immigrant Chinese parents. It taught me to read the room, pick up on what people aren't saying, and pay attention to whether something is actually working for them.</p>
   <p class="bio-text">That's what I bring into my work: empathy that's practiced, not performed. I design by listening first — then turning what I hear into something clear and useful.</p>
   <p class="bio-text">Outside of design, you'll find me creating content on <a href="https://www.tiktok.com/@yingwliu" target="_blank" class="bio-link">TikTok</a>, sharing learnings on <a href="https://medium.com/@yywliu" target="_blank" class="bio-link">Medium</a>, or <span class="hover-video-trigger">lifting at the gym<span class="hover-video"><img src="gym-hover.gif" alt="Ying lifting" /></span></span>. Balance keeps everything sharp.</p>
 </section>
@@ -480,14 +513,12 @@
   <p class="interests-label">Products I'd love to work on</p>
   <p class="interests-list">
     <span>Fintech</span>
-    <span>Notion</span>
-    <span>Music &amp; Entertainment</span>
-    <span>Social &amp; Creator</span>
-    <span>Arc Browser</span>
-    <span>Fitness &amp; Wearables</span>
+    <span>Productivity Tools</span>
+    <span>Social Media</span>
+    <span>Consumer-Facing</span>
     <span>Anime</span>
-    <span>Cannabis</span>
     <span>Overwatch</span>
+    <span>Fashion</span>
   </p>
 </section>
 
@@ -497,22 +528,38 @@
     <a href="https://linkedin.com/in/yingwliu" target="_blank">LinkedIn</a>
     <a href="mailto:yxngliu@gmail.com">Email</a>
     <a href="https://medium.com/@yywliu" target="_blank">Medium</a>
+    <a class="connect-resume" href="https://drive.google.com/file/d/1qB0c1SUs6PF13SnWzXNWGTpOsIXcYJKH/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-left">
-    <img src="Ying_Chinese__64px_Red_.png" alt="瑩" class="footer-logo" />
-    <p class="footer-name"><span class="with-love">with love,</span>Ying Liu</p>
-    <p class="footer-copy">© 2026</p>
+  <div class="footer-bar">
+    <div class="footer-identity">
+      <div class="footer-wordmark">
+        <p class="with-love">with love,</p>
+        <p class="footer-name">Ying Liu</p>
+        <p class="footer-copy">©2026</p>
+      </div>
+      <img src="public/images/site/ying-mark-red.png" alt="" class="footer-mark" />
+    </div>
+    <div class="footer-nav">
+      <a href="index.html#work">Work</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://linkedin.com/in/yingwliu" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <img src="public/images/site/linkedin-icon.png" alt="" width="20" height="20" />
+      </a>
+      <a href="mailto:yxngliu@gmail.com" aria-label="Email">
+        <img src="public/images/site/email-icon.png" alt="" width="20" height="20" />
+      </a>
+      <a href="https://medium.com/@yywliu" target="_blank" rel="noopener" aria-label="Medium">
+        <img src="public/images/site/medium-icon.png" alt="" width="24" height="24" />
+      </a>
+    </div>
   </div>
-  <div class="footer-links">
-    <a href="https://linkedin.com/in/yingwliu" target="_blank">LinkedIn</a>
-    <a href="mailto:yxngliu@gmail.com">Email</a>
-    <a href="https://medium.com/@yywliu" target="_blank">Medium</a>
-    <a href="https://drive.google.com/file/d/1Cp8lhnMe8prGdPc-lXxDxwGE0BRqbDZI/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
-  </div>
+  <img src="public/images/site/footer-band.webp" alt="" class="footer-band" />
 </footer>
 
 <script>

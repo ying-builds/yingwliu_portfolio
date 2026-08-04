@@ -1,0 +1,98 @@
+/* Three groups across the dark bar: identity, nav, social.
+   align-items: center handles the vertical alignment — in Figma each group
+   sits at a slightly different top offset, but all three share the same
+   optical centre line. */
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 var(--footer-gutter);
+}
+
+/* Wordmark and the red character sit flush against each other */
+.identity {
+  display: flex;
+  align-items: center;
+}
+
+/* These three lines use the font's natural leading, not the 23px body
+   leading — at 8px that would trip the block to nearly double height. */
+.wordmark {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  line-height: normal;
+}
+
+.withLove {
+  font-family: var(--font-body);
+  font-size: var(--text-micro);
+  color: var(--subtitle);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: var(--text-h4);
+  letter-spacing: var(--tracking-wordmark);
+  color: var(--white);
+}
+
+.copyright {
+  font-family: var(--font-body);
+  font-size: var(--text-micro);
+  color: var(--subtitle);
+}
+
+.mark {
+  width: var(--footer-mark-size);
+  height: var(--footer-mark-size);
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navList a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+.navList a:hover {
+  color: var(--white-subtitle);
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.social a {
+  display: flex;
+}
+
+.social a:hover {
+  opacity: 0.7;
+}
+
+.icon {
+  width: var(--icon-social);
+  height: var(--icon-social);
+}
+
+.iconLg {
+  width: var(--icon-social-lg);
+  height: var(--icon-social-lg);
+}
+
+/* Full-bleed ink band under the bar */
+.band {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--footer-band-ratio);
+  object-fit: cover;
+}
