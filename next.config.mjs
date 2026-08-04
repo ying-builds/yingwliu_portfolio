@@ -15,12 +15,10 @@ const nextConfig = {
         permanent: true,
       },
 
-      // The static site served these four from the repo root. Once Vercel
-      // builds this as a Next app they stop existing — nothing outside
-      // public/ is served — so anything already pointing at them (a résumé
-      // link, a LinkedIn post, someone's bookmark) would 404 without these.
-      // /ticketmaster-casestudy.html needs no rule: it was moved into
-      // public/, so it keeps working at the same URL.
+      // The static site served these from the repo root. Once Vercel builds
+      // this as a Next app they stop existing — nothing outside public/ is
+      // served — so anything already pointing at them (a résumé link, a
+      // LinkedIn post, someone's bookmark) would 404 without these.
       {
         source: "/index.html",
         destination: "/",
@@ -40,6 +38,16 @@ const nextConfig = {
         source: "/gsm-casestudy.html",
         destination: "/work/uc-davis-gsm",
         permanent: true,
+      },
+
+      // This one was live on both the static site and the Next app before its
+      // page was archived, so it has the widest reach of any of them. There is
+      // no replacement case study to land on yet, so it goes to the work grid
+      // — retarget it once the replacements exist. Temporary, hence 307.
+      {
+        source: "/ticketmaster-casestudy.html",
+        destination: "/#work",
+        permanent: false,
       },
     ];
   },

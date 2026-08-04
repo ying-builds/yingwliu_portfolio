@@ -32,18 +32,6 @@ export const unconvertedCards: CaseStudyCard[] = [
     order: 0,
   },
   {
-    slug: "ticketmaster-support-community",
-    href: "/ticketmaster-casestudy.html",
-    title: "Ticketmaster / Support Community",
-    description:
-      "Shaping navigation, content systems, and search to enable scalable client self-service across 14 global markets.",
-    role: "Sole Product Designer",
-    year: "2023 – 2025",
-    image: "/images/site/ipad-mockup.png",
-    imageAlt: "Ticketmaster Support Community",
-    order: 2,
-  },
-  {
     slug: "netflix-party",
     href: "https://davisdesigninteractive.medium.com/netflix-party-case-study-ec1193f097c5",
     title: "Netflix Party / Redesign",

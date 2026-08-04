@@ -150,14 +150,17 @@ Not converting:
   projects later, so the existing case study is not worth porting.
 - Netflix Party — links out to a Medium article and stays as-is.
 
-## TEMPORARY: the legacy Ticketmaster page
-`public/ticketmaster-casestudy.html` and `public/images/ticketmaster-legacy/`
-are a holding measure, NOT a permanent legacy page like Netflix Party. They
-live in public/ only so the homepage card does not 404 after the Vercel
-cutover.
-Remove all of it — the HTML file, the whole images/ticketmaster-legacy folder,
-and the homepage card pointing at it — once the replacement case studies are
-written. Nothing else references those files.
+## The legacy Ticketmaster page — archived, no longer served
+Removed from `public/` after the Vercel cutover. The page, its 11 images and
+the shared `ipad-mockup.png` now live in `_archive/ticketmaster-legacy/`,
+which is outside `public/` and so is never routed. Open the HTML there
+directly; asset paths were made relative so it works standalone. See that
+folder's README for the project metadata worth reusing — role, timeline, team,
+tools — when the replacement case studies get written.
+
+`/ticketmaster-casestudy.html` now redirects to `/#work`, temporarily (307),
+since the URL was live on both the old site and the new one. Point it at the
+real replacement once one exists.
 
 ## QUEUED: tokenise the Work and About type scale
 Do this AFTER UC Davis GSM lands and AFTER the Vercel cutover. It touches
