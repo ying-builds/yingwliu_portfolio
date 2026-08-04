@@ -295,10 +295,11 @@
   font-weight: 600;
   line-height: var(--site-leading-tight);
   letter-spacing: var(--site-tracking-tight);
-  /* Tight against the description on purpose — the two are one thought, the
-     project and the question it asks. Nothing reserves height here any more,
-     so this margin is the whole gap on every card. See .projectMeta. */
-  margin-bottom: 4px;
+  /* Close to the description on purpose — the two are one thought, the
+     project and the question it asks — but not touching. Nothing reserves
+     height here any more, so this margin is the whole gap on every card.
+     See .projectMeta. */
+  margin-bottom: 12px;
   color: var(--black);
 }
 
