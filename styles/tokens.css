@@ -173,6 +173,48 @@
   --site-accent: #a63d2b;     /* links, hover states */
   --site-card-bg: #f0ede8;    /* project card image bg */
 
+  /* Site leading.
+     Unitless, where the case study scale is mostly px (--leading-body: 23px).
+     That difference is deliberate, not drift: these pages set leading as a
+     ratio so it tracks whatever size the element ends up at. Kept separate
+     from the case study leading for the same reason the tracking below is —
+     see the note there. */
+  --site-leading-tight: 1.25;  /* display and card titles */
+  --site-leading-body: 1.5;    /* body copy, card descriptions */
+  --site-leading-loose: 1.75;  /* letterspaced prose */
+  /* The interests list only. Deliberately airier than --site-leading-loose,
+     kept as its own step rather than snapped to it — the extra air is doing
+     visible work on that one list. */
+  --site-leading-airy: 2;
+
+  /* Site tracking.
+     em, where the case study scale is mostly px (--tracking-label: 0.7px).
+     Also deliberate: nearly every use here is letterspaced uppercase, and em
+     keeps the spacing proportional as the label size changes. Freezing these
+     to px would pin the tracking to one size and break it at the others. */
+  --site-tracking-wide: 0.14em;  /* uppercase display and eyebrow labels */
+  --site-tracking-caps: 0.1em;   /* uppercase section and meta labels */
+  --site-tracking-tight: -0.01em; /* card titles, the one negative value */
+
+  /* Site type scale.
+     Eleven sizes spanning nearly every integer from 9 to 15 collapse to five
+     steps. Separate from the case study scale — --text-body is 16px there,
+     15px here — so the two are genuinely different scales rather than one
+     that drifted.
+
+     Six declarations stayed off the scale after review, because snapping them
+     was a visible loss rather than a tidy-up: .heroRole and .scrollHint span
+     at 11px, .projectMetaLabel and .detailLabel at 9px, .detailValue at 13px,
+     .interestsList at 14px. Each carries a comment saying why. They are
+     deliberate exceptions, not literals waiting to be tokenised — adding a
+     step for each would take the scale to nine sizes and make it a lookup
+     table again. */
+  --site-text-micro: 10px;    /* uppercase labels, eyebrows, meta labels */
+  --site-text-small: 12px;    /* card descriptions, meta values */
+  --site-text-body: 15px;     /* bio and hero prose */
+  --site-text-title: 17px;    /* project card titles */
+  --site-text-display: 48px;  /* hero wordmark below 768px */
+
   /* Site layout — the work section's label and card grid derive their
      horizontal bounds from these, so they can't drift out of alignment. */
   --site-gutter: 120px;

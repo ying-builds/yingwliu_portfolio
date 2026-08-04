@@ -62,8 +62,8 @@
   font-size: clamp(64px, 9vw, 120px);
   font-weight: normal;
   color: var(--white);
-  letter-spacing: 0.14em;
-  line-height: 1.2;
+  letter-spacing: var(--site-tracking-wide);
+  line-height: var(--site-leading-tight);
   margin-bottom: 0;
   padding: 20px 0 20px;
   overflow: visible;
@@ -74,7 +74,7 @@
 .calligraphy {
   display: block;
   font-weight: normal;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--site-tracking-wide);
   overflow: visible;
 }
 
@@ -87,8 +87,11 @@
 
 .heroRole {
   font-family: var(--font-mono);
+  /* Off the scale on purpose. --site-text-micro is 10px; snapping this down
+     from 11px thinned the outlined role chip enough to notice, so it keeps
+     its own value. See the note above --site-text-micro in tokens.css. */
   font-size: 11px;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
   /* Same treatment as the name and tagline: white through the difference
      blend, so all three hero texts read near-black on cream and flip to
@@ -101,9 +104,9 @@
 
 .heroBio {
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: var(--site-text-body);
   font-weight: 500;
-  line-height: 1.55;
+  line-height: var(--site-leading-body);
   color: var(--white);
   max-width: 400px;
   margin: 0 auto;
@@ -155,8 +158,10 @@
 /* Reads as a button, not a whisper — this is the main call to action */
 .scrollHint span {
   font-family: var(--font-mono);
+  /* Off the scale on purpose, same as .heroRole — this is the main call to
+     action and 10px undersells it. */
   font-size: 11px;
-  letter-spacing: 0.16em;
+  letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
   color: var(--black);
   border: 1px solid color-mix(in srgb, var(--black) 30%, transparent);
@@ -211,8 +216,8 @@
   margin: 0 auto;
   padding: 0 var(--site-gutter) var(--site-label-gap);
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
+  font-size: var(--site-text-micro);
+  letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
   color: var(--subtitle);
   display: flex;
@@ -286,53 +291,60 @@
 
 .projectTitle {
   font-family: var(--font-body);
-  font-size: 17px;
+  font-size: var(--site-text-title);
   font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  margin-bottom: 8px;
+  line-height: var(--site-leading-tight);
+  letter-spacing: var(--site-tracking-tight);
+  /* Close to the description on purpose — the two are one thought, the
+     project and the question it asks — but not touching. Nothing reserves
+     height here any more, so this margin is the whole gap on every card.
+     See .projectMeta. */
+  margin-bottom: 12px;
   color: var(--black);
-  /* Reserve two lines. Cards in a grid row stretch to the tallest, and the
-     meta row is pinned to the bottom — so a card with a shorter title or
-     description used to absorb all that slack into the gap above its meta
-     row: 16px on most cards, 55px on the two sharing a row with the
-     2-line-title Product Education Guide. Reserving the space here instead
-     keeps that gap identical on every card and keeps the ROLE/YEAR rows
-     aligned across a row. `lh` is the element's own line-height, so this
-     tracks the type scale rather than restating it. */
-  min-height: 2lh;
 }
 
 .projectDesc {
-  font-size: 12px;
-  line-height: 1.5;
+  font-size: var(--site-text-small);
+  line-height: var(--site-leading-body);
   color: var(--almost-black);
-  margin-bottom: 16px;
-  /* Three lines, the longest description in the grid. See .projectTitle. */
+  /* The break between what the project is and how it was made. Wider than the
+     12px holding the title to this description, so the meta row reads as a
+     separate register rather than a third paragraph. */
+  margin-bottom: 24px;
+  /* Reserve three lines — the longest description in the grid. Keeps the
+     description block the same height on every card so the gap this margin
+     opens above the meta row is measured from the same place. `lh` is the
+     element's own line-height, so it tracks the type scale. */
   min-height: 3lh;
 }
 
 .projectMeta {
   display: flex;
   gap: 24px;
-  /* Deliberately not `margin-top: auto`. Pinning this to the card's bottom
-     made the gap above it absorb whatever slack the grid's equal-height rows
-     produced — 16px on most cards, 55px on the two sharing a row with the
-     Product Education Guide. The gap is now always the 16px below .projectDesc,
-     and any leftover height falls below this row instead. */
+  /* Pinned to the bottom so the ROLE/YEAR rows line up across a grid row.
+     Cards stretch to the tallest in their row, and titles run to one or two
+     lines, so something has to absorb that slack. It used to be absorbed by a
+     reserved second title line, which left a 30px hole between the title and
+     the description on every one-line-title card — a gap inside a pair that
+     reads as one thought. The slack now falls here instead, above a break
+     that already exists. */
+  margin-top: auto;
 }
 
 .projectMetaLabel {
   font-family: var(--font-mono);
+  /* Off the scale on purpose. This label has to stay clearly smaller than the
+     12px value under it; at --site-text-micro's 10px the pair nearly flattens
+     and the value stops reading as the primary of the two. */
   font-size: 9px;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--site-tracking-caps);
   text-transform: uppercase;
   color: var(--subtitle);
-  margin-bottom: 3px;
+  margin-bottom: 5px;
 }
 
 .projectMetaValue {
-  font-size: 12px;
+  font-size: var(--site-text-small);
   color: var(--black);
   font-weight: 400;
 }
@@ -343,8 +355,8 @@
   gap: 8px;
   margin-top: 16px;
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.04em;
+  font-size: var(--site-text-micro);
+  letter-spacing: var(--site-tracking-caps);
   color: var(--site-accent);
   opacity: 0;
   transform: translateX(-8px);
@@ -381,6 +393,6 @@
   }
 
   .heroName {
-    font-size: 48px;
+    font-size: var(--site-text-display);
   }
 }
