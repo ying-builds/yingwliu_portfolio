@@ -173,6 +173,20 @@
   --site-accent: #a63d2b;     /* links, hover states */
   --site-card-bg: #f0ede8;    /* project card image bg */
 
+  /* Site leading.
+     Unitless, where the case study scale is mostly px (--leading-body: 23px).
+     That difference is deliberate, not drift: these pages set leading as a
+     ratio so it tracks whatever size the element ends up at. Kept separate
+     from the case study leading for the same reason the tracking below is —
+     see the note there. */
+  --site-leading-tight: 1.25;  /* display and card titles */
+  --site-leading-body: 1.5;    /* body copy, card descriptions */
+  --site-leading-loose: 1.75;  /* letterspaced prose */
+  /* The interests list only. Deliberately airier than --site-leading-loose,
+     kept as its own step rather than snapped to it — the extra air is doing
+     visible work on that one list. */
+  --site-leading-airy: 2;
+
   /* Site layout — the work section's label and card grid derive their
      horizontal bounds from these, so they can't drift out of alignment. */
   --site-gutter: 120px;
