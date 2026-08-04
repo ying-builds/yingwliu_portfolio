@@ -200,7 +200,15 @@
      Eleven sizes spanning nearly every integer from 9 to 15 collapse to five
      steps. Separate from the case study scale — --text-body is 16px there,
      15px here — so the two are genuinely different scales rather than one
-     that drifted. */
+     that drifted.
+
+     Six declarations stayed off the scale after review, because snapping them
+     was a visible loss rather than a tidy-up: .heroRole and .scrollHint span
+     at 11px, .projectMetaLabel and .detailLabel at 9px, .detailValue at 13px,
+     .interestsList at 14px. Each carries a comment saying why. They are
+     deliberate exceptions, not literals waiting to be tokenised — adding a
+     step for each would take the scale to nine sizes and make it a lookup
+     table again. */
   --site-text-micro: 10px;    /* uppercase labels, eyebrows, meta labels */
   --site-text-small: 12px;    /* card descriptions, meta values */
   --site-text-body: 15px;     /* bio and hero prose */

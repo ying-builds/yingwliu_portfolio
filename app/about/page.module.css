@@ -247,7 +247,9 @@
 
 .detailLabel {
   font-family: var(--font-mono);
-  font-size: var(--site-text-micro);
+  /* Off the scale on purpose, same reasoning as .projectMetaLabel on the
+     homepage: it has to stay clearly smaller than the 13px value beneath it. */
+  font-size: 9px;
   letter-spacing: var(--site-tracking-caps);
   text-transform: uppercase;
   color: var(--subtitle);
@@ -255,7 +257,9 @@
 }
 
 .detailValue {
-  font-size: var(--site-text-small);
+  /* Off the scale on purpose. At --site-text-small's 12px this sat too close
+     to its own label and "Open to opportunities" read as fine print. */
+  font-size: 13px;
   color: var(--black);
   line-height: var(--site-leading-body);
 }
@@ -291,7 +295,9 @@
 }
 
 .interestsList {
-  font-size: var(--site-text-body);
+  /* Off the scale on purpose. --site-text-body is 15px, which crowded this
+     list against the airier line-height it already carries. */
+  font-size: 14px;
   line-height: var(--site-leading-airy);
   color: var(--black);
 }
