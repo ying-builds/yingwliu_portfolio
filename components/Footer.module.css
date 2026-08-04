@@ -28,7 +28,7 @@
 .withLove {
   font-family: var(--font-body);
   font-size: var(--text-micro);
-  color: var(--subtitle);
+  color: var(--footer-muted);
 }
 
 .name {
@@ -41,7 +41,7 @@
 .copyright {
   font-family: var(--font-body);
   font-size: var(--text-micro);
-  color: var(--subtitle);
+  color: var(--footer-muted);
 }
 
 .mark {

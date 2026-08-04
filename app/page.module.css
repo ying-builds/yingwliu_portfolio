@@ -10,7 +10,7 @@
    The site pages use the warmer cream, so each owns its own surface. */
 .page {
   background: var(--site-cream);
-  color: var(--site-ink);
+  color: var(--black);
   font-weight: 500;
   /* tokens.css sets line-height: var(--leading-body) on body for the case
      study template. These pages sized their text off the browser default,
@@ -141,8 +141,8 @@
 }
 
 .scrollHint:hover span {
-  background: var(--site-ink);
-  border-color: var(--site-ink);
+  background: var(--black);
+  border-color: var(--black);
   color: var(--site-cream);
 }
 
@@ -158,8 +158,8 @@
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--site-ink);
-  border: 1px solid color-mix(in srgb, var(--site-ink) 30%, transparent);
+  color: var(--black);
+  border: 1px solid color-mix(in srgb, var(--black) 30%, transparent);
   border-radius: 999px;
   padding: 9px 22px;
   background: color-mix(in srgb, var(--site-cream) 60%, transparent);
@@ -173,7 +173,7 @@
 .scrollLine {
   width: 1px;
   height: 32px;
-  background: linear-gradient(to bottom, color-mix(in srgb, var(--site-ink) 40%, transparent), transparent);
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--black) 40%, transparent), transparent);
 }
 
 @keyframes floatCalm {
@@ -202,7 +202,7 @@
    ======================================== */
 .workSection {
   background: var(--site-cream);
-  color: var(--site-ink);
+  color: var(--black);
   padding: var(--site-section-gap) 0;
 }
 
@@ -214,7 +214,7 @@
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--site-soft);
+  color: var(--subtitle);
   display: flex;
   align-items: center;
   gap: 14px;
@@ -255,8 +255,8 @@
 }
 
 .projectCard:hover {
-  border-color: var(--site-soft);
-  box-shadow: 0 8px 40px color-mix(in srgb, var(--site-ink) 6%, transparent);
+  border-color: var(--subtitle);
+  box-shadow: 0 8px 40px color-mix(in srgb, var(--black) 6%, transparent);
 }
 
 .projectImage {
@@ -291,7 +291,7 @@
   line-height: 1.25;
   letter-spacing: -0.01em;
   margin-bottom: 8px;
-  color: var(--site-ink);
+  color: var(--black);
   /* Reserve two lines. Cards in a grid row stretch to the tallest, and the
      meta row is pinned to the bottom — so a card with a shorter title or
      description used to absorb all that slack into the gap above its meta
@@ -306,7 +306,7 @@
 .projectDesc {
   font-size: 12px;
   line-height: 1.5;
-  color: var(--site-mid);
+  color: var(--almost-black);
   margin-bottom: 16px;
   /* Three lines, the longest description in the grid. See .projectTitle. */
   min-height: 3lh;
@@ -327,13 +327,13 @@
   font-size: 9px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--site-soft);
+  color: var(--subtitle);
   margin-bottom: 3px;
 }
 
 .projectMetaValue {
   font-size: 12px;
-  color: var(--site-ink);
+  color: var(--black);
   font-weight: 400;
 }
 
