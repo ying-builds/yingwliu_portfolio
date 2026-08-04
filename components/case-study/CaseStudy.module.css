@@ -148,6 +148,7 @@
   .introSpacer {
     display: none;
   }
+
 }
 
 .titleCol :global(.label) {
@@ -894,4 +895,35 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
+}
+
+/* ===== Narrow-viewport alignment =====
+   Declared at the end of the file on purpose. A media query adds no
+   specificity, so these lose to any same-specificity rule that comes after
+   them in source order — and .introRow and .section are both declared well
+   below the @media block near the top. Putting the same overrides up there
+   applied flex-direction (not redeclared later) while silently dropping
+   justify-content and gap (both redeclared later), which is exactly the kind
+   of half-applied fix that looks done and isn't.
+
+   Breakpoint matches the one above, where the title block stops being two
+   columns and snaps to the page gutter. Everything below it should follow. */
+@media (max-width: 1100px) {
+  /* Centring is right above this width, where it mirrors the title block's
+     two centred columns. Below it .introSpacer is hidden and this is a lone
+     column, so centring mirrors nothing — it floated the Introduction up to
+     95px right of the tagline directly above it. */
+  .introRow {
+    justify-content: flex-start;
+  }
+
+  /* Stack deliberately rather than leaving it to flex-wrap. Wrapping only
+     kicked in near 830px, so between there and 1100px the label and its
+     content sat in a centred row while the title block above had already
+     snapped to the gutter. And once it did wrap, --space-2xl stayed the gap:
+     190px of column gap became 190px of empty space under a section title. */
+  .section {
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
 }
