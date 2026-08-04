@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./CaseStudy.module.css";
+import { PROTECTED_MEDIA_PREFIX } from "../../lib/protected";
 
 export default function MockupImage({
   src,
@@ -25,17 +26,35 @@ export default function MockupImage({
   const h = Number(height);
   const known = Number.isFinite(w) && Number.isFinite(h) && w > 0 && h > 0;
 
+  // next/image optimises through a server-side fetch back to this same app,
+  // and that internal request does not carry the visitor's browser cookies.
+  // A gated image would 404 through it even for someone who has unlocked the
+  // page. A plain <img> is fetched by the browser directly, cookie included.
+  const isProtected = src.startsWith(PROTECTED_MEDIA_PREFIX);
+
   return (
     // No aspect-ratio here: the frame has padding, and aspect-ratio applies to
     // the border box, so it would squeeze the image area rather than describe
     // it. The intrinsic width/height below reserve the space instead.
     <div className={isPreframed ? styles.mockupBare : styles.mockupImage}>
-      <Image
-        src={src}
-        alt={alt}
-        width={known ? w : 1200}
-        height={known ? h : 900}
-      />
+      {isProtected ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={src}
+          alt={alt}
+          width={known ? w : undefined}
+          height={known ? h : undefined}
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <Image
+          src={src}
+          alt={alt}
+          width={known ? w : 1200}
+          height={known ? h : 900}
+        />
+      )}
     </div>
   );
 }
