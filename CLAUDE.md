@@ -151,9 +151,13 @@ still resolves, it just meets the gate first.
   on purpose — it is not drift, and an audit should leave it there.
 
 ## Current task
-Nothing outstanding. The Vercel cutover is complete and the Ticketmaster
-legacy page has been archived. Next up, when the user asks for it: the
-Work/About type-scale tokenisation proposal (see below).
+Nothing outstanding. The Vercel cutover is complete, the Ticketmaster legacy
+page is archived, the Work/About colour and type-scale passes have shipped,
+and the case study pages have had their mobile and tablet layout fixed.
+
+Still open, in no fixed order — see "What is left" at the end of this file:
+the ~40 spacing literals, the temporary Ticketmaster redirect, the
+replacement Ticketmaster case studies, and the footer's mobile breakpoint.
 
 ## Case studies to convert (in order)
 1. Product Guide / Client Product Education Guide — DONE, the reference build
@@ -195,40 +199,72 @@ tools — when the replacement case studies get written.
 since the URL was live on both the old site and the new one. Point it at the
 real replacement once one exists.
 
-## QUEUED: tokenise the Work and About type scale
-Do this AFTER UC Davis GSM lands and AFTER the Vercel cutover. It touches
-nearly every visual on the two most-visited pages, and running it earlier means
-the first live deploy carries visual drift nobody has reviewed against a
-working reference.
+## The Work/About type scale — DONE
+45 type literals across 25 distinct values collapsed into a small scale:
+`--site-text-*` (5 sizes), `--site-tracking-*` (3), `--site-leading-*` (4).
+They live in tokens.css, separate from the case study scale on purpose —
+`--text-body` is 16px there and `--site-text-body` is 15px here, so the two
+are genuinely different scales rather than one that drifted.
 
-Scope: **type only** — font-size, letter-spacing, line-height.
-- 45 type literals across 25 distinct values: 9 font sizes (9, 10, 11, 12, 13,
-  14, 15, 17, 48px), 8 letter-spacings, 8 line-heights.
-- Rationalise them into a real scale (roughly 5 sizes, 3 tracking values, 3
-  leading values), do not transcribe one token per literal. A token per value
-  is a lookup table, not a system, and would nearly double tokens.css.
-- Snapping moves pixels — 9 -> 10px, 13 -> 14px, 1.55 -> 1.5. Every step needs
-  review; a pixel diff cannot validate this the way it validates a pure
-  refactor.
+**Six declarations stayed off the scale after review**, because snapping them
+was a visible loss rather than a tidy-up: `.heroRole` and `.scrollHint span`
+at 11px, `.projectMetaLabel` and `.detailLabel` at 9px, `.detailValue` at
+13px, `.interestsList` at 14px. Each carries a comment saying why. They are
+deliberate exceptions, not literals waiting to be tokenised — a step for each
+would take the scale to nine sizes and make it a lookup table again. Leave
+them alone.
 
-Explicitly out of scope:
-- The ~40 spacing literals. 17 are scale steps that can follow later; 12 are
-  one-off component dimensions (560px bio width, 220px polaroid, 340px, 700px)
-  that are a component's size, not a design token.
-- The two `clamp()` hero wordmarks — deliberately fluid.
+`--site-leading-airy` (line-height 2) exists for `.interestsList` alone, for
+the same reason.
 
+### Body copy colour — DONE
+Body text once used three colours for one role: `--site-body` #3d3a36 on
+About, `--site-mid` #5c5955 on the homepage cards, `--almost-black` #333333
+in case studies. Unified on **`--almost-black` #333333**. `--site-ink`,
+`--site-mid`, `--site-body` and `--site-soft` are all deleted — if you find a
+reference to one, it is a mistake, not a token to restore.
+
+Muted labels standardised on `--footer-muted` #999999 for dark backgrounds,
+and `--subtitle` was darkened to #717171, the lightest grey that clears WCAG
+AA 4.5:1 on both light surfaces. Measure contrast against the actual
+background, not against white — #767676 reads as passing on paper and fails
+on cream.
+
+## Design system rules that still apply
 Do NOT map site literals onto case study tokens because the numbers match.
 38 of them collide by coincidence — `padding: 16px` matches `--radius-media`,
 `width: 320px` matches `--persona-image-height`, `height: 200px` matches
 `--footer-height`. Wiring those up couples two deliberately separate systems,
 so changing a persona image height would silently resize an About element.
+This matters most for the spacing pass below, since spacing is where nearly
+all of those collisions live.
 
-### Three greys for body copy — a real bug, resolve in the same pass
-Body text uses three different colours depending on where it renders:
-- `--site-body` #3d3a36 — About page body copy
-- `--site-mid` #5c5955 — homepage card descriptions
-- `--almost-black` #333333 — case study body copy
+The two `clamp()` hero wordmarks are deliberately fluid. Leave them.
 
-One role, three values. This is drift, not three deliberate choices, and
-tokenising around it would only give the inconsistency names. Pick one (or
-one per system, deliberately) as part of the type pass.
+## What is left
+Nothing here is blocking and nothing is urgent.
+
+**The ~40 spacing literals.** The remaining tokenisation work, deferred out
+of the type pass on purpose. Roughly 17 are real scale steps worth
+tokenising; roughly 12 are one-off component dimensions (560px bio width,
+220px polaroid, 340px, 700px) that are a component's size, not a design
+token — those should stay literals. The card and mobile work since then added
+a few more: 12px, 24px and 5px on the homepage cards, and 24px, 88px and 8px
+in the footer's mobile breakpoint.
+
+**`/ticketmaster-casestudy.html` is a temporary 307** to `/#work`, because
+the URL was live on both the old site and the new one. Point it at the real
+replacement once one exists.
+
+**The replacement Ticketmaster case studies.** Not started. The Support
+Community work is being broken out into separate new projects rather than
+ported. `_archive/ticketmaster-legacy/README` holds the metadata worth
+reusing — role, timeline, team, tools. Shipping one of these unblocks the
+redirect above.
+
+**The footer's mobile breakpoint.** The mobile footer treatment fires at
+768px because that is where `--site-gutter` already steps down. By
+measurement the old layout only stops fitting at **577px**, so iPad portrait
+gets a phone footer — smaller seal, stacked nav — that it does not need. A
+breakpoint nearer 640px would keep the tablet row intact. One line either
+way; left at 768px pending a look on a real tablet.
