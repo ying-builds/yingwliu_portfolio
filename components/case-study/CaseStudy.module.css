@@ -922,8 +922,14 @@
      content sat in a centred row while the title block above had already
      snapped to the gutter. And once it did wrap, --space-2xl stayed the gap:
      190px of column gap became 190px of empty space under a section title. */
+  /* --space-md is the heading-to-body gap, which is exactly what this becomes
+     once the label sits above its content rather than beside it. 40px here
+     read as a blank line under a 32px display heading: the title floated
+     between two sections instead of belonging to the one under it. Sections
+     are 112px apart, so at 20px the title binds to its own body more than
+     five times as strongly as to the section above. */
   .section {
     flex-direction: column;
-    gap: var(--space-lg);
+    gap: var(--space-md);
   }
 }
