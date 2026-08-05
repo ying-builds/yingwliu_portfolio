@@ -450,6 +450,53 @@ h3 {
   width: 100%;
 }
 
+/* The hero meta rows pair into a 2x2 on phones, where a single 243px column
+   of four stacked rows leaves the hero very tall and half the width empty.
+   Declared after .meta-details-* and .divider above, since a media query
+   carries no extra specificity.
+
+   Reading order in the markup is ROLE, TIMELINE, TOOLS, TEAM and stays that
+   way — reordering the markup would change the vertical order on desktop
+   too. `order` rearranges the grid to read ROLE / TEAM across the top and
+   TIMELINE / TOOLS beneath, which pairs the two short values with the two
+   long ones. It does mean the visual order and the screen-reader order
+   differ for these four rows; on a block this small that is the better trade
+   against restyling desktop. */
+@media (max-width: 600px) {
+  .meta-details-dark,
+  .meta-details-light {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md) var(--space-lg);
+  }
+
+  .meta-details-dark > *:nth-child(1),
+  .meta-details-light > *:nth-child(1) {
+    order: 1; /* ROLE */
+  }
+  .meta-details-dark > *:nth-child(2),
+  .meta-details-light > *:nth-child(2) {
+    order: 3; /* TIMELINE */
+  }
+  .meta-details-dark > *:nth-child(3),
+  .meta-details-light > *:nth-child(3) {
+    order: 4; /* TOOLS */
+  }
+  .meta-details-dark > *:nth-child(4),
+  .meta-details-light > *:nth-child(4) {
+    order: 2; /* TEAM */
+  }
+
+  /* Each row after the first carries a rule above it. Stacked that reads as
+     a separator; in a 2x2 it would put a rule over three cells out of four,
+     including the top-right one, with none over the top-left. The grid gaps
+     do the separating instead. */
+  .meta-details-dark .divider,
+  .meta-details-light .divider {
+    display: none;
+  }
+}
+
 /* A "how might we" line following a statement. Italic to set it apart from the
    body, but deliberately not `em` — that carries the inline accent colour,
    which is for emphasising a word, not styling a whole sentence. */

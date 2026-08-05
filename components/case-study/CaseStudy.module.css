@@ -933,3 +933,48 @@
     gap: var(--space-md);
   }
 }
+
+/* ===== Hero at narrow widths =====
+   End of file for the same reason as the block above: .heroInner, .heroMeta
+   and .mockupFrame are all declared near the top, and a media query adds no
+   specificity.
+
+   The hero is a wrapping flex row of a 243px meta column and the mockup,
+   separated by --gap-hero-cols. At 152px that gap is a fifth of a tablet
+   row, so the pair summed to 1035px and wrapped below ~1115px — dropping the
+   photo full-width under the details with a column of dead space beside
+   them. Narrowing the gap and refusing to wrap keeps them side by side,
+   details left and photo right, which is the order they are already in. */
+@media (max-width: 1100px) and (min-width: 601px) {
+  .heroInner {
+    flex-wrap: nowrap;
+    gap: var(--space-lg);
+  }
+
+  /* The meta column is a fixed measure; the mockup takes what is left.
+     min-width: 0 because a flex item will not shrink below its content's
+     intrinsic width without it, which would put the row back over budget. */
+  .heroMeta {
+    flex: 0 0 var(--hero-meta-width);
+  }
+
+  .mockupFrame,
+  .mockupBareHero {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+/* Below this the two no longer fit beside each other: 243px of meta plus a
+   usable photo plus the gutters runs out of room around 600px. Stack, and
+   let the meta block use the full width so its rows can pair up — see the
+   2x2 grid in tokens.css. */
+@media (max-width: 600px) {
+  .heroInner {
+    gap: var(--space-lg);
+  }
+
+  .heroMeta {
+    width: 100%;
+  }
+}
