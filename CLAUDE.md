@@ -262,9 +262,22 @@ ported. `_archive/ticketmaster-legacy/README` holds the metadata worth
 reusing — role, timeline, team, tools. Shipping one of these unblocks the
 redirect above.
 
-**The footer's mobile breakpoint.** The mobile footer treatment fires at
-768px because that is where `--site-gutter` already steps down. By
-measurement the old layout only stops fitting at **577px**, so iPad portrait
-gets a phone footer — smaller seal, stacked nav — that it does not need. A
-breakpoint nearer 640px would keep the tablet row intact. One line either
-way; left at 768px pending a look on a real tablet.
+## The stacked case study layout — decided, do not drift
+Below 1100px the case study title block, Introduction and sections all stack
+and sit on the page gutter. Two values in there were chosen deliberately and
+should not be "tidied" back to the nearest round number:
+
+- **Section title to its own body: `--space-md`, 20px.** Sections are 112px
+  apart, so this holds the ratio at about 5.6:1 and binds a title to the
+  content under it. It was 40px first, which read as a blank line under a
+  32px display heading and left the title floating between two sections.
+- **The overrides live at the END of CaseStudy.module.css**, not in the
+  `@media` block near the top. A media query adds no specificity, so an
+  override there loses to any same-specificity rule declared later in the
+  file — and `.introRow` and `.section` are both declared further down.
+  Putting them up top applied `flex-direction` and silently dropped
+  `justify-content` and `gap`. Half-applied, and it looked done.
+
+The footer's mobile treatment fires at 768px, matching where `--site-gutter`
+steps down. The old layout only stops fitting at 577px, so iPad portrait gets
+a phone footer it does not strictly need — reviewed on a tablet and kept.
