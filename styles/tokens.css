@@ -467,7 +467,11 @@ h3 {
   .meta-details-light {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-md) var(--space-lg);
+    /* No column gap. The rule under the first row has to run unbroken across
+       both cells, and a gap would cut it in half. The left column carries the
+       spacing as padding instead, so the two borders meet. */
+    column-gap: 0;
+    row-gap: var(--space-md);
   }
 
   .meta-details-dark > *:nth-child(1),
@@ -487,10 +491,39 @@ h3 {
     order: 2; /* TEAM */
   }
 
-  /* Each row after the first carries a rule above it. Stacked that reads as
-     a separator; in a 2x2 it would put a rule over three cells out of four,
-     including the top-right one, with none over the top-left. The grid gaps
-     do the separating instead. */
+  /* The column gutter, as padding rather than a grid gap so the rule below
+     can run the full width. Split half and half — putting all 40px on the
+     left column would leave its text 40px narrower than the right's, which
+     wrapped "Lead UX Designer" for no reason. Half each keeps the two
+     measures equal and still totals the same gutter. */
+  .meta-details-dark > *:nth-child(1),
+  .meta-details-light > *:nth-child(1),
+  .meta-details-dark > *:nth-child(2),
+  .meta-details-light > *:nth-child(2) {
+    padding-right: var(--space-md);
+  }
+  .meta-details-dark > *:nth-child(3),
+  .meta-details-light > *:nth-child(3),
+  .meta-details-dark > *:nth-child(4),
+  .meta-details-light > *:nth-child(4) {
+    padding-left: var(--space-md);
+  }
+
+  /* The first row — ROLE and TEAM. Grid items stretch to their row's height,
+     so these two borders land on the same line and read as one rule beneath
+     the pair. */
+  .meta-details-dark > *:nth-child(1),
+  .meta-details-light > *:nth-child(1),
+  .meta-details-dark > *:nth-child(4),
+  .meta-details-light > *:nth-child(4) {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: var(--space-md);
+  }
+
+  /* Each row after the first carries its own rule above it. Stacked that
+     reads as a separator; in a 2x2 it would put a rule over three cells out
+     of four, including the top-right one, with none over the top-left. The
+     border above replaces them. */
   .meta-details-dark .divider,
   .meta-details-light .divider {
     display: none;
