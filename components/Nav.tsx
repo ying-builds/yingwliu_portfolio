@@ -16,6 +16,11 @@ export default function Nav() {
           <a href="/#work">Work</a>
         </li>
         <li>
+          <Link href="/play" prefetch={false}>
+            Play
+          </Link>
+        </li>
+        <li>
           <Link href="/about" prefetch={false}>
             About
           </Link>

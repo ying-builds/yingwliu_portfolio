@@ -1,0 +1,58 @@
+/* The positioning context every annotation resolves against. Without this the
+   absolutely positioned doodles would anchor to the nearest positioned
+   ancestor — in practice the page — and slide off their image on any reflow. */
+.item {
+  position: relative;
+  margin: 0;
+  /* Sized by the work image until the collage layout arrives. */
+  width: fit-content;
+  max-width: 100%;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Doodles and handwritten labels.
+
+   Recoloured, not shipped in colour: mask-image reads only the PNG's alpha
+   channel, so the artwork acts as a stencil and the background paints through
+   it in --site-accent. Whatever black or dark grey the file contains never
+   reaches the screen, which means the colour lives in tokens.css rather than
+   baked into every export.
+
+   A filter chain (invert/sepia/hue-rotate) could approximate a colour here but
+   cannot land on an exact hex, and it would not be legible six months from
+   now. Safari still wants the -webkit- prefix, hence the pairs. */
+.annotation {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  background-color: var(--site-accent);
+  -webkit-mask-image: var(--annotation-src);
+  mask-image: var(--annotation-src);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  transform: rotate(var(--annotation-rotate, 0deg));
+}
+
+/* Gives .annotation its height. The mask has no intrinsic size, so a span with
+   only a percentage width would be zero pixels tall. This is the same file the
+   mask uses — one request, cached — kept in the layout for its aspect ratio and
+   hidden so its own dark pixels never paint over the recoloured background. */
+.sizer {
+  display: block;
+  width: 100%;
+  height: auto;
+  visibility: hidden;
+}
+
+/* Labels sit above the doodles they annotate. Same treatment otherwise —
+   split out so the two can diverge without touching .annotation. */
+.label {
+  z-index: 1;
+}
