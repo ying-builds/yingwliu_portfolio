@@ -10,12 +10,22 @@ export const metadata: Metadata = {
     title: "About — Ying Liu",
     description:
       "Product Designer in Sacramento, CA, designing with empathy that's practiced, not performed.",
+    /* "profile", not "website" — this page is about a person, and the more
+       specific type was already here. */
     type: "profile",
     /* Repeated from the root layout deliberately. Next merges metadata
        shallowly, so declaring openGraph here replaces the parent's object
-       rather than merging into it — without this line the page emits no
-       og:image at all. */
-    images: [{ url: "/og-image.png", width: 1200, height: 627 }],
+       rather than merging into it — anything set only in the layout, siteName
+       and the image alt included, is absent from this page without it. */
+    siteName: "Ying Liu",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 627,
+        alt: "Ying Liu, product designer, Sacramento",
+      },
+    ],
   },
 };
 

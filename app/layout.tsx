@@ -18,7 +18,14 @@ export const metadata: Metadata = {
       "Product Designer in Sacramento, CA, designing with empathy that's practiced, not performed.",
     url: "https://yingwliu.com",
     siteName: "Ying Liu",
-    images: [{ url: "/og-image.png", width: 1200, height: 627 }],
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 627,
+        alt: "Ying Liu, product designer, Sacramento",
+      },
+    ],
     type: "website",
   },
 };
