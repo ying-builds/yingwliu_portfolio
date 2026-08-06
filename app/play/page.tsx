@@ -14,7 +14,15 @@ export const metadata: Metadata = {
       "A collage of personal and undergraduate work, annotated by hand.",
     type: "website",
     /* Repeated from the root layout deliberately — see app/about/page.tsx. */
-    images: [{ url: "/og-image.png", width: 1200, height: 627 }],
+    siteName: "Ying Liu",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 627,
+        alt: "Ying Liu, product designer, Sacramento",
+      },
+    ],
   },
 };
 

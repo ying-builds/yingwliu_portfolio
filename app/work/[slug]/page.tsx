@@ -56,7 +56,10 @@ export async function generateMetadata({
   /* Read off the raw frontmatter rather than CaseStudyFrontmatter: cardImage
      belongs to the homepage grid, not to what the template renders, so it is
      deliberately absent from that interface. */
-  const { cardImage } = data as { cardImage?: string };
+  const { cardImage, cardImageAlt } = data as {
+    cardImage?: string;
+    cardImageAlt?: string;
+  };
   const pageTitle = `${title} — Ying Liu`;
 
   return {
@@ -66,15 +69,28 @@ export async function generateMetadata({
       title: pageTitle,
       description: subheading,
       type: "article",
+      /* Repeated rather than inherited: Next replaces the parent's openGraph
+         outright — see app/about/page.tsx. */
+      siteName: "Ying Liu",
       /* The case study's own cover, so a shared link previews the work rather
          than the site card. Falls back to the site image if a case study has
-         no cover yet — an og:image that 404s is worse than a generic one.
+         no cover yet — an og:image that 404s is worse than a generic one, and
+         the alt falls back with it so the two never describe different
+         pictures.
 
          No width/height: they differ per cover and the frontmatter does not
          carry them, and stating the wrong numbers is worse than omitting
-         them. Repeated here rather than inherited because Next replaces the
-         parent's openGraph outright — see app/about/page.tsx. */
-      images: [{ url: cardImage ?? "/og-image.png" }],
+         them. */
+      images: [
+        cardImage
+          ? { url: cardImage, alt: cardImageAlt ?? title }
+          : {
+              url: "/og-image.png",
+              width: 1200,
+              height: 627,
+              alt: "Ying Liu, product designer, Sacramento",
+            },
+      ],
     },
   };
 }

@@ -21,12 +21,20 @@ export const metadata: Metadata = {
     description:
       "Using a strategist's intuition to turn ambiguity into clarity through grounded experiences.",
     type: "website",
-    /* Repeated from the root layout on purpose. Next merges metadata
-       shallowly: declaring openGraph here replaces the parent's object
-       outright rather than merging into it, so without this line the
-       homepage — the URL actually pasted into LinkedIn — emits no og:image
-       at all. Same applies to /about, /play and the case studies. */
-    images: [{ url: "/og-image.png", width: 1200, height: 627 }],
+    /* siteName, images and the image's alt are all repeated from the root
+       layout on purpose. Next merges metadata shallowly: declaring openGraph
+       here replaces the parent's object outright rather than merging into it,
+       so anything set only in the layout is absent from this page. Same
+       applies to /about, /play and the case studies. */
+    siteName: "Ying Liu",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 627,
+        alt: "Ying Liu, product designer, Sacramento",
+      },
+    ],
   },
 };
 
