@@ -1,0 +1,15 @@
+.page {
+  background: var(--site-cream);
+  padding: var(--site-section-gap) var(--site-gutter);
+}
+
+/* Scaffolding, not the design. Vertical stack so each CollageItem is legible
+   on its own while the component is being built; replaced by the real collage
+   once the number of pieces is known. Annotations are positioned against their
+   own item, so swapping this out will not move them. */
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--site-section-gap);
+}
