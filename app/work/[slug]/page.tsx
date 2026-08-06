@@ -53,6 +53,10 @@ export async function generateMetadata({
 
   const { data } = matter(source);
   const { title, subheading } = data as CaseStudyFrontmatter;
+  /* Read off the raw frontmatter rather than CaseStudyFrontmatter: cardImage
+     belongs to the homepage grid, not to what the template renders, so it is
+     deliberately absent from that interface. */
+  const { cardImage } = data as { cardImage?: string };
   const pageTitle = `${title} — Ying Liu`;
 
   return {
@@ -62,6 +66,15 @@ export async function generateMetadata({
       title: pageTitle,
       description: subheading,
       type: "article",
+      /* The case study's own cover, so a shared link previews the work rather
+         than the site card. Falls back to the site image if a case study has
+         no cover yet — an og:image that 404s is worse than a generic one.
+
+         No width/height: they differ per cover and the frontmatter does not
+         carry them, and stating the wrong numbers is worse than omitting
+         them. Repeated here rather than inherited because Next replaces the
+         parent's openGraph outright — see app/about/page.tsx. */
+      images: [{ url: cardImage ?? "/og-image.png" }],
     },
   };
 }

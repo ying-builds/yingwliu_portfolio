@@ -11,6 +11,11 @@ export const metadata: Metadata = {
     description:
       "Product Designer in Sacramento, CA, designing with empathy that's practiced, not performed.",
     type: "profile",
+    /* Repeated from the root layout deliberately. Next merges metadata
+       shallowly, so declaring openGraph here replaces the parent's object
+       rather than merging into it — without this line the page emits no
+       og:image at all. */
+    images: [{ url: "/og-image.png", width: 1200, height: 627 }],
   },
 };
 
