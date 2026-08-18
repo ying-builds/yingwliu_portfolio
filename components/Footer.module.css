@@ -61,10 +61,15 @@
 .navList a {
   text-decoration: none;
   color: var(--white);
+  transition: color 0.2s ease;
 }
 
+/* Rust measures 2.78:1 against --footer-bg, under the 4.5:1 AA floor — the
+   previous --white-subtitle hover was 16.12:1. Kept because the accent was
+   asked for explicitly; a lighter tint of the rust would clear AA here if the
+   legibility matters more than the exact hex. */
 .navList a:hover {
-  color: var(--white-subtitle);
+  color: var(--site-accent);
 }
 
 .social {
