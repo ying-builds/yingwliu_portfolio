@@ -20,8 +20,12 @@
 
 .links a {
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
+/* Rust on the cream nav clears AA at 5.86:1. The base colour comes from
+   .nav-links in tokens.css, which the anchors inherit via `a { color: inherit }`
+   in globals.css. */
 .links a:hover {
-  color: var(--almost-black);
+  color: var(--site-accent);
 }
