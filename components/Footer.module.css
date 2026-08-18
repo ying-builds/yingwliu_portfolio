@@ -64,12 +64,20 @@
   transition: color 0.2s ease;
 }
 
-/* Rust measures 2.78:1 against --footer-bg, under the 4.5:1 AA floor — the
-   previous --white-subtitle hover was 16.12:1. Kept because the accent was
-   asked for explicitly; a lighter tint of the rust would clear AA here if the
-   legibility matters more than the exact hex. */
+/* Grey, not the rust the top nav uses. Rust measures 2.78:1 against
+   --footer-bg, under the 4.5:1 AA floor, so on this bar it would dim the link
+   at the moment it signals it is interactive.
+
+   --footer-muted is the dark-surface muted grey already declared in
+   tokens.css. It clears AA at 6.17:1 and, more to the point, is visibly
+   different from the resting white at 2.85:1. The previous hover,
+   --white-subtitle, sat at 1.09:1 against white — a colour change on paper
+   that nobody could see.
+
+   Dimming rather than brightening on hover matches the social icons just
+   below, which already fade to 0.7 opacity. */
 .navList a:hover {
-  color: var(--site-accent);
+  color: var(--footer-muted);
 }
 
 .social {
