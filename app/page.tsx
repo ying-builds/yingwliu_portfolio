@@ -4,7 +4,7 @@ import InkCursor from "../components/site/InkCursor";
 import PixelTrail from "../components/site/PixelTrail";
 import CustomCursor from "../components/site/CustomCursor";
 import ScrollReveal from "../components/site/ScrollReveal";
-import { getCaseStudyCards } from "../lib/case-studies";
+import { getVisibleCards } from "../lib/case-studies";
 import {
   unconvertedCards,
   cardImageBackground,
@@ -40,11 +40,10 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   // Converted case studies come from their own MDX frontmatter; the rest are
-  // listed by hand until they are converted. Sorted together so the grid order
+  // listed by hand until they are converted. getVisibleCards merges the two,
+  // drops anything marked hidden, and sorts them together so the grid order
   // does not jump when one moves from the second group to the first.
-  const cards = [...getCaseStudyCards(), ...unconvertedCards].sort(
-    (a, b) => a.order - b.order,
-  );
+  const cards = getVisibleCards(unconvertedCards);
 
   return (
     <div className={styles.page}>

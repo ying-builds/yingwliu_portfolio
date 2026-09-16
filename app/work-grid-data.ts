@@ -12,7 +12,9 @@ import type { CaseStudyCard } from "../lib/case-studies";
 
    Two entries stay here permanently rather than becoming MDX, because they
    link out instead of opening a case study page on this site: Netflix Party
-   (a Medium article) and Databricks (a Figma deck).
+   (a Medium article) and Databricks (a Figma deck). Staying in this list is
+   not the same as appearing on the grid — set `hidden: true` to keep an entry
+   here but off the homepage.
 
    The Ticketmaster entry is temporary and goes away with the legacy page it
    points at — see the TEMPORARY note in CLAUDE.md. */
@@ -30,6 +32,11 @@ export const unconvertedCards: CaseStudyCard[] = [
     // 0 rather than 1: the newest work leads the grid, and every other card
     // keeps the order it already had.
     order: 0,
+    // Off the homepage for now. The entry and its card image stay put, so
+    // unhiding is deleting this one line. The Figma deck it links to is a
+    // public Figma link either way — hiding the card removes it from the
+    // portfolio, not from anyone who already has the URL.
+    hidden: true,
   },
   {
     slug: "netflix-party",

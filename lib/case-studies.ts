@@ -16,6 +16,16 @@ export interface CaseStudyCard {
   image: string;
   imageAlt: string;
   order: number;
+  /* Keeps the card off the Work grid without deleting it. An MDX case study
+     sets `cardHidden: true` in its frontmatter; a hand-listed one sets this
+     directly in work-grid-data.ts.
+
+     Hiding a card is not unpublishing the case study. /work/[slug] routes are
+     generated straight from the content directory, so a hidden case study
+     still has a working page and a shareable link — it just stops being
+     advertised on the homepage. Use PROTECTED_SLUGS in lib/protected.ts if
+     the page itself should be unreachable. */
+  hidden?: boolean;
 }
 
 /* The card fields are optional in frontmatter and fall back to the ones the
@@ -34,6 +44,7 @@ interface Frontmatter {
   cardImageAlt?: string;
   cardYear?: unknown;
   cardOrder?: number;
+  cardHidden?: boolean;
 }
 
 /* "February - May 2024" -> "2024". Falls back to the raw value if there is
@@ -75,7 +86,25 @@ export function getCaseStudyCards(): CaseStudyCard[] {
         // Unordered case studies sort after ordered ones rather than jumping
         // to the front of the grid.
         order: fm.cardOrder ?? Number.MAX_SAFE_INTEGER,
+        hidden: fm.cardHidden === true,
       };
     })
+    .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title));
+}
+
+/* What the Work grid should actually render.
+ *
+ * The only function that filters hidden cards, and the only one a page should
+ * call. getCaseStudyCards() above is the raw accessor and deliberately returns
+ * hidden cards too — keeping the filter in one place means a second grid, or a
+ * future page listing this work, cannot forget to apply it.
+ *
+ * `extra` is for cards with no MDX file of their own: see unconvertedCards in
+ * app/work-grid-data.ts. It is a parameter rather than an import so this
+ * module stays free of any dependency on app/.
+ */
+export function getVisibleCards(extra: CaseStudyCard[] = []): CaseStudyCard[] {
+  return [...getCaseStudyCards(), ...extra]
+    .filter((card) => !card.hidden)
     .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title));
 }
