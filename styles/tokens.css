@@ -46,6 +46,8 @@
   --font-body: 'Inter', sans-serif;
   --font-mono: 'PT Mono', monospace;
   --font-script: 'Ballet', cursive;  /* About hero wordmark */
+  --font-hand: 'Covered By Your Grace', cursive;  /* home hero handwriting */
+  --font-nav-mono: 'Intel One Mono', monospace;   /* home hero nav wordmark */
 
   /* Display (Bootzy TM) */
   --text-project-title: 40px;   /* tracking 2.5px */
@@ -172,6 +174,13 @@
   --site-rule: #e4e1dc;       /* dividers, card borders */
   --site-accent: #a63d2b;     /* links, hover states */
   --site-card-bg: #f0ede8;    /* project card image bg */
+  --site-accent-lift: #d4533f; /* --site-accent lightened to read on dark, e.g. nav underline over the hero */
+
+  /* Home hero (journal scene). Colours read from the Figma hero frame. */
+  --hero-ink: #1a1916;        /* journal handwriting */
+  --hero-muted: #888888;      /* "Ticketmaster" in the journal */
+  --hero-sparkle-cream: #f4efe6;
+  --hero-sparkle-butter: #ffd66b;
 
   /* Site leading.
      Unitless, where the case study scale is mostly px (--leading-body: 23px).

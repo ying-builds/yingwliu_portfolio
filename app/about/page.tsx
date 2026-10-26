@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import styles from "./page.module.css";
+import { RESUME_URL } from "../../lib/links";
 import CustomCursor from "../../components/site/CustomCursor";
 
 export const metadata: Metadata = {
@@ -164,7 +165,7 @@ export default function AboutPage() {
             </a>
             <a
               className={styles.connectResume}
-              href="https://drive.google.com/file/d/1qB0c1SUs6PF13SnWzXNWGTpOsIXcYJKH/view?usp=sharing"
+              href={RESUME_URL}
               target="_blank"
               rel="noopener"
             >

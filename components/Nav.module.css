@@ -29,3 +29,63 @@
 .links a:hover {
   color: var(--site-accent);
 }
+
+/* Hover underline: a thin line that grows in under the link. */
+.links a {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: var(--site-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+.links a:hover::after,
+.links a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Over the dark hero: light type, no bar, and a lighter red so the underline
+   still reads on dark. */
+.nav.overHero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  border-bottom: 0;
+}
+
+.overHero .logo {
+  font-family: var(--font-nav-mono);
+  font-size: var(--text-nav);
+  letter-spacing: 0;
+  color: var(--site-cream);
+}
+
+.overHero .links {
+  color: var(--site-cream);
+}
+
+.overHero .links a:hover {
+  color: var(--site-cream);
+}
+
+.overHero .links a::after {
+  background: var(--site-accent-lift);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .links a::after {
+    transition: none;
+  }
+}
