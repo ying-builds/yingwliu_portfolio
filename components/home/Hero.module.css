@@ -75,8 +75,9 @@
 }
 
 .company {
-  /* Was grey (#999), which is 1.9:1 on the grey paper. Rust is 4.1:1. */
-  color: var(--site-accent);
+  /* Muted, but darker than the old #999 (1.9:1 on the grey paper). --subtitle
+     is 3.2:1 there; it is the darkest muted grey in the palette. */
+  color: var(--subtitle);
 }
 
 /* The two hand-drawn lines under "product designer", tilted like the Figma ones. */
