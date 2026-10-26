@@ -66,7 +66,6 @@ export default function Hero() {
         >
           Ying is a product designer and an only child who learned to make sense
           of the world through creativity and play.
-          <br />
           <span className={styles.previously}>
             Previously at <span className={styles.company}>Ticketmaster</span>.
           </span>
@@ -138,6 +137,19 @@ export default function Hero() {
                   }}
                 />
               </button>
+              {h.front && (
+                <img
+                  className={styles.front}
+                  src={h.front.src}
+                  alt=""
+                  style={{
+                    left: u(h.front.x - h.x),
+                    top: u(h.front.y - h.y),
+                    width: u(h.front.w),
+                    height: u(h.front.h),
+                  }}
+                />
+              )}
               <div
                 className={styles.note}
                 style={{

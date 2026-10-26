@@ -253,6 +253,14 @@ token — those should stay literals. The card and mobile work since then added
 a few more: 12px, 24px and 5px on the homepage cards, and 24px, 88px and 8px
 in the footer's mobile breakpoint.
 
+**Roll Intel One Mono out site-wide.** The homepage now uses Intel One Mono
+(`--font-intel-mono`) everywhere PT Mono used to appear. About, the case study
+pages and the footer still use PT Mono (`--font-mono`). Later, switch the rest
+over: point `--font-mono` at Intel One Mono (or swap the references), then
+remove the PT Mono `@font-face` blocks and files from `public/fonts` and
+globals.css. Do this as its own pass so type widths can be rechecked on the
+case study pages.
+
 **`/ticketmaster-casestudy.html` is a temporary 307** to `/#work`, because
 the URL was live on both the old site and the new one. Point it at the real
 replacement once one exists.

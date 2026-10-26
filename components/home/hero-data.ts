@@ -24,6 +24,8 @@ export type Hotspot = {
   art: { src: string; x: number; y: number; w: number; h: number };
   note: { x: number; y: number; lines: { text: string; size: number }[] };
   wiggle: 3 | 4 | 5;
+  // Optional picture that must sit in front of this hotspot's art (not wiggling).
+  front?: { src: string; x: number; y: number; w: number; h: number };
 };
 
 export const NOTE = { src: "/images/site/hero/tape-note.webp", w: 256, h: 80 };
@@ -78,6 +80,9 @@ export const hotspots: Hotspot[] = [
       lines: [{ text: "Capricorn, ENFJ, Acts of Service", size: 14 }],
     },
     wiggle: 4,
+    // The polka dot tape is taped over the photo's corner, so it has to stay in
+    // front of it. Position is the "dot tape" layer in Figma (50 x 50).
+    front: { src: "/images/site/hero/polka-tape.webp", x: 718, y: 254, w: 50, h: 50 },
   },
   {
     id: "pen",
