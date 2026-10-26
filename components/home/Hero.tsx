@@ -62,10 +62,13 @@ export default function Hero() {
             "product designer". */}
         <h1
           className={styles.journal}
-          style={{ left: u(899), top: u(194), width: u(183) }}
+          /* Figma has this box at y=232; the browser sets Crimson Pro's baseline
+              about 4px lower than Figma does, so it is nudged up to keep the
+              underlines sitting where they were drawn. */
+          style={{ left: u(894), top: u(228), width: u(183) }}
         >
-          Ying is a product designer and an only child who learned to make sense
-          of the world through creativity and play.
+          Ying is a <em>product</em> <em>designer</em> and an only child who
+          learned to make sense of the world through creativity and play.
           <span className={styles.previously}>
             Previously at <span className={styles.company}>Ticketmaster</span>.
           </span>
@@ -73,12 +76,12 @@ export default function Hero() {
         <span
           className={styles.underline}
           aria-hidden="true"
-          style={{ left: u(973), top: u(222), width: u(67) }}
+          style={{ left: u(974), top: u(253), width: u(67) }}
         />
         <span
           className={styles.underline}
           aria-hidden="true"
-          style={{ left: u(899), top: u(250), width: u(67) }}
+          style={{ left: u(897), top: u(278), width: u(67) }}
         />
 
         <p className={styles.petBean} style={{ left: u(1435.5), top: u(289) }}>

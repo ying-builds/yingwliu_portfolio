@@ -40,8 +40,6 @@
   /* The journal is an <h1>, which carries heading letter-spacing from
      tokens.css. Reset it so the handwriting wraps on the same words as Figma. */
   letter-spacing: 0;
-  /* 28px: the gap between the two hand-drawn underlines in Figma (y 222 and 250). */
-  line-height: calc(28 * var(--u));
   font-size: calc(22 * var(--u));
 }
 
@@ -57,18 +55,28 @@
 }
 
 .journal {
+  /* The printed text on the journal page. Everything handwritten (notes,
+     "psst", "pet bean!") stays in --font-hand. Line height is left at the
+     font's own, which is what Figma's "auto" uses. */
+  font-family: var(--font-serif);
+  line-height: normal;
   color: var(--hero-ink);
+}
+
+.journal em {
+  font-style: italic;
 }
 
 .previously {
   /* A blank line (one line height) between the paragraph and this sign-off. */
   display: block;
-  margin-top: calc(28 * var(--u));
+  margin-top: 1lh;
   color: var(--almost-black);
 }
 
 .company {
-  color: var(--hero-muted);
+  /* Was grey (#999), which is 1.9:1 on the grey paper. Rust is 4.1:1. */
+  color: var(--site-accent);
 }
 
 /* The two hand-drawn lines under "product designer", tilted like the Figma ones. */
