@@ -7,6 +7,14 @@ changes, in the same commit.
 
 ## New home, footer and nav (branch `rethinking-client-self-service-and-new-home`)
 
+### Play pill clean-up
+| Token | Change | Note |
+|---|---|---|
+| `--home-pill-radius` | `14px` to `12px` | Tighter corner |
+| `--home-pill-shadow` | `0 4px 16px / .12` to `0 2px 8px / .08` | Softer against photos |
+| `--home-pill-pad-y` / `--home-pill-pad-x` | new, `10px` / `14px` | Was `12px 16px` hardcoded |
+| `--home-pill-tags` | new, `11px` | Tag line is now its own grey line under the title (matches card labels) |
+
 ### Motion
 | Token | Value | Used for |
 |---|---|---|

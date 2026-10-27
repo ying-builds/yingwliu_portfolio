@@ -574,8 +574,11 @@ h3 {
   --home-card-radius: 8px;
   --home-card-gap: 8px;             /* between Work cards */
   --home-play-gap: 20px;            /* between Play tiles, both directions */
-  --home-pill-radius: 14px;         /* Play tile hover pill */
-  --home-pill-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --home-pill-radius: 12px;         /* Play tile hover pill */
+  --home-pill-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --home-pill-pad-y: 10px;
+  --home-pill-pad-x: 14px;
+  --home-pill-tags: 11px;           /* tag line under the pill title */
   --home-arrow-nudge: 3px;          /* Play pill arrow drift on hover (up and right) */
   --home-arrow-duration: 0.4s;
   --home-card-title: 24px;          /* card title, Crimson Pro */

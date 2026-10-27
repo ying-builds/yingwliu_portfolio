@@ -211,9 +211,8 @@ function Tile({ tile }: { tile: PlayTile }) {
           </span>
         ) : null}
         <span className={styles.pillText}>
-          {tile.name ? <strong>{tile.name}</strong> : null}
-          {tile.name && tile.tags.length ? " | " : null}
-          {tile.tags.join(" | ")}
+          {tile.name ? <strong className={styles.pillTitle}>{tile.name}</strong> : null}
+          {tile.tags.length ? <span className={styles.pillTags}>{tile.tags.join(" · ")}</span> : null}
         </span>
       </span>
     </>
