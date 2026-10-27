@@ -24,6 +24,13 @@ import PersonaCard from "../../../components/case-study/PersonaCard";
 import PersonaRow from "../../../components/case-study/PersonaRow";
 import FeatureCard from "../../../components/case-study/FeatureCard";
 import Pillars from "../../../components/case-study/Pillars";
+import ReadingProgress from "../../../components/case-study/ReadingProgress";
+import PathsDiagram from "../../../components/case-study/PathsDiagram";
+import ReachLayers from "../../../components/case-study/ReachLayers";
+import {
+  StatusTable,
+  StatusRow,
+} from "../../../components/case-study/StatusTable";
 
 const CONTENT_DIR = path.join(process.cwd(), "content", "case-studies");
 
@@ -113,6 +120,11 @@ const mdxComponents = {
   PersonaRow,
   FeatureCard,
   Pillars,
+  ReadingProgress,
+  PathsDiagram,
+  ReachLayers,
+  StatusTable,
+  StatusRow,
   ol: (props: React.ComponentPropsWithoutRef<"ol">) => (
     <ol className="takeaways-list" {...props} />
   ),

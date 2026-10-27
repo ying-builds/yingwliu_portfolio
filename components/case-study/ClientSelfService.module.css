@@ -1,0 +1,168 @@
+/* Pieces used only by the Client Self-Service case study. They live in their
+   own module so the shared CaseStudy.module.css stays free of one-off layout.
+   Every colour and type value pulls from tokens.css. */
+
+/* ===== Reading progress bar ===== */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 30;
+  pointer-events: none;
+}
+.progressBar {
+  display: block;
+  height: 100%;
+  background: var(--black);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  will-change: transform;
+}
+
+/* ===== The three paths a stuck client has ===== */
+.paths {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.path {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding: var(--space-md) var(--space-card-padding-x);
+  border: 1px solid var(--mockup-border-line);
+  border-radius: var(--radius-card);
+  background: var(--mockup-bg);
+}
+.pathGood {
+  background: var(--black);
+  border-color: var(--black);
+}
+.pathTag {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--subtitle);
+}
+.pathGood .pathTag {
+  color: var(--white-subtitle);
+}
+.pathTitle {
+  font-family: var(--font-body);
+  font-size: var(--text-h4);
+  font-weight: 600;
+  line-height: var(--leading-h3);
+  color: var(--black);
+}
+.pathGood .pathTitle {
+  color: var(--white);
+}
+.pathNote {
+  font-family: var(--font-body);
+  font-size: var(--text-meta);
+  color: var(--almost-black);
+}
+.pathGood .pathNote {
+  color: var(--white-text);
+}
+
+/* ===== Who I could reach (Platform section) ===== */
+.layers {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.layer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-card-padding-x);
+  border: 1px solid var(--mockup-border-line);
+  border-radius: var(--radius-card);
+  background: var(--mockup-bg);
+  font-family: var(--font-body);
+  font-size: var(--text-meta);
+  color: var(--almost-black);
+}
+.layer b {
+  font-weight: 600;
+  color: var(--black);
+}
+.layerMe {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--white-text);
+}
+.layerMe b {
+  color: var(--white);
+}
+.layerFaint {
+  border-style: dashed;
+  background: transparent;
+}
+.layerLink {
+  padding-left: var(--space-card-padding-x);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--subtitle);
+}
+
+/* ===== Where each piece landed ===== */
+.tableWrap {
+  overflow-x: auto;
+}
+.status {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: var(--text-meta);
+  color: var(--almost-black);
+}
+.status th {
+  text-align: left;
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid var(--black);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 400;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--subtitle);
+}
+.status td {
+  padding: var(--space-sm) var(--space-md) var(--space-sm) 0;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.status td:last-child {
+  white-space: nowrap;
+  padding-right: 0;
+}
+.pill {
+  display: inline-block;
+  padding: var(--space-2xs) var(--space-xs);
+  border: 1px solid var(--mockup-border-line);
+  border-radius: var(--radius-card);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--almost-black);
+}
+.pillLive {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+}

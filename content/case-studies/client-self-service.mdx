@@ -1,0 +1,417 @@
+---
+title: Rethinking Client Self-Service
+client: Ticketmaster
+projectLabel: PROJECT
+dates: 2023 - 2025
+subheading: I redesigned the home page, search, and product education for Ticketmaster's box office clients, so they could find answers and learn the products on their own.
+meta:
+  role: Product Designer and UX Researcher, sole designer
+  timeline: 1 year
+  tools: Figma, Coveo, Salesforce Experience Cloud, Miro, Confluence, DOMO
+  team: VP (Becky), Product (Kari), Front-end (Em), Instructional Designer (Chelsea)
+heroLogo: /images/case-studies/client-self-service/logo.png
+heroLogoAlt: Ticketmaster
+heroMockup: /protected-media/case-studies/client-self-service/new-home.webp
+heroMockupAlt: The redesigned Ticketmaster Client Help Center home page
+cardTitle: Ticketmaster / Rethinking Client Self-Service
+cardDescription: I redesigned the home page, search, and product education for Ticketmaster's box office clients, so they could find answers and learn the products on their own.
+cardImage: /images/case-studies/client-self-service/card.webp
+cardImageAlt: The redesigned Ticketmaster Client Help Center home page
+cardOrder: 1
+---
+
+<ReadingProgress />
+
+<Intro>
+
+Clients had more than 1,000 resources and still gave up on the site. I redesigned how they *find* answers and *learn* the products. It went live, adoption stayed slow, and that taught me a launch needs a plan as much as a design does.
+
+</Intro>
+
+<FullBleedMedia
+  mp4="/protected-media/case-studies/client-self-service/walkthrough.mp4"
+  webm="/protected-media/case-studies/client-self-service/walkthrough.webm"
+  poster="/protected-media/case-studies/client-self-service/walkthrough-poster.webp"
+/>
+
+<Section label="Context">
+
+<div className="content-block">
+
+### Clients wanted to solve problems on their own, but the site made it hard.
+
+Ticketmaster's Support Community started during the pandemic (2020). A small education team built it fast so box office clients could get help and training on their own. It worked at the time.
+
+In mid-2023, when I joined, the content had piled up across PDFs, links, videos, and articles. The site was live in 12 markets across 18 products and grew to 14, with more than 1,000 resources behind it. But engagement and adoption were low: search didn't surface the right answers, and the content was outdated and hard to learn from. I was the only designer on the team.
+
+In interviews, clients told me they'd rather find the answer themselves. The data showed they were trying, but the site wasn't getting them to an answer.
+
+</div>
+
+<CardRow columns="3" spaced="true">
+  <StatCard value="28,982">searches by 7,642 clients in about five months. That is roughly 3.8 each.</StatCard>
+  <StatCard value="24 sec">average time on the old product education page.</StatCard>
+  <StatCard value="27%">of client barrier comments were about search. 35 of 130.</StatCard>
+</CardRow>
+
+<p className="label">Google Analytics and the CSAT survey</p>
+
+</Section>
+
+<Section label="The Problem">
+
+<div className="content-block">
+
+### When clients got stuck, two of their three options needed a person.
+
+I interviewed seven clients, and they all described the same three paths. They searched the site, they emailed their Client Support Specialist (CSS), or they submitted a case. Only the first one was self-service.
+
+</div>
+
+<PathsDiagram />
+
+<div className="content-block">
+
+**Clients** who did try the first path often left empty-handed.
+
+<Quote label="Box Office Manager, 3 years">
+  "Sometimes the description of the article is related to the key words I searched but the specific detail that I am looking for doesn't exist in the article."
+</Quote>
+
+On the **support** side, every email to a CSS was a case self-service could have prevented, and the CSS had to log it by hand.
+
+It also meant much of the **education team's** work wasn't reaching the clients it was made for. The team had built a large library of articles, videos, and guides, but many clients went around it. Their CSS used it instead, looking up answers on the site and passing them on. The content still helped, just not in the way it was meant to.
+
+The **business** goal was to raise Community case logging from 3% to 10%. More logged cases help with tracking, but the real win is clients solving problems on their own with what the team already built. I flagged that tension early and framed the question this way: *how might we help clients get from question to answer on their own?*
+
+</div>
+
+</Section>
+
+<Section label="The Approach">
+
+<div className="content-block">
+
+### A site clients can use on their own, from first click to answer.
+
+I stopped thinking about the home page, search, and product education as separate projects. Clients don't. They just want an answer. So I designed one path with two stops.
+
+</div>
+
+<CardRow columns="2">
+  <InsightCard num="Find">A home page and search that point clients to the right answer fast, with themed topics, FAQs, and better search results.</InsightCard>
+  <InsightCard num="Learn">A Product Guide that turns more than 1,000 scattered resources into article pages with a side navigation and table of contents.</InsightCard>
+</CardRow>
+
+</Section>
+
+<Section label="Principles">
+
+<div className="content-block">
+
+### Guiding principles
+
+</div>
+
+<CardRow columns="2">
+  <InsightCard num="01">**All product users in mind.** Clients use 18 products across 14 markets. Someone using one product shouldn't have to wade through content for another to find their answer.</InsightCard>
+  <InsightCard num="02">**Answers from the first click.** The first thing a client touches, a topic on the home page or the top search result, should move them closer to an answer.</InsightCard>
+  <InsightCard num="03">**Relevance.** There were more than 1,000 resources, and the job was to show the right one.</InsightCard>
+  <InsightCard num="04">**Troubleshooting vs. learning.** Clients arrive in two modes. Some are fixing something right now, and others are learning a product. Search and articles serve the first, and the Product Guide serves the second.</InsightCard>
+</CardRow>
+
+</Section>
+
+<Section label="Home Page">
+
+<div className="content-block">
+
+### How might we help clients find the right answer without contacting support?
+
+The old home page was a hero search, three tiles that were the same as the top nav, and a video. In my client interviews, clients valued speed and relevance most. Some couldn't find the "home page" at all. Clients needed a nudge in the right direction.
+
+</div>
+
+<div className="caption-block">
+
+<p className="label">Before</p>
+
+<MockupImage src="/protected-media/case-studies/client-self-service/old-home.webp" alt="The old Support Community home page: a hero search, three tiles and a video" width="1635" height="1127" />
+
+</div>
+
+<div className="caption-block">
+
+<p className="label">What I did</p>
+
+I analyzed help sites with complex products and users, like Workday, Apple, Asana, and Shopify, then tested with 7 EN-CA clients.
+
+They liked topics grouped by process but preferred FAQs with quick go-to troubleshooting answers over top resources, so I ran a card sort in Maze and revised the categories to match how clients solve problems.
+
+</div>
+
+<div className="caption-block">
+
+<p className="label">After</p>
+
+<FullBleedMedia
+  mp4="/protected-media/case-studies/client-self-service/new-home-scroll.mp4"
+  webm="/protected-media/case-studies/client-self-service/new-home-scroll.webm"
+  poster="/protected-media/case-studies/client-self-service/new-home-scroll-poster.webp"
+/>
+
+</div>
+
+<div className="caption-block">
+
+<p className="label">Decision and tradeoff</p>
+
+Our VP of Data and Analytics and I disagreed about putting "Submit a Case" on the home page. I kept it off so the page stays focused on self-service. Clients can still find it in the top navigation. The tradeoff: a cleaner page against a possible dead end for clients who can't find an answer.
+
+</div>
+
+</Section>
+
+<Section label="Search">
+
+<div className="content-block">
+
+### How might we make search results feel relevant enough that clients stop after the first try?
+
+Clients were trying, and 81.5% clicked a result. But unless a client knew the exact resource title, results often showed products that had nothing to do with what they typed.
+
+</div>
+
+<Quote label="Director of Ticketing">
+  "The search is what makes it challenging and trying to figure out how to look for things."
+</Quote>
+
+<div className="caption-block">
+
+<p className="label">What I did</p>
+
+The platform's search runs on Coveo, so the work was fine-tuning how it finds and ranks answers, not redesigning the page. I expanded the thesaurus with synonyms, nicknames, and common typos so clients no longer need the exact title, set machine learning to refresh more often so it learns from clicks sooner, and archived outdated content.
+
+</div>
+
+<div className="caption-block">
+
+<p className="label">Early signal</p>
+
+Among clients already using the site, more clicks landed on the first result and fewer searches were needed per session.
+
+</div>
+
+</Section>
+
+<Section label="Product Guide">
+
+<div className="content-block">
+
+### How might we help clients learn the product as they search for answers?
+
+Clients called the old page "death by links." Bounce rate was above 60%. 80% of the clients I interviewed rarely used the product education pages and went straight to search. They did want help learning the products, but couldn't tell the pages existed or which one applied to them.
+
+</div>
+
+<div className="caption-block">
+
+<p className="label">Before</p>
+
+<MockupImage src="/protected-media/case-studies/client-self-service/old-product-education.webp" alt="The old Archtics product education page, a grid of links" width="1635" height="999" />
+
+</div>
+
+<div className="caption-block">
+
+<p className="label">What I did</p>
+
+I worked with our instructional designer to scale existing content into standardized articles, using one Product Guide standard: a left side navigation, one article in the middle, and a table of contents on the right. It tells clients where they are in a product, encouraging product learning as they search and discover.
+
+</div>
+
+<div className="caption-block">
+
+<p className="label">After</p>
+
+<MockupImage src="/protected-media/case-studies/client-self-service/product-guide.webp" alt="The new Product Guide with side navigation, article and table of contents" width="1635" height="1127" />
+
+</div>
+
+<div className="caption-block">
+
+<p className="label">Decision and tradeoff</p>
+
+I picked a familiar documentation layout over something novel. Clients are busy and shouldn't have to learn a new interface to learn the product. The tradeoff was more work up front for the instructional designers, since existing content had to be rewritten to fit the standard.
+
+</div>
+
+<div className="content-block">
+
+### Streamlining article creation and edits
+
+Behind every article was a two-step workflow. Teams updated the source files and rolled them out to 14 markets, then went into the Salesforce CMS to update each article and publish it. Nothing kept new articles looking or reading the same. Now articles can quickly be duplicated, edited, and scaled to the right market.
+
+</div>
+
+<div className="caption-block">
+
+<MockupImage src="/protected-media/case-studies/client-self-service/cms-table.webp" alt="Salesforce CMS table of community content, one row per market and language" width="1326" height="520" preframed="true" />
+
+<p className="label">The Salesforce CMS table the team works from, with a row for each market and language</p>
+
+</div>
+
+<div className="caption-block">
+
+<p className="label">For instructional designers</p>
+
+I wrote a style guide and set up a reusable Salesforce CMS article template. Anyone creating or updating an article now starts from the same standard. That keeps content easy to maintain, even when someone outside the education team writes the article.
+
+</div>
+
+<div className="caption-block">
+
+<MockupImage src="/protected-media/case-studies/client-self-service/article-template.webp" alt="The Salesforce CMS article editor with the heading styles set up in the template" width="1320" height="924" preframed="true" />
+
+<p className="label">The article editor, with heading styles built into the template</p>
+
+</div>
+
+</Section>
+
+<Section label="Platform">
+
+<div className="content-block">
+
+### How might we ship a better experience on a template that wasn't built for it?
+
+The site ran on a Salesforce Experience Cloud template. Anything beyond it needed either an AppExchange app (a plug-in) or custom code from the Salesforce developers, who were busy fixing support and operations bugs. We had one front-end developer who made most of the HTML and CSS changes. JavaScript was off the table unless it was truly necessary, because any big code push went through the Salesforce developers.
+
+</div>
+
+<ReachLayers />
+
+<div className="caption-block">
+
+<p className="label">What I did</p>
+
+I designed within the template's limits from day one, then helped make the case for a technical review with Slalom. The deck listed what we couldn't do: dynamic FAQs, recommended articles, a left side navigation, jump links, and in-page dropdowns. In the meantime the roadmap had us pilot the home page using current limited tech.
+
+</div>
+
+<div className="caption-block">
+
+<p className="label">Decision and tradeoff</p>
+
+The template couldn't support a side navigation, so I split the launch. The home page and search changes went first. The Product Guide waited on a Multi-Level Navigation app, which was the team's preferred fix, and I left before it was approved or rejected.
+
+</div>
+
+<div className="caption-block">
+
+<p className="label">The hardest part</p>
+
+I never had a developer I could work with directly, so we couldn't talk through technical workarounds together. My designs sat, and the roadmap followed leadership asks that couldn't always launch. While they waited, I wrote documentation, planned and ran research, and shipped small improvements to other parts of the site.
+
+</div>
+
+</Section>
+
+<Section label="Where Each Piece Landed">
+
+<div className="content-block">
+
+### Two things went live. One was ready and waiting.
+
+</div>
+
+<StatusTable>
+  <StatusRow piece="New home page (topics, FAQs, spotlight resources)" status="Live" live="true" />
+  <StatusRow piece="Search changes (thesaurus, faster machine learning, archived content)" status="Live" live="true" />
+  <StatusRow piece="Product Guide (shell layout, side navigation, article components)" status="Designed, handed off" />
+</StatusTable>
+
+I also built a design system (WCAG 2.2), a research library, a KPI framework with a DOMO tracking plan, and a UI refresh with a Product Updates page.
+
+</Section>
+
+<Section label="Impact">
+
+<div className="content-block">
+
+### The site got better and the numbers barely moved. Here's why.
+
+The new home page and search went live to about 8,000 clients. I don't have a lift number, and I won't invent one. I set success metrics, and the data and analytics team built us a custom DOMO dashboard to track them. But too few new clients came in to give the data depth, and it pulled from too many sources to be clean. After the changes the site stayed steady. Active clients found answers faster, but the changes didn't bring in new ones. Three things held it back, and none of them were screens.
+
+</div>
+
+<div className="caption-block">
+
+<p className="label">Trust</p>
+
+Clients who'd had a bad experience before didn't give the site a second look.
+
+</div>
+
+<div className="caption-block">
+
+<p className="label">Habit</p>
+
+Clients who always relied on their CSS saw no reason to switch. Their CSS was looking up answers on the site, through Salesforce, to help them.
+
+</div>
+
+<div className="caption-block">
+
+<p className="label">No campaign</p>
+
+Nothing pushed clients onto the site after launch. Research and design alone couldn't change a habit.
+
+</div>
+
+So I took the site to clients myself. I hosted roundtables at the 2025 NYC International Ticketing Conference, and I worked with the support team to point clients to the site. Clients were impressed by the visual improvements and said they'd use the site more in their daily workflow.
+
+<div className="caption-block">
+
+<MockupImage src="/protected-media/case-studies/client-self-service/roundtable.webp" alt="A client roundtable at a conference with a Ticketmaster Support Community sign on the table" width="1024" height="768" />
+
+<p className="label">A client roundtable at the 2025 NYC International Ticketing Conference</p>
+
+</div>
+
+</Section>
+
+<Section label="Reflection">
+
+<div className="content-block">
+
+### Good design didn't change behavior on its own.
+
+</div>
+
+<div className="content-block">
+
+#### A launch isn't a campaign.
+
+Now I'd plan adoption as part of the design: messaging, training, and the support team's habits, with a plan for winning back trust.
+
+</div>
+
+<div className="content-block">
+
+#### The CSSs were already the front door.
+
+Clients went to their CSS first, and the CSSs were already using the content every day. Now I'd bring them in earlier and find a way to work together that helps them without getting in the way of client support.
+
+</div>
+
+<div className="content-block">
+
+#### Distance from engineering costs time.
+
+With a layer between me and the developers, designs sat finished while we worked out what the platform could do. Now I'd ask for a direct line to an engineer before calling a design done. And as the only designer, I learned to speak up for myself and build my own relationships to be heard.
+
+</div>
+
+</Section>

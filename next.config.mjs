@@ -40,6 +40,15 @@ const nextConfig = {
         permanent: true,
       },
 
+      // The Client Product Education Guide was replaced by Rethinking Client
+      // Self-Service, so a shared link to the old page lands on the new one.
+      // It stays behind the same password gate.
+      {
+        source: "/work/product-education-guide",
+        destination: "/work/client-self-service",
+        permanent: true,
+      },
+
       // This one was live on both the static site and the Next app before its
       // page was archived, so it has the widest reach of any of them. There is
       // no replacement case study to land on yet, so it goes to the work grid

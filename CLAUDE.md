@@ -147,8 +147,10 @@ still resolves, it just meets the gate first.
   `public/` — cards are never gated, only the page behind them.
 - The client's logo also stays in `public/`, alongside the card image. It is
   the client's own public brand artwork, not the case study's work, so gating
-  it protects nothing. The Product Education Guide's `logo.png` is in `public/`
-  on purpose — it is not drift, and an audit should leave it there.
+  it protects nothing. The Client Self-Service case study's `logo.png` is in `public/`
+  on purpose — it is not drift, and an audit should leave it there. (The Client Product
+  Education Guide was replaced by Rethinking Client Self-Service, slug
+  `client-self-service`; `/work/product-education-guide` redirects to it.)
 
 ## Current task
 Nothing outstanding. The Vercel cutover is complete, the Ticketmaster legacy
