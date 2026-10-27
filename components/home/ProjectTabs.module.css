@@ -149,6 +149,8 @@
   font-family: var(--font-serif);
   font-size: var(--home-card-title);
   font-weight: 400;
+  /* tokens.css gives every h3 case-study tracking; cards want none. */
+  letter-spacing: normal;
   line-height: var(--site-leading-tight);
   color: var(--black);
 }
