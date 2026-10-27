@@ -48,10 +48,9 @@ export const workCards: WorkCard[] = [
     id: "alumni-learning-platform",
     company: "UC Davis Graduate School of Management",
     title: "Alumni Learning Platform",
-    /* Placeholder from the Figma frame until the card copy is final. */
-    description: "One line on what you did and for whom",
-    tags: ["Tag", "Tag"],
-    placeholder: true,
+    description:
+      "Designed GSM's first lifelong learning platform so alumni can keep learning and stay connected.",
+    tags: ["EdTech", "UX & UI"],
     slug: "uc-davis-gsm",
     href: "/work/uc-davis-gsm",
     image: "/images/home/gsm-card.webp",
