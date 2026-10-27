@@ -85,7 +85,8 @@
   position: absolute;
   height: calc(1 * var(--u));
   min-height: 1px;
-  background: var(--black);
+  /* Same muted grey as "Ticketmaster", so the page's marks feel like one pen. */
+  background: var(--subtitle);
   transform: rotate(-1.79deg);
   transform-origin: left center;
 }
