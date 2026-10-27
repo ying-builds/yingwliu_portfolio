@@ -179,7 +179,7 @@
      These names are deliberately prefixed: --page-gutter already exists
      above at 40px for case studies, and the site pages need 120px. Sharing
      the name would silently break every case study's layout. */
-  --site-cream: #faf8f5;      /* page bg */
+  --site-cream: var(--background-fill); /* page bg: one cream site-wide, same as the case studies (was #faf8f5) */
   --site-rule: #e4e1dc;       /* dividers, card borders */
   --site-accent: #a63d2b;     /* links, hover states */
   --site-card-bg: #f0ede8;    /* project card image bg */
