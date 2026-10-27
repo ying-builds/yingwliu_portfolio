@@ -249,10 +249,9 @@
   letter-spacing: var(--home-card-tracking);
   line-height: normal;
   color: var(--home-card-label);
-  /* Text and the link-out arrow sit on one row. */
+  /* The link-out arrow and the text sit on one row. */
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
   gap: var(--space-sm);
   opacity: 0;
   transform: translateY(4px);
