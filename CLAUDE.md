@@ -49,10 +49,19 @@ study's actual content living in a simple MDX file.
   what you're doing as you go.
 - Conversational, plain language in explanations. No stiff jargon dumps.
 
-## Case study cards (homepage Work grid)
+## Homepage cards (Work / Play / AI tabs)
+- The home page is the interactive hero plus one section with three tabs
+  (Work, Play, AI). Same page, URL stays on the site root; `#play` and `#ai`
+  open those tabs.
+- All card content lives in `app/home-data.ts`. A Work card for a case study
+  on this site takes its one-liner from that case study's MDX
+  (`cardDescription`), so the two can't drift.
 - Clicking a card opens the case study as a full page in a new tab. Never a
   modal, and never an in-place overlay.
-- Hover text on a card reads "View" — not "Preview".
+- Play tiles: only Netflix Party (Medium article) and BeReal (`/work/bereal`)
+  link anywhere. AI: Databricks links to the Figma deck.
+- Private projects (Event Programming Form) show the padlock and are not
+  clickable.
 
 ## Writing MDX: use string props, never expressions
 In this setup MDX expressions are silently dropped — `width={1326}` arrives as
@@ -169,17 +178,13 @@ replacement Ticketmaster case studies, and the footer's mobile breakpoint.
 3. UC Davis GSM — DONE
 
 ## Finishing a case study: two steps that are easy to miss
-Do both as soon as a case study's content is signed off, and say so — they are
-what stops a converted case study leaving debris behind.
+Do both as soon as a case study's content is signed off, and say so.
 
 1. **Move its assets** into `public/images/case-studies/[project-name]/`, and
    update every path in its MDX. The card image goes in the same folder as
    `card.png`; it is that case study's asset, not a site-wide one.
-2. **Delete its entry from `unconvertedCards`** in app/work-grid-data.ts.
-   Nothing dedupes that list against the MDX-driven cards — they are simply
-   concatenated — so a leftover entry renders the case study twice on the
-   homepage, with the stale copy linking to a legacy page that no longer
-   exists. BeReal shipped in exactly that state until it was caught.
+2. **Add or update its card in `app/home-data.ts`** (Work tab, or a Play tile).
+   Nothing adds a case study to the homepage automatically.
 
 Asset moves happen per case study rather than in one sweep, so each one is
 small enough to verify.

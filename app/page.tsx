@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import styles from "./page.module.css";
-import Hero from "../components/home/Hero";
 import CustomCursor from "../components/site/CustomCursor";
-import ScrollReveal from "../components/site/ScrollReveal";
-import { getVisibleCards } from "../lib/case-studies";
-import {
-  unconvertedCards,
-  cardImageBackground,
-} from "./work-grid-data";
+import Hero from "../components/home/Hero";
+import ProjectTabs, {
+  type WorkCardView,
+} from "../components/home/ProjectTabs";
+import { getCaseStudyCards } from "../lib/case-studies";
+import { aiCards, playTiles, workCards } from "./home-data";
 
 // The site root carries the full identity rather than the "[Page] — Ying Liu"
 // pattern the inner pages follow.
@@ -38,63 +37,21 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  // Converted case studies come from their own MDX frontmatter; the rest are
-  // listed by hand until they are converted. getVisibleCards merges the two,
-  // drops anything marked hidden, and sorts them together so the grid order
-  // does not jump when one moves from the second group to the first.
-  const cards = getVisibleCards(unconvertedCards);
+  // A Work card for a converted case study takes its one-liner from that case
+  // study's own frontmatter, so the two can't drift. A card that sets its own
+  // description (a private project, or copy still being written) keeps it.
+  const converted = new Map(getCaseStudyCards().map((c) => [c.slug, c]));
+  const work: WorkCardView[] = workCards.map((c) => ({
+    ...c,
+    description:
+      c.description ?? (c.slug ? converted.get(c.slug)?.description : "") ?? "",
+  }));
 
   return (
     <div className={styles.page}>
       <CustomCursor />
-      <ScrollReveal />
-
       <Hero />
-
-      <section className={styles.workSection} id="work">
-        <p className={`${styles.workHeader} fade-up`}>Selected Work</p>
-        <div className={styles.projects}>
-          <div className={styles.projectsGrid}>
-            {cards.map((card) => {
-              const background = cardImageBackground[card.slug];
-
-              return (
-                <a
-                  key={card.slug}
-                  className={`${styles.projectCard} fade-up`}
-                  href={card.href}
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <div
-                    className={styles.projectImage}
-                    style={background ? { background } : undefined}
-                  >
-                    {card.image ? (
-                      <img src={card.image} alt={card.imageAlt} />
-                    ) : null}
-                  </div>
-                  <div className={styles.projectInfo}>
-                    <p className={styles.projectTitle}>{card.title}</p>
-                    <p className={styles.projectDesc}>{card.description}</p>
-                    <div className={styles.projectMeta}>
-                      <div className="project-meta-item">
-                        <p className={styles.projectMetaLabel}>Role</p>
-                        <p className={styles.projectMetaValue}>{card.role}</p>
-                      </div>
-                      <div className="project-meta-item">
-                        <p className={styles.projectMetaLabel}>Year</p>
-                        <p className={styles.projectMetaValue}>{card.year}</p>
-                      </div>
-                    </div>
-                    <div className={styles.projectArrow}>View →</div>
-                  </div>
-                </a>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <ProjectTabs work={work} play={playTiles} ai={aiCards} />
     </div>
   );
 }

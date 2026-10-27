@@ -557,3 +557,26 @@ h3 {
   flex-direction: column;
   gap: var(--space-sm);
 }
+
+/* Home page: the Work / Play / AI section under the hero.
+   Values read from the Figma frames "Work - Home", "Play - Home" and "AI - Home". */
+:root {
+  --home-section-top: #2a2927;      /* dark band behind the tabs, top of gradient */
+  --home-section-bottom: #1a1916;   /* ...and bottom */
+  --home-tab-rest: #8f8b86;         /* inactive tab, 5.1:1 on the band */
+  --home-card-surface: #eeece9;     /* project card caption */
+  --home-card-cover: #e4e1dc;       /* cover when a card has no picture yet */
+  --home-card-border: #d1d0ce;      /* card edge and the rule above the caption */
+  --home-card-label: #717171;       /* company line and tags */
+  --home-card-body: #5f5b56;        /* one-line description */
+  --home-card-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --home-card-radius: 8px;
+  --home-card-gap: 8px;             /* between Work cards */
+  --home-play-gap: 20px;            /* between Play tiles, both directions */
+  --home-pill-radius: 14px;         /* Play tile hover pill */
+  --home-pill-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --home-card-title: 24px;          /* card title, Inter 600 */
+  --home-card-meta: 11px;           /* company line and tags */
+  --home-card-tracking: 0.08em;     /* mono labels on cards and pills */
+  --home-gutter: 54px;              /* band's side padding, from the Figma frame */
+}

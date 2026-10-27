@@ -18,7 +18,7 @@ export interface CaseStudyCard {
   order: number;
   /* Keeps the card off the Work grid without deleting it. An MDX case study
      sets `cardHidden: true` in its frontmatter; a hand-listed one sets this
-     directly in work-grid-data.ts.
+     directly in a hand-written card.
 
      Hiding a card is not unpublishing the case study. /work/[slug] routes are
      generated straight from the content directory, so a hidden case study

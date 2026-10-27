@@ -1,0 +1,311 @@
+/* Work / Play / AI section under the hero. Sizes come from the Figma frames
+   (cards 536 wide, cover 376 tall; Play tiles 528 wide); tokens in tokens.css. */
+
+.band {
+  background: linear-gradient(
+    to bottom,
+    var(--home-section-top),
+    var(--home-section-bottom)
+  );
+  color: var(--site-cream);
+  padding-bottom: var(--space-xl);
+  /* The nav's "Work" link lands here, under the sticky bar. */
+  scroll-margin-top: var(--nav-height);
+}
+
+.inner {
+  max-width: 1708px;
+  margin: 0 auto;
+  padding: 0 var(--home-gutter);
+}
+
+/* ---------- tabs ---------- */
+
+.tabs {
+  display: flex;
+  gap: var(--space-md);
+  padding: 0 calc(var(--space-md) - 4px);
+  border-bottom: 1px solid var(--home-card-label);
+  margin-bottom: var(--space-lg);
+}
+
+.tab {
+  position: relative;
+  padding: var(--space-md) 0 var(--space-sm);
+  margin: 0;
+  background: none;
+  border: 0;
+  color: var(--home-tab-rest);
+  font-family: var(--font-body);
+  font-size: var(--text-meta);
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: color 0.2s ease-out;
+}
+
+.tab:hover {
+  color: var(--site-cream);
+}
+
+.tab[aria-selected="true"] {
+  color: var(--site-cream);
+  font-weight: 500;
+}
+
+/* The red underline sits on the tab row's rule, as in Figma. */
+.tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  left: -8px;
+  right: -8px;
+  bottom: -1.5px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--site-accent-lift);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--site-cream);
+  outline-offset: 4px;
+}
+
+/* ---------- Work / AI cards ---------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--home-card-gap);
+  align-items: stretch;
+}
+
+.cards[hidden],
+.masonry[hidden] {
+  display: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--home-card-surface);
+  border: 1px solid var(--home-card-border);
+  border-radius: var(--home-card-radius);
+  box-shadow: var(--home-card-shadow);
+  color: inherit;
+  text-decoration: none;
+}
+
+.cardLink {
+  cursor: pointer;
+  transition: transform 0.25s ease-out;
+}
+
+.cardLink:hover,
+.cardLink:focus-visible {
+  transform: translateY(-4px);
+}
+
+.cardLink:focus-visible {
+  outline: 2px solid var(--site-cream);
+  outline-offset: 4px;
+}
+
+.cover {
+  aspect-ratio: 536 / 376;
+  background: var(--home-card-cover);
+  overflow: hidden;
+}
+
+.cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.caption {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  padding: var(--space-md) var(--space-box-padding);
+  border-top: 1px solid var(--home-card-border);
+}
+
+.company {
+  margin: 0;
+  font-family: var(--font-intel-mono);
+  font-size: var(--home-card-meta);
+  letter-spacing: var(--home-card-tracking);
+  text-transform: uppercase;
+  color: var(--home-card-label);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--home-card-title);
+  font-weight: 600;
+  line-height: var(--site-leading-tight);
+  color: var(--black);
+}
+
+.description {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--site-text-body);
+  font-weight: 400;
+  line-height: var(--site-leading-body);
+  color: var(--home-card-body);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin: auto 0 0;
+  padding-top: var(--space-xs);
+  font-family: var(--font-intel-mono);
+  font-size: var(--home-card-meta);
+  letter-spacing: var(--home-card-tracking);
+  text-transform: uppercase;
+  color: var(--home-card-body);
+}
+
+/* Tags read "A | B | C": the bar is drawn between items, not typed in. */
+.tags span + span::before {
+  content: "|";
+  margin: 0 var(--space-sm);
+}
+
+.lock {
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+}
+
+/* ---------- Play masonry ---------- */
+
+.masonry {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--home-play-gap);
+  align-items: start;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--home-play-gap);
+}
+
+.tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--home-card-radius);
+  background: var(--home-card-cover);
+}
+
+.tile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tileLink {
+  cursor: pointer;
+}
+
+.tileLink:focus-visible {
+  outline: 2px solid var(--site-cream);
+  outline-offset: 4px;
+}
+
+/* The pill rises in over the bottom of the picture on hover or focus. */
+.pill {
+  position: absolute;
+  left: var(--space-md);
+  right: var(--space-md);
+  bottom: 6px;
+  padding: 12px 16px;
+  border-radius: var(--home-pill-radius);
+  background: var(--white);
+  box-shadow: var(--home-pill-shadow);
+  font-family: var(--font-intel-mono);
+  font-size: var(--site-text-small);
+  letter-spacing: var(--home-card-tracking);
+  text-transform: uppercase;
+  line-height: normal;
+  color: var(--home-card-label);
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.2s ease-out;
+  pointer-events: none;
+}
+
+.pill strong {
+  font-weight: 700;
+  color: var(--black);
+}
+
+.tile:hover .pill,
+.tile:focus-visible .pill {
+  opacity: 1;
+  transform: none;
+}
+
+/* No hover on touch screens, so the pill just stays on. */
+@media (hover: none) {
+  .pill {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- smaller screens ---------- */
+
+@media (max-width: 1100px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .masonry {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* Two columns: fold the third column under the other two. */
+  .column:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .inner {
+    padding: 0 var(--page-gutter);
+  }
+  .cards,
+  .masonry {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tabs {
+    padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardLink,
+  .tab,
+  .pill {
+    transition: none;
+  }
+  .cardLink:hover {
+    transform: none;
+  }
+}
