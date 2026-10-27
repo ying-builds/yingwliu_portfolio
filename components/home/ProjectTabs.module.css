@@ -144,9 +144,11 @@
 
 .title {
   margin: 0;
-  font-family: var(--font-body);
+  /* Crimson Pro ships one weight (400), so no bold here: asking for one
+     would make the browser fake it. */
+  font-family: var(--font-serif);
   font-size: var(--home-card-title);
-  font-weight: 600;
+  font-weight: 400;
   line-height: var(--site-leading-tight);
   color: var(--black);
 }
