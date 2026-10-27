@@ -238,14 +238,14 @@
   /* Same gap on the left, right and bottom, so the pill sits evenly in the
      tile's corner. */
   left: var(--space-xs);
-  right: var(--space-xs);
+  /* Hugs its text instead of spanning the tile; never wider than the tile. */
+  width: fit-content;
+  max-width: calc(100% - 2 * var(--space-xs));
   bottom: var(--space-xs);
   padding: var(--home-pill-pad-y) var(--home-pill-pad-x);
   border-radius: var(--home-pill-radius);
-  /* See-through white with a light blur, so the picture shows behind it. */
+  /* Almost solid white, a hint of the picture comes through. */
   background: var(--home-pill-bg);
-  -webkit-backdrop-filter: blur(var(--home-pill-blur));
-  backdrop-filter: blur(var(--home-pill-blur));
   box-shadow: var(--home-pill-shadow);
   font-family: var(--font-intel-mono);
   font-size: var(--site-text-small);

@@ -576,8 +576,7 @@ h3 {
   --home-play-gap: 20px;            /* between Play tiles, both directions */
   --home-pill-radius: 12px;         /* Play tile hover pill */
   --home-pill-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --home-pill-bg: rgba(255, 255, 255, 0.78); /* Play pill, see-through white */
-  --home-pill-blur: 10px;
+  --home-pill-bg: rgba(255, 255, 255, 0.92); /* Play pill, almost solid white */
   --home-pill-pad-y: 10px;
   --home-pill-pad-x: 14px;
   --home-pill-tags: 11px;           /* tag line under the pill title */
