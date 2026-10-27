@@ -233,9 +233,11 @@
 /* The pill rises in over the bottom of the picture on hover or focus. */
 .pill {
   position: absolute;
-  left: var(--space-md);
-  right: var(--space-md);
-  bottom: 6px;
+  /* Same gap on the left, right and bottom, so the pill sits evenly in the
+     tile's corner. */
+  left: var(--space-xs);
+  right: var(--space-xs);
+  bottom: var(--space-xs);
   padding: 12px 16px;
   border-radius: var(--home-pill-radius);
   background: var(--white);
