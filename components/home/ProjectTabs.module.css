@@ -242,7 +242,10 @@
   bottom: var(--space-xs);
   padding: var(--home-pill-pad-y) var(--home-pill-pad-x);
   border-radius: var(--home-pill-radius);
-  background: var(--white);
+  /* See-through white with a light blur, so the picture shows behind it. */
+  background: var(--home-pill-bg);
+  -webkit-backdrop-filter: blur(var(--home-pill-blur));
+  backdrop-filter: blur(var(--home-pill-blur));
   box-shadow: var(--home-pill-shadow);
   font-family: var(--font-intel-mono);
   font-size: var(--site-text-small);
