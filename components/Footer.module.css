@@ -1,50 +1,39 @@
-/* Three groups across the dark bar: identity, nav, social.
-   align-items: center handles the vertical alignment — in Figma each group
-   sits at a slightly different top offset, but all three share the same
-   optical centre line. */
-.bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  padding: 0 var(--footer-gutter);
+.footer {
+  background: var(--footer-bg);
+  color: var(--footer-muted);
+  border-top: 1px solid var(--line);
 }
 
-/* Wordmark and the red character sit flush against each other */
+.footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Three groups across the dark bar: identity, nav, social. The nav sits on the
+   true centre line because the outer columns are equal (1fr each). */
+.bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: var(--space-footer-y) var(--footer-gutter);
+}
+
+/* Tagline and the red character sit flush against each other */
 .identity {
   display: flex;
   align-items: center;
-  /* See .social — the same shrink-to-nothing applied here, squeezing the
-     wordmark to 47px and sliding the nav on top of the seal. */
-  flex-shrink: 0;
+  justify-self: start;
 }
 
-/* These three lines use the font's natural leading, not the 23px body
-   leading — at 8px that would trip the block to nearly double height. */
-.wordmark {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2xs);
-  line-height: normal;
-}
-
-.withLove {
+.made {
+  margin: 0;
   font-family: var(--font-body);
-  font-size: var(--text-micro);
+  font-size: var(--text-footer-tagline);
+  line-height: 1.1;
   color: var(--footer-muted);
-}
-
-.name {
-  font-family: var(--font-display);
-  font-size: var(--text-h4);
-  letter-spacing: var(--tracking-wordmark);
-  color: var(--white);
-}
-
-.copyright {
-  font-family: var(--font-body);
-  font-size: var(--text-micro);
-  color: var(--footer-muted);
+  white-space: nowrap;
 }
 
 .mark {
@@ -52,69 +41,137 @@
   height: var(--footer-mark-size);
 }
 
-.navList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.navList a {
-  text-decoration: none;
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: var(--text-footer-nav);
+  line-height: 1.35;
   color: var(--white);
-  transition: color 0.2s ease;
 }
 
-/* Grey, not the rust the top nav uses. Rust measures 2.78:1 against
-   --footer-bg, under the 4.5:1 AA floor, so on this bar it would dim the link
-   at the moment it signals it is interactive.
+/* The hover is a thin rust underline that fades in under the label. Text does
+   not move or change colour, so the rest state stays at full contrast. */
+.nav a {
+  position: relative;
+}
 
-   --footer-muted is the dark-surface muted grey already declared in
-   tokens.css. It clears AA at 6.17:1 and, more to the point, is visibly
-   different from the resting white at 2.85:1. The previous hover,
-   --white-subtitle, sat at 1.09:1 against white — a colour change on paper
-   that nobody could see.
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: var(--site-accent-on-dark);
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
 
-   Dimming rather than brightening on hover matches the social icons just
-   below, which already fade to 0.7 opacity. */
-.navList a:hover {
+.nav a:hover::after,
+.nav a:focus-visible::after {
+  opacity: 1;
+}
+
+.nav a:focus-visible {
+  outline: none;
+}
+
+.right {
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-xs);
+}
+
+.copy {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-footer-copy);
+  letter-spacing: 0.04em;
   color: var(--footer-muted);
 }
 
 .social {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: 4px;
   /* Flex items shrink by default, and once the bar ran out of room these
      icons went with it — they rendered 1.8px wide on a 390px phone, visible
-     only as three faint marks. Silent, because nothing overflowed. Pinned at
-     every width, not just mobile: an icon that cannot shrink overflows
-     instead, which is a bug you can see. */
+     only as three faint marks. Pinned so they never shrink. */
   flex-shrink: 0;
 }
 
+/* Dim at rest, full brightness on hover */
 .social a {
   display: flex;
+  opacity: 0.7;
+  transition: opacity 0.2s ease-out;
 }
 
-.social a:hover {
-  opacity: 0.7;
+.social a:hover,
+.social a:focus-visible {
+  opacity: 1;
+  outline: none;
 }
 
 .icon {
+  display: block;
   width: var(--icon-social);
   height: var(--icon-social);
 }
 
 .iconLg {
+  display: block;
   width: var(--icon-social-lg);
   height: var(--icon-social-lg);
 }
 
-/* Full-bleed ink band under the bar */
+/* Full-bleed band under the bar. Its colour is the page background, so the
+   animation blends into the light sections around the footer. */
 .band {
-  display: block;
-  width: 100%;
-  height: auto;
+  position: relative;
+  overflow: hidden;
   aspect-ratio: var(--footer-band-ratio);
+  max-height: var(--footer-band-max-height);
+  background: var(--background-fill);
+  border-top: 1px solid var(--line);
+}
+
+.bandVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* Phones: the bar stacks into one column and the band becomes a strip. */
+@media (max-width: 768px) {
+  .bar {
+    grid-template-columns: 1fr;
+    justify-items: start;
+    gap: 32px;
+    padding: 48px var(--footer-gutter);
+  }
+
+  .nav {
+    align-items: flex-start;
+  }
+
+  .right {
+    align-items: flex-start;
+    justify-self: start;
+  }
+
+  .band {
+    aspect-ratio: auto;
+    height: var(--footer-band-height-mobile);
+  }
 }

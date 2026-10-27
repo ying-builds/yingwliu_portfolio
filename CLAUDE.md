@@ -113,9 +113,11 @@ each case study's frontmatter, so a new MDX file picks them up automatically.
 
 ## Contact links
 - All email links across the site point to yxngliu@gmail.com.
-- The resume link appears only on the About page, alongside the LinkedIn,
-  Email, and Medium links. Do not add it to the homepage, the footer, case
-  study pages, or anywhere else.
+- The resume link appears on the About page (alongside LinkedIn, Email and
+  Medium), in the top nav and in the footer, so it is on every page. Do not
+  add it anywhere else, such as inside the page body of the homepage or a
+  case study. (Changed from "About page only" when the new nav and footer
+  shipped.)
 
 ## Password-gated case studies
 Some case studies are shared privately rather than publicly. The gate is a

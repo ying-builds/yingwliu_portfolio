@@ -8,8 +8,18 @@
   padding: 0 var(--page-gutter);
 }
 
-.logo {
+/* The name rests a shade lighter than the links and settles to full black on
+   hover, so it reads as a link without a second colour. */
+.nav .logo {
   text-decoration: none;
+  color: var(--nav-logo-rest);
+  transition: color 0.2s ease-out;
+}
+
+.nav .logo:hover,
+.nav .logo:focus-visible {
+  color: var(--black);
+  outline: none;
 }
 
 .links {
@@ -18,14 +28,36 @@
   padding: 0;
 }
 
+/* Links rest in the muted grey and darken on hover, with a thin rust underline
+   fading in underneath. The underline is a graphic rather than text, and rust
+   against the cream page clears AA at 5.86:1. */
 .links a {
+  position: relative;
   text-decoration: none;
-  transition: color 0.2s ease;
+  color: var(--subtitle);
+  transition: color 0.2s ease-out;
 }
 
-/* Rust on the cream nav clears AA at 5.86:1. The base colour comes from
-   .nav-links in tokens.css, which the anchors inherit via `a { color: inherit }`
-   in globals.css. */
-.links a:hover {
-  color: var(--site-accent);
+.links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: var(--site-accent);
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.links a:hover,
+.links a:focus-visible {
+  color: var(--black);
+  outline: none;
+}
+
+.links a:hover::after,
+.links a:focus-visible::after {
+  opacity: 1;
 }
