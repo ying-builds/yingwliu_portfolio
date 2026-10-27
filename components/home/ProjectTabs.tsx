@@ -204,9 +204,17 @@ function Tile({ tile }: { tile: PlayTile }) {
         style={tile.zoom ? { transform: `translate(-0.65%, -1.19%) scale(${tile.zoom})`, transformOrigin: "top left" } : undefined}
       />
       <span className={styles.pill}>
-        {tile.name ? <strong>{tile.name}</strong> : null}
-        {tile.name && tile.tags.length ? " | " : null}
-        {tile.tags.join(" | ")}
+        <span className={styles.pillText}>
+          {tile.name ? <strong>{tile.name}</strong> : null}
+          {tile.name && tile.tags.length ? " | " : null}
+          {tile.tags.join(" | ")}
+        </span>
+        {/* Only the tiles that open somewhere get an arrow. */}
+        {tile.href ? (
+          <span className={styles.arrow} aria-hidden="true">
+            ↗
+          </span>
+        ) : null}
       </span>
     </>
   );

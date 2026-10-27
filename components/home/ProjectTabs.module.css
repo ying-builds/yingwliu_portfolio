@@ -243,9 +243,13 @@
   font-family: var(--font-intel-mono);
   font-size: var(--site-text-small);
   letter-spacing: var(--home-card-tracking);
-  text-transform: uppercase;
   line-height: normal;
   color: var(--home-card-label);
+  /* Text and the link-out arrow sit on one row. */
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-sm);
   opacity: 0;
   transform: translateY(4px);
   transition:
@@ -254,8 +258,19 @@
   pointer-events: none;
 }
 
+.pillText {
+  min-width: 0;
+}
+
+/* Only the project name is in capitals; the tags read in normal case. */
 .pill strong {
   font-weight: 700;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.arrow {
+  flex: none;
   color: var(--black);
 }
 
