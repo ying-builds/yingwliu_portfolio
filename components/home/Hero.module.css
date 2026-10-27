@@ -1,0 +1,276 @@
+/* Home hero. Everything is placed in "artboard pixels" (see hero-data.ts), and
+   --u is the size of one of them. On desktop the scene fills the width, so
+   --u = width / 1708. The scene is a size container so cqw can read its width. */
+
+.hero {
+  position: relative;
+  container-type: inline-size;
+  overflow: hidden;
+  background: var(--hero-ink);
+  /* On the home page the nav floats over the top of this (Nav.module.css),
+     so the artwork's top strip is the nav's backdrop. */
+}
+
+.stage {
+  --u: calc(100cqw / 1708);
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1708 / 583;
+  font-family: var(--font-hand);
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ---------- live text ---------- */
+
+.psst,
+.petBean,
+.journal {
+  position: absolute;
+  margin: 0;
+  font-family: var(--font-hand);
+  font-weight: 400;
+  /* The journal is an <h1>, which carries heading letter-spacing from
+     tokens.css. Reset it so the handwriting wraps on the same words as Figma. */
+  letter-spacing: 0;
+  font-size: calc(22 * var(--u));
+}
+
+.psst {
+  color: var(--white);
+}
+
+.petBean {
+  color: var(--site-cream);
+  /* Figma rotates this -9.7 degrees (counter-clockwise is positive there). */
+  transform: translate(-50%, -50%) rotate(9.7deg);
+  white-space: nowrap;
+}
+
+.journal {
+  /* The printed text on the journal page. Everything handwritten (notes,
+     "psst", "pet bean!") stays in --font-hand. Line height is left at the
+     font's own, which is what Figma's "auto" uses. */
+  font-family: var(--font-serif);
+  line-height: normal;
+  color: var(--hero-ink);
+}
+
+.journal em {
+  font-style: italic;
+}
+
+.previously {
+  /* A blank line (one line height) between the paragraph and this sign-off. */
+  display: block;
+  margin-top: 1lh;
+  color: var(--almost-black);
+}
+
+.company {
+  /* Muted, but darker than the old #999 (1.9:1 on the grey paper). --subtitle
+     is 3.2:1 there; it is the darkest muted grey in the palette. */
+  color: var(--subtitle);
+}
+
+/* The two hand-drawn lines under "product designer", tilted like the Figma ones. */
+.underline {
+  position: absolute;
+  height: calc(1 * var(--u));
+  min-height: 1px;
+  /* Same muted grey as "Ticketmaster", so the page's marks feel like one pen. */
+  background: var(--subtitle);
+  transform: rotate(-1.79deg);
+  transform-origin: left center;
+}
+
+/* ---------- hotspots ---------- */
+
+.spot {
+  position: absolute;
+}
+
+.spotButton {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  /* Taps should not flash a grey box on phones. */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.spotButton:focus-visible {
+  outline: 2px solid var(--site-cream);
+  outline-offset: 4px;
+}
+
+.art {
+  position: absolute;
+  max-width: none;
+  pointer-events: none;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.front {
+  position: absolute;
+  max-width: none;
+  pointer-events: none;
+}
+
+/* The note: hidden until the hotspot is hovered, focused, or tapped open. */
+.note {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(calc(4 * var(--u)));
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+.note img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.note p {
+  position: absolute;
+  inset: calc(21 * var(--u)) calc(33 * var(--u)) calc(21 * var(--u));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--black);
+  line-height: 1.15;
+}
+
+.spot:hover .note,
+.spot:focus-within .note,
+.isOpen .note {
+  opacity: 1;
+  transform: none;
+}
+
+/* Little "poke me" wiggles. The picture sits still for most of each period,
+   then rocks 4, -4, 3, -3 degrees (the same as the Figma prototype). The
+   period is different per piece so they don't all move together.
+   Percentages are 0.48s of movement out of 3s / 4s / 5s. */
+@keyframes wiggle3 {
+  0%, 16%, 100% { transform: rotate(0); }
+  4% { transform: rotate(4deg); }
+  8% { transform: rotate(-4deg); }
+  12% { transform: rotate(3deg); }
+  14% { transform: rotate(-3deg); }
+}
+
+@keyframes wiggle4 {
+  0%, 12%, 100% { transform: rotate(0); }
+  3% { transform: rotate(4deg); }
+  6% { transform: rotate(-4deg); }
+  9% { transform: rotate(3deg); }
+  10.5% { transform: rotate(-3deg); }
+}
+
+@keyframes wiggle5 {
+  0%, 9.6%, 100% { transform: rotate(0); }
+  2.4% { transform: rotate(4deg); }
+  4.8% { transform: rotate(-4deg); }
+  7.2% { transform: rotate(3deg); }
+  8.4% { transform: rotate(-3deg); }
+}
+
+.wiggle3 { animation: wiggle3 3s ease-in-out infinite; }
+.wiggle4 { animation: wiggle4 4s ease-in-out infinite; }
+.wiggle5 { animation: wiggle5 5s ease-in-out infinite; }
+
+/* Once you are on it, it holds still and the note takes over. */
+.spot:hover .art,
+.spot:focus-within .art,
+.isOpen .art {
+  animation: none;
+}
+
+/* ---------- Bean's sparkles ---------- */
+
+.bean {
+  position: absolute;
+}
+
+.sparkle {
+  position: absolute;
+  opacity: 0;
+  background: var(--hero-sparkle-cream);
+  /* The sparkle picture is black halftone on transparent. Using it as a mask
+     lets one file be any colour. */
+  -webkit-mask: url("/images/site/hero/sparkle.webp") center / contain no-repeat;
+  mask: url("/images/site/hero/sparkle.webp") center / contain no-repeat;
+}
+
+.butter {
+  background: var(--hero-sparkle-butter);
+}
+
+.bean:hover .sparkle {
+  animation: pop 0.35s ease-out forwards;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(calc(40 * var(--u))) scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- small screens ---------- */
+
+/* On a phone the whole scene would be tiny, so it is drawn at a fixed 1100px
+   wide and cropped to the journal's right page, where the paragraph is. This
+   is the simple version; the phone pass in QA will refine it. */
+@media (max-width: 768px) {
+  .hero {
+    height: calc(583 * 1100 / 1708 * 1px);
+  }
+
+  .stage {
+    --u: calc(1100 / 1708 * 1px);
+    width: calc(1708 * var(--u));
+    left: calc(50% - 985 * var(--u));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wiggle3,
+  .wiggle4,
+  .wiggle5,
+  .bean:hover .sparkle {
+    animation: none;
+  }
+
+  .bean:hover .sparkle {
+    opacity: 1;
+  }
+
+  .note {
+    transition: none;
+  }
+}

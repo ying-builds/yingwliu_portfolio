@@ -1,13 +1,19 @@
-import Link from "next/link";
-import styles from "./Nav.module.css";
+"use client";
 
-/* Same resume link as the About page and the footer. */
-const RESUME_URL =
-  "https://drive.google.com/file/d/1qB0c1SUs6PF13SnWzXNWGTpOsIXcYJKH/view?usp=sharing";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import styles from "./Nav.module.css";
+import { RESUME_URL } from "../lib/links";
 
 export default function Nav() {
+  // On the home page the nav floats over the dark hero artwork, so it switches
+  // to light text and sits on top instead of in the page flow.
+  const onHome = usePathname() === "/";
+
   return (
-    <nav className={`nav-bar ${styles.nav}`}>
+    <nav
+      className={`nav-bar ${styles.nav} ${onHome ? styles.overHero : ""}`}
+    >
       <Link
         href="/"
         prefetch={false}

@@ -86,7 +86,7 @@
 }
 
 .heroRole {
-  font-family: var(--font-mono);
+  font-family: var(--font-intel-mono);
   /* Off the scale on purpose. --site-text-micro is 10px; snapping this down
      from 11px thinned the outlined role chip enough to notice, so it keeps
      its own value. See the note above --site-text-micro in tokens.css. */
@@ -157,7 +157,7 @@
 
 /* Reads as a button, not a whisper — this is the main call to action */
 .scrollHint span {
-  font-family: var(--font-mono);
+  font-family: var(--font-intel-mono);
   /* Off the scale on purpose, same as .heroRole — this is the main call to
      action and 10px undersells it. */
   font-size: 11px;
@@ -215,7 +215,7 @@
   max-width: calc(var(--site-content-max) + var(--site-gutter) * 2);
   margin: 0 auto;
   padding: 0 var(--site-gutter) var(--site-label-gap);
-  font-family: var(--font-mono);
+  font-family: var(--font-intel-mono);
   font-size: var(--site-text-micro);
   letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
@@ -332,7 +332,7 @@
 }
 
 .projectMetaLabel {
-  font-family: var(--font-mono);
+  font-family: var(--font-intel-mono);
   /* Off the scale on purpose. This label has to stay clearly smaller than the
      12px value under it; at --site-text-micro's 10px the pair nearly flattens
      and the value stops reading as the primary of the two. */
@@ -354,7 +354,7 @@
   align-items: center;
   gap: 8px;
   margin-top: 16px;
-  font-family: var(--font-mono);
+  font-family: var(--font-intel-mono);
   font-size: var(--site-text-micro);
   letter-spacing: var(--site-tracking-caps);
   color: var(--site-accent);

@@ -116,8 +116,8 @@ each case study's frontmatter, so a new MDX file picks them up automatically.
 - The resume link appears on the About page (alongside LinkedIn, Email and
   Medium), in the top nav and in the footer, so it is on every page. Do not
   add it anywhere else, such as inside the page body of the homepage or a
-  case study. (Changed from "About page only" when the new nav and footer
-  shipped.)
+  case study. All three use `RESUME_URL` from `lib/links.ts`, so changing the
+  Drive link is a one-line edit.
 
 ## Password-gated case studies
 Some case studies are shared privately rather than publicly. The gate is a
@@ -255,6 +255,14 @@ tokenising; roughly 12 are one-off component dimensions (560px bio width,
 token — those should stay literals. The card and mobile work since then added
 a few more: 12px, 24px and 5px on the homepage cards, and 24px, 88px and 8px
 in the footer's mobile breakpoint.
+
+**Roll Intel One Mono out site-wide.** The homepage now uses Intel One Mono
+(`--font-intel-mono`) everywhere PT Mono used to appear. About, the case study
+pages and the footer still use PT Mono (`--font-mono`). Later, switch the rest
+over: point `--font-mono` at Intel One Mono (or swap the references), then
+remove the PT Mono `@font-face` blocks and files from `public/fonts` and
+globals.css. Do this as its own pass so type widths can be rechecked on the
+case study pages.
 
 **`/ticketmaster-casestudy.html` is a temporary 307** to `/#work`, because
 the URL was live on both the old site and the new one. Point it at the real

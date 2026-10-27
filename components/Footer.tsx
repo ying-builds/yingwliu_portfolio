@@ -1,11 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import GifPlayer from "./case-study/GifPlayer";
+import { RESUME_URL } from "../lib/links";
 import styles from "./Footer.module.css";
-
-/* Same resume link as the About page. */
-const RESUME_URL =
-  "https://drive.google.com/file/d/1qB0c1SUs6PF13SnWzXNWGTpOsIXcYJKH/view?usp=sharing";
 
 export default function Footer() {
   return (

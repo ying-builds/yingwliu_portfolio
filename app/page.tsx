@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import styles from "./page.module.css";
-import InkCursor from "../components/site/InkCursor";
-import PixelTrail from "../components/site/PixelTrail";
+import Hero from "../components/home/Hero";
 import CustomCursor from "../components/site/CustomCursor";
 import ScrollReveal from "../components/site/ScrollReveal";
 import { getVisibleCards } from "../lib/case-studies";
@@ -48,34 +47,9 @@ export default function HomePage() {
   return (
     <div className={styles.page}>
       <CustomCursor />
-      <PixelTrail hostId="hero" />
       <ScrollReveal />
 
-      <section className={styles.heroDark} id="hero">
-        <div className={styles.grainOverlay} />
-        <InkCursor hostId="hero" />
-
-        <div className={styles.heroContent}>
-          <p className={styles.heroRole}>Product Designer</p>
-          <h1 className={styles.heroName}>
-            <span className={styles.calligraphy}>
-              Ying <span className={styles.cjk}>瀅</span>
-            </span>
-          </h1>
-        </div>
-
-        <div className={styles.heroBottom}>
-          <p className={styles.heroBio}>
-            Using a strategist&apos;s intuition to turn ambiguity into clarity
-            through grounded experiences.
-          </p>
-        </div>
-
-        <a href="#work" className={styles.scrollHint} aria-label="Scroll to work">
-          <span>Work</span>
-          <div className={styles.scrollLine} />
-        </a>
-      </section>
+      <Hero />
 
       <section className={styles.workSection} id="work">
         <p className={`${styles.workHeader} fade-up`}>Selected Work</p>
