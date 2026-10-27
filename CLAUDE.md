@@ -28,6 +28,8 @@ study's actual content living in a simple MDX file.
   CSS custom properties (variables) defined in tokens.css.
 - Fonts: Bootzy TM (display), Inter (body), PT Mono (mono/labels)
 - Base spacing unit is 8px. All spacing pulls from the defined scale.
+- Log every font, colour, size or spacing token you add, change or remove in
+  `styles/TOKEN-CHANGES.md` (newest first), in the same commit as the change.
 
 ## Working from Figma
 - Never estimate or eyeball spacing, sizing, or coordinates. Pull exact values
