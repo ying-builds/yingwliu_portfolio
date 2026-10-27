@@ -7,6 +7,12 @@ changes, in the same commit.
 
 ## New home, footer and nav (branch `rethinking-client-self-service-and-new-home`)
 
+### Motion
+| Token | Value | Used for |
+|---|---|---|
+| `--home-arrow-nudge` | `3px` | Play pill ↗ arrow drifts this far up and right while the tile is hovered (matches the reference recording) |
+| `--home-arrow-duration` | `0.4s` | Ease-out time for that drift. Off under reduced motion |
+
 ### Fonts
 | Change | Where | Note |
 |---|---|---|

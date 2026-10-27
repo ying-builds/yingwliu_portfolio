@@ -275,6 +275,15 @@
 .arrow {
   flex: none;
   color: var(--black);
+  display: inline-block;
+  transition: transform var(--home-arrow-duration) ease-out;
+}
+
+/* The arrow keeps drifting up and to the right while the tile is hovered,
+   a small "this goes somewhere" nudge. */
+.tile:hover .arrow,
+.tile:focus-visible .arrow {
+  transform: translate(var(--home-arrow-nudge), calc(var(--home-arrow-nudge) * -1));
 }
 
 .tile:hover .pill,
@@ -322,8 +331,13 @@
 @media (prefers-reduced-motion: reduce) {
   .cardLink,
   .tab,
-  .pill {
+  .pill,
+  .arrow {
     transition: none;
+  }
+  .tile:hover .arrow,
+  .tile:focus-visible .arrow {
+    transform: none;
   }
   .cardLink:hover {
     transform: none;

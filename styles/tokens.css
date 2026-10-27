@@ -576,6 +576,8 @@ h3 {
   --home-play-gap: 20px;            /* between Play tiles, both directions */
   --home-pill-radius: 14px;         /* Play tile hover pill */
   --home-pill-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --home-arrow-nudge: 3px;          /* Play pill arrow drift on hover (up and right) */
+  --home-arrow-duration: 0.4s;
   --home-card-title: 24px;          /* card title, Crimson Pro */
   --home-card-meta: 11px;           /* company line and tags */
   --home-card-tracking: 0.08em;     /* mono labels on cards and pills */
