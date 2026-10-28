@@ -1,0 +1,80 @@
+/* Peelable sticker. Position and size come from the page that uses it; this file
+   is only the lift, the peel-on and the shadow. Timings and lift amounts are
+   tokens (see "Peelable stickers" in styles/tokens.css). */
+
+.sticker {
+  position: absolute;
+  z-index: 3;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  perspective: 600px;
+  transform: translate(var(--peel-x, 0), var(--peel-y, 0));
+}
+
+.isHeld {
+  cursor: grabbing;
+  z-index: 4;
+}
+
+.img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  transform: rotate(var(--peel-tilt, 0deg));
+  transform-origin: 8% 92%;
+  /* The die-cut white edge already reads as the sticker; the shadow is just
+     enough to show it sits on top of the paper. */
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.22))
+    drop-shadow(0 2px 3px rgb(0 0 0 / 0.12));
+  transition:
+    transform var(--sticker-lift-duration) cubic-bezier(0.2, 0.8, 0.3, 1),
+    filter var(--sticker-lift-duration) ease-out;
+  animation: peelOn var(--sticker-peel-duration) cubic-bezier(0.2, 0.8, 0.3, 1)
+    var(--sticker-peel-delay, 0s) backwards;
+}
+
+/* Hover: the left edge lifts, as if a thumbnail got under it. */
+.sticker:hover .img {
+  transform: rotate(var(--peel-tilt, 0deg)) rotateY(calc(var(--sticker-lift-angle) * -1))
+    translateY(-2px);
+  filter: drop-shadow(0 6px 5px rgb(0 0 0 / 0.2))
+    drop-shadow(0 10px 14px rgb(0 0 0 / 0.14));
+}
+
+/* Held: fully off the page, a little bigger, a little twisted. */
+.isHeld .img {
+  transform: rotate(calc(var(--peel-tilt, 0deg) + 3deg)) scale(1.07);
+  filter: drop-shadow(0 12px 8px rgb(0 0 0 / 0.2))
+    drop-shadow(0 22px 24px rgb(0 0 0 / 0.16));
+  transition-duration: 0.12s;
+}
+
+/* Pressing it down: starts peeled up and tilted, then lands flat with a tiny
+   squash, the way a sticker does when you smooth it with your thumb. */
+@keyframes peelOn {
+  0% {
+    transform: rotate(var(--peel-tilt, 0deg)) rotateY(calc(var(--sticker-lift-angle) * -2.2))
+      translateY(-10px) scale(1.08);
+    filter: drop-shadow(0 14px 10px rgb(0 0 0 / 0.2))
+      drop-shadow(0 26px 26px rgb(0 0 0 / 0.16));
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  70% {
+    transform: rotate(var(--peel-tilt, 0deg)) rotateY(0deg) translateY(0) scale(0.985);
+  }
+  100% {
+    transform: rotate(var(--peel-tilt, 0deg)) rotateY(0deg) translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .img {
+    animation: none;
+    transition: none;
+  }
+}

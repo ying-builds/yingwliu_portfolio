@@ -5,6 +5,17 @@ or removed in `styles/tokens.css` (and the `@font-face` blocks in
 `styles/globals.css`). Newest first. Add an entry whenever one of these
 changes, in the same commit.
 
+
+## 2026-10-28: Peelable stickers on the About notebook
+### Added
+| Token | Value |
+| --- | --- |
+| `--sticker-lift-duration` | 0.25s |
+| `--sticker-peel-duration` | 0.9s |
+| `--sticker-lift-angle` | 14deg |
+| `--about-sticker-tuxedo-width` / `-left` / `-bottom` | 15cqw / 22cqw / -0.5cqw |
+| `--about-sticker-tabby-width` / `-right` / `-bottom` | 19cqw / 4.5cqw / 1.5cqw |
+
 ## New home, footer and nav (branch `rethinking-client-self-service-and-new-home`)
 
 ### About page: one screen on desktop

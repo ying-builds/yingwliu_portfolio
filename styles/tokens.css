@@ -631,4 +631,15 @@ h3 {
   --about-nb-para-gap: min(14px, 1.3cqw);
   --about-nb-title-gap: min(6px, 0.55cqw);
   --about-nb-stack-gap: min(24px, 2.2cqw); /* title to polaroid, polaroid to caption */
+
+  /* Peelable stickers on the About notebook (sizes and spots in notebook units) */
+  --sticker-lift-duration: 0.25s; /* hover and drop */
+  --sticker-peel-duration: 0.9s; /* the peel-on when the page loads */
+  --sticker-lift-angle: 14deg; /* how far the edge tips up on hover */
+  --about-sticker-tuxedo-width: 15cqw;
+  --about-sticker-tuxedo-left: 22cqw;
+  --about-sticker-tuxedo-bottom: -0.5cqw;
+  --about-sticker-tabby-width: 19cqw;
+  --about-sticker-tabby-right: 4.5cqw;
+  --about-sticker-tabby-bottom: 1.5cqw;
 }

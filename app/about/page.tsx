@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import styles from "./page.module.css";
 import CustomCursor from "../../components/site/CustomCursor";
 import SacramentoClock from "../../components/site/SacramentoClock";
+import PeelSticker from "../../components/site/PeelSticker";
 
 export const metadata: Metadata = {
   title: "About — Ying Liu",
@@ -155,6 +156,25 @@ export default function AboutPage() {
               </a>
             </div>
           </div>
+
+          {/* Two die-cut stickers stuck on the pages. They peel on when the page
+              loads, lift on hover, and can be dragged somewhere else. */}
+          <PeelSticker
+            className={styles.stickerTuxedo}
+            src="/images/site/sticker-tuxedo-cat.webp"
+            alt="A black and white tuxedo cat lying down, as a sticker"
+            width={1000}
+            height={545}
+            tilt={-3}
+          />
+          <PeelSticker
+            className={styles.stickerTabby}
+            src="/images/site/sticker-tabby-cat.webp"
+            alt="A tabby cat lying down with its tail up, as a sticker"
+            width={1000}
+            height={613}
+            tilt={3}
+          />
           </div>
 
           <div className={`${styles.shadowText} ${styles.shadowTextBottom}`}>

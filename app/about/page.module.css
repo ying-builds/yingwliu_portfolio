@@ -308,6 +308,30 @@
   color: var(--black);
 }
 
+/* ===== Stickers on the notebook =====
+   Sized and placed in notebook units (cqw) so they ride with it. Hidden when the
+   page stacks: there is no notebook to stick them to. */
+.stickerTuxedo {
+  left: var(--about-sticker-tuxedo-left);
+  bottom: var(--about-sticker-tuxedo-bottom);
+  width: var(--about-sticker-tuxedo-width);
+  --sticker-peel-delay: 1.3s;
+}
+
+.stickerTabby {
+  right: var(--about-sticker-tabby-right);
+  bottom: var(--about-sticker-tabby-bottom);
+  width: var(--about-sticker-tabby-width);
+  --sticker-peel-delay: 1.6s;
+}
+
+@media (max-width: 900px) {
+  .stickerTuxedo,
+  .stickerTabby {
+    display: none;
+  }
+}
+
 /* ========================================
    NOTEBOOK TYPE (desktop)
    ======================================== */
