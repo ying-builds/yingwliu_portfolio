@@ -118,11 +118,9 @@
 }
 
 .aboutTagline {
-  font-family: var(--font-mono);
-  font-size: var(--site-text-small);
-  letter-spacing: var(--site-tracking-wide);
-  text-transform: uppercase;
-  line-height: var(--site-leading-loose);
+  font-family: var(--font-serif);
+  font-size: var(--about-caption-size);
+  line-height: var(--site-leading-body);
   color: var(--black);
   max-width: var(--about-left-width);
   margin-bottom: 0;
@@ -229,11 +227,18 @@
 /* ========================================
    WHAT I'M UP TO
    ======================================== */
+/* Same label-and-rule as "About", but set in Intel One Mono */
+.nowLabel {
+  font-family: var(--font-intel-mono);
+  margin-top: var(--about-now-gap);
+  margin-bottom: var(--space-md);
+  animation-delay: 1s;
+}
+
 .nowList {
   list-style: none;
-  margin: var(--about-now-gap) 0 0;
-  padding: var(--about-now-gap) 0 0;
-  border-top: 1px solid var(--site-rule);
+  margin: 0;
+  padding: 0;
   opacity: 0;
   animation: fadeUp 0.7s 1.1s ease forwards;
 }
@@ -260,6 +265,31 @@
 /* The opening words sit back; the rest of the line carries it */
 .nowLead {
   color: var(--subtitle);
+}
+
+/* Email and LinkedIn, stacked at the end of the right column */
+.contactLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--about-bullet-gap);
+  margin-top: var(--about-now-gap);
+  opacity: 0;
+  animation: fadeUp 0.7s 1.2s ease forwards;
+}
+
+.contactLinks a {
+  font-size: var(--site-text-body);
+  line-height: var(--site-leading-body);
+  color: var(--subtitle);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+.contactLinks a:hover {
+  color: var(--black);
 }
 
 /* ========================================

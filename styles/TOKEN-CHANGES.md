@@ -15,9 +15,10 @@ changes, in the same commit.
 | `--about-col-gap` | `96px` | Space between the two columns |
 | `--about-pad-y` | `48px` | Hero top and bottom padding on desktop |
 | `--about-stack-gap` | `32px` | Eyebrow, polaroid and caption spacing. Also the row gap when the page stacks |
-| `--about-now-gap` | `24px` | Bio to the rule above the bullets, and rule to the first bullet |
+| `--about-now-gap` | `24px` | Bio to the "I am currently" label, and the bullets to the email and LinkedIn links |
 | `--about-bullet-indent` | `18px` | Text indent past the bullet dot |
 | `--about-bullet-gap` | `10px` | Between the three bullets |
+| `--about-caption-size` | `20px` | Caption under the polaroid. Now Crimson Pro in normal case (was PT Mono caps) |
 
 ### Lighter card strokes
 | Token | Change | Note |

@@ -115,6 +115,9 @@ export default function AboutPage() {
             </p>
 
             {/* The lighter words open each line; the darker words carry it. */}
+            <p className={`${styles.bioLabel} ${styles.nowLabel}`}>
+              I am currently
+            </p>
             <ul className={styles.nowList}>
               <li>
                 <span className={styles.nowLead}>Shedding</span> my fear of
@@ -154,6 +157,17 @@ export default function AboutPage() {
                 increase my surface of luck
               </li>
             </ul>
+
+            <div className={styles.contactLinks}>
+              <a href="mailto:yxngliu@gmail.com">yxngliu@gmail.com</a>
+              <a
+                href="https://linkedin.com/in/yingwliu"
+                target="_blank"
+                rel="noopener"
+              >
+                linkedin.com/in/yingwliu
+              </a>
+            </div>
           </div>
 
           <div className={`${styles.shadowText} ${styles.shadowTextBottom}`}>
