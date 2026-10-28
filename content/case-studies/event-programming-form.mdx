@@ -3,7 +3,7 @@ title: Event Programming Form
 layout: story
 readTime: 5 min read
 subheading: I redesigned Ticketmaster's event request form from seven pages to three, so clients can fill it out more easily and Event Programmers can build events faster.
-short: Clients struggled to finish the event request form, and Event Programmers kept chasing them for what was missing. The form was built like the Salesforce backend instead of for the person filling it in. I rebuilt it around what clients know, going from *seven pages to three*. EP leads in two countries helped shape it, and I handed it to the business analyst who works with the Salesforce developers.
+short: Clients struggled to finish the event request form, and Event Programmers kept chasing them for what was missing. The form was built like the Salesforce backend instead of for the person filling it in. I rebuilt it around *what clients know*. EP leads in two countries helped shape it, and I handed it to the business analyst who works with the Salesforce developers.
 heroVideo: /protected-media/case-studies/event-programming-form/overview.mp4
 heroPoster: /protected-media/case-studies/event-programming-form/overview-poster.jpg
 heroCaption: The redesigned form, from Event Info to Additional Details.
@@ -24,21 +24,6 @@ cardOrder: 2
 Clients in some markets, mostly in Europe, use Microflex, a ticketing program that doesn't integrate with Ticketmaster's main one. This form is how they send event details to our Event Programmers (EPs), and it lands in Salesforce like a support case.
 
 The form was structured like the Salesforce backend, so clients saw a pile of inputs that only EPs needed, and many of them couldn't be filled in by a client at all.
-
-<Principles>
-<Pr title="Clients dropped off">
-
-Clients gave up partway through the form, and events arrived with wrong or missing details.
-
-</Pr>
-<Pr title="EPs chased clients">
-
-EPs emailed clients to fill in the gaps, so events couldn't be fully built.
-
-</Pr>
-</Principles>
-
-<Cap>What the project team was seeing.</Cap>
 
 </Sec>
 
@@ -78,17 +63,7 @@ If only an EP can answer it, it doesn't belong on the client's form.
 </Pr>
 <Pr title="Show a field only when it matters">
 
-A dynamic form that changes with the answer: single or multi-day, GA or reserved seating, presale or not.
-
-</Pr>
-<Pr title="Keep related things together">
-
-Related fields sit in one place, so nobody hunts across pages and pop-ups.
-
-</Pr>
-<Pr title="Let people check their work">
-
-A progress stepper, save draft on every page, and a review step before anything is sent.
+The form changes with the answer: single or multi-day, GA or reserved seating, presale or not.
 
 </Pr>
 </Principles>
@@ -99,7 +74,7 @@ A progress stepper, save draft on every page, and a review step before anything 
 
 <Lead>Three pages became one.</Lead>
 
-Event Info, Presale Details and Venue Selection used to be separate pages. They now share one. Single or multi-day is a radio button, not the toggle I first designed, to fit what Salesforce can build.
+Event Info, Presale Details and Venue Selection now share one page. Single or multi-day is a radio button, not the toggle I first designed, to fit what Salesforce can build.
 
 <Frame tag="Before and iterations" src="/protected-media/case-studies/event-programming-form/step-1-before.webp" alt="The original Event Request form beside three mockup iterations of the Event Info page" width="3600" height="1213" />
 
@@ -108,16 +83,12 @@ Event Info, Presale Details and Venue Selection used to be separate pages. They 
 <Principles>
 <Pr title="Presale: it belongs here">
 
-Presale looks ticket-related, so it started with the ticket details. The EP leads told me it made more sense for clients and EPs to have it in this section, so it moved to this page.
-
-This page only asks yes or no, and the details wait on the ticket page.
+EP leads said presale fits better with event info than with ticketing, so it moved here as a yes or no.
 
 </Pr>
 <Pr title="Venue list: full list stays">
 
-I wanted the list filtered to each client's own venues, so nobody scrolls through hundreds. The BA flagged that it is a picklist field in Salesforce and a filtered list isn't possible.
-
-The full searchable list stays.
+I wanted it filtered to each client's own venues. The BA said it is a picklist in Salesforce, so the full searchable list stays.
 
 </Pr>
 </Principles>
@@ -128,7 +99,7 @@ The full searchable list stays.
 
 <Lead>Two pages and a pop-up became one page.</Lead>
 
-This is arguably the most important part of the form: inventory, pricing and venue details. It was also the hardest part to fill out. Venue details, then inventory configuration and pricing, took two pages, and price types opened in a pop-up. The old pages had weak hierarchy, blocked-out fields clients couldn't fill in, and an overwhelming layout. My first iterations had only a few fields, based on what clients were filling in today. After talking with EP leads, I added blockings and resales, and split venue layout from ticket details. One page now holds the venue layout, ticket categories and prices, delivery, presale, blockings, and resale and transfers.
+The most important part of the form, and the hardest to fill out. The old pages had weak hierarchy, blocked-out fields and an overwhelming layout. My first iterations had only a few fields, based on what clients were filling in today. After talking with EP leads, I added blockings and resales, and split venue layout from ticket details.
 
 <Frame tag="Before and iterations" src="/protected-media/case-studies/event-programming-form/step-2-before.webp" alt="The three original pages (Venue Details, Inventory Configuration and Pricing, Price type pop-up) above three mockup iterations of the ticket page" width="3600" height="2147" />
 
@@ -137,16 +108,12 @@ This is arguably the most important part of the form: inventory, pricing and ven
 <Principles>
 <Pr title="Fees: basic first">
 
-The EP lead in Germany wanted eight fees showing up front per ticket category in ticket details, while leadership wanted only the most basic fields.
-
-I landed on an Add Fee link, an apply-to-all checkbox and a total price, so clients can add what's necessary, then check their own math.
+The EP lead in Germany wanted eight fees up front per ticket category, while leadership wanted only the basics. I landed on an Add Fee link, an apply-to-all checkbox and a total price, so clients add what's needed and check their own math.
 
 </Pr>
 <Pr title="Dynamic pricing: is it needed?">
 
-The EP leads disagreed on whether dynamic pricing was necessary on the form.
-
-The EP lead in the Netherlands suggested talking to the event promoters. It gave me insight into the extra layers every detail touches from a live event coordination perspective.
+The EP leads split on whether it belonged on the form. The EP lead in the Netherlands suggested asking the event promoters, which showed me how many live event layers each detail touches.
 
 </Pr>
 </Principles>
@@ -155,9 +122,7 @@ The EP lead in the Netherlands suggested talking to the event promoters. It gave
 
 <Sec label="Step 3" title="Additional Details, then review">
 
-<Lead>A short last page, then a review before anything is sent.</Lead>
-
-The last page collects supporting documents and final comments. The main button says Final Review, not Submit.
+<Lead>A short last page, then Final Review before anything is sent.</Lead>
 
 <Frame tag="After" video="/protected-media/case-studies/event-programming-form/step-3.mp4" poster="/protected-media/case-studies/event-programming-form/step-3-poster.jpg" />
 
@@ -166,16 +131,12 @@ The last page collects supporting documents and final comments. The main button 
 <Principles>
 <Pr title="Supporting documents: keep or cut">
 
-The EP lead in the Netherlands suggested removing the upload and keeping only a comments field.
-
-I checked with other EPs, and some said client uploads are helpful in other ticket-related aspects, so the upload stayed.
+The EP lead in the Netherlands suggested dropping the upload. Other EPs said client uploads help with ticket-related requests, so it stayed.
 
 </Pr>
 <Pr title="Review: ideal, if possible">
 
-The EP lead in the Netherlands asked for a review step before sending.
-
-I designed one with a pencil beside each section, like LinkedIn, and marked it as ideal if technically possible, since Salesforce decides what can be built.
+The EP lead in the Netherlands asked for a review step, so I designed one, flagged as ideal if Salesforce can build it.
 
 </Pr>
 </Principles>
@@ -189,12 +150,6 @@ I designed one with a pencil beside each section, like LinkedIn, and marked it a
 <StoryRow piece="EP lead feedback, Netherlands and Germany" status="Done" live="true" />
 <StoryRow piece="Client field comprehension testing" status="Planned, not run" />
 </StoryStatus>
-
-<Blk title="The handoff">
-
-I handed the designs to our business analyst (BA), who works with the Salesforce developers on the build, along with a map of the interactions, like which fields appear when a toggle changes.
-
-</Blk>
 
 </Sec>
 
