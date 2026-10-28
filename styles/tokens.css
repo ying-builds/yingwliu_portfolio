@@ -612,6 +612,6 @@ h3 {
   --about-section-gap: 40px;   /* between groups on the right: bio, I am currently, Otherwise I am, links */
   --about-label-gap: 8px;      /* a label to the text it names, kept much tighter than the gap above it */
   --about-bullet-gap: 4px;     /* between the three Otherwise I am lines */
-  --about-glyph-right: 3vw;    /* faint 瑩 behind the page: distance from the right edge */
+  --about-glyph-right: 6vw;    /* faint 瑩 behind the page: distance from the right edge */
   --about-caption-size: 20px;   /* caption under the polaroid, Crimson Pro */
 }

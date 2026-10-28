@@ -20,7 +20,7 @@ The bullet dots and the rules next to the labels were removed later, so `--about
 | `--about-section-gap` | `40px` | Between groups on the right: bio, I am currently, Otherwise I am, links. Much larger than the label gap so each label reads as belonging to what is under it |
 | `--about-label-gap` | `8px` | A label to the text it names. Also now the gap under "About" (was 24px) |
 | `--about-bullet-gap` | `4px` | Between the three "Otherwise I am" lines (was 10px) |
-| `--about-glyph-right` | `3vw` | Faint 瑩 behind the page, distance from the right edge. Moved out from behind the bullets |
+| `--about-glyph-right` | `6vw` (first `3vw`) | Faint 瑩 behind the page, distance from the right edge. Moved out from behind the bullets, then a bit further left, closer to the text column |
 | `--about-caption-size` | `20px` | Caption under the polaroid. Now Crimson Pro in normal case (was PT Mono caps) |
 
 ### Lighter card strokes
