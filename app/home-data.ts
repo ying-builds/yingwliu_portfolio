@@ -32,7 +32,7 @@ export const workCards: WorkCard[] = [
     slug: "client-self-service",
     href: "/work/client-self-service",
     tags: ["B2B", "Client support"],
-    image: "/images/case-studies/client-self-service/card-cover-v2.webp",
+    image: "/images/case-studies/client-self-service/card-cover-v3.webp",
     imageAlt: "The redesigned Ticketmaster Client Help Center home page",
   },
   {
