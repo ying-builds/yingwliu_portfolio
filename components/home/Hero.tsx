@@ -46,14 +46,14 @@ export default function Hero() {
       <div className={styles.stage} ref={stageRef}>
         <img
           className={styles.background}
-          src="/images/site/hero/background-v3.webp"
+          src="/images/site/hero/background-v4.webp"
           width={ARTBOARD.width * 2}
           height={ARTBOARD.height * 2}
           alt=""
           fetchPriority="high"
         />
 
-        <p className={styles.psst} style={{ left: u(338), top: u(260) }}>
+        <p className={styles.psst} style={{ left: u(278), top: u(260) }}>
           psst, poke around!
         </p>
 
