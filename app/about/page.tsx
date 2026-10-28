@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import styles from "./page.module.css";
 import CustomCursor from "../../components/site/CustomCursor";
+import SacramentoClock from "../../components/site/SacramentoClock";
 
 export const metadata: Metadata = {
   title: "About — Ying Liu",
@@ -50,9 +51,7 @@ export default function AboutPage() {
 
           {/* Left: eyebrow, polaroid, one-line caption */}
           <div className={styles.aboutLeft}>
-            <p className={styles.aboutEyebrow}>
-              Product Designer · Sacramento, CA
-            </p>
+            <SacramentoClock className={styles.aboutEyebrow} />
 
             <div className={styles.polaroid}>
               <img

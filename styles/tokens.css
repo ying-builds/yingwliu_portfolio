@@ -611,5 +611,6 @@ h3 {
   --about-stack-gap: 32px;     /* eyebrow, polaroid and caption spacing; row gap when stacked */
   --about-now-gap: 24px;       /* bio to the "I am currently" label; bullets to the contact links */
   --about-bullet-gap: 10px;    /* between the three lines */
+  --about-glyph-right: 3vw;    /* faint 瑩 behind the page: distance from the right edge */
   --about-caption-size: 20px;   /* caption under the polaroid, Crimson Pro */
 }

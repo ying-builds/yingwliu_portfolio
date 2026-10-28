@@ -19,6 +19,7 @@ The bullet dots and the rules next to the labels were removed later, so `--about
 | `--about-stack-gap` | `32px` | Eyebrow, polaroid and caption spacing. Also the row gap when the page stacks |
 | `--about-now-gap` | `24px` | Bio to the "I am currently" label, and the bullets to the email and LinkedIn links |
 | `--about-bullet-gap` | `10px` | Between the three "Otherwise I am" lines |
+| `--about-glyph-right` | `3vw` | Faint 瑩 behind the page, distance from the right edge. Moved out from behind the bullets |
 | `--about-caption-size` | `20px` | Caption under the polaroid. Now Crimson Pro in normal case (was PT Mono caps) |
 
 ### Lighter card strokes

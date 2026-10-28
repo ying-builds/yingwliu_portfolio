@@ -64,7 +64,7 @@
 }
 
 .aboutEyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-intel-mono);
   font-size: var(--site-text-micro);
   letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
@@ -110,9 +110,9 @@
 }
 
 .shadowTextBottom {
+  /* Sits in the clear space to the right of the text, not behind it */
   bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%);
+  right: var(--about-glyph-right);
   opacity: 0;
   animation: fadeUp 1s 0.5s ease forwards;
 }
@@ -143,7 +143,7 @@
    BIO
    ======================================== */
 .bioLabel {
-  font-family: var(--font-mono);
+  font-family: var(--font-intel-mono);
   font-size: var(--site-text-micro);
   letter-spacing: var(--site-tracking-caps);
   text-transform: uppercase;
@@ -183,9 +183,8 @@
 /* ========================================
    WHAT I'M UP TO
    ======================================== */
-/* Same label as "About", but set in Intel One Mono */
+/* Spacing for the two labels under the bio. Same Intel One Mono as "About". */
 .nowLabel {
-  font-family: var(--font-intel-mono);
   margin-top: var(--about-now-gap);
   margin-bottom: var(--space-md);
   animation-delay: 1s;
@@ -236,7 +235,7 @@
 }
 
 .contactLinks a {
-  font-size: var(--site-text-body);
+  font-size: var(--site-text-small);
   line-height: var(--site-leading-body);
   color: var(--subtitle);
   text-decoration: underline;
@@ -255,6 +254,12 @@
 
 /* Below this the two columns get too narrow, so the page stacks and scrolls. */
 @media (max-width: 900px) {
+  .shadowTextBottom {
+    right: auto;
+    left: 50%;
+    margin-left: calc(var(--about-glyph-right) * -1);
+  }
+
   .aboutHero {
     grid-template-columns: minmax(0, var(--about-right-width));
     row-gap: var(--about-stack-gap);
