@@ -52,7 +52,7 @@ export const workCards: WorkCard[] = [
     company: "UC Davis Graduate School of Management",
     title: "Alumni Learning Platform",
     description:
-      "Designed GSM's first lifelong learning platform so alumni can keep learning and stay connected.",
+      "Designing GSM's first lifelong learning platform so alumni can keep learning and stay connected.",
     tags: ["EdTech", "UX & UI"],
     slug: "uc-davis-gsm",
     href: "/work/uc-davis-gsm",
@@ -117,7 +117,7 @@ export const aiCards: AiCard[] = [
     company: "Databricks",
     title: "A Canvas for Business Analysts",
     description:
-      "A visualization builder that allows analysts to create interactive dashboards quickly using natural language.",
+      "Designing a visualization builder that lets analysts create interactive dashboards quickly using natural language.",
     tags: ["AI", "BI", "4-hour build with Claude"],
     href: "https://www.figma.com/deck/sA3bjlfenMlpcI72JeIKRg",
     image: "/images/home/databricks-card.webp",
