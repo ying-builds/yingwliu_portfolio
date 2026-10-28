@@ -7,6 +7,11 @@ changes, in the same commit.
 
 ## New home, footer and nav (branch `rethinking-client-self-service-and-new-home`)
 
+### Client Self-Service moves to the story layout
+| Token | Value | Used for |
+|---|---|---|
+| `--text-story-stat` | `clamp(32px, 4vw, 42px)` | Big number in the three-stat strip, Crimson Pro |
+
 ### Story layout and warmer footer smoke (Event Programming Form and UC Davis GSM)
 | Token | Value | Used for |
 |---|---|---|

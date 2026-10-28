@@ -122,6 +122,7 @@
   --story-hero-bottom: 88px;   /* hero to first section */
   --story-frame-pad: 25px;     /* media frame inset */
   --text-story-h2: 28px;       /* rail headline, Crimson Pro */
+  --text-story-stat: clamp(32px, 4vw, 42px); /* big number in a stat strip, Crimson Pro */
   --footer-band-bg: #f7efe4;   /* footer smoke band: warm cream, matches the video's own background */
 
   /* ===== CARD PATTERNS =====

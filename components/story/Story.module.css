@@ -234,6 +234,86 @@
 }
 .pillLive { color: var(--black); border-color: var(--black); }
 
+/* An image that already has its frame drawn into the pixels renders bare, so
+   it is not framed twice */
+.preframed { display: block; width: 100%; height: auto; }
+
+/* ===== Stat strip: ruled open columns ===== */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--black); border-bottom: 1px solid var(--line); }
+.stat { padding: var(--space-column-pad) var(--space-column-pad) var(--space-column-pad) 0; }
+.stat + .stat { padding-left: var(--space-column-pad); border-left: 1px solid var(--line); }
+.statValue {
+  font-family: var(--font-serif);
+  font-size: var(--text-story-stat);
+  line-height: 1;
+  color: var(--black);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.stat p { margin: var(--space-xs) 0 0; font-size: var(--text-meta); line-height: 1.5; max-width: 24ch; }
+
+/* ===== Client quote ===== */
+.quote { border-left: 2px solid var(--black); padding: 2px 0 2px 20px; max-width: 54ch; }
+.quote p { font-family: var(--font-serif); font-size: 21px; line-height: 1.35; color: var(--black); font-style: italic; margin: 0; }
+.quote p.label {
+  margin-top: 12px;
+  font-family: var(--font-intel-mono);
+  font-size: var(--text-label);
+  font-style: normal;
+  line-height: 1.4;
+  color: var(--subtitle);
+}
+
+/* ===== Sub heading inside a section, with a rule above it ===== */
+.col > hr { border: 0; border-top: 1px solid var(--line); height: 0; }
+.sub { font-family: var(--font-serif); font-weight: 500; font-size: 24px; line-height: 1.2; color: var(--black); }
+.col > .sub + :global(p) { margin-top: calc(var(--space-sm) - var(--story-col-gap)); }
+
+/* ===== Two framed picks side by side, each with a heading and a line ===== */
+.picks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-lg); align-items: start; }
+.picks > figure { margin: 0; min-width: 0; }
+.picks h3 { font-family: var(--font-serif); font-weight: 500; font-size: 24px; line-height: 1.2; color: var(--black); margin: 0 0 6px; }
+.pickBody { margin: 0 0 var(--space-md); }
+.picks .frame { padding: var(--space-md); }
+
+/* ===== Diagram: a stuck client's three paths ===== */
+.diagram { width: 100%; height: auto; display: block; }
+.node { fill: var(--white); stroke: var(--mockup-border-line); stroke-width: 1.2; }
+.nodeGood { stroke: var(--black); stroke-width: 1.8; }
+.nodeMe { fill: var(--black); stroke: var(--black); }
+.t1 { font-family: var(--font-body); font-weight: 600; font-size: var(--text-body); fill: var(--black); }
+.t1Inv { fill: var(--background-fill); }
+.t2 { font-family: var(--font-intel-mono); font-size: var(--text-label); fill: var(--subtitle); letter-spacing: 0.02em; }
+.t2Inv { fill: var(--background-fill); opacity: 0.7; }
+.t3 { font-family: var(--font-intel-mono); font-size: var(--text-label); fill: var(--black); letter-spacing: 0.08em; }
+.t3Dim { fill: var(--subtitle); }
+.arrow { fill: none; stroke: var(--subtitle); stroke-width: 1.4; }
+.arrowGood { stroke: var(--black); stroke-width: 2; }
+.pathsM { display: none; list-style: none; margin: 0; padding: 0; gap: var(--space-sm); }
+.pathsM li { background: var(--white); border: 1px solid var(--mockup-border-line); border-radius: 4px; padding: 14px 16px; }
+.pathsM li.pathGood { border-color: var(--black); border-width: 1.5px; }
+.pathsM b { display: block; font-weight: 600; font-size: var(--text-body); color: var(--black); margin: 2px 0; }
+.pathsM span { display: block; font-family: var(--font-intel-mono); font-size: var(--text-label); color: var(--subtitle); letter-spacing: 0.03em; line-height: 1.4; }
+.pathsM li.pathGood .label { color: var(--black); }
+
+/* ===== Diagram: who I could reach ===== */
+.layers { display: flex; align-items: stretch; width: 100%; box-sizing: border-box; }
+.layerNode { flex: 1 1 0; min-width: 0; box-sizing: border-box; background: var(--white); border: 1px solid var(--mockup-border-line); padding: 16px; }
+.layerNode b { display: block; font-family: var(--font-serif); font-weight: 500; font-size: 20px; color: var(--black); line-height: 1.2; }
+.layerNode span { font-family: var(--font-intel-mono); font-size: var(--text-label); color: var(--subtitle); letter-spacing: 0.03em; }
+.layerDash { border-style: dashed; flex-grow: 1.5; }
+.layerMe { background: var(--black); border-color: var(--black); }
+.layerMe b { color: var(--background-fill); }
+.layerMe span { color: var(--background-fill); opacity: 0.7; }
+.layerLink {
+  flex: 0 0 64px; position: relative; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-intel-mono); font-size: var(--text-label); color: var(--subtitle);
+  text-align: center; letter-spacing: 0.04em; line-height: 1.2; padding: 0 6px;
+}
+.layerLink::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1.5px solid var(--subtitle); }
+.layerLink span { position: relative; background: var(--background-fill); padding: 2px 4px; }
+.layerNarrow::before { border-top-style: dashed; }
+
 /* ===== Responsive ===== */
 @media (min-width: 700px) { .story { --story-gutter-x: var(--page-gutter); } }
 @media (max-width: 900px) {
@@ -245,10 +325,23 @@
   .meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .principles.three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+@media (max-width: 760px) {
+  .picks { grid-template-columns: 1fr; }
+  .layers { flex-direction: column; }
+  .layerLink { flex: 0 0 40px; }
+  .layerLink::before { top: 0; bottom: 0; left: 50%; right: auto; border-top: 0; border-left: 1.5px solid var(--subtitle); }
+}
+@media (max-width: 700px) {
+  .stats { grid-template-columns: 1fr; }
+  .stat, .stat + .stat { padding: var(--space-md) 0; border-left: 0; }
+  .stat + .stat { border-top: 1px solid var(--line); }
+}
 @media (max-width: 640px) {
   .principles, .principles.three { grid-template-columns: 1fr; gap: 28px; }
   .row.n3 { grid-template-columns: 1fr; }
-  .frame { padding: 12px; }
+  .frame, .picks .frame { padding: 12px; }
+  .diagramPaths { display: none; }
+  .pathsM { display: grid; }
 }
 @media (max-width: 560px) { .lesson h3 { font-size: 21px; } }
 @media (max-width: 480px) { .meta { grid-template-columns: 1fr; } }

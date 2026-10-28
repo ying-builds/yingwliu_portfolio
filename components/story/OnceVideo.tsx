@@ -10,10 +10,14 @@ export default function OnceVideo({
   src,
   poster,
   loop,
+  ratio,
 }: {
   src: string;
   poster?: string;
   loop?: boolean;
+  // The video's own width / height, e.g. "1440 / 930". Without it the frame
+  // assumes 16 / 10 and any other shape gets black bars.
+  ratio?: string;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
 
@@ -53,6 +57,7 @@ export default function OnceVideo({
       playsInline
       preload="metadata"
       poster={poster}
+      style={ratio ? { aspectRatio: ratio } : undefined}
     >
       <source src={src} type="video/mp4" />
     </video>

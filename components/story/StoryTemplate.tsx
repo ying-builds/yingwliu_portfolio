@@ -12,6 +12,7 @@ export interface StoryFrontmatter {
   heroVideo?: string;
   heroPoster?: string;
   heroCaption?: string;
+  heroRatio?: string;
 }
 
 /* The page shell for the story layout: crumbs, title, one-line summary, meta
@@ -41,7 +42,7 @@ export default function StoryTemplate({
     <article className={styles.story}>
       <header className={`${styles.wrap} ${styles.hero}`}>
         <p className={styles.crumbs}>
-          <a href="/">All work</a>
+          <a href="/#work">All work</a>
           {f.client ? <> / <b>{f.client}</b></> : null}
           {f.readTime ? <> / {f.readTime}</> : null}
         </p>
@@ -76,6 +77,7 @@ export default function StoryTemplate({
             poster={f.heroPoster}
             caption={f.heroCaption}
             loop="true"
+            ratio={f.heroRatio}
           />
         )}
       </header>

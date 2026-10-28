@@ -17,6 +17,8 @@ export default function Frame({
   tag,
   caption,
   loop,
+  preframed,
+  ratio,
 }: {
   src?: string;
   alt?: string;
@@ -28,6 +30,10 @@ export default function Frame({
   tag?: string;
   caption?: string;
   loop?: string;
+  // "true" when the frame is already drawn into the image, so it is not framed twice.
+  preframed?: string;
+  // A video's width / height, e.g. "1440 / 930", when it is not 16 / 10.
+  ratio?: string;
 }) {
   const w = Number(width);
   const h = Number(height);
@@ -36,13 +42,26 @@ export default function Frame({
   // with it. next/image fetches server side and would be refused.
   const isProtected = Boolean(src?.startsWith(PROTECTED_MEDIA_PREFIX));
   const dark = tag === "After" || tag === "Final Review";
+  const bare = preframed === "true" && Boolean(src) && !video;
 
   return (
     <figure className={styles.fig}>
       {tag && <span className={`${styles.tag} ${dark ? styles.tagAfter : ""}`}>{tag}</span>}
+      {bare ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          className={styles.preframed}
+          src={src}
+          alt={alt ?? ""}
+          width={known ? w : undefined}
+          height={known ? h : undefined}
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
       <div className={styles.frame}>
         {video ? (
-          <OnceVideo src={video} poster={poster} loop={loop === "true"} />
+          <OnceVideo src={video} poster={poster} loop={loop === "true"} ratio={ratio} />
         ) : src && isProtected ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -57,6 +76,7 @@ export default function Frame({
           <Image src={src} alt={alt ?? ""} width={known ? w : 1600} height={known ? h : 900} sizes="(max-width: 900px) 100vw, 880px" />
         ) : null}
       </div>
+      )}
       {caption && <p className={styles.cap}>{caption}</p>}
     </figure>
   );
