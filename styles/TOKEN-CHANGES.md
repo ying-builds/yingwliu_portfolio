@@ -7,6 +7,12 @@ changes, in the same commit.
 
 ## New home, footer and nav (branch `rethinking-client-self-service-and-new-home`)
 
+### Lighter card strokes
+| Token | Change | Note |
+|---|---|---|
+| `--home-card-stroke` | new, `var(--home-card-label)`, `#717171` | Outer edge of Work, AI and Play cards. Same grey as the line under the tabs. Was `--home-card-border` `#d1d0ce` |
+| `--home-card-border` | unchanged, `#d1d0ce` | Now only the rule above the caption inside a card |
+
 ### Softer card corners
 | Token | Change | Note |
 |---|---|---|

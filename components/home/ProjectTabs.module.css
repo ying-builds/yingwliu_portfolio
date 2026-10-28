@@ -89,7 +89,7 @@
   flex-direction: column;
   overflow: hidden;
   background: var(--home-card-surface);
-  border: 1px solid var(--home-card-border);
+  border: 1px solid var(--home-card-stroke);
   border-radius: var(--home-card-radius);
   box-shadow: var(--home-card-shadow);
   color: inherit;
@@ -213,7 +213,7 @@
   display: block;
   overflow: hidden;
   /* Same edge and shadow as the Work and AI cards */
-  border: 1px solid var(--home-card-border);
+  border: 1px solid var(--home-card-stroke);
   border-radius: var(--home-card-radius);
   box-shadow: var(--home-card-shadow);
   background: var(--home-card-cover);
