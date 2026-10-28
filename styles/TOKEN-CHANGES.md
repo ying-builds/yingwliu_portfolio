@@ -7,6 +7,11 @@ changes, in the same commit.
 
 ## New home, footer and nav (branch `rethinking-client-self-service-and-new-home`)
 
+### Softer card corners
+| Token | Change | Note |
+|---|---|---|
+| `--home-card-radius` | `8px` to `5px` | Corner of the homepage cards (Work, AI and Play tiles) |
+
 ### Footer smoke band matches the bar above it
 | Token | Change | Note |
 |---|---|---|
