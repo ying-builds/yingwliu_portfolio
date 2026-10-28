@@ -7,6 +7,11 @@ changes, in the same commit.
 
 ## New home, footer and nav (branch `rethinking-client-self-service-and-new-home`)
 
+### Shorter homepage cards
+| Token | Change | Note |
+|---|---|---|
+| `--home-card-cover-ratio` | new, `16 / 10` | Card picture shape on Work and AI cards. Was `536 / 376` hardcoded (from the Figma frames). About 30px shorter per card at laptop width |
+
 ### Client Self-Service moves to the story layout
 | Token | Value | Used for |
 |---|---|---|

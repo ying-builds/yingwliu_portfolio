@@ -112,7 +112,7 @@
 }
 
 .cover {
-  aspect-ratio: 536 / 376;
+  aspect-ratio: var(--home-card-cover-ratio);
   background: var(--home-card-cover);
   overflow: hidden;
 }

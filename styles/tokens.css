@@ -582,6 +582,7 @@ h3 {
   --home-tab-rest: #8f8b86;         /* inactive tab, 5.1:1 on the band */
   --home-card-surface: #eeece9;     /* project card caption */
   --home-card-cover: #e4e1dc;       /* cover when a card has no picture yet */
+  --home-card-cover-ratio: 16 / 10; /* shape of the card picture. Was 536 / 376 from Figma; shortened ~30px per card */
   --home-card-border: #d1d0ce;      /* card edge and the rule above the caption */
   --home-card-label: #717171;       /* company line and tags */
   --home-card-body: #5f5b56;        /* one-line description */
