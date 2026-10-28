@@ -79,7 +79,7 @@ export type PlayTile = {
 export const playTiles: PlayTile[] = [
   { id: "bereal", name: "BeReal", tags: ["Passion project"], image: "/images/play/bereal.webp", alt: "BeReal app screens", height: 380, column: 0, href: "/work/bereal" },
   { id: "shroom", name: "Shroom", tags: ["Lamp design", "AutoCAD", "Industrial design"], image: "/images/play/shroom.webp", alt: "Shroom lamp", height: 440, column: 0 },
-  { id: "metamorphosis", name: "Metamorphosis", tags: ["Museum exhibition concept", "Photoshop"], image: "/images/play/metamorphosis.webp", alt: "Metamorphosis exhibition posters", height: 360, column: 0 },
+  { id: "metamorphosis", name: "Metamorphosis", tags: ["Exhibition concept", "Adobe Photoshop"], image: "/images/play/metamorphosis.webp", alt: "Metamorphosis exhibition posters", height: 360, column: 0 },
   { id: "art-projects-1", name: "", tags: ["Multimedia"], image: "/images/play/art-projects-1.webp", alt: "Multimedia koi and lotus artwork", height: 400, column: 0 },
 
   { id: "netflix-party", name: "Netflix Party", tags: ["Redesign", "Design sprint"], image: "/images/play/netflix-party.webp", alt: "Netflix Party redesign", height: 300, column: 1, href: "https://davisdesigninteractive.medium.com/netflix-party-case-study-ec1193f097c5" },
