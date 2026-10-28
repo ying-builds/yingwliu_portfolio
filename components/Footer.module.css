@@ -1,7 +1,6 @@
 .footer {
   background: var(--footer-bg);
   color: var(--footer-muted);
-  border-top: 1px solid var(--line);
 }
 
 .footer a {
