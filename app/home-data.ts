@@ -51,8 +51,6 @@ export const workCards: WorkCard[] = [
     id: "alumni-learning-platform",
     company: "UC Davis Graduate School of Management",
     title: "Alumni Learning Platform",
-    description:
-      "Designing GSM's first lifelong learning platform so alumni can keep learning and stay connected.",
     tags: ["EdTech", "UX & UI"],
     slug: "uc-davis-gsm",
     href: "/work/uc-davis-gsm",
