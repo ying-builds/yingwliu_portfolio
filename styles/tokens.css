@@ -602,4 +602,14 @@ h3 {
   --home-card-meta: 11px;           /* company line and tags */
   --home-card-tracking: 0.08em;     /* mono labels on cards and pills */
   --home-gutter: 54px;              /* band's side padding, from the Figma frame */
+
+  /* About page: one-screen desktop layout (polaroid left, bio right) */
+  --about-left-width: 340px;   /* polaroid column, and the widest the caption runs */
+  --about-right-width: 560px;  /* bio column */
+  --about-col-gap: 96px;       /* between the two columns */
+  --about-pad-y: 48px;         /* hero top and bottom padding, desktop */
+  --about-stack-gap: 32px;     /* eyebrow, polaroid and caption spacing; row gap when stacked */
+  --about-now-gap: 24px;       /* bio to the rule above the bullets, and rule to first bullet */
+  --about-bullet-indent: 18px; /* text indent past the bullet dot */
+  --about-bullet-gap: 10px;    /* between bullets */
 }

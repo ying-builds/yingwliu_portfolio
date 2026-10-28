@@ -7,6 +7,18 @@ changes, in the same commit.
 
 ## New home, footer and nav (branch `rethinking-client-self-service-and-new-home`)
 
+### About page: one screen on desktop
+| Token | Value | Used for |
+|---|---|---|
+| `--about-left-width` | `340px` | Polaroid column, and the widest the caption under it runs |
+| `--about-right-width` | `560px` | Bio column |
+| `--about-col-gap` | `96px` | Space between the two columns |
+| `--about-pad-y` | `48px` | Hero top and bottom padding on desktop |
+| `--about-stack-gap` | `32px` | Eyebrow, polaroid and caption spacing. Also the row gap when the page stacks |
+| `--about-now-gap` | `24px` | Bio to the rule above the bullets, and rule to the first bullet |
+| `--about-bullet-indent` | `18px` | Text indent past the bullet dot |
+| `--about-bullet-gap` | `10px` | Between the three bullets |
+
 ### Lighter card strokes
 | Token | Change | Note |
 |---|---|---|

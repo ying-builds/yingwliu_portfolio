@@ -126,11 +126,12 @@ each case study's frontmatter, so a new MDX file picks them up automatically.
 
 ## Contact links
 - All email links across the site point to yxngliu@gmail.com.
-- The resume link appears on the About page (alongside LinkedIn, Email and
-  Medium), in the top nav and in the footer, so it is on every page. Do not
-  add it anywhere else, such as inside the page body of the homepage or a
-  case study. All three use `RESUME_URL` from `lib/links.ts`, so changing the
-  Drive link is a one-line edit.
+- The resume link appears in the top nav and in the footer, so it is on every
+  page. The About page's own LinkedIn / Email / Medium / Resume row was removed
+  when the page became a one-screen layout. Do not add the resume link anywhere
+  else, such as inside the page body of the homepage or a case study. Both use
+  `RESUME_URL` from `lib/links.ts`, so changing the Drive link is a one-line
+  edit.
 
 ## Password-gated case studies
 Some case studies are shared privately rather than publicly. The gate is a

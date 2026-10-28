@@ -39,16 +39,28 @@
    HERO
    ======================================== */
 .aboutHero {
-  /* The shared nav sits in flow rather than overlaying, so the hero fills
-     what's left of the viewport instead of pushing past it. */
+  /* One screen on desktop: the nav sits in flow, so the hero is exactly what
+     is left of the viewport and the two columns centre inside it. The footer
+     starts below the fold. */
   min-height: calc(100vh - var(--nav-height));
+  display: grid;
+  grid-template-columns: var(--about-left-width) minmax(0, var(--about-right-width));
+  column-gap: var(--about-col-gap);
+  align-items: center;
+  justify-content: center;
+  padding: var(--about-pad-y) 48px;
+  position: relative;
+}
+
+.aboutLeft {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
-  padding: 120px 48px 80px;
-  position: relative;
+}
+
+.aboutRight {
+  min-width: 0;
 }
 
 .aboutEyebrow {
@@ -57,14 +69,14 @@
   letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
   color: var(--subtitle);
-  margin-bottom: 48px;
+  margin-bottom: var(--about-stack-gap);
   opacity: 0;
   animation: fadeUp 0.8s 0.2s ease forwards;
 }
 
 .polaroid {
   position: relative;
-  margin-bottom: 56px;
+  margin-bottom: var(--about-stack-gap);
   opacity: 0;
   animation: fadeUp 0.9s 0.4s ease forwards;
 }
@@ -112,7 +124,7 @@
   text-transform: uppercase;
   line-height: var(--site-leading-loose);
   color: var(--black);
-  max-width: 340px;
+  max-width: var(--about-left-width);
   margin-bottom: 0;
   opacity: 0;
   animation: fadeUp 0.8s 0.6s ease forwards;
@@ -132,12 +144,6 @@
 /* ========================================
    BIO
    ======================================== */
-.bioSection {
-  max-width: 560px;
-  margin: 0 auto;
-  padding: 0 48px 100px;
-}
-
 .bioLabel {
   font-family: var(--font-mono);
   font-size: var(--site-text-micro);
@@ -221,172 +227,50 @@
 }
 
 /* ========================================
-   DETAILS ROW
+   WHAT I'M UP TO
    ======================================== */
-.detailsRow {
-  max-width: 560px;
-  margin: 0 auto;
-  padding: 0 48px 80px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0;
+.nowList {
+  list-style: none;
+  margin: var(--about-now-gap) 0 0;
+  padding: var(--about-now-gap) 0 0;
   border-top: 1px solid var(--site-rule);
-  padding-top: 32px;
   opacity: 0;
   animation: fadeUp 0.7s 1.1s ease forwards;
 }
 
-.detailItem {
-  padding-right: 20px;
+.nowList li {
+  position: relative;
+  padding-left: var(--about-bullet-indent);
+  font-size: var(--site-text-body);
+  line-height: var(--site-leading-loose);
+  color: var(--almost-black);
 }
 
-.detailItem + .detailItem {
-  border-left: 1px solid var(--site-rule);
-  padding-left: 20px;
+.nowList li + li {
+  margin-top: var(--about-bullet-gap);
 }
 
-.detailLabel {
-  font-family: var(--font-mono);
-  /* Off the scale on purpose, same reasoning as .projectMetaLabel on the
-     homepage: it has to stay clearly smaller than the 13px value beneath it. */
-  font-size: 9px;
-  letter-spacing: var(--site-tracking-caps);
-  text-transform: uppercase;
+.nowList li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
   color: var(--subtitle);
-  margin-bottom: 6px;
 }
 
-.detailValue {
-  /* Off the scale on purpose. At --site-text-small's 12px this sat too close
-     to its own label and "Open to opportunities" read as fine print. */
-  font-size: 13px;
-  color: var(--black);
-  line-height: var(--site-leading-body);
-}
-
-/* ========================================
-   INTERESTS
-   ======================================== */
-.interestsSection {
-  max-width: 560px;
-  margin: 0 auto;
-  padding: 0 48px 80px;
-  opacity: 0;
-  animation: fadeUp 0.7s 1.15s ease forwards;
-}
-
-.interestsLabel {
-  font-family: var(--font-mono);
-  font-size: var(--site-text-micro);
-  letter-spacing: var(--site-tracking-caps);
-  text-transform: uppercase;
+/* The opening words sit back; the rest of the line carries it */
+.nowLead {
   color: var(--subtitle);
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.interestsLabel::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--site-rule);
-}
-
-.interestsList {
-  /* Off the scale on purpose. --site-text-body is 15px, which crowded this
-     list against the airier line-height it already carries. */
-  font-size: 14px;
-  line-height: var(--site-leading-airy);
-  color: var(--black);
-}
-
-.interestsList span::after {
-  content: " ·";
-  color: var(--site-rule);
-  margin: 0 8px 0 0;
-}
-
-.interestsList span:last-child::after {
-  content: "";
-  margin: 0;
-}
-
-/* ========================================
-   CONNECT
-   ======================================== */
-.connectSection {
-  max-width: 560px;
-  margin: 0 auto;
-  padding: 0 48px 100px;
-  text-align: center;
-  opacity: 0;
-  animation: fadeUp 0.7s 1.2s ease forwards;
-}
-
-.connectLinks {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 28px;
-}
-
-.connectLinks a {
-  font-family: var(--font-mono);
-  font-size: var(--site-text-micro);
-  letter-spacing: var(--site-tracking-caps);
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--subtitle);
-  transition: color 0.2s;
-}
-
-.connectLinks a:hover {
-  color: var(--black);
-}
-
-/* Resume reads as a button so it stands apart from the plain text links */
-.connectLinks a.connectResume {
-  color: var(--site-cream);
-  background: var(--black);
-  border: 1px solid var(--black);
-  border-radius: 999px;
-  padding: 9px 20px;
-  transition:
-    background 0.2s,
-    color 0.2s;
-}
-
-.connectLinks a.connectResume:hover {
-  background: transparent;
-  color: var(--black);
 }
 
 /* ========================================
    RESPONSIVE
    ======================================== */
-@media (max-width: 768px) {
+
+/* Below this the two columns get too narrow, so the page stacks and scrolls. */
+@media (max-width: 900px) {
   .aboutHero {
+    grid-template-columns: minmax(0, var(--about-right-width));
+    row-gap: var(--about-stack-gap);
     padding: 120px 24px 60px;
-  }
-
-  .bioSection,
-  .detailsRow,
-  .connectSection {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  .detailsRow {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .detailItem + .detailItem {
-    border-left: none;
-    padding-left: 0;
-    border-top: 1px solid var(--site-rule);
-    padding-top: 16px;
   }
 }
