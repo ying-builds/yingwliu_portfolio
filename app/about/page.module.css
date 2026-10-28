@@ -40,27 +40,70 @@
    ======================================== */
 .aboutHero {
   /* One screen on desktop: the nav sits in flow, so the hero is exactly what
-     is left of the viewport and the two columns centre inside it. The footer
+     is left of the viewport and the notebook centres inside it. The footer
      starts below the fold. */
   min-height: calc(100vh - var(--nav-height));
-  display: grid;
-  grid-template-columns: var(--about-left-width) minmax(0, var(--about-right-width));
-  column-gap: var(--about-col-gap);
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--about-pad-y) 48px;
+  padding: var(--about-pad-y) 24px;
   position: relative;
 }
 
-.aboutLeft {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+/* ===== The notebook (desktop) =====
+   The picture is drawn on a ::before so its shadow doesn't also fall on the
+   text. All the type inside is sized off the notebook's own width (cqw), so it
+   shrinks with a short window instead of spilling off the page. */
+.notebook {
+  position: relative;
+  container-type: inline-size;
+  height: min(
+    calc(100vh - var(--nav-height) - var(--about-pad-y) * 2),
+    var(--about-nb-max-height)
+  );
+  aspect-ratio: 592 / 420;
 }
 
+.notebook::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/images/site/notebook.png") center / 100% 100% no-repeat;
+  filter: drop-shadow(0 18px 30px rgb(0 0 0 / 0.16))
+    drop-shadow(0 2px 4px rgb(0 0 0 / 0.1));
+  pointer-events: none;
+}
+
+.aboutLeft,
 .aboutRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   min-width: 0;
+}
+
+/* Left page. Everything shares one left edge, centred as a block on the page. */
+.aboutLeft {
+  left: 6%;
+  width: 38%;
+  align-items: center;
+}
+
+.leftStack {
+  width: var(--about-nb-photo);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Right page. Starts clear of the rings. */
+.aboutRight {
+  left: 56.5%;
+  width: 36.5%;
 }
 
 .aboutEyebrow {
@@ -69,9 +112,15 @@
   letter-spacing: var(--site-tracking-wide);
   text-transform: uppercase;
   color: var(--subtitle);
-  margin-bottom: var(--about-stack-gap);
+  margin-bottom: var(--about-title-gap);
   opacity: 0;
   animation: fadeUp 0.8s 0.2s ease forwards;
+}
+
+/* "Product Designer · Sacramento, CA" sits right under the date line */
+.aboutTitle {
+  margin-bottom: var(--about-stack-gap);
+  animation-delay: 0.3s;
 }
 
 .polaroid {
@@ -82,7 +131,7 @@
 }
 
 .polaroid img {
-  width: 220px;
+  width: var(--about-nb-photo);
   display: block;
   filter: grayscale(100%);
 }
@@ -122,7 +171,6 @@
   font-size: var(--about-caption-size);
   line-height: var(--site-leading-body);
   color: var(--black);
-  max-width: var(--about-left-width);
   margin-bottom: 0;
   opacity: 0;
   animation: fadeUp 0.8s 0.6s ease forwards;
@@ -249,6 +297,61 @@
 }
 
 /* ========================================
+   NOTEBOOK TYPE (desktop)
+   ======================================== */
+@media (min-width: 901px) {
+  .aboutEyebrow {
+    font-size: var(--about-nb-label);
+    margin-bottom: var(--about-nb-title-gap);
+  }
+
+  .aboutTitle {
+    margin-bottom: var(--about-nb-stack-gap);
+  }
+
+  .polaroid {
+    margin-bottom: var(--about-nb-stack-gap);
+  }
+
+  .aboutTagline {
+    font-size: var(--about-nb-caption);
+  }
+
+  .bioLabel,
+  .nowLabel {
+    font-size: var(--about-nb-label);
+    margin-bottom: var(--about-nb-label-gap);
+  }
+
+  .nowLabel {
+    margin-top: var(--about-nb-section-gap);
+  }
+
+  .bioText,
+  .nowText,
+  .nowList li {
+    font-size: var(--about-nb-text);
+  }
+
+  .bioText {
+    margin-bottom: var(--about-nb-para-gap);
+  }
+
+  .nowList li + li {
+    margin-top: var(--about-nb-bullet-gap);
+  }
+
+  .contactLinks {
+    margin-top: var(--about-nb-section-gap);
+    gap: var(--about-nb-bullet-gap);
+  }
+
+  .contactLinks a {
+    font-size: var(--about-nb-small);
+  }
+}
+
+/* ========================================
    RESPONSIVE
    ======================================== */
 
@@ -261,8 +364,44 @@
   }
 
   .aboutHero {
+    display: grid;
     grid-template-columns: minmax(0, var(--about-right-width));
+    justify-content: center;
     row-gap: var(--about-stack-gap);
     padding: 120px 24px 60px;
+  }
+
+  /* No notebook picture: its two halves just become the two stacked blocks */
+  .notebook {
+    display: contents;
+  }
+
+  .notebook::before {
+    display: none;
+  }
+
+  .aboutLeft,
+  .aboutRight {
+    position: static;
+    width: auto;
+  }
+
+  .aboutLeft {
+    align-items: center;
+  }
+
+  .leftStack {
+    width: auto;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* cqw only means something inside the notebook, so give the photo a real width */
+  .polaroid img {
+    width: var(--about-photo-stacked);
+  }
+
+  .aboutTagline {
+    max-width: var(--about-left-width);
   }
 }

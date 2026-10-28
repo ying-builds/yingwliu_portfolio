@@ -8,6 +8,27 @@ changes, in the same commit.
 ## New home, footer and nav (branch `rethinking-client-self-service-and-new-home`)
 
 ### About page: one screen on desktop
+**Notebook layout:** the page is now an open notebook picture with the content laid on it. These are all new, sized off the notebook's own width (`cqw`) so they shrink together. The first number is the size at full width.
+
+| Token | Value | Used for |
+|---|---|---|
+| `--about-nb-max-height` | `860px` | Tallest the notebook gets on a big screen |
+| `--about-nb-photo` | `23cqw` | Polaroid width, and the width of the left page's column |
+| `--about-nb-text` | `min(14px, 1.29cqw)` | Bio, I am currently, and the three lines |
+| `--about-nb-label` | `min(10px, 0.92cqw)` | About, I am currently, Otherwise I am, the date and title lines |
+| `--about-nb-small` | `min(12px, 1.1cqw)` | Email and LinkedIn |
+| `--about-nb-caption` | `min(20px, 1.85cqw)` | Caption under the polaroid |
+| `--about-nb-section-gap` | `min(36px, 3.3cqw)` | Between groups on the right page |
+| `--about-nb-label-gap` | `min(8px, 0.74cqw)` | A label to its text |
+| `--about-nb-bullet-gap` | `min(4px, 0.37cqw)` | Between the three lines and the two links |
+| `--about-nb-para-gap` | `min(14px, 1.3cqw)` | Between bio paragraphs |
+| `--about-nb-title-gap` | `min(6px, 0.55cqw)` | Date line to the title line |
+| `--about-nb-stack-gap` | `min(24px, 2.2cqw)` | Title to polaroid, polaroid to caption |
+| `--about-photo-stacked` | `220px` | Polaroid width in the stacked (under 900px) layout, same as before |
+| `--about-title-gap` | `6px` | Same date-to-title gap in the stacked (under 900px) layout |
+
+The older `--about-*` tokens below still drive the stacked layout.
+
 The bullet dots and the rules next to the labels were removed later, so `--about-bullet-indent` is gone again.
 
 | Token | Value | Used for |

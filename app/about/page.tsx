@@ -49,22 +49,30 @@ export default function AboutPage() {
             Ying Liu
           </div>
 
-          {/* Left: eyebrow, polaroid, one-line caption */}
-          <div className={styles.aboutLeft}>
-            <SacramentoClock className={styles.aboutEyebrow} />
+          {/* The open notebook: left page is the photo, right page is the text.
+              Below 900px the notebook picture drops away and the two halves
+              simply stack. */}
+          <div className={styles.notebook}>
+            <div className={styles.aboutLeft}>
+              <div className={styles.leftStack}>
+                <SacramentoClock className={styles.aboutEyebrow} />
+                <p className={`${styles.aboutEyebrow} ${styles.aboutTitle}`}>
+                  Product Designer · Sacramento, CA
+                </p>
 
-            <div className={styles.polaroid}>
-              <img
-                src="/images/site/polaroid_portrait_photo.png"
-                alt="Ying Liu"
-              />
+                <div className={styles.polaroid}>
+                  <img
+                    src="/images/site/polaroid_portrait_photo.png"
+                    alt="Ying Liu"
+                  />
+                </div>
+
+                <p className={styles.aboutTagline}>
+                  Ying prides herself on being empathetic, yet logical. Turning
+                  creative experiences into something strategic and grounded.
+                </p>
+              </div>
             </div>
-
-            <p className={styles.aboutTagline}>
-              Ying prides herself on being empathetic, yet logical. Turning
-              creative experiences into something strategic and grounded.
-            </p>
-          </div>
 
           {/* Right: the bio, then what she's up to right now */}
           <div className={styles.aboutRight}>
@@ -146,6 +154,7 @@ export default function AboutPage() {
                 linkedin.com/in/yingwliu
               </a>
             </div>
+          </div>
           </div>
 
           <div className={`${styles.shadowText} ${styles.shadowTextBottom}`}>

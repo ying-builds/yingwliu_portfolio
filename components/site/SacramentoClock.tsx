@@ -2,41 +2,45 @@
 
 import { useEffect, useState } from "react";
 
-/* "Sacramento, CA · 3:18 PM", live. The time is the visitor's view of
-   Sacramento time, whatever their own clock says.
+/* "Wed, Oct 28 · 3:42 PM", live, in Sacramento time whatever the visitor's own
+   clock says.
 
-   It only fills in after the page loads. Rendering the time on the server would
-   bake in whatever minute the page was built, and the browser would then
-   disagree with it. Until then the time is there but invisible, so the line
-   doesn't jump when it appears. */
+   It only fills in after the page loads. Rendering it on the server would bake
+   in whatever minute the page was built, and the browser would then disagree
+   with it. Until then the text is there but invisible, so the line doesn't
+   jump when it appears. */
 
-const formatter = new Intl.DateTimeFormat("en-US", {
+const dateFormat = new Intl.DateTimeFormat("en-US", {
+  timeZone: "America/Los_Angeles",
+  weekday: "short",
+  month: "short",
+  day: "numeric",
+});
+
+const timeFormat = new Intl.DateTimeFormat("en-US", {
   timeZone: "America/Los_Angeles",
   hour: "numeric",
   minute: "2-digit",
 });
 
-type Props = { className?: string; timeClassName?: string };
+type Props = { className?: string };
 
-export default function SacramentoClock({ className, timeClassName }: Props) {
-  const [time, setTime] = useState<string | null>(null);
+export default function SacramentoClock({ className }: Props) {
+  const [text, setText] = useState<string | null>(null);
 
   useEffect(() => {
-    const tick = () => setTime(formatter.format(new Date()));
+    const tick = () => {
+      const now = new Date();
+      setText(`${dateFormat.format(now)} · ${timeFormat.format(now)}`);
+    };
     tick();
     const id = setInterval(tick, 15000);
     return () => clearInterval(id);
   }, []);
 
   return (
-    <p className={className}>
-      Sacramento, CA ·{" "}
-      <span
-        className={timeClassName}
-        style={{ visibility: time ? "visible" : "hidden" }}
-      >
-        {time ?? "12:00 PM"}
-      </span>
+    <p className={className} style={{ visibility: text ? "visible" : "hidden" }}>
+      {text ?? "Wed, Oct 28 · 12:00 PM"}
     </p>
   );
 }

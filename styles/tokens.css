@@ -614,4 +614,20 @@ h3 {
   --about-bullet-gap: 4px;     /* between the three Otherwise I am lines */
   --about-glyph-right: 6vw;    /* faint 瑩 behind the page: distance from the right edge */
   --about-caption-size: 20px;   /* caption under the polaroid, Crimson Pro */
+  --about-photo-stacked: 220px; /* polaroid width when the page stacks (under 900px) */
+  --about-title-gap: 6px;      /* date line to the title line under it (stacked layout) */
+  /* The notebook (desktop). cqw is the notebook's own width, so type and gaps
+     shrink with it; the first number in each min() is the size at full width. */
+  --about-nb-max-height: 860px;          /* tallest the notebook gets on a big screen */
+  --about-nb-photo: 23cqw;               /* polaroid width, and the width of the left page's column */
+  --about-nb-text: min(14px, 1.29cqw);   /* bio, I am currently, the three lines */
+  --about-nb-label: min(10px, 0.92cqw);  /* About, I am currently, Otherwise I am, date, title */
+  --about-nb-small: min(12px, 1.1cqw);   /* email and LinkedIn */
+  --about-nb-caption: min(20px, 1.85cqw);/* caption under the polaroid */
+  --about-nb-section-gap: min(36px, 3.3cqw);
+  --about-nb-label-gap: min(8px, 0.74cqw);
+  --about-nb-bullet-gap: min(4px, 0.37cqw);
+  --about-nb-para-gap: min(14px, 1.3cqw);
+  --about-nb-title-gap: min(6px, 0.55cqw);
+  --about-nb-stack-gap: min(24px, 2.2cqw); /* title to polaroid, polaroid to caption */
 }
