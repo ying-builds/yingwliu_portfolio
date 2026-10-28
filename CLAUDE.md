@@ -64,6 +64,8 @@ study's actual content living in a simple MDX file.
   link anywhere. AI: Databricks links to the Figma deck.
 - Password-gated case studies (Client Self-Service, Event Programming Form) are
   clickable like any other card; the gate is on the page behind it, not the card.
+  Both Ticketmaster cards set `locked: true`, which shows a small padlock in
+  front of the tags.
 
 ## Writing MDX: use string props, never expressions
 In this setup MDX expressions are silently dropped — `width={1326}` arrives as

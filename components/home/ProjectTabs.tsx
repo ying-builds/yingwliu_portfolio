@@ -164,14 +164,14 @@ function Card({ card }: { card: CardData }) {
             <svg
               className={styles.lock}
               viewBox="0 0 12 12"
-              aria-hidden="true"
+              role="img"
+              aria-label="Private, password protected"
               focusable="false"
             >
               <rect x="2" y="5.25" width="8" height="5.5" rx="1" />
               <path d="M4 5.25V3.75a2 2 0 0 1 4 0v1.5" />
             </svg>
           ) : null}
-          {card.locked ? <span>Private</span> : null}
           {card.tags.map((t) => (
             <span key={t}>{t}</span>
           ))}
