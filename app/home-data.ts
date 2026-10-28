@@ -42,8 +42,8 @@ export const workCards: WorkCard[] = [
     slug: "event-programming-form",
     href: "/work/event-programming-form",
     tags: ["B2B", "Form design"],
-    image: "/images/case-studies/event-programming-form/card-cover.webp",
-    imageAlt: "The redesigned Event Creation Form, step one of three",
+    image: "/images/case-studies/event-programming-form/card-cover-v2.webp",
+    imageAlt: "The three-step progress bar of the Event Creation Form over a concert crowd",
   },
   {
     id: "alumni-learning-platform",
