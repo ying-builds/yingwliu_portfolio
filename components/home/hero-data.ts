@@ -1,6 +1,6 @@
 /* Everything the home hero needs to know about its hotspots, in one place.
 
-   All numbers are in "artboard pixels": the hero was designed on a 1708 x 583
+   All numbers are in "artboard pixels": the hero was designed on a 1708 x 651
    artboard in Figma (file "2026 Portfolio", frame "Hero Section - Interactive").
    The component turns them into percentages of the real width, so the whole
    scene scales together. Every value below was read from Figma, not eyeballed.
@@ -12,7 +12,7 @@
    note            = the torn-tape note. x / y is where the note's top left sits.
    wiggle          = seconds between little "poke me" wiggles. */
 
-export const ARTBOARD = { width: 1708, height: 583 };
+export const ARTBOARD = { width: 1708, height: 651 };
 
 export type Hotspot = {
   id: "headphones" | "sticker" | "passport" | "pen";
@@ -34,14 +34,14 @@ export const hotspots: Hotspot[] = [
   {
     id: "headphones",
     label: "Headphones",
-    x: 455,
-    y: 319,
+    x: 451,
+    y: 323,
     w: 190,
     h: 190,
-    art: { src: "/images/site/hero/headphones.webp", x: 324.2, y: 245, w: 369.5, h: 370 },
+    art: { src: "/images/site/hero/headphones.webp", x: 320.2, y: 249, w: 369.5, h: 370 },
     note: {
-      x: 305,
-      y: 229,
+      x: 301,
+      y: 233,
       // Static for now. A live Spotify "now playing" comes in a later update.
       lines: [
         { text: "now playing:", size: 12 },
@@ -54,14 +54,14 @@ export const hotspots: Hotspot[] = [
   {
     id: "sticker",
     label: "Cat sticker",
-    x: 613,
-    y: 378,
+    x: 609,
+    y: 382,
     w: 100,
     h: 116,
-    art: { src: "/images/site/hero/cat-sticker.webp", x: 613, y: 378, w: 90, h: 116 },
+    art: { src: "/images/site/hero/cat-sticker.webp", x: 609, y: 382, w: 90, h: 116 },
     note: {
-      x: 463,
-      y: 300,
+      x: 459,
+      y: 304,
       lines: [{ text: "this is maki (left) and bean (right)!", size: 14 }],
     },
     wiggle: 4,
@@ -69,32 +69,32 @@ export const hotspots: Hotspot[] = [
   {
     id: "passport",
     label: "Passport photo",
-    x: 696,
-    y: 279,
+    x: 692,
+    y: 283,
     w: 87,
     h: 87,
-    art: { src: "/images/site/hero/passport-photo.webp", x: 696, y: 279, w: 87, h: 87 },
+    art: { src: "/images/site/hero/passport-photo.webp", x: 692, y: 283, w: 87, h: 87 },
     note: {
-      x: 611.5,
-      y: 201,
+      x: 607.5,
+      y: 205,
       lines: [{ text: "Capricorn, ENFJ, Acts of Service", size: 14 }],
     },
     wiggle: 4,
     // The polka dot tape is taped over the photo's corner, so it has to stay in
     // front of it. Position is the "dot tape" layer in Figma (50 x 50).
-    front: { src: "/images/site/hero/polka-tape.webp", x: 718, y: 254, w: 50, h: 50 },
+    front: { src: "/images/site/hero/polka-tape.webp", x: 714, y: 258, w: 50, h: 50 },
   },
   {
     id: "pen",
     label: "Pen",
-    x: 1068,
-    y: 196,
+    x: 1064,
+    y: 200,
     w: 150,
     h: 200,
-    art: { src: "/images/site/hero/pen.webp", x: 1007, y: 192, w: 247.5, h: 249 },
+    art: { src: "/images/site/hero/pen.webp", x: 1003, y: 196, w: 247.5, h: 249 },
     note: {
-      x: 1108,
-      y: 111,
+      x: 1104,
+      y: 115,
       lines: [{ text: "my favorite writing tool: Pilot E95s Fountain Pen", size: 14 }],
     },
     wiggle: 5,
@@ -105,8 +105,8 @@ export const hotspots: Hotspot[] = [
    area and the sparkles that pop above her. Sparkle positions are the final
    "Pop 2" frame from Figma, relative to the hover area's top left. */
 export const bean = {
-  x: 1190,
-  y: 285,
+  x: 1186,
+  y: 289,
   w: 225,
   h: 235,
   sparkles: [

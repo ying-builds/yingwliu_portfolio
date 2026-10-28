@@ -15,7 +15,7 @@
   --u: calc(100cqw / 1708);
   position: relative;
   width: 100%;
-  aspect-ratio: 1708 / 583;
+  aspect-ratio: 1708 / 651;
   font-family: var(--font-hand);
 }
 
@@ -248,7 +248,7 @@
    is the simple version; the phone pass in QA will refine it. */
 @media (max-width: 768px) {
   .hero {
-    height: calc(583 * 1100 / 1708 * 1px);
+    height: calc(651 * 1100 / 1708 * 1px);
   }
 
   .stage {

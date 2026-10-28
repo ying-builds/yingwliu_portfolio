@@ -46,7 +46,7 @@ export default function Hero() {
       <div className={styles.stage} ref={stageRef}>
         <img
           className={styles.background}
-          src="/images/site/hero/background.webp"
+          src="/images/site/hero/background-v2.webp"
           width={ARTBOARD.width * 2}
           height={ARTBOARD.height * 2}
           alt=""
@@ -65,7 +65,7 @@ export default function Hero() {
           /* Figma has this box at y=232; the browser sets Crimson Pro's baseline
               about 4px lower than Figma does, so it is nudged up to keep the
               underlines sitting where they were drawn. */
-          style={{ left: u(894), top: u(228), width: u(183) }}
+          style={{ left: u(890), top: u(232), width: u(183) }}
         >
           Ying is a <em>product</em> <em>designer</em> and an only child who
           learned to make sense of the world through creativity and play.
@@ -76,15 +76,15 @@ export default function Hero() {
         <span
           className={styles.underline}
           aria-hidden="true"
-          style={{ left: u(974), top: u(253), width: u(67) }}
+          style={{ left: u(970), top: u(257), width: u(67) }}
         />
         <span
           className={styles.underline}
           aria-hidden="true"
-          style={{ left: u(897), top: u(278), width: u(67) }}
+          style={{ left: u(893), top: u(282), width: u(67) }}
         />
 
-        <p className={styles.petBean} style={{ left: u(1435.5), top: u(289) }}>
+        <p className={styles.petBean} style={{ left: u(1431.5), top: u(293) }}>
           pet bean!
         </p>
 
