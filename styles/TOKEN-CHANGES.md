@@ -7,6 +7,13 @@ changes, in the same commit.
 
 ## New home, footer and nav (branch `rethinking-client-self-service-and-new-home`)
 
+### Footer smoke band matches the bar above it
+| Token | Change | Note |
+|---|---|---|
+| `--footer-bar-height` | new, `calc(--space-footer-y * 2 + --footer-mark-size)`, 234px | Height of the dark footer bar. The smoke band now uses it, so the two are the same height |
+| `--footer-band-ratio` | removed (was `1440 / 275`) | Band was an aspect ratio, about 275px at 1440 and up to 340px on wide screens |
+| `--footer-band-max-height` | removed (was `340px`) | No longer needed, the height is fixed |
+
 ### Shorter homepage cards
 | Token | Change | Note |
 |---|---|---|

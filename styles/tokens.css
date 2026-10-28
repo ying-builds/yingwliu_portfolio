@@ -164,8 +164,7 @@
   /* Footer */
   --footer-gutter: 80px;        /* footer's own wider horizontal padding */
   --footer-mark-size: 116px;    /* red 瑩 wordmark character */
-  --footer-band-ratio: 1440 / 275;  /* animated ink-smoke band below the bar */
-  --footer-band-max-height: 340px;  /* keeps the band from towering on very wide screens */
+  --footer-bar-height: calc(var(--space-footer-y) * 2 + var(--footer-mark-size)); /* dark bar: padding + the red character, 234px */
   --footer-band-height-mobile: 120px; /* on phones the band is cropped to a strip instead */
   --space-footer-y: 59px;       /* bar's top and bottom padding */
   --text-footer-nav: 12.5px;    /* Work / About / Resume, PT Mono */
