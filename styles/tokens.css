@@ -612,9 +612,10 @@ h3 {
   --about-section-gap: 40px;   /* between groups on the right: bio, I am currently, Otherwise I am, links */
   --about-label-gap: 8px;      /* a label to the text it names, kept much tighter than the gap above it */
   --about-bullet-gap: 4px;     /* between the three Otherwise I am lines */
-  --about-glyph-right: 6vw;    /* faint 瑩 behind the page: distance from the right edge */
+  --about-glyph-right: 1.5vw;    /* faint 瑩 behind the page: distance from the right edge */
   --about-caption-size: 20px;   /* caption under the polaroid, Crimson Pro */
   --about-photo-stacked: 220px; /* polaroid width when the page stacks (under 900px) */
+  --about-paper-opacity: 0.5;   /* embossed paper picture behind the About page */
   --about-title-gap: 6px;      /* date line to the title line under it (stacked layout) */
   /* The notebook (desktop). cqw is the notebook's own width, so type and gaps
      shrink with it; the first number in each min() is the size at full width. */

@@ -25,6 +25,7 @@ changes, in the same commit.
 | `--about-nb-title-gap` | `min(6px, 0.55cqw)` | Date line to the title line |
 | `--about-nb-stack-gap` | `min(24px, 2.2cqw)` | Title to polaroid, polaroid to caption |
 | `--about-photo-stacked` | `220px` | Polaroid width in the stacked (under 900px) layout, same as before |
+| `--about-paper-opacity` | `0.5` | Embossed paper picture behind the whole About page, turned down so it stays quiet |
 | `--about-title-gap` | `6px` | Same date-to-title gap in the stacked (under 900px) layout |
 
 The older `--about-*` tokens below still drive the stacked layout.
@@ -41,7 +42,7 @@ The bullet dots and the rules next to the labels were removed later, so `--about
 | `--about-section-gap` | `40px` | Between groups on the right: bio, I am currently, Otherwise I am, links. Much larger than the label gap so each label reads as belonging to what is under it |
 | `--about-label-gap` | `8px` | A label to the text it names. Also now the gap under "About" (was 24px) |
 | `--about-bullet-gap` | `4px` | Between the three "Otherwise I am" lines (was 10px) |
-| `--about-glyph-right` | `6vw` (first `3vw`) | Faint 瑩 behind the page, distance from the right edge. Moved out from behind the bullets, then a bit further left, closer to the text column |
+| `--about-glyph-right` | `1.5vw` (was `6vw`, first `3vw`) | Faint 瑩 behind the page, distance from the right edge. Now sits in the margin beside the notebook. The outline of it and the "Ying Liu" script went from 6% to 14% black so they still show on the paper picture |
 | `--about-caption-size` | `20px` | Caption under the polaroid. Now Crimson Pro in normal case (was PT Mono caps) |
 
 ### Lighter card strokes

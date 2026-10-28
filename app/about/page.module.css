@@ -24,6 +24,18 @@
   overflow-x: hidden;
 }
 
+/* Embossed paper under everything, turned down so it stays quiet. It sits
+   behind the faint script and glyph (z-index -2 against their -1). */
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: url("/images/site/about-paper.jpg") center / cover no-repeat;
+  opacity: var(--about-paper-opacity);
+  pointer-events: none;
+}
+
 /* Fine paper grain over the whole page */
 .grain {
   position: fixed;
@@ -141,7 +153,7 @@
   font-family: var(--font-script);
   font-size: clamp(80px, 12vw, 160px);
   color: transparent;
-  -webkit-text-stroke: 0.5px color-mix(in srgb, var(--black) 6%, transparent);
+  -webkit-text-stroke: 0.5px color-mix(in srgb, var(--black) 14%, transparent);
   letter-spacing: 0.02em;
   line-height: var(--site-leading-tight);
   position: absolute;
@@ -159,7 +171,7 @@
 }
 
 .shadowTextBottom {
-  /* Sits in the clear space to the right of the text, not behind it */
+  /* Sits in the margin to the right of the notebook, not behind it */
   bottom: 60px;
   right: var(--about-glyph-right);
   opacity: 0;
