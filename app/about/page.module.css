@@ -148,7 +148,7 @@
   letter-spacing: var(--site-tracking-caps);
   text-transform: uppercase;
   color: var(--subtitle);
-  margin-bottom: 24px;
+  margin-bottom: var(--about-label-gap);
   display: flex;
   align-items: center;
   gap: 14px;
@@ -185,8 +185,8 @@
    ======================================== */
 /* Spacing for the two labels under the bio. Same Intel One Mono as "About". */
 .nowLabel {
-  margin-top: var(--about-now-gap);
-  margin-bottom: var(--space-md);
+  margin-top: var(--about-section-gap);
+  margin-bottom: var(--about-label-gap);
   animation-delay: 1s;
 }
 
@@ -229,7 +229,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--about-bullet-gap);
-  margin-top: var(--about-now-gap);
+  margin-top: var(--about-section-gap);
   opacity: 0;
   animation: fadeUp 0.7s 1.2s ease forwards;
 }

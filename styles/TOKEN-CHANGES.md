@@ -17,8 +17,9 @@ The bullet dots and the rules next to the labels were removed later, so `--about
 | `--about-col-gap` | `96px` | Space between the two columns |
 | `--about-pad-y` | `48px` | Hero top and bottom padding on desktop |
 | `--about-stack-gap` | `32px` | Eyebrow, polaroid and caption spacing. Also the row gap when the page stacks |
-| `--about-now-gap` | `24px` | Bio to the "I am currently" label, and the bullets to the email and LinkedIn links |
-| `--about-bullet-gap` | `10px` | Between the three "Otherwise I am" lines |
+| `--about-section-gap` | `40px` | Between groups on the right: bio, I am currently, Otherwise I am, links. Much larger than the label gap so each label reads as belonging to what is under it |
+| `--about-label-gap` | `8px` | A label to the text it names. Also now the gap under "About" (was 24px) |
+| `--about-bullet-gap` | `4px` | Between the three "Otherwise I am" lines (was 10px) |
 | `--about-glyph-right` | `3vw` | Faint 瑩 behind the page, distance from the right edge. Moved out from behind the bullets |
 | `--about-caption-size` | `20px` | Caption under the polaroid. Now Crimson Pro in normal case (was PT Mono caps) |
 

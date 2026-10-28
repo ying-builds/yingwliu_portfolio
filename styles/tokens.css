@@ -609,8 +609,9 @@ h3 {
   --about-col-gap: 96px;       /* between the two columns */
   --about-pad-y: 48px;         /* hero top and bottom padding, desktop */
   --about-stack-gap: 32px;     /* eyebrow, polaroid and caption spacing; row gap when stacked */
-  --about-now-gap: 24px;       /* bio to the "I am currently" label; bullets to the contact links */
-  --about-bullet-gap: 10px;    /* between the three lines */
+  --about-section-gap: 40px;   /* between groups on the right: bio, I am currently, Otherwise I am, links */
+  --about-label-gap: 8px;      /* a label to the text it names, kept much tighter than the gap above it */
+  --about-bullet-gap: 4px;     /* between the three Otherwise I am lines */
   --about-glyph-right: 3vw;    /* faint 瑩 behind the page: distance from the right edge */
   --about-caption-size: 20px;   /* caption under the polaroid, Crimson Pro */
 }
