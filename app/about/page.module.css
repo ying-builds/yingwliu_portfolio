@@ -198,6 +198,16 @@
   animation-delay: 1s;
 }
 
+/* The one-line answer under "I am currently" */
+.nowText {
+  margin: 0;
+  font-size: var(--site-text-body);
+  line-height: var(--site-leading-loose);
+  color: var(--almost-black);
+  opacity: 0;
+  animation: fadeUp 0.7s 1.05s ease forwards;
+}
+
 .nowList {
   list-style: none;
   margin: 0;

@@ -89,9 +89,16 @@ export default function AboutPage() {
               turning what I hear into something clear and functional.
             </p>
 
-            {/* The lighter words open each line; the darker words carry it. */}
             <p className={`${styles.bioLabel} ${styles.nowLabel}`}>
               I am currently
+            </p>
+            <p className={styles.nowText}>
+              Reading, weightlifting, and filming silly videos
+            </p>
+
+            {/* The lighter words open each line; the darker words carry it. */}
+            <p className={`${styles.bioLabel} ${styles.nowLabel}`}>
+              Otherwise I am
             </p>
             <ul className={styles.nowList}>
               <li>
