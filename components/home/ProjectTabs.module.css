@@ -212,7 +212,10 @@
   position: relative;
   display: block;
   overflow: hidden;
+  /* Same edge and shadow as the Work and AI cards */
+  border: 1px solid var(--home-card-border);
   border-radius: var(--home-card-radius);
+  box-shadow: var(--home-card-shadow);
   background: var(--home-card-cover);
 }
 
