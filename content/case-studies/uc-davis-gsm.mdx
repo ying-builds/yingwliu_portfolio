@@ -1,20 +1,18 @@
 ---
 title: UC Davis GSM's Alumni Platform
+layout: story
+readTime: 6 min read
+subheading: I led the UX design for UC Davis GSM's first alumni platform, a place for graduates to keep learning and stay connected.
+short: The Dean of the UC Davis Graduate School of Management wanted one place where alumni could earn certificates and keep learning from GSM courses. Our research showed that *content alone wasn't the need*. Alumni wanted community and career connection too. I designed the learning, directory, geomap and upload flows, then tested them with alumni and handed the Dean the research, designs and a Figma prototype.
+heroVideo: /images/case-studies/uc-davis-gsm/hero.mp4
+heroPoster: /images/case-studies/uc-davis-gsm/hero-poster.jpg
+heroCaption: Browsing learning content, searching, and finding alumni on the map.
 client: UC Davis GSM
-projectLabel: PRODUCT
-dates: "2023"
-subheading: A “lifelong learning platform” for alumni of the UC Davis Graduate School of Management.
-heroTheme: light
-heroLogo: /images/case-studies/uc-davis-gsm/logo.png
-heroLogoAlt: UC Davis Graduate School of Management
 meta:
   role: Lead UX Designer
   timeline: 10 weeks
   tools: Figma
   team: UX Designer, Product Managers, UX Researchers
-heroMockup: /images/case-studies/uc-davis-gsm/card.webp
-heroMockupAlt: GSM Lifelong Learning platform screens — landing page, learning library, and content upload
-heroMockupFrame: false
 cardTitle: UC Davis GSM / Alumni Platform
 cardDescription: End-to-end UX and UI for UC Davis GSM's first alumni platform, serving 80,000+ users.
 cardImage: /images/case-studies/uc-davis-gsm/card.webp
@@ -23,316 +21,169 @@ cardYear: "2023"
 cardOrder: 3
 ---
 
-<Intro>
-Dean Unnava of the UC Davis Graduate School of Management, committed to supporting the lifelong professional success of alumni, aimed to extend community and educational access through a centralized platform.
+<Sec label="Context" title="The school wanted one place for alumni to learn and connect.">
 
-The GSM could offer alumni:
+Dean Unnava wanted to support alumni's professional success long after graduation. The GSM could offer professional certificates and course content, but before designing any of it, we needed to understand how alumni approach learning, support and staying connected.
 
-- Professional certificates
-- GSM Course content
+</Sec>
 
-Before designing any of it, we needed to understand how alumni actually approach learning, support, and staying connected after graduating.
-</Intro>
+<Sec label="Research" title="We started with how alumni actually learn.">
 
-<DeviceMockup
-  mp4="/images/case-studies/uc-davis-gsm/final-solution.mp4"
-  webm="/images/case-studies/uc-davis-gsm/final-solution.webm"
-  poster="/images/case-studies/uc-davis-gsm/final-solution-poster.jpg"
-  alt="The GSM Lifelong Learning home page on a laptop, scrolling through the recommended, newly uploaded, trending and featured content rows"
-/>
+<Principles columns="3">
+<Pr title="Focus groups">
 
-<Section label="Research">
+Alumni expectations for career support, content relevance and community connection.
 
-I observed each method and led the synthesis.
+</Pr>
+<Pr title="User interviews">
 
-<div className="content-block">
-### Research Methods
+Upskilling habits, learning formats and how much they trust GSM content.
 
-<div className="caption-block">
-<p className="label">Focus Groups</p>
+</Pr>
+<Pr title="Quantitative survey">
 
-Alumni expectations for career support, content relevance, and community connection.
-</div>
+The platforms they use, willingness to pay, pricing preferences and content access.
 
-<div className="caption-block">
-<p className="label">User Interviews</p>
+</Pr>
+</Principles>
 
-Upskilling habits, learning formats, and GSM content credibility.
-</div>
+<Frame src="/images/case-studies/uc-davis-gsm/affinity-board-framed.webp" alt="Affinity map grouping alumni research notes by motivations, certifications, GSM events, networking and how they like to learn" width="2406" height="936" />
 
-<div className="caption-block">
-<p className="label">Quantitative Survey</p>
+</Sec>
 
-Platforms used, willingness to pay, pricing preferences, and content access.
-</div>
-</div>
+<Sec label="Core themes" title="Three themes became the platform's pillars.">
 
-</Section>
-
-<Wide>
-<MockupImage src="/images/case-studies/uc-davis-gsm/affinity-board-framed.webp" alt="Affinity map grouping alumni research notes by motivations, certifications, GSM events, networking and how they like to learn" width="2406" height="936" preframed="true" />
-</Wide>
-
-<Section label="Core Themes">
-
-Synthesis pulled the research into three themes.
-
-<div className="caption-block">
-<p className="label">Community & Support</p>
+<Principles columns="3">
+<Pr title="Community and support">
 
 Alumni want transparent communication and to feel genuinely engaged after graduating, not just reached out to when it's convenient.
-</div>
 
-<div className="caption-block">
-<p className="label">Networking & Mentorship</p>
+</Pr>
+<Pr title="Networking and mentorship">
 
-Alumni want easier ways to connect professionally beyond their existing circles, for mentorship, jobs, and industry ties.
-</div>
+Alumni want easier ways to connect professionally beyond their existing circles, for mentorship, jobs and industry ties.
 
-<div className="caption-block">
-<p className="label">Learning</p>
+</Pr>
+<Pr title="Learning">
 
 Alumni want credible, time-efficient content that keeps them competitive and current.
-</div>
 
-These three became the platform's pillars, and every feature had to earn its place against one of them.
+</Pr>
+</Principles>
 
-</Section>
+</Sec>
 
-<Section label="Personas">
+<Sec label="Personas" title="Three alumni, three reasons to come back.">
 
-Research surfaced three core alumni profiles, each with a different reason to come back.
+<Row>
+<StackItem src="/images/case-studies/uc-davis-gsm/persona-rachel.webp" alt="Rachel Moretti persona sheet with bio, goals, pain points, motivations and personality" width="1015" height="1024" caption="Established professionals. Confident in their careers and motivated to give back, often as mentors." />
+<StackItem src="/images/case-studies/uc-davis-gsm/persona-tony.webp" alt="Tony Bianchi persona sheet with bio, goals, pain points, motivations and personality" width="1015" height="1024" caption="Mid-career professionals. Focused on staying ahead and upskilling with trusted resources." />
+<StackItem src="/images/case-studies/uc-davis-gsm/persona-zara.webp" alt="Zara Hamid persona sheet with bio, goals, pain points, motivations and personality" width="1015" height="1024" caption="Early-career graduates. Navigating life after graduation and seeking guidance and light-touch networking." />
+</Row>
 
-<PersonaRow
-  image="/images/case-studies/uc-davis-gsm/persona-rachel.webp"
-  imageAlt="Rachel Moretti persona sheet — bio, goals, pain points, motivations and personality"
-  name="Established Professionals"
->
-  Confident in their careers, motivated to give back, often as mentors
-</PersonaRow>
+</Sec>
 
-<PersonaRow
-  image="/images/case-studies/uc-davis-gsm/persona-tony.webp"
-  imageAlt="Tony Bianchi persona sheet — bio, goals, pain points, motivations and personality"
-  name="Mid-Career Professionals"
->
-  Focused on staying ahead and upskilling with trusted resources
-</PersonaRow>
+<Sec label="The problem" title="Alumni needed more than content.">
 
-<PersonaRow
-  image="/images/case-studies/uc-davis-gsm/persona-zara.webp"
-  imageAlt="Zara Hamid persona sheet — bio, goals, pain points, motivations and personality"
-  name="Early-Career Graduates"
->
-  Navigating life after graduation, seeking guidance and light-touch networking
-</PersonaRow>
+*How might we create a centralized platform where alumni and students can access high-quality learning content, engage in meaningful professional conversations, and keep building a supportive GSM community for lifelong growth?*
 
-</Section>
+</Sec>
 
-<Section label="The Opportunity">
+<Sec label="Scope" title="I put design effort where the scores pointed.">
 
-Our research revealed that the core need goes beyond learning alone:
+The PMs finalized the MVP feature set with the client. I used their priority and effort scores to decide which flows had to be complete enough to test, and which could stay shallow.
 
-<div className="content-block">
-### Learning alone isn't the core issue
+<Frame src="/images/case-studies/uc-davis-gsm/feature-matrix.webp" alt="Feature prioritization table listing each feature against its description, MVP status, value, effort, score and pain points" width="1024" height="694" caption="Product requirements." />
 
-<p className="hmw">→ How might we design a platform that prioritizes community, professional development, and meaningful alumni connection — not just access to content?</p>
-</div>
+</Sec>
 
-<div className="content-block">
-### Current alumni support is limited
+<Sec label="Design" title="Mapping the flow from log in to messaging.">
 
-<p className="hmw">→ How might we empower alumni to support one another and co-create a stronger, self-sustaining network?</p>
-</div>
+<Frame src="/images/case-studies/uc-davis-gsm/user-flow-framed.webp" alt="User flow from log in through discovery, saved library, alumni directory, posts, messaging and profile settings" width="2406" height="1044" caption="The user flow, from log in to discovery, the saved library, the directory, posts, messaging and profile settings." />
 
-<div className="content-block">
-### We're not the first lifelong learning platform
+</Sec>
 
-<p className="hmw">→ How might we differentiate by creating a holistic alumni experience that blends high-quality content with real connection and career growth?</p>
-</div>
+<Sec label="Lo-fi to mid-fi" title="Core solutions first, branding second.">
 
-<ProblemBox>
-How might we create a centralized platform where alumni and students can access high-quality learning content, engage in meaningful professional conversations, and continue to foster a strong, supportive GSM community for lifelong growth?
-</ProblemBox>
+In lo-fi I got the core solutions on screen and only lightly refined lower-priority elements. At mid-fi I added branding, copy and interaction detail, so alumni unfamiliar with UX could test the Figma prototype and give focused feedback on the key features.
 
-</Section>
+<Frame src="/images/case-studies/uc-davis-gsm/lofi-midfi-boxed.webp" alt="Lo-fi and mid-fi board covering onboarding, learning content, alumni directory and upload flows" width="1326" height="990" />
 
-<Section label="Scope">
+</Sec>
 
-The PMs finalized the MVP feature set with the client. I used the priority and effort scores to decide where design effort went — which flows had to be complete enough to test, and which could stay shallow.
+<Sec label="Usability testing" title="Testing turned three problems into structural decisions.">
 
-<div className="caption-block">
-<p className="label">Product Requirements</p>
+We tested the mid-fi prototype with alumni and rebuilt what tripped them up. Three problems ran deeper than a single screen.
 
-<MockupImage src="/images/case-studies/uc-davis-gsm/feature-matrix.webp" alt="Feature prioritisation table listing each feature against its description, MVP status, value, effort, score and associated pain points" width="1024" height="694" />
-</div>
+<Principles columns="3">
+<Pr title="Search had no clear purpose">
 
-</Section>
+Was it for people or content?
 
-<Section label="Design">
+I split it into a focused search on the learning page, with a top nav pointing straight to the directory and forum.
 
-<div className="content-block">
-Of all the features, I designed the following frames:
+</Pr>
+<Pr title="Saved and published content had no home">
 
-- Login Landing Page
-- Onboarding Learning Preference Quiz
-- Learning Content
-- Saved Learning Content
-- Alumni Directory
-- Alumni Location Geomap
-- Upload Content (Article, Video, & Podcast)
-- Alumni-posted Content
-</div>
+Alumni couldn't find what they had saved or posted.
 
-My design partner spearheaded the onboarding profile quiz, discussion forum, messaging, and alumni profile.
+I added a bookmark icon linking to saved content, and moved uploading onto the learning homepage so every learning action sits in one place.
 
-<div className="caption-block section-breakout">
-<p className="label">User Flow</p>
+</Pr>
+<Pr title="The geomap was buried">
 
-<MockupImage src="/images/case-studies/uc-davis-gsm/user-flow-framed.webp" alt="User flow from log in through discovery, saved library, alumni directory, posts, messaging and profile settings" width="2406" height="1044" preframed="true" />
-</div>
-
-</Section>
-
-<Section label="Lo-Fi to Midfi">
-
-In the lo-fi stage, I prioritized getting core solutions on the screen, while lightly refining lower-priority elements and layout.
-
-At mid-fi, I added branding, copy, and interaction detail to prep the prototype for alumni testing in Figma, ensuring it was clear and engaging for participants unfamiliar with UX workflows. The goal: focused feedback on key features.
-
-<MockupImage src="/images/case-studies/uc-davis-gsm/lofi-midfi-boxed.webp" alt="Lo-fi and mid-fi board covering onboarding, learning content, alumni directory and upload flows" width="1326" height="990" preframed="true" />
-
-</Section>
-
-<Section label="Usability Testing">
-
-We tested the mid-fi prototype with alumni and rebuilt the areas that tripped them up. Three of the problems ran deeper than a single screen, and each one turned into a structural decision.
-
-<div className="content-block">
-### Search had no clear purpose
-
-Was it for people or content? I split it: a focused search on the learning page, and a top nav pointing directly to the directory and forum.
-</div>
-
-<div className="content-block">
-### Saved and published content had no home
-
-I added a bookmark icon linking to saved content, and moved uploading onto the learning homepage, grouping every learning action in one place.
-</div>
-
-<div className="content-block">
-### The geomap was buried in advanced search
+It sat inside advanced search.
 
 I moved it to a single map-expansion button, front and center.
-</div>
 
-The pairings below show each screen before testing and the version we shipped, with the reasoning called out.
+</Pr>
+</Principles>
 
-</Section>
+<Stack tag="Learning content discovery">
+<StackItem src="/images/case-studies/uc-davis-gsm/learning-dashboard.webp" alt="Before and after of the learning dashboard, with notes on visual separation, tile size and simplified filters" width="1600" height="717" caption="Increase visual engagement of the learning dashboard." />
+<StackItem src="/images/case-studies/uc-davis-gsm/top-navigation.webp" alt="Before and after of the top navigation, with notes on rephrased links, per-page search and profile actions" width="1600" height="592" caption="Simplified top navigation." />
+<StackItem src="/images/case-studies/uc-davis-gsm/saved-content.webp" alt="Before and after of saved content, with notes on dedicated buttons and distinct sections" width="1600" height="717" caption="Easier access to saved content." />
+<StackItem src="/images/case-studies/uc-davis-gsm/edit-preferences.webp" alt="Before and after of editing learning preferences, with notes on a single access point and consistent wording" width="1600" height="717" caption="Fewer steps to edit learning preferences." />
+</Stack>
 
-<Wide>
-<div className="content-block">
-### Learning Content Discovery
-</div>
+<Stack tag="Alumni directory">
+<StackItem src="/images/case-studies/uc-davis-gsm/alumni-directory.webp" alt="Before and after of the alumni directory and its filtering" width="1600" height="717" caption="Simplified alumni directory and filtering." />
+<StackItem src="/images/case-studies/uc-davis-gsm/alumni-geomap.webp" alt="Before and after of the alumni geomap, with notes on toggling, enlarging and hover previews" width="1600" height="717" caption="Interactive geomap toggle." />
+</Stack>
 
-<div className="caption-block">
-<p className="label">Increase visual engagement of learning dashboard</p>
-<MockupImage src="/images/case-studies/uc-davis-gsm/learning-dashboard.webp" alt="Before and after of the learning dashboard, with notes on visual separation, tile size and simplified filters" width="1600" height="717" />
-</div>
+<Stack tag="Alumni generated content">
+<StackItem src="/images/case-studies/uc-davis-gsm/upload-content.webp" alt="Before and after of content upload, with notes on the relocated upload button, content approval and review comments" width="1600" height="755" caption="Dedicated content upload page." />
+<StackItem src="/images/case-studies/uc-davis-gsm/content-form.webp" alt="Before and after of the content form across article, video and podcast, with notes on numbered sections and micro-instructions" width="1600" height="717" caption="More visual hierarchy in the content form." />
+</Stack>
 
-<div className="caption-block">
-<p className="label">Simplified top navigation</p>
-<MockupImage src="/images/case-studies/uc-davis-gsm/top-navigation.webp" alt="Before and after of the top navigation, with notes on rephrased links, per-page search and profile actions" width="1600" height="592" />
-</div>
+</Sec>
 
-<div className="caption-block">
-<p className="label">Easier access to saved content</p>
-<MockupImage src="/images/case-studies/uc-davis-gsm/saved-content.webp" alt="Before and after of saved content, with notes on dedicated buttons and distinct sections" width="1600" height="717" />
-</div>
+<Sec label="Outcome" title="Delivered with research, designs and a prototype.">
 
-<div className="caption-block">
-<p className="label">Minimized step to edit learning preferences</p>
-<MockupImage src="/images/case-studies/uc-davis-gsm/edit-preferences.webp" alt="Before and after of editing learning preferences, with notes on a single access point and consistent wording" width="1600" height="717" />
-</div>
-</Wide>
+<StoryStatus>
+<StoryRow piece="Research and synthesis" status="Delivered" live="true" />
+<StoryRow piece="Designs and Figma prototype" status="Delivered to the Dean" live="true" />
+<StoryRow piece="Development" status="Left to the Dean's team" />
+</StoryStatus>
 
-<Wide>
-<div className="content-block">
-### Alumni Directory
-</div>
+The full flow is prototyped in Figma, from onboarding to the learning library, posting content, the alumni directory and the geomap. [View the prototype](https://www.figma.com/proto/CoHSrLEObhhsMlKQHDH8yz/GSM-Lifelong-Learning-Platform?node-id=966-32230&p=f&viewport=356%2C249%2C0.02&t=Cdrt900PdXT8M10O-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=966%3A32230&show-proto-sidebar=1&page-id=876%3A22490)
 
-<div className="caption-block">
-<p className="label">Simplified alumni directory and filtering</p>
-<MockupImage src="/images/case-studies/uc-davis-gsm/alumni-directory.webp" alt="Before and after of the alumni directory and its filtering" width="1600" height="717" />
-</div>
+</Sec>
 
-<div className="caption-block">
-<p className="label">Interactive toggle Geomap</p>
-<MockupImage src="/images/case-studies/uc-davis-gsm/alumni-geomap.webp" alt="Before and after of the alumni geomap, with notes on toggling, enlarging and hover previews" width="1600" height="717" />
-</div>
-</Wide>
+<Sec label="Reflection" title="Pushing Figma and learning from PMs.">
 
-<Wide>
-<div className="content-block">
-### Alumni Generated Content
-</div>
+<Lesson title="Figma has limits.">
 
-<div className="caption-block">
-<p className="label">Dedicated content upload page</p>
-<MockupImage src="/images/case-studies/uc-davis-gsm/upload-content.webp" alt="Before and after of content upload, with notes on the relocated upload button, content approval and review comments" width="1600" height="755" />
-</div>
+Building the advanced filter pushed Figma to its edge. Without conditionals or multiple actions, I couldn't fully simulate the interaction, and that limited what usability testing could tell us. I still came out with interactive maps, scroll buttons and smart component swaps in my toolkit, and my first 8pt grid.
 
-<div className="caption-block">
-<p className="label">Increased visual hierarchy of content form</p>
-<MockupImage src="/images/case-studies/uc-davis-gsm/content-form.webp" alt="Before and after of the content form across article, video and podcast, with notes on numbered sections and micro-instructions" width="1600" height="717" />
-</div>
-</Wide>
+</Lesson>
 
-<Pillars
-  label="Final Design"
-  title="The GSM's Lifelong Learning Platform Pillars"
-  footer="The full flow is prototyped in Figma — onboarding, the learning library, posting content, the alumni directory and the geomap."
-  linkLabel="View the GSM Lifelong Learning prototype"
-  linkHref="https://www.figma.com/proto/CoHSrLEObhhsMlKQHDH8yz/GSM-Lifelong-Learning-Platform?node-id=966-32230&p=f&viewport=356%2C249%2C0.02&t=Cdrt900PdXT8M10O-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=966%3A32230&show-proto-sidebar=1&page-id=876%3A22490"
->
-1. Community 👫
-2. Professional Growth 💼
-3. Learning 📕
-</Pillars>
+<Lesson title="PMs are magic.">
 
-<Section label="Outcome">
+Watching our PMs work, from roadmaps in Notion to feature scoping and team alignment, gave me a deep respect for cross-functional collaboration.
 
-The project was delivered to Dean Unnava with the full research, designs, and prototype. Development was not part of this engagement — building the platform was left to the Dean's team after handoff.
+</Lesson>
 
-</Section>
+Thank you to my team, AggieWorks, and Dean Unnava and the GSM for trusting us with this.
 
-<Section label="Reflection">
-
-This project stretched my thinking, sharpened my skills, and made me even more excited to grow as a product designer.
-
-<div className="content-block">
-### What challenged me was prototyping limits in Figma
-
-Creating an advanced filter system pushed Figma to its edge. Without conditionals or multiple actions, I couldn't fully simulate the real interaction, which impacted usability testing.
-</div>
-
-<div className="content-block">
-### I learned that PMs are magic
-
-Watching our PMs in action was eye-opening. From organizing roadmaps in Notion to feature scoping and aligning the team, I left this project with a deep respect for cross-functional collaboration.
-</div>
-
-<div className="content-block">
-### Accomplishments
-
-- Designed with the 8pt grid for the first time to support dev handoff and keep layouts clean and scalable.
-- Pushed Figma further than ever with interactive maps, scroll buttons, radio groups, and smart component swaps.
-</div>
-
-<div className="content-block">
-### Gratitude
-
-Shoutout to my incredible team and AggieWorks. This project was the highlight of my final undergrad year. Huge thanks to Dean Unnava and the UC Davis GSM for trusting us with this meaningful work. I'm walking away inspired and proud.
-</div>
-
-</Section>
+</Sec>

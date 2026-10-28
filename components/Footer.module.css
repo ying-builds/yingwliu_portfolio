@@ -131,14 +131,14 @@
   height: var(--icon-social-lg);
 }
 
-/* Full-bleed band under the bar. Its colour is the page background, so the
-   animation blends into the light sections around the footer. */
+/* Full-bleed band under the bar. Its colour matches the smoke video's own warm cream
+   background, so the animation has no visible edge. */
 .band {
   position: relative;
   overflow: hidden;
   aspect-ratio: var(--footer-band-ratio);
   max-height: var(--footer-band-max-height);
-  background: var(--background-fill);
+  background: var(--footer-band-bg);
   border-top: 1px solid var(--line);
 }
 

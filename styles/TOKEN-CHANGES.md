@@ -7,6 +7,27 @@ changes, in the same commit.
 
 ## New home, footer and nav (branch `rethinking-client-self-service-and-new-home`)
 
+### Story layout and warmer footer smoke (Event Programming Form and UC Davis GSM)
+| Token | Value | Used for |
+|---|---|---|
+| `--story-max-width` | `1180px` | Content width of the story case study layout |
+| `--story-gutter-x` | `16px` | Page side padding on phones (the module widens it on larger screens) |
+| `--story-rail` | `250px` | Sticky left rail that names each section |
+| `--story-gutter` | `56px` | Gap between the rail and the content column |
+| `--story-section-y` | `88px` | Section top and bottom padding |
+| `--story-col-gap` | `44px` | Gap between blocks inside a column |
+| `--story-hero-bottom` | `88px` | Hero to first section |
+| `--story-frame-pad` | `25px` | Inset of the framed media |
+| `--text-story-h2` | `28px` | Rail headline, Crimson Pro |
+| `--footer-band-bg` | `#f7efe4` | Footer smoke band. Warmed up from the page cream, and matches the re-tinted smoke video's own background so there is no seam |
+
+### Case study captions and open columns (Event Programming Form draft)
+| Token | Value | Used for |
+|---|---|---|
+| `--space-caption-gap` | `var(--space-sm)`, 10px | Distance from a caption or note to the block it describes. A caption that follows a block in the column pulls up by the column gap minus this, so it never floats a full 40px below its element |
+| `--space-column-pad` | `16px` | Cell padding for ruled open columns, the no-box replacement for rounded stat and insight cards |
+
+
 ### Play pill clean-up
 | Token | Change | Note |
 |---|---|---|

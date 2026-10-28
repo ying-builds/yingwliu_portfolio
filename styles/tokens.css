@@ -109,6 +109,20 @@
   --space-frame-padding: 32px; /* mockup frame: image inset from the frame edge */
   --space-title-dates: 12px;  /* project title -> date range */
   --space-title-intro: 24px;  /* tagline -> Introduction */
+  --space-caption-gap: var(--space-sm); /* a caption or note to the element it describes (10px, not a full block gap) */
+  --space-column-pad: 16px;   /* ruled open columns (no box, no rounded corners): cell padding */
+
+  /* ===== STORY LAYOUT (Event Programming Form, UC Davis GSM) ===== */
+  --story-max-width: 1180px;   /* content width of the story layout */
+  --story-gutter-x: 16px;      /* page side padding on phones, widens in the module */
+  --story-rail: 250px;         /* sticky left rail */
+  --story-gutter: 56px;        /* rail to content column */
+  --story-section-y: 88px;     /* section top and bottom padding */
+  --story-col-gap: 44px;       /* gap between blocks in a column */
+  --story-hero-bottom: 88px;   /* hero to first section */
+  --story-frame-pad: 25px;     /* media frame inset */
+  --text-story-h2: 28px;       /* rail headline, Crimson Pro */
+  --footer-band-bg: #f7efe4;   /* footer smoke band: warm cream, matches the video's own background */
 
   /* ===== CARD PATTERNS =====
      Insight, stat, persona and feature cards. These values arrived with the

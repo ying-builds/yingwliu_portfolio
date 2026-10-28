@@ -24,6 +24,24 @@ import PersonaCard from "../../../components/case-study/PersonaCard";
 import PersonaRow from "../../../components/case-study/PersonaRow";
 import FeatureCard from "../../../components/case-study/FeatureCard";
 import Pillars from "../../../components/case-study/Pillars";
+import StoryTemplate, {
+  type StoryFrontmatter,
+} from "../../../components/story/StoryTemplate";
+import Sec from "../../../components/story/Sec";
+import Frame from "../../../components/story/Frame";
+import { Stack, StackItem, Row } from "../../../components/story/Stack";
+import {
+  Principles,
+  Pr,
+  Lead,
+  Cap,
+  Blk,
+  Lesson,
+  Evidence,
+  Ev,
+  StoryStatus,
+  StoryRow,
+} from "../../../components/story/Blocks";
 import ReadingProgress from "../../../components/case-study/ReadingProgress";
 import PathsDiagram from "../../../components/case-study/PathsDiagram";
 import ReachLayers from "../../../components/case-study/ReachLayers";
@@ -103,6 +121,23 @@ export async function generateMetadata({
 }
 
 const mdxComponents = {
+  // Story layout
+  Sec,
+  Frame,
+  Stack,
+  StackItem,
+  Row,
+  Principles,
+  Pr,
+  Lead,
+  Cap,
+  Blk,
+  Lesson,
+  Evidence,
+  Ev,
+  StoryStatus,
+  StoryRow,
+  // Original case study template
   Section,
   Intro,
   ProblemBox,
@@ -145,6 +180,16 @@ export default async function CaseStudyPage({
 
   const { content, data } = matter(source);
   const frontmatter = data as CaseStudyFrontmatter;
+
+  // Case studies written in the story layout say so in their frontmatter.
+  if (data.layout === "story") {
+    return (
+      <StoryTemplate frontmatter={data as StoryFrontmatter}>
+        <ReadingProgress />
+        <MDXRemote source={content} components={mdxComponents} />
+      </StoryTemplate>
+    );
+  }
 
   return (
     <CaseStudyTemplate frontmatter={frontmatter}>

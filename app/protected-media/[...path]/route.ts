@@ -46,11 +46,50 @@ export async function GET(
     return new NextResponse(null, { status: 404 });
   }
 
+  const type =
+    TYPES[path.extname(resolved).toLowerCase()] ?? "application/octet-stream";
+  const size = fs.statSync(resolved).size;
+
+  // Safari won't play a video unless the server answers byte-range requests,
+  // so honour "Range: bytes=start-end" with a 206 and just that slice.
+  const range = request.headers.get("range");
+  const match = range ? /^bytes=(\d*)-(\d*)$/.exec(range) : null;
+  if (match && (match[1] || match[2])) {
+    let start = match[1] ? Number(match[1]) : size - Number(match[2]);
+    let end = match[1] && match[2] ? Number(match[2]) : size - 1;
+    start = Math.max(0, start);
+    end = Math.min(end, size - 1);
+    if (start > end || start >= size) {
+      return new NextResponse(null, {
+        status: 416,
+        headers: { "Content-Range": `bytes */${size}` },
+      });
+    }
+    const chunk = Buffer.alloc(end - start + 1);
+    const fd = fs.openSync(resolved, "r");
+    try {
+      fs.readSync(fd, chunk, 0, chunk.length, start);
+    } finally {
+      fs.closeSync(fd);
+    }
+    return new NextResponse(new Uint8Array(chunk), {
+      status: 206,
+      headers: {
+        "Content-Type": type,
+        "Content-Length": String(chunk.length),
+        "Content-Range": `bytes ${start}-${end}/${size}`,
+        "Accept-Ranges": "bytes",
+        "Cache-Control": "private, max-age=3600",
+      },
+    });
+  }
+
   const body = fs.readFileSync(resolved);
   return new NextResponse(new Uint8Array(body), {
     headers: {
-      "Content-Type": TYPES[path.extname(resolved).toLowerCase()] ?? "application/octet-stream",
+      "Content-Type": type,
       "Content-Length": String(body.length),
+      "Accept-Ranges": "bytes",
       // private: cached in the visitor's browser, never in a shared CDN cache
       // where it could outlive their access.
       "Cache-Control": "private, max-age=3600",
