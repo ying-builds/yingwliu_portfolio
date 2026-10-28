@@ -39,10 +39,11 @@ export const workCards: WorkCard[] = [
     id: "event-programming-form",
     company: "Ticketmaster",
     title: "Event Programming Form",
-    description:
-      "Redesigning event programming form to improve event intake to creation experience for internal employees.",
-    tags: ["Request access"],
-    locked: true,
+    slug: "event-programming-form",
+    href: "/work/event-programming-form",
+    tags: ["B2B", "Form design"],
+    image: "/images/case-studies/event-programming-form/card-cover.webp",
+    imageAlt: "The redesigned Event Creation Form, step one of three",
   },
   {
     id: "alumni-learning-platform",

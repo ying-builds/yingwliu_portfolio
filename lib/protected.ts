@@ -6,7 +6,7 @@
  * neither the client bundle nor git history.
  */
 
-export const PROTECTED_SLUGS = ["client-self-service"] as const;
+export const PROTECTED_SLUGS = ["client-self-service", "event-programming-form"] as const;
 
 /* Assets for a protected case study live outside public/ and are served
  * through this route, which checks the same cookie the page does. */

@@ -16,7 +16,7 @@ export default function TitleBlock({
       <div className={styles.titleCol}>
         <p className="label">{projectLabel}</p>
         <h1 className="project-title">{title}</h1>
-        <p className={styles.titleDates}>{dates}</p>
+        {dates ? <p className={styles.titleDates}>{dates}</p> : null}
       </div>
       <div className={styles.subheadCol}>
         <h3>{subheading}</h3>

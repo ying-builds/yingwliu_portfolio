@@ -62,8 +62,8 @@ study's actual content living in a simple MDX file.
   modal, and never an in-place overlay.
 - Play tiles: only Netflix Party (Medium article) and BeReal (`/work/bereal`)
   link anywhere. AI: Databricks links to the Figma deck.
-- Private projects (Event Programming Form) show the padlock and are not
-  clickable.
+- Password-gated case studies (Client Self-Service, Event Programming Form) are
+  clickable like any other card; the gate is on the page behind it, not the card.
 
 ## Writing MDX: use string props, never expressions
 In this setup MDX expressions are silently dropped — `width={1326}` arrives as
