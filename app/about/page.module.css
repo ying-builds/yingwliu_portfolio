@@ -187,43 +187,6 @@
   border-color: var(--black);
 }
 
-/* Hover-to-reveal GIF on "lifting at the gym" */
-.hoverVideoTrigger {
-  position: relative;
-  border-bottom: 1px solid var(--site-rule);
-  cursor: default;
-  transition: border-color 0.2s;
-}
-
-.hoverVideoTrigger:hover {
-  border-color: var(--black);
-}
-
-.hoverVideo {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(4px);
-  opacity: 0;
-  pointer-events: none;
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease;
-  z-index: 10;
-  padding-bottom: 8px;
-}
-
-.hoverVideoTrigger:hover .hoverVideo {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.hoverVideo img {
-  width: 320px;
-  border-radius: 4px;
-  box-shadow: 0 8px 30px color-mix(in srgb, var(--black) 15%, transparent);
-}
-
 /* ========================================
    WHAT I'M UP TO
    ======================================== */

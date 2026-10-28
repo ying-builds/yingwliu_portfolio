@@ -71,47 +71,22 @@ export default function AboutPage() {
           <div className={styles.aboutRight}>
             <p className={styles.bioLabel}>About</p>
             <p className={styles.bioText}>
-              I grew up having fun through all creative mediums (making duct
-              tape wallets and miniature furniture for my LPS, taking every art
-              elective, and playing minecraft with my cousins) it was how I made
-              sense of the world as an only child. But what actually shaped my
-              instincts as a designer was growing up with immigrant Chinese
-              parents. It taught me to read the room, pick up on what people
-              aren&apos;t saying, and pay attention to whether something is
-              actually working for them.
+              I grew up having fun through all creative mediums: making duct
+              tape wallets, baking rainbow cupcakes, drawing, and playing
+              Minecraft with my cousins, it was how I made sense of the world as
+              an only child.
             </p>
             <p className={styles.bioText}>
-              That&apos;s what I bring into my work: empathy that&apos;s
-              practiced, not performed. I design by listening first — then
-              turning what I hear into something clear and useful.
+              Without realizing, my deeper instincts were being shaped by
+              hardworking immigrant Chinese parents. I learned to read the room,
+              picked up how someone felt even if it wasn&apos;t said aloud, and
+              paid attention to whether something actually worked for the people
+              around me.
             </p>
             <p className={styles.bioText}>
-              Outside of design, you&apos;ll find me creating content on{" "}
-              <a
-                href="https://www.tiktok.com/@yingwliu"
-                target="_blank"
-                rel="noopener"
-                className={styles.bioLink}
-              >
-                TikTok
-              </a>
-              , sharing learnings on{" "}
-              <a
-                href="https://medium.com/@yywliu"
-                target="_blank"
-                rel="noopener"
-                className={styles.bioLink}
-              >
-                Medium
-              </a>
-              , or{" "}
-              <span className={styles.hoverVideoTrigger}>
-                lifting at the gym
-                <span className={styles.hoverVideo}>
-                  <img src="/images/site/gym-hover.gif" alt="Ying lifting" />
-                </span>
-              </span>
-              . Balance keeps everything sharp.
+              That&apos;s what I bring as a designer: empathy that&apos;s
+              practiced, not performed. I design by listening first, then
+              turning what I hear into something clear and functional.
             </p>
 
             {/* The lighter words open each line; the darker words carry it. */}
