@@ -71,22 +71,19 @@ export default function AboutPage() {
           <div className={styles.aboutRight}>
             <p className={styles.bioLabel}>About</p>
             <p className={styles.bioText}>
-              I grew up having fun through all creative mediums: making duct
-              tape wallets, baking rainbow cupcakes, drawing, and playing
-              Minecraft with my cousins, it was how I made sense of the world as
-              an only child.
+              I&apos;m an only child, so I grew up making my own fun. Duct tape
+              wallets, rainbow cupcakes, Minecraft with my cousins. It was how I
+              made sense of the world.
             </p>
             <p className={styles.bioText}>
-              Without realizing, my deeper instincts were being shaped by
-              hardworking immigrant Chinese parents. I learned to read the room,
-              picked up how someone felt even if it wasn&apos;t said aloud, and
-              paid attention to whether something actually worked for the people
-              around me.
+              My immigrant Chinese parents taught me the rest without ever
+              saying it. How to read a room. How to feel what someone
+              isn&apos;t saying. How to tell when something is actually working
+              for them.
             </p>
             <p className={styles.bioText}>
-              That&apos;s what I bring as a designer: empathy that&apos;s
-              practiced, not performed. I design by listening first, then
-              turning what I hear into something clear and functional.
+              That&apos;s what I bring to design. Empathy that&apos;s
+              practiced, not performed.
             </p>
 
             <p className={`${styles.bioLabel} ${styles.nowLabel}`}>
