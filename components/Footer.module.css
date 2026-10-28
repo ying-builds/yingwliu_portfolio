@@ -139,7 +139,6 @@
   /* Same height as the dark bar above it, at every desktop width */
   height: var(--footer-bar-height);
   background: var(--footer-band-bg);
-  border-top: 1px solid var(--line);
 }
 
 .bandVideo {
