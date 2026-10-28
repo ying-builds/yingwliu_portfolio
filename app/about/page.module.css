@@ -156,13 +156,6 @@
   animation: fadeUp 0.7s 0.8s ease forwards;
 }
 
-.bioLabel::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--site-rule);
-}
-
 .bioText {
   font-size: var(--site-text-body);
   line-height: var(--site-leading-loose);
@@ -190,7 +183,7 @@
 /* ========================================
    WHAT I'M UP TO
    ======================================== */
-/* Same label-and-rule as "About", but set in Intel One Mono */
+/* Same label as "About", but set in Intel One Mono */
 .nowLabel {
   font-family: var(--font-intel-mono);
   margin-top: var(--about-now-gap);
@@ -217,8 +210,6 @@
 }
 
 .nowList li {
-  position: relative;
-  padding-left: var(--about-bullet-indent);
   font-size: var(--site-text-body);
   line-height: var(--site-leading-loose);
   color: var(--almost-black);
@@ -226,13 +217,6 @@
 
 .nowList li + li {
   margin-top: var(--about-bullet-gap);
-}
-
-.nowList li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: var(--subtitle);
 }
 
 /* The opening words sit back; the rest of the line carries it */
