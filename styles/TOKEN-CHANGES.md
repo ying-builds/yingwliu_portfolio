@@ -12,6 +12,7 @@ changes, in the same commit.
 | Token | Value |
 | --- | --- |
 | `--unlock-lock-width` | 56px (the padlock above the gate's title) |
+| `--unlock-arrow-nudge` | 7px (how far the arrow slides right when hovered) |
 
 The gate's title is now Crimson Pro (`--font-serif`) and its instruction line is
 Intel One Mono at `--text-quote` (14px).

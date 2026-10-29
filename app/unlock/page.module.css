@@ -90,25 +90,34 @@
   border: 0;
   border-radius: 50%;
   cursor: pointer;
-  /* Quiet until the box is hovered or in use, but never hidden, so a phone
-     (no hover) can still see what to press. */
+  /* Three steps of brightness: dim at rest (never hidden, so a phone with no
+     hover can still see it), a little up when the box is hovered or has
+     something typed, and full when the arrow itself is hovered. */
   opacity: 0.35;
-  transition: opacity 0.2s ease-out;
+  transition:
+    opacity 0.25s ease-out,
+    color 0.25s ease-out;
 }
 
 .go svg {
-  transition: transform 0.2s ease-out;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1);
 }
 
 .field:hover .go,
-.field:focus-within .go {
-  opacity: 1;
+.input:not(:placeholder-shown) ~ .go {
+  opacity: 0.6;
 }
 
-.field:hover .go svg,
-.field:focus-within .go svg,
-.go:hover svg {
-  transform: translateX(3px);
+/* The arrow itself: brightest, and it slides right */
+.field .go:hover,
+.field .go:focus-visible {
+  opacity: 1;
+  color: var(--white);
+}
+
+.go:hover svg,
+.go:focus-visible svg {
+  transform: translateX(var(--unlock-arrow-nudge));
 }
 
 .go:focus-visible {
@@ -121,9 +130,8 @@
   .go svg {
     transition: none;
   }
-  .field:hover .go svg,
-  .field:focus-within .go svg,
-  .go:hover svg {
+  .go:hover svg,
+  .go:focus-visible svg {
     transform: none;
   }
 }

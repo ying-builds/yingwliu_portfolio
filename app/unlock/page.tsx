@@ -49,9 +49,9 @@ export default async function UnlockPage({
               required
               className={styles.input}
             />
-            {/* Sits inside the box at the right. Dim at rest, it brightens and
-                nudges forward when the box is hovered or focused. Pressing it
-                (or Enter) submits. */}
+            {/* Sits inside the box at the right. Dim at rest, brighter when the
+                box is hovered or filled, brightest and sliding right when the
+                arrow itself is hovered. Pressing it (or Enter) submits. */}
             <button type="submit" className={styles.go} aria-label="View case study">
               <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
                 <path
