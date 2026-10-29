@@ -59,7 +59,7 @@
 
 .meta {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: var(--story-meta-columns);
   gap: 24px 32px;
   padding-block: 24px;
   border-top: 1px solid var(--line);

@@ -7,6 +7,12 @@ changes, in the same commit.
 
 
 
+## 2026-10-28: Story meta row
+### Added
+| Token | Value |
+|---|---|
+| `--story-meta-columns` | 1.2fr / 0.7fr / 1.3fr / 1.5fr (Role, Timeline, Tools, Team; the short Timeline column no longer gets a full quarter) |
+
 ## 2026-10-28: Password page
 ### Added
 | Token | Value |

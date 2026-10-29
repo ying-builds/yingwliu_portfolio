@@ -122,6 +122,7 @@
   --unlock-lock-width: 56px;   /* padlock above the password gate's title */
   --unlock-arrow-nudge: 7px;   /* how far the gate's arrow slides right on hover */
   --story-feature-video: 280px; /* portrait phone video beside a feature's text */
+  --story-meta-columns: minmax(0, 1.2fr) minmax(0, 0.7fr) minmax(0, 1.3fr) minmax(0, 1.5fr); /* Role, Timeline, Tools, Team: Timeline is short, so it gets less room */
   --story-hero-bottom: 88px;   /* hero to first section */
   --story-frame-pad: 25px;     /* media frame inset */
   --text-story-h2: 28px;       /* rail headline, Crimson Pro */
