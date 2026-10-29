@@ -27,9 +27,9 @@ export const metadata: Metadata = {
     siteName: "Ying Liu",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image-v2.png",
         width: 1200,
-        height: 627,
+        height: 630,
         alt: "Ying Liu, product designer, Sacramento",
       },
     ],
