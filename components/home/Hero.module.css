@@ -160,6 +160,26 @@
   line-height: 1.15;
 }
 
+/* A note with a song cover: the cover sits on the left like a little photo
+   stuck to the tape, and the text moves right and left-aligns beside it. */
+.note img.cover {
+  inset: auto;
+  left: calc(30 * var(--u));
+  top: calc(19 * var(--u));
+  width: calc(42 * var(--u));
+  height: calc(42 * var(--u));
+  object-fit: cover;
+  border-radius: calc(2 * var(--u));
+  transform: rotate(-3deg);
+  box-shadow: 0 calc(1 * var(--u)) calc(3 * var(--u)) rgb(0 0 0 / 0.25);
+}
+
+.note p.withCover {
+  inset: calc(14 * var(--u)) calc(26 * var(--u)) calc(14 * var(--u)) calc(82 * var(--u));
+  align-items: flex-start;
+  text-align: left;
+}
+
 .spot:hover .note,
 .spot:focus-within .note,
 .isOpen .note {
