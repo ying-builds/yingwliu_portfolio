@@ -13,11 +13,11 @@ import { aiCards, playTiles, workCards } from "./home-data";
 export const metadata: Metadata = {
   title: "Ying Liu | UX & Product Designer Portfolio",
   description:
-    "Ying Liu is a UX and product designer in Sacramento, CA. Portfolio of case studies on B2B platforms, self-service help centers and social apps.",
+    "Ying Liu is a UX and product designer in Sacramento, CA. See her work and case studies, from help centers to social apps.",
   openGraph: {
     title: "Ying Liu | UX & Product Designer Portfolio",
     description:
-      "Ying Liu is a UX and product designer in Sacramento, CA. Portfolio of case studies on B2B platforms, self-service help centers and social apps.",
+      "Ying Liu is a UX and product designer in Sacramento, CA. See her work and case studies, from help centers to social apps.",
     type: "website",
     /* siteName, images and the image's alt are all repeated from the root
        layout on purpose. Next merges metadata shallowly: declaring openGraph
