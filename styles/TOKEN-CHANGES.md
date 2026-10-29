@@ -7,6 +7,12 @@ changes, in the same commit.
 
 
 
+## 2026-10-28: BeReal in the story layout
+### Added
+| Token | Value |
+| --- | --- |
+| `--story-feature-video` | 280px (width of a portrait phone video beside a feature's text) |
+
 ## 2026-10-28: Intel One Mono everywhere, one nav
 ### Changed
 | Token | Was | Now |

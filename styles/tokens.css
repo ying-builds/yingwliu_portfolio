@@ -119,6 +119,7 @@
   --story-gutter: 56px;        /* rail to content column */
   --story-section-y: 88px;     /* section top and bottom padding */
   --story-col-gap: 44px;       /* gap between blocks in a column */
+  --story-feature-video: 280px; /* portrait phone video beside a feature's text */
   --story-hero-bottom: 88px;   /* hero to first section */
   --story-frame-pad: 25px;     /* media frame inset */
   --text-story-h2: 28px;       /* rail headline, Crimson Pro */

@@ -47,6 +47,7 @@ import {
   Sub,
   Picks,
   Pick,
+  Feature,
 } from "../../../components/story/Blocks";
 import { StoryPaths, StoryLayers } from "../../../components/story/Diagrams";
 import ReadingProgress from "../../../components/case-study/ReadingProgress";
@@ -150,6 +151,7 @@ const mdxComponents = {
   Sub,
   Picks,
   Pick,
+  Feature,
   StoryPaths,
   StoryLayers,
   // Original case study template

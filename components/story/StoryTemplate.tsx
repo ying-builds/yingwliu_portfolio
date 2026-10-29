@@ -13,6 +13,26 @@ export interface StoryFrontmatter {
   heroPoster?: string;
   heroCaption?: string;
   heroRatio?: string;
+  // A still hero, for case studies without a video. Strings, like the MDX props.
+  heroImage?: string;
+  heroImageAlt?: string;
+  heroImageWidth?: string;
+  heroImageHeight?: string;
+}
+
+// Meta values are plain text, but a name can be written as [Name](https://...)
+// and becomes a link.
+function withLinks(text: string): ReactNode[] {
+  return text.split(/(\[[^\]]+\]\(https?:\/\/[^)\s]+\))/g).map((part, i) => {
+    const m = part.match(/^\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)$/);
+    return m ? (
+      <a key={i} href={m[2]} target="_blank" rel="noopener noreferrer">
+        {m[1]}
+      </a>
+    ) : (
+      part
+    );
+  });
 }
 
 /* The page shell for the story layout: crumbs, title, one-line summary, meta
@@ -54,7 +74,7 @@ export default function StoryTemplate({
             {rows.map(([label, value]) => (
               <div key={label}>
                 <p className={styles.label}>{label}</p>
-                <p>{value}</p>
+                <p>{withLinks(value)}</p>
               </div>
             ))}
           </div>
@@ -69,6 +89,16 @@ export default function StoryTemplate({
               {short.map((part, i) => (i % 2 ? <em key={i}>{part}</em> : part))}
             </p>
           </div>
+        )}
+
+        {!f.heroVideo && f.heroImage && (
+          <Frame
+            src={f.heroImage}
+            alt={f.heroImageAlt}
+            width={f.heroImageWidth}
+            height={f.heroImageHeight}
+            caption={f.heroCaption}
+          />
         )}
 
         {f.heroVideo && (

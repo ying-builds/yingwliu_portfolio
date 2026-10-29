@@ -164,3 +164,29 @@ export function Pick({
     </figure>
   );
 }
+
+/* A feature: its name and what it does on the left, a short portrait video on
+   the right. For phone recordings, which would be far too tall at column width. */
+export function Feature({
+  title,
+  video,
+  poster,
+  ratio,
+  children,
+}: {
+  title: string;
+  video: string;
+  poster?: string;
+  ratio?: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className={styles.feature}>
+      <div className={styles.featureText}>
+        <h3>{title}</h3>
+        {children}
+      </div>
+      <Frame video={video} poster={poster} ratio={ratio} />
+    </div>
+  );
+}
