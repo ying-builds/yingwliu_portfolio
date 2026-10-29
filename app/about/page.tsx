@@ -157,6 +157,17 @@ export default function AboutPage() {
             </div>
           </div>
 
+          {/* This flourish is pinned to the notebook (not the page) so it keeps its
+              spot against the page edge as the notebook scales. */}
+          <img
+            className={`${styles.ornament} ${styles.ornamentSmall}`}
+            src="/images/site/ornament-small-v2.png"
+            width={173}
+            height={440}
+            alt=""
+            aria-hidden="true"
+          />
+
           {/* Two die-cut stickers stuck on the pages. They peel on when the page
               loads, lift on hover, and can be dragged somewhere else. */}
           <PeelSticker
@@ -193,14 +204,6 @@ export default function AboutPage() {
             src="/images/site/ornament-big-v2.png"
             width={316}
             height={708}
-            alt=""
-            aria-hidden="true"
-          />
-          <img
-            className={`${styles.ornament} ${styles.ornamentSmall}`}
-            src="/images/site/ornament-small-v2.png"
-            width={173}
-            height={440}
             alt=""
             aria-hidden="true"
           />

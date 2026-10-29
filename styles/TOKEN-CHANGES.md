@@ -22,7 +22,7 @@ changes, in the same commit.
 | `--about-ornament-opacity` | 0.75 |
 | `--about-orn-tall-width` / `-left` / `-top` | 8vw / 7vw / 12% |
 | `--about-orn-big-width` / `-right` / `-top` | 11vw / 4vw / 6% |
-| `--about-orn-small-width` / `-left` / `-bottom` | 6vw / 3vw / 6% |
+| `--about-orn-small-width` / `-left` / `-bottom` | 8.2cqw / 1.9cqw / 8.6cqw (pinned to the notebook, centred on that point) |
 
 ## New home, footer and nav (branch `rethinking-client-self-service-and-new-home`)
 

@@ -643,7 +643,7 @@ h3 {
   --about-sticker-tabby-right: 4.5cqw;
   --about-sticker-tabby-bottom: 1.5cqw;
 
-  /* Dotted flourishes around the About page (positions are against the page, in vw) */
+  /* Dotted flourishes around the About page (tall and big sit on the page, in vw; the small one is pinned to the notebook, in cqw, centred on its point) */
   --about-ornament-opacity: 0.75;
   --about-orn-tall-width: 8vw;
   --about-orn-tall-left: 7vw;
@@ -651,7 +651,7 @@ h3 {
   --about-orn-big-width: 11vw;
   --about-orn-big-right: 4vw;
   --about-orn-big-top: 6%;
-  --about-orn-small-width: 6vw;
-  --about-orn-small-left: 3vw;
-  --about-orn-small-bottom: 6%;
+  --about-orn-small-width: 8.2cqw;
+  --about-orn-small-left: 1.9cqw;
+  --about-orn-small-bottom: 8.6cqw;
 }

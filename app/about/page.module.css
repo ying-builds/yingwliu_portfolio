@@ -335,10 +335,11 @@
 }
 
 .ornamentSmall {
+  /* Centred on a spot on the notebook's left edge, in notebook units */
   left: var(--about-orn-small-left);
   bottom: var(--about-orn-small-bottom);
   width: var(--about-orn-small-width);
-  transform: rotate(5deg);
+  transform: translate(-50%, 50%) rotate(5deg);
   animation-delay: 1.2s;
 }
 
