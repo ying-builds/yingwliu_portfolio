@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import styles from "./Hero.module.css";
 import { ARTBOARD, NOTE, bean, hotspots } from "./hero-data";
 
@@ -16,30 +16,7 @@ import { ARTBOARD, NOTE, bean, hotspots } from "./hero-data";
 const u = (n: number) => `calc(${n} * var(--u))`;
 
 export default function Hero() {
-  // Which hotspot's note is open from a tap or keyboard press. Hovering is
-  // handled in CSS alone, so desktop never waits on JavaScript.
-  const [open, setOpen] = useState<string | null>(null);
   const stageRef = useRef<HTMLDivElement>(null);
-
-  // Tapping anywhere else (or pressing Escape) closes an open note.
-  useEffect(() => {
-    if (!open) return;
-    const close = (e: Event) => {
-      if (e instanceof KeyboardEvent && e.key !== "Escape") return;
-      if (
-        e instanceof MouseEvent &&
-        (e.target as HTMLElement).closest("[data-hotspot]")
-      )
-        return;
-      setOpen(null);
-    };
-    document.addEventListener("click", close);
-    document.addEventListener("keydown", close);
-    return () => {
-      document.removeEventListener("click", close);
-      document.removeEventListener("keydown", close);
-    };
-  }, [open]);
 
   return (
     <section className={styles.hero} id="hero" aria-label="Introduction">
@@ -113,11 +90,10 @@ export default function Hero() {
         </div>
 
         {hotspots.map((h) => {
-          const isOpen = open === h.id;
           return (
             <div
               key={h.id}
-              className={`${styles.spot} ${isOpen ? styles.isOpen : ""}`}
+              className={styles.spot}
               style={{ left: u(h.x), top: u(h.y), width: u(h.w), height: u(h.h) }}
               data-hotspot
             >
@@ -125,8 +101,6 @@ export default function Hero() {
                 type="button"
                 className={styles.spotButton}
                 aria-label={h.label}
-                aria-expanded={isOpen}
-                onClick={() => setOpen(isOpen ? null : h.id)}
               >
                 <img
                   className={`${styles.art} ${styles[`wiggle${h.wiggle}`]}`}

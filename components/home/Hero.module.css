@@ -129,7 +129,7 @@
   pointer-events: none;
 }
 
-/* The note: hidden until the hotspot is hovered, focused, or tapped open. */
+/* The note: hidden until the hotspot is hovered or keyboard-focused. */
 .note {
   position: absolute;
   pointer-events: none;
@@ -180,9 +180,12 @@
   text-align: left;
 }
 
+/* Hover opens a note, and keyboard focus does too for people who can't hover.
+   There is no click interaction. :focus-visible (not :focus-within)
+   on purpose: clicking with a mouse leaves focus on the button, and
+   :focus-within would keep the note open after the pointer moved away. */
 .spot:hover .note,
-.spot:focus-within .note,
-.isOpen .note {
+.spot:has(:focus-visible) .note {
   opacity: 1;
   transform: none;
 }
@@ -221,8 +224,7 @@
 
 /* Once you are on it, it holds still and the note takes over. */
 .spot:hover .art,
-.spot:focus-within .art,
-.isOpen .art {
+.spot:has(:focus-visible) .art {
   animation: none;
 }
 
