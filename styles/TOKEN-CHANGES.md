@@ -12,7 +12,8 @@ changes, in the same commit.
 | --- | --- |
 | `--sticker-lift-duration` | 0.25s (hover curl and drop) |
 | `--sticker-peel-duration` | 0.9s |
-| `--about-sticker-tuxedo-width` / `-left` / `-bottom` | 15cqw / 22cqw / -0.5cqw |
+| `--sticker-fall-distance` | 70vh |
+| `--about-sticker-tuxedo-width` / `-left` / `-top` | 16cqw / 1.8cqw / 0.5cqw (top-left of the left page) |
 | `--about-sticker-tabby-width` / `-right` / `-bottom` | 19cqw / 4.5cqw / 1.5cqw |
 
 ## New home, footer and nav (branch `rethinking-client-self-service-and-new-home`)

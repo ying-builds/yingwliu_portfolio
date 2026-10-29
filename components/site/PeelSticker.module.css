@@ -5,15 +5,19 @@
 .sticker {
   position: absolute;
   z-index: 3;
-  cursor: grab;
+  cursor: pointer;
   touch-action: none;
   user-select: none;
-  transform: translate(var(--peel-x, 0), var(--peel-y, 0));
 }
 
-.isLoose {
-  cursor: grabbing;
-  z-index: 4;
+/* While it is off the page nothing should catch the pointer or add scroll */
+.gone {
+  display: none;
+}
+
+/* Coming back after a fall: no waiting on the first-load delay */
+.again {
+  --sticker-peel-delay: 0s;
 }
 
 /* Everything that tilts, lands and casts a shadow lives here, so the front and
@@ -30,12 +34,26 @@
     var(--sticker-peel-delay, 0s) backwards;
 }
 
-/* Floating loose: bigger, higher, a little twisted */
-.isLoose .inner {
-  transform: rotate(calc(var(--peel-tilt, 0deg) + 4deg)) scale(1.08);
-  filter: drop-shadow(0 12px 8px rgb(0 0 0 / 0.2))
-    drop-shadow(0 22px 24px rgb(0 0 0 / 0.16));
-  animation: none;
+/* Peeled off: it tips, drops and slides off the page, fading as it goes */
+.falls {
+  animation: fallOff var(--fall-ms, 1s) cubic-bezier(0.55, 0, 0.9, 0.5) forwards;
+}
+
+@keyframes fallOff {
+  0% {
+    transform: rotate(var(--peel-tilt, 0deg)) translateY(0);
+    opacity: 1;
+  }
+  15% {
+    transform: rotate(calc(var(--peel-tilt, 0deg) + 4deg)) translateY(-6px) scale(1.05);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(calc(var(--peel-tilt, 0deg) + 28deg)) translateY(var(--sticker-fall-distance)) scale(1.05);
+    opacity: 0;
+  }
 }
 
 .clip {
@@ -82,7 +100,7 @@
 
 /* Pressing it down: lifted and tilted at first, then it lands flat with a
    tiny squash, the way a sticker does under a thumb. Plays on load and again
-   each time a loose sticker is put back. */
+   when a fallen sticker comes back. */
 @keyframes pressOn {
   0% {
     transform: rotate(calc(var(--peel-tilt, 0deg) + 5deg)) translateY(-12px) scale(1.1);
@@ -105,6 +123,10 @@
   .inner {
     animation: none;
     transition: none;
+  }
+  .falls {
+    animation: none;
+    opacity: 0;
   }
   .clip {
     transition: none;

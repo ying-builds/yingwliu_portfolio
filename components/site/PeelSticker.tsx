@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, PointerEvent } from "react";
 import styles from "./PeelSticker.module.css";
 
-/* A sticker you can really peel.
+/* A sticker you can peel off the page.
 
    How the fold works: the sticker is drawn twice. The front copy is clipped to
    one side of a fold line. The back copy is the same picture mirrored across
@@ -12,10 +12,11 @@ import styles from "./PeelSticker.module.css";
    clipped to the same side. Moving the line toward the middle peels more.
 
    - Hover: the corner lifts a little, as an invitation.
-   - Press and pull toward the middle: the corner curls over.
-   - Let go past halfway: the sticker comes off the page and floats loose.
-   - A loose sticker can be carried; let go and it presses down where it is.
-   - Let go before halfway and it springs back flat. */
+   - Press and pull a short way, in any direction: the corner curls over.
+   - Pull past a third of the way, or just tap: the sticker peels off, falls down
+     and off the page, and presses itself back on a few seconds later.
+   - Let go before then and it springs back flat.
+   Stickers stay where the page puts them; they can't be moved. */
 
 type Props = {
   src: string;
@@ -29,7 +30,13 @@ type Props = {
   corner?: "br" | "bl";
 };
 
-type Mode = "stuck" | "peeling" | "loose" | "moving";
+type Mode = "stuck" | "peeling" | "falling" | "gone";
+
+// How far a pull counts as "peeled", as a share of the sticker's size.
+const PULL_FOR_FULL = 0.22;
+const PEEL_TO_DROP = 0.35;
+const FALL_MS = 1000;
+const AWAY_MS = 3000; // total time from letting go until it is back
 
 export default function PeelSticker({
   src,
@@ -42,12 +49,23 @@ export default function PeelSticker({
 }: Props) {
   const root = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
-  const [mode, setMode] = useState<Mode>("stuck");
+  const [mode, setModeState] = useState<Mode>("stuck");
+  const modeRef = useRef<Mode>("stuck");
   const [peel, setPeel] = useState(0); // 0 to 1 of the way across
+  const peelRef = useRef(0);
   const [hover, setHover] = useState(false);
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const [settle, setSettle] = useState(0);
-  const drag = useRef({ px: 0, py: 0, x: 0, y: 0, p: 0, moved: false });
+  const [settle, setSettle] = useState(0); // restarts the press-on animation
+  const start = useRef({ px: 0, py: 0, moved: false });
+  const timers = useRef<number[]>([]);
+
+  const setMode = (m: Mode) => {
+    modeRef.current = m;
+    setModeState(m);
+  };
+  const setPeelBoth = (p: number) => {
+    peelRef.current = p;
+    setPeel(p);
+  };
 
   useEffect(() => {
     const el = root.current;
@@ -57,6 +75,11 @@ export default function PeelSticker({
     const ro = new ResizeObserver(read);
     ro.observe(el);
     return () => ro.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const pending = timers.current;
+    return () => pending.forEach((id) => window.clearTimeout(id));
   }, []);
 
   const { w, h } = size;
@@ -73,7 +96,11 @@ export default function PeelSticker({
   const maxT = Math.abs(nx) * w + Math.abs(ny) * h; // corner to far side, along n
   const HOVER_PEEL = 0.1;
   const shown =
-    mode === "peeling" ? peel : mode === "stuck" && hover ? HOVER_PEEL : 0;
+    mode === "peeling" || mode === "falling"
+      ? peel
+      : mode === "stuck" && hover
+        ? HOVER_PEEL
+        : 0;
   const t = shown * maxT;
 
   // Clip: the half plane on the kept side of the fold.
@@ -92,62 +119,60 @@ export default function PeelSticker({
     1 - 2 * ny * ny
   }, ${k * nx}, ${k * ny})`;
 
+  const drop = () => {
+    // Keep the fold where it is (at least a good curl) and let it fall.
+    setPeelBoth(Math.max(peelRef.current, 0.5));
+    setMode("falling");
+    timers.current.push(
+      window.setTimeout(() => setMode("gone"), FALL_MS),
+      window.setTimeout(() => {
+        setPeelBoth(0);
+        setSettle((n) => n + 1);
+        setMode("stuck");
+      }, AWAY_MS),
+    );
+  };
+
   const down = (e: PointerEvent<HTMLDivElement>) => {
+    if (modeRef.current !== "stuck") return;
     e.currentTarget.setPointerCapture(e.pointerId);
-    drag.current = {
-      px: e.clientX,
-      py: e.clientY,
-      x: offset.x,
-      y: offset.y,
-      p: shown,
-      moved: false,
-    };
-    setMode((m) => (m === "loose" ? "moving" : "peeling"));
+    start.current = { px: e.clientX, py: e.clientY, moved: false };
+    setMode("peeling");
   };
 
   const move = (e: PointerEvent<HTMLDivElement>) => {
-    if (mode !== "peeling" && mode !== "moving") return;
-    const dx = e.clientX - drag.current.px;
-    const dy = e.clientY - drag.current.py;
-    if (Math.abs(dx) + Math.abs(dy) > 3) drag.current.moved = true;
-    if (mode === "moving") {
-      setOffset({ x: drag.current.x + dx, y: drag.current.y + dy });
-    } else {
-      // Pulling toward the middle (against n) peels.
-      const pull = -(dx * nx + dy * ny);
-      const next = drag.current.p + pull / (maxT * 1.2);
-      setPeel(Math.min(1, Math.max(0, next)));
-    }
+    if (modeRef.current !== "peeling") return;
+    const dist = Math.hypot(e.clientX - start.current.px, e.clientY - start.current.py);
+    if (dist > 3) start.current.moved = true;
+    const base = HOVER_PEEL;
+    setPeelBoth(Math.min(1, base + dist / (maxT * PULL_FOR_FULL)));
   };
 
   const up = () => {
-    if (mode === "peeling") {
-      if (peel > 0.5) {
-        setMode("loose"); // off the page
-      } else {
-        setMode("stuck"); // springs back
-      }
-      setPeel(0);
-    } else if (mode === "moving") {
-      setMode("stuck"); // pressed down where it was dropped
-      setSettle((n) => n + 1);
+    if (modeRef.current !== "peeling") return;
+    // A tap, or a pull past a third of the way, takes it off the page.
+    if (!start.current.moved || peelRef.current > PEEL_TO_DROP) {
+      drop();
+    } else {
+      setMode("stuck"); // springs back
+      setPeelBoth(0);
     }
   };
 
   const wrapStyle = {
-    "--peel-x": `${offset.x}px`,
-    "--peel-y": `${offset.y}px`,
     "--peel-tilt": `${tilt}deg`,
-    "--peel-clip": clip,
+    "--fall-ms": `${FALL_MS}ms`,
   } as CSSProperties;
 
   const dragging = mode === "peeling";
-  const loose = mode === "loose" || mode === "moving";
+  const falling = mode === "falling";
 
   return (
     <div
       ref={root}
-      className={`${styles.sticker} ${className} ${loose ? styles.isLoose : ""}`}
+      className={`${styles.sticker} ${className} ${mode === "gone" ? styles.gone : ""} ${
+        settle > 0 ? styles.again : ""
+      }`}
       style={wrapStyle}
       onPointerDown={down}
       onPointerMove={move}
@@ -156,7 +181,7 @@ export default function PeelSticker({
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
     >
-      <div key={settle} className={styles.inner}>
+      <div key={settle} className={`${styles.inner} ${falling ? styles.falls : ""}`}>
         {/* Front: everything on the kept side of the fold */}
         <div
           className={`${styles.clip} ${dragging ? styles.noEase : ""}`}

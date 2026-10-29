@@ -313,7 +313,7 @@
    page stacks: there is no notebook to stick them to. */
 .stickerTuxedo {
   left: var(--about-sticker-tuxedo-left);
-  bottom: var(--about-sticker-tuxedo-bottom);
+  top: var(--about-sticker-tuxedo-top);
   width: var(--about-sticker-tuxedo-width);
   --sticker-peel-delay: 1.3s;
 }
