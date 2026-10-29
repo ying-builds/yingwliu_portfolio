@@ -11,13 +11,13 @@ import { aiCards, playTiles, workCards } from "./home-data";
 // The site root carries the full identity rather than the "[Page] — Ying Liu"
 // pattern the inner pages follow.
 export const metadata: Metadata = {
-  title: "Ying Liu — Product Designer",
+  title: "Ying Liu | UX & Product Designer Portfolio",
   description:
-    "Using a strategist's intuition to turn ambiguity into clarity through grounded experiences.",
+    "Ying Liu is a UX and product designer in Sacramento, CA. Portfolio of case studies on B2B platforms, self-service help centers and social apps.",
   openGraph: {
-    title: "Ying Liu — Product Designer",
+    title: "Ying Liu | UX & Product Designer Portfolio",
     description:
-      "Using a strategist's intuition to turn ambiguity into clarity through grounded experiences.",
+      "Ying Liu is a UX and product designer in Sacramento, CA. Portfolio of case studies on B2B platforms, self-service help centers and social apps.",
     type: "website",
     /* siteName, images and the image's alt are all repeated from the root
        layout on purpose. Next merges metadata shallowly: declaring openGraph

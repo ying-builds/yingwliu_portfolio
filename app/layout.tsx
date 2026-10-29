@@ -9,13 +9,13 @@ export const metadata: Metadata = {
      resolve it against — the card comes back blank. Everything else here can
      stay relative because this exists. */
   metadataBase: new URL("https://yingwliu.com"),
-  title: "Ying Liu — Product Designer",
+  title: "Ying Liu | UX & Product Designer Portfolio",
   description:
-    "Product Designer in Sacramento, CA, designing with empathy that's practiced, not performed.",
+    "Ying Liu is a UX and product designer in Sacramento, CA. Portfolio of case studies on B2B platforms, self-service help centers and social apps.",
   openGraph: {
-    title: "Ying Liu — Product Designer",
+    title: "Ying Liu | UX & Product Designer Portfolio",
     description:
-      "Product Designer in Sacramento, CA, designing with empathy that's practiced, not performed.",
+      "Ying Liu is a UX and product designer in Sacramento, CA. Portfolio of case studies on B2B platforms, self-service help centers and social apps.",
     url: "https://yingwliu.com",
     siteName: "Ying Liu",
     images: [
