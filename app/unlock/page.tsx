@@ -34,7 +34,7 @@ export default async function UnlockPage({
         <h1 className={styles.title}>This case study is private</h1>
 
         <p className={styles.copy}>
-          Input the password on my resume (top right) below to continue.
+          Input the password on the top of my resume below to continue.
         </p>
 
         <form className={styles.form} action="/api/unlock" method="POST">
