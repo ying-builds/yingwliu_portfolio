@@ -15,17 +15,15 @@
   max-width: 400px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: var(--space-lg);
 }
 
-.label {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: var(--text-note);
-  letter-spacing: var(--tracking-note);
-  text-transform: uppercase;
-  color: var(--white-subtitle);
-  opacity: 0.6;
+.lock {
+  width: var(--unlock-lock-width);
+  height: auto;
+  display: block;
 }
 
 .title {
@@ -42,22 +40,28 @@
 
 .copy {
   margin: 0;
-  font-family: var(--font-body);
-  font-size: var(--text-body);
+  font-family: var(--font-intel-mono);
+  font-size: var(--text-quote);
   line-height: var(--leading-body);
   color: var(--white-subtitle);
   opacity: 0.75;
 }
 
 .form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
 }
 
+.field {
+  position: relative;
+}
+
 .input {
   width: 100%;
-  padding: 14px var(--space-md);
+  /* Room on the right for the arrow */
+  padding: 14px 52px 14px var(--space-md);
   font-family: var(--font-body);
   font-size: var(--text-body);
   color: var(--white-text);
@@ -71,21 +75,57 @@
   border-color: var(--white-text);
 }
 
-.submit {
-  padding: 14px var(--space-md);
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: var(--text-body);
-  color: var(--black-bg);
-  background: var(--white-text);
-  border: none;
-  border-radius: var(--radius-media);
+.go {
+  position: absolute;
+  top: 50%;
+  right: var(--space-sm);
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  color: var(--white-text);
+  background: none;
+  border: 0;
+  border-radius: 50%;
   cursor: pointer;
-  transition: opacity 0.15s;
+  /* Quiet until the box is hovered or in use, but never hidden, so a phone
+     (no hover) can still see what to press. */
+  opacity: 0.35;
+  transition: opacity 0.2s ease-out;
 }
 
-.submit:hover {
-  opacity: 0.85;
+.go svg {
+  transition: transform 0.2s ease-out;
+}
+
+.field:hover .go,
+.field:focus-within .go {
+  opacity: 1;
+}
+
+.field:hover .go svg,
+.field:focus-within .go svg,
+.go:hover svg {
+  transform: translateX(3px);
+}
+
+.go:focus-visible {
+  outline: 2px solid var(--white-text);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .go,
+  .go svg {
+    transition: none;
+  }
+  .field:hover .go svg,
+  .field:focus-within .go svg,
+  .go:hover svg {
+    transform: none;
+  }
 }
 
 .error {

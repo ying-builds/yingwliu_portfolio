@@ -7,6 +7,15 @@ changes, in the same commit.
 
 
 
+## 2026-10-28: Password page
+### Added
+| Token | Value |
+| --- | --- |
+| `--unlock-lock-width` | 56px (the padlock above the gate's title) |
+
+The gate's title is now Crimson Pro (`--font-serif`) and its instruction line is
+Intel One Mono at `--text-quote` (14px).
+
 ## 2026-10-28: Footer links match the top nav
 ### Changed
 | Token | Was | Now |

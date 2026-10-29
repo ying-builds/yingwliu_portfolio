@@ -22,10 +22,16 @@ export default async function UnlockPage({
   return (
     <div className={styles.page}>
       <div className={styles.card}>
-        <div>
-          <p className={styles.label}>Password required</p>
-          <h1 className={styles.title}>This case study is shared privately</h1>
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          className={styles.lock}
+          src="/images/site/unlock-lock.png"
+          width={224}
+          height={346}
+          alt=""
+        />
+
+        <h1 className={styles.title}>This case study is private</h1>
 
         <p className={styles.copy}>
           Input the password on my resume (top right) below to continue.
@@ -33,22 +39,37 @@ export default async function UnlockPage({
 
         <form className={styles.form} action="/api/unlock" method="POST">
           <input type="hidden" name="next" value={next} />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            autoFocus
-            required
-            className={styles.input}
-          />
+          <div className={styles.field}>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              aria-label="Password"
+              autoFocus
+              required
+              className={styles.input}
+            />
+            {/* Sits inside the box at the right. Dim at rest, it brightens and
+                nudges forward when the box is hovered or focused. Pressing it
+                (or Enter) submits. */}
+            <button type="submit" className={styles.go} aria-label="View case study">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path
+                  d="M4 12h15M13 6l6 6-6 6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
           {hasError && (
             <p className={styles.error}>
-              That password didn&apos;t work — try again.
+              That password didn&apos;t work, try again.
             </p>
           )}
-          <button type="submit" className={styles.submit}>
-            View case study
-          </button>
         </form>
       </div>
     </div>
