@@ -16,8 +16,7 @@ export function StoryPaths() {
         aria-label="A stuck client has three paths. Searching the site is self-service. Emailing a CSS and submitting a case both need a person."
       >
         <rect className={`${styles.node} ${styles.nodeMe}`} x="8" y="125" width="190" height="80" rx="4" />
-        <text className={`${styles.t1} ${styles.t1Inv}`} x="28" y="160">A client is stuck</text>
-        <text className={`${styles.t2} ${styles.t2Inv}`} x="28" y="182">7 clients, 3 paths</text>
+        <text className={`${styles.t1} ${styles.t1Inv}`} x="28" y="171">A client is stuck</text>
         <path className={`${styles.arrow} ${styles.arrowGood}`} d="M198 165 C 300 165, 330 52, 462 52" />
         <path className={styles.arrow} d="M198 165 L 462 165" />
         <path className={styles.arrow} d="M198 165 C 300 165, 330 278, 462 278" />
