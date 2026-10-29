@@ -7,6 +7,12 @@ changes, in the same commit.
 
 
 
+## 2026-10-28: Footer links match the top nav
+### Changed
+| Token | Was | Now |
+| --- | --- | --- |
+| `--text-footer-nav` | 12.5px | `var(--text-nav)` (12px, so the footer's Work / About / Resume read at the same size as the top nav) |
+
 ## 2026-10-28: BeReal in the story layout
 ### Added
 | Token | Value |

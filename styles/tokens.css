@@ -168,7 +168,7 @@
   --footer-bar-height: calc(var(--space-footer-y) * 2 + var(--footer-mark-size)); /* dark bar: padding + the red character, 234px */
   --footer-band-height-mobile: 120px; /* on phones the band is cropped to a strip instead */
   --space-footer-y: 59px;       /* bar's top and bottom padding */
-  --text-footer-nav: 12.5px;    /* Work / About / Resume */
+  --text-footer-nav: var(--text-nav);  /* Work / About / Resume: same size as the top nav */
   --text-footer-tagline: 9px;   /* "Made with love & lots of tea," */
   --text-footer-copy: 10px;     /* "Ying Liu / 2026" */
   --icon-social: 20px;          /* LinkedIn, email */
