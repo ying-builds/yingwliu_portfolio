@@ -164,7 +164,10 @@ export default function Hero() {
                 role="note"
               >
                 <img src={NOTE.src} alt="" />
-                <p>
+                {h.note.cover && (
+                  <img className={styles.cover} src={h.note.cover} alt="" />
+                )}
+                <p className={h.note.cover ? styles.withCover : undefined}>
                   {h.note.lines.map((l) => (
                     <span key={l.text} style={{ fontSize: u(l.size) }}>
                       {l.text}

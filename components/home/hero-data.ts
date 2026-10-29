@@ -22,7 +22,13 @@ export type Hotspot = {
   w: number;
   h: number;
   art: { src: string; x: number; y: number; w: number; h: number };
-  note: { x: number; y: number; lines: { text: string; size: number }[] };
+  note: {
+    x: number;
+    y: number;
+    lines: { text: string; size: number }[];
+    // Optional small picture on the left of the note (the song cover).
+    cover?: string;
+  };
   wiggle: 3 | 4 | 5;
   // Optional picture that must sit in front of this hotspot's art (not wiggling).
   front?: { src: string; x: number; y: number; w: number; h: number };
@@ -42,11 +48,12 @@ export const hotspots: Hotspot[] = [
     note: {
       x: 263,
       y: 234.5,
-      // Static for now. A live Spotify "now playing" comes in a later update.
+      // Typed in by hand for now. A live Spotify "now playing" comes in a later update.
+      cover: "/images/site/hero/song-cover-v1.webp",
       lines: [
-        { text: "now playing:", size: 12 },
-        { text: "song title", size: 16 },
-        { text: "artist name", size: 13 },
+        { text: "now playing:", size: 11 },
+        { text: "Shut up My Moms Calling", size: 14 },
+        { text: "Hotel Ugly", size: 12 },
       ],
     },
     wiggle: 3,
