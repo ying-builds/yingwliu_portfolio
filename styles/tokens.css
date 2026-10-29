@@ -52,11 +52,11 @@
 
   --font-display: 'Bootzy TM', serif;
   --font-body: 'Inter', sans-serif;
-  --font-mono: 'PT Mono', monospace;
+  --font-mono: 'Intel One Mono', monospace;  /* every mono label on the site */
   --font-script: 'Ballet', cursive;  /* About hero wordmark */
   --font-serif: 'Crimson Pro', serif;  /* home hero journal text, Work / AI card titles */
   --font-hand: 'Covered By Your Grace', cursive;  /* home hero handwriting */
-  --font-intel-mono: 'Intel One Mono', monospace; /* replaces PT Mono on the homepage; roll out site-wide later (see CLAUDE.md) */
+  --font-intel-mono: var(--font-mono); /* same font; older name kept so existing references keep working */
 
   /* Display (Bootzy TM) */
   --text-project-title: 40px;   /* tracking 2.5px */
@@ -86,7 +86,7 @@
   --tracking-logo: 1.6px;       /* nav wordmark */
   --tracking-wordmark: 2.08px;  /* footer wordmark */
 
-  /* Mono (PT Mono) */
+  /* Mono (Intel One Mono) */
   --text-label: 11px;           /* meta labels (ROLE, TIMELINE), tracking 0.7px */
   --text-note: 12px;            /* section captions, tracking 0.4px, uppercase */
   --text-quote: 14px;           /* pull quotes, line-height 20px */
@@ -167,7 +167,7 @@
   --footer-bar-height: calc(var(--space-footer-y) * 2 + var(--footer-mark-size)); /* dark bar: padding + the red character, 234px */
   --footer-band-height-mobile: 120px; /* on phones the band is cropped to a strip instead */
   --space-footer-y: 59px;       /* bar's top and bottom padding */
-  --text-footer-nav: 12.5px;    /* Work / About / Resume, PT Mono */
+  --text-footer-nav: 12.5px;    /* Work / About / Resume */
   --text-footer-tagline: 9px;   /* "Made with love & lots of tea," */
   --text-footer-copy: 10px;     /* "Ying Liu / 2026" */
   --icon-social: 20px;          /* LinkedIn, email */

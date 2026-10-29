@@ -6,6 +6,23 @@ or removed in `styles/tokens.css` (and the `@font-face` blocks in
 changes, in the same commit.
 
 
+
+## 2026-10-28: Intel One Mono everywhere, one nav
+### Changed
+| Token | Was | Now |
+| --- | --- | --- |
+| `--font-mono` | `'PT Mono', monospace` | `'Intel One Mono', monospace` |
+| `--font-intel-mono` | `'Intel One Mono', monospace` | `var(--font-mono)` (alias, same font) |
+
+### Removed
+- The PT Mono `@font-face` blocks in `styles/globals.css` and the two PT Mono
+  files in `public/fonts`.
+
+### Nav
+- The wordmark and the Work / About / Resume links are Intel One Mono at
+  `--text-nav` (12px) on every page. The cream pages' wordmark was Bootzy TM
+  at 16px with tracking; the links were Inter 500.
+
 ## 2026-10-28: Peelable stickers on the About notebook
 ### Added
 | Token | Value |

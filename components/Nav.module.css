@@ -16,6 +16,20 @@
   justify-self: start;
 }
 
+/* Same type on every page: Intel One Mono at the nav size for the wordmark and
+   the links. Only the colours change over the dark hero. */
+.nav .logo {
+  font-family: var(--font-intel-mono);
+  font-size: var(--text-nav);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.nav .links {
+  font-family: var(--font-intel-mono);
+  font-weight: 400;
+}
+
 .nav .logo {
   text-decoration: none;
   color: var(--nav-logo-rest);
@@ -80,9 +94,6 @@
 }
 
 .overHero .logo {
-  font-family: var(--font-intel-mono);
-  font-size: var(--text-nav);
-  letter-spacing: 0;
   color: var(--site-cream);
 }
 

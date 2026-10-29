@@ -37,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* No font <link> here: Inter, PT Mono and Bootzy TM are all self-hosted
+      {/* No font <link> here: Inter, Intel One Mono and Bootzy TM are all self-hosted
           and declared in styles/globals.css, so type rendering does not wait on
           a third-party request. */}
       <body>
