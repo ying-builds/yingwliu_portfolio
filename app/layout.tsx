@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://yingwliu.com"),
   title: "Ying Liu | UX & Product Designer Portfolio",
   description:
-    "Ying Liu is a UX and product designer in Sacramento, CA. See her work and case studies, from help centers to social apps.",
+    "Ying Liu is a UX and product designer in Sacramento, CA. Take a look at her case studies in help centers, event tools and social apps.",
   openGraph: {
     title: "Ying Liu | UX & Product Designer Portfolio",
     description:
-      "Ying Liu is a UX and product designer in Sacramento, CA. See her work and case studies, from help centers to social apps.",
+      "Ying Liu is a UX and product designer in Sacramento, CA. Take a look at her case studies in help centers, event tools and social apps.",
     url: "https://yingwliu.com",
     siteName: "Ying Liu",
     images: [
