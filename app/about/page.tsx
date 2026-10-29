@@ -166,6 +166,7 @@ export default function AboutPage() {
             width={1000}
             height={545}
             tilt={-3}
+            corner="bl"
           />
           <PeelSticker
             className={styles.stickerTabby}

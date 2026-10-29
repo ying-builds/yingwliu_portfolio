@@ -10,9 +10,8 @@ changes, in the same commit.
 ### Added
 | Token | Value |
 | --- | --- |
-| `--sticker-lift-duration` | 0.25s |
+| `--sticker-lift-duration` | 0.25s (hover curl and drop) |
 | `--sticker-peel-duration` | 0.9s |
-| `--sticker-lift-angle` | 14deg |
 | `--about-sticker-tuxedo-width` / `-left` / `-bottom` | 15cqw / 22cqw / -0.5cqw |
 | `--about-sticker-tabby-width` / `-right` / `-bottom` | 19cqw / 4.5cqw / 1.5cqw |
 

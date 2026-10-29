@@ -1,6 +1,6 @@
 /* Peelable sticker. Position and size come from the page that uses it; this file
-   is only the lift, the peel-on and the shadow. Timings and lift amounts are
-   tokens (see "Peelable stickers" in styles/tokens.css). */
+   is the fold, the shadows and the lift. Timings are tokens (see "Peelable
+   stickers" in styles/tokens.css). */
 
 .sticker {
   position: absolute;
@@ -8,13 +8,43 @@
   cursor: grab;
   touch-action: none;
   user-select: none;
-  perspective: 600px;
   transform: translate(var(--peel-x, 0), var(--peel-y, 0));
 }
 
-.isHeld {
+.isLoose {
   cursor: grabbing;
   z-index: 4;
+}
+
+/* Everything that tilts, lands and casts a shadow lives here, so the front and
+   the flap move as one sticker. The shadow is a thin edge while stuck. */
+.inner {
+  position: relative;
+  transform: rotate(var(--peel-tilt, 0deg));
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.22))
+    drop-shadow(0 2px 3px rgb(0 0 0 / 0.12));
+  transition:
+    transform var(--sticker-lift-duration) cubic-bezier(0.2, 0.8, 0.3, 1),
+    filter var(--sticker-lift-duration) ease-out;
+  animation: pressOn var(--sticker-peel-duration) cubic-bezier(0.2, 0.8, 0.3, 1)
+    var(--sticker-peel-delay, 0s) backwards;
+}
+
+/* Floating loose: bigger, higher, a little twisted */
+.isLoose .inner {
+  transform: rotate(calc(var(--peel-tilt, 0deg) + 4deg)) scale(1.08);
+  filter: drop-shadow(0 12px 8px rgb(0 0 0 / 0.2))
+    drop-shadow(0 22px 24px rgb(0 0 0 / 0.16));
+  animation: none;
+}
+
+.clip {
+  /* Eases the hover curl; turned off while a finger is dragging it */
+  transition: clip-path var(--sticker-lift-duration) cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.noEase {
+  transition: none;
 }
 
 .img {
@@ -22,41 +52,40 @@
   width: 100%;
   height: auto;
   pointer-events: none;
-  transform: rotate(var(--peel-tilt, 0deg));
-  transform-origin: 8% 92%;
-  /* The die-cut white edge already reads as the sticker; the shadow is just
-     enough to show it sits on top of the paper. */
-  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.22))
-    drop-shadow(0 2px 3px rgb(0 0 0 / 0.12));
-  transition:
-    transform var(--sticker-lift-duration) cubic-bezier(0.2, 0.8, 0.3, 1),
-    filter var(--sticker-lift-duration) ease-out;
-  animation: peelOn var(--sticker-peel-duration) cubic-bezier(0.2, 0.8, 0.3, 1)
-    var(--sticker-peel-delay, 0s) backwards;
 }
 
-/* Hover: the left edge lifts, as if a thumbnail got under it. */
-.sticker:hover .img {
-  transform: rotate(var(--peel-tilt, 0deg)) rotateY(calc(var(--sticker-lift-angle) * -1))
-    translateY(-2px);
-  filter: drop-shadow(0 6px 5px rgb(0 0 0 / 0.2))
-    drop-shadow(0 10px 14px rgb(0 0 0 / 0.14));
+.flapShadow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* The flap throws a soft shadow back onto the sticker beneath it */
+  filter: drop-shadow(-3px -3px 5px rgb(0 0 0 / 0.28));
 }
 
-/* Held: fully off the page, a little bigger, a little twisted. */
-.isHeld .img {
-  transform: rotate(calc(var(--peel-tilt, 0deg) + 3deg)) scale(1.07);
-  filter: drop-shadow(0 12px 8px rgb(0 0 0 / 0.2))
-    drop-shadow(0 22px 24px rgb(0 0 0 / 0.16));
-  transition-duration: 0.12s;
+.flapShadow .clip {
+  position: absolute;
+  inset: 0;
 }
 
-/* Pressing it down: starts peeled up and tilted, then lands flat with a tiny
-   squash, the way a sticker does when you smooth it with your thumb. */
-@keyframes peelOn {
+/* The back of a sticker is plain paper: the same silhouette, flattened to a
+   warm off-white. Fixed px size comes from the component, because the mirror
+   maths is in pixels. */
+.flap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: none;
+  transform-origin: 0 0;
+  pointer-events: none;
+  filter: brightness(0) invert(0.93) sepia(0.06);
+}
+
+/* Pressing it down: lifted and tilted at first, then it lands flat with a
+   tiny squash, the way a sticker does under a thumb. Plays on load and again
+   each time a loose sticker is put back. */
+@keyframes pressOn {
   0% {
-    transform: rotate(var(--peel-tilt, 0deg)) rotateY(calc(var(--sticker-lift-angle) * -2.2))
-      translateY(-10px) scale(1.08);
+    transform: rotate(calc(var(--peel-tilt, 0deg) + 5deg)) translateY(-12px) scale(1.1);
     filter: drop-shadow(0 14px 10px rgb(0 0 0 / 0.2))
       drop-shadow(0 26px 26px rgb(0 0 0 / 0.16));
     opacity: 0;
@@ -65,16 +94,19 @@
     opacity: 1;
   }
   70% {
-    transform: rotate(var(--peel-tilt, 0deg)) rotateY(0deg) translateY(0) scale(0.985);
+    transform: rotate(var(--peel-tilt, 0deg)) translateY(0) scale(0.97);
   }
   100% {
-    transform: rotate(var(--peel-tilt, 0deg)) rotateY(0deg) translateY(0) scale(1);
+    transform: rotate(var(--peel-tilt, 0deg)) translateY(0) scale(1);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .img {
+  .inner {
     animation: none;
+    transition: none;
+  }
+  .clip {
     transition: none;
   }
 }

@@ -635,7 +635,6 @@ h3 {
   /* Peelable stickers on the About notebook (sizes and spots in notebook units) */
   --sticker-lift-duration: 0.25s; /* hover and drop */
   --sticker-peel-duration: 0.9s; /* the peel-on when the page loads */
-  --sticker-lift-angle: 14deg; /* how far the edge tips up on hover */
   --about-sticker-tuxedo-width: 15cqw;
   --about-sticker-tuxedo-left: 22cqw;
   --about-sticker-tuxedo-bottom: -0.5cqw;
