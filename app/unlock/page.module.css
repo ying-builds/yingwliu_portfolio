@@ -30,7 +30,11 @@
 
 .title {
   margin: 0;
-  font-family: var(--font-display);
+  /* Crimson Pro ships one weight (400) and tokens.css gives every h1 the
+     case study tracking, so both are set here rather than inherited. */
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: normal;
   font-size: var(--text-h1);
   line-height: var(--leading-h1);
   color: var(--white-text);
