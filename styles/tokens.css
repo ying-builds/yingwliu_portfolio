@@ -642,4 +642,16 @@ h3 {
   --about-sticker-tabby-width: 19cqw;
   --about-sticker-tabby-right: 4.5cqw;
   --about-sticker-tabby-bottom: 1.5cqw;
+
+  /* Dotted flourishes around the About page (positions are against the page, in vw) */
+  --about-ornament-opacity: 0.75;
+  --about-orn-tall-width: 8vw;
+  --about-orn-tall-left: 7vw;
+  --about-orn-tall-top: 12%;
+  --about-orn-big-width: 11vw;
+  --about-orn-big-right: 4vw;
+  --about-orn-big-top: 6%;
+  --about-orn-small-width: 6vw;
+  --about-orn-small-left: 3vw;
+  --about-orn-small-bottom: 6%;
 }

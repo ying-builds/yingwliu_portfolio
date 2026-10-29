@@ -178,6 +178,33 @@ export default function AboutPage() {
           />
           </div>
 
+          {/* Hand-drawn dotted flourishes around the page. They overlap the notebook's
+              margins and spill onto the paper behind it. Decorative only. */}
+          <img
+            className={`${styles.ornament} ${styles.ornamentTall}`}
+            src="/images/site/ornament-tall-v2.png"
+            width={230}
+            height={866}
+            alt=""
+            aria-hidden="true"
+          />
+          <img
+            className={`${styles.ornament} ${styles.ornamentBig}`}
+            src="/images/site/ornament-big-v2.png"
+            width={316}
+            height={708}
+            alt=""
+            aria-hidden="true"
+          />
+          <img
+            className={`${styles.ornament} ${styles.ornamentSmall}`}
+            src="/images/site/ornament-small-v2.png"
+            width={173}
+            height={440}
+            alt=""
+            aria-hidden="true"
+          />
+
           <div className={`${styles.shadowText} ${styles.shadowTextBottom}`}>
             瑩
           </div>

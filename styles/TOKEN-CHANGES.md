@@ -16,6 +16,14 @@ changes, in the same commit.
 | `--about-sticker-tuxedo-width` / `-left` / `-top` | 16cqw / 1.8cqw / 0.5cqw (top-left of the left page) |
 | `--about-sticker-tabby-width` / `-right` / `-bottom` | 19cqw / 4.5cqw / 1.5cqw |
 
+### Added: dotted flourishes (same day)
+| Token | Value |
+| --- | --- |
+| `--about-ornament-opacity` | 0.75 |
+| `--about-orn-tall-width` / `-left` / `-top` | 8vw / 7vw / 12% |
+| `--about-orn-big-width` / `-right` / `-top` | 11vw / 4vw / 6% |
+| `--about-orn-small-width` / `-left` / `-bottom` | 6vw / 3vw / 6% |
+
 ## New home, footer and nav (branch `rethinking-client-self-service-and-new-home`)
 
 ### About page: one screen on desktop

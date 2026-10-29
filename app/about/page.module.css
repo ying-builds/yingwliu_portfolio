@@ -308,6 +308,59 @@
   color: var(--black);
 }
 
+/* ===== Dotted flourishes =====
+   Sit on the hero (not the notebook), so they can spill out onto the paper. They
+   ink in after the notebook has settled, and leave when the page stacks. */
+.ornament {
+  position: absolute;
+  z-index: 1;
+  height: auto;
+  pointer-events: none;
+  opacity: 0;
+  animation: inkIn 1.2s 1s ease forwards;
+}
+
+.ornamentTall {
+  left: var(--about-orn-tall-left);
+  top: var(--about-orn-tall-top);
+  width: var(--about-orn-tall-width);
+  transform: rotate(-4deg);
+}
+
+.ornamentBig {
+  right: var(--about-orn-big-right);
+  top: var(--about-orn-big-top);
+  width: var(--about-orn-big-width);
+  transform: rotate(3deg);
+}
+
+.ornamentSmall {
+  left: var(--about-orn-small-left);
+  bottom: var(--about-orn-small-bottom);
+  width: var(--about-orn-small-width);
+  transform: rotate(5deg);
+  animation-delay: 1.2s;
+}
+
+@keyframes inkIn {
+  to {
+    opacity: var(--about-ornament-opacity);
+  }
+}
+
+@media (max-width: 900px) {
+  .ornament {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ornament {
+    animation: none;
+    opacity: var(--about-ornament-opacity);
+  }
+}
+
 /* ===== Stickers on the notebook =====
    Sized and placed in notebook units (cqw) so they ride with it. Hidden when the
    page stacks: there is no notebook to stick them to. */
