@@ -319,6 +319,7 @@
 .layerLink::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1.5px solid var(--subtitle); }
 .layerLink span { position: relative; background: var(--background-fill); padding: 2px 4px; }
 .layerNarrow::before { border-top-style: dashed; }
+.journeyLink { flex-basis: 96px; }
 
 /* ===== Responsive ===== */
 @media (min-width: 700px) { .story { --story-gutter-x: var(--page-gutter); } }
@@ -336,7 +337,7 @@
   .feature { grid-template-columns: 1fr; }
   .feature > figure { max-width: var(--story-feature-video); }
   .layers { flex-direction: column; }
-  .layerLink { flex: 0 0 40px; }
+  .layerLink, .journeyLink { flex: 0 0 40px; }
   .layerLink::before { top: 0; bottom: 0; left: 50%; right: auto; border-top: 0; border-left: 1.5px solid var(--subtitle); }
 }
 @media (max-width: 700px) {

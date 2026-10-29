@@ -67,3 +67,23 @@ export function StoryLayers() {
     </div>
   );
 }
+
+/* The Event Programming Form journey: a client creates an event, fills out the
+   form, and Event Programmers build it. Reuses the layers diagram's styling so
+   the two read as one family. The form is the dark node because it is the
+   piece this project redesigned. */
+export function StoryEpJourney() {
+  return (
+    <div
+      className={styles.layers}
+      role="img"
+      aria-label="The event journey: a client creates an event, fills out the event request form, and Event Programmers build it"
+    >
+      <div className={styles.layerNode}><b>Client</b><span>Creates an event, like a BTS show at a venue</span></div>
+      <div className={`${styles.layerLink} ${styles.journeyLink}`}><span>fills out</span></div>
+      <div className={`${styles.layerNode} ${styles.layerMe}`}><b>The EP form</b><span>What I redesigned</span></div>
+      <div className={`${styles.layerLink} ${styles.journeyLink}`}><span>built by</span></div>
+      <div className={styles.layerNode}><b>Event Programmers</b><span>Build the event</span></div>
+    </div>
+  );
+}

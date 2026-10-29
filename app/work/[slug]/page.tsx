@@ -49,7 +49,7 @@ import {
   Pick,
   Feature,
 } from "../../../components/story/Blocks";
-import { StoryPaths, StoryLayers } from "../../../components/story/Diagrams";
+import { StoryPaths, StoryLayers, StoryEpJourney } from "../../../components/story/Diagrams";
 import ReadingProgress from "../../../components/case-study/ReadingProgress";
 import PathsDiagram from "../../../components/case-study/PathsDiagram";
 import ReachLayers from "../../../components/case-study/ReachLayers";
@@ -154,6 +154,7 @@ const mdxComponents = {
   Feature,
   StoryPaths,
   StoryLayers,
+  StoryEpJourney,
   // Original case study template
   Section,
   Intro,
