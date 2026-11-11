@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Hero.module.css";
 import { ARTBOARD, NOTE, bean, hotspots } from "./hero-data";
 
@@ -17,9 +17,34 @@ const u = (n: number) => `calc(${n} * var(--u))`;
 
 export default function Hero() {
   const stageRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+
+  // Touch screens only: which hotspot's note is showing from a tap. Desktop
+  // notes open on hover alone (see Hero.module.css), so this never runs there.
+  const [open, setOpen] = useState<string | null>(null);
+
+  // On a phone the scene is wider than the screen and scrolls sideways. Start
+  // it on the journal's right page, where the paragraph is.
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el || el.scrollWidth <= el.clientWidth) return;
+    const journalCenter = (985 * 1100) / 1708; // artboard x of the paragraph, in phone pixels
+    el.scrollLeft = journalCenter - el.clientWidth / 2;
+  }, []);
+
+  // Tapping anywhere else closes an open note.
+  useEffect(() => {
+    if (!open) return;
+    const close = (e: Event) => {
+      if ((e.target as HTMLElement).closest("[data-hotspot]")) return;
+      setOpen(null);
+    };
+    document.addEventListener("click", close);
+    return () => document.removeEventListener("click", close);
+  }, [open]);
 
   return (
-    <section className={styles.hero} id="hero" aria-label="Introduction">
+    <section className={styles.hero} id="hero" aria-label="Introduction" ref={heroRef}>
       <div className={styles.stage} ref={stageRef}>
         <img
           className={styles.background}
@@ -93,7 +118,7 @@ export default function Hero() {
           return (
             <div
               key={h.id}
-              className={styles.spot}
+              className={`${styles.spot} ${open === h.id ? styles.isOpen : ""}`}
               style={{ left: u(h.x), top: u(h.y), width: u(h.w), height: u(h.h) }}
               data-hotspot
             >
@@ -101,6 +126,12 @@ export default function Hero() {
                 type="button"
                 className={styles.spotButton}
                 aria-label={h.label}
+                onClick={() => {
+                  // Only on touch screens. A mouse never needs a click here.
+                  if (window.matchMedia("(hover: none)").matches) {
+                    setOpen(open === h.id ? null : h.id);
+                  }
+                }}
               >
                 <img
                   className={`${styles.art} ${styles[`wiggle${h.wiggle}`]}`}

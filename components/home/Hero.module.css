@@ -228,6 +228,18 @@
   animation: none;
 }
 
+/* Touch screens have no hover, so a tap opens the note instead. */
+@media (hover: none) {
+  .isOpen .note {
+    opacity: 1;
+    transform: none;
+  }
+
+  .isOpen .art {
+    animation: none;
+  }
+}
+
 /* ---------- Bean's sparkles ---------- */
 
 .bean {
@@ -265,18 +277,28 @@
 
 /* ---------- small screens ---------- */
 
-/* On a phone the whole scene would be tiny, so it is drawn at a fixed 1100px
-   wide and cropped to the journal's right page, where the paragraph is. This
-   is the simple version; the phone pass in QA will refine it. */
+/* On a phone the full scene is drawn at a fixed 1100px wide, a size where the
+   journal paragraph is readable, and the hero scrolls sideways so every piece
+   (polaroid, headphones, passport photo, Bean) can be reached. Hero.tsx starts
+   the scroll on the journal's right page. */
 @media (max-width: 768px) {
   .hero {
     height: calc(651 * 1100 / 1708 * 1px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .hero::-webkit-scrollbar {
+    display: none;
   }
 
   .stage {
     --u: calc(1100 / 1708 * 1px);
     width: calc(1708 * var(--u));
-    left: calc(50% - 985 * var(--u));
+    flex: none;
   }
 }
 
